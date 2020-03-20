@@ -7,7 +7,7 @@ has_children: true
 permalink: /docs/developer-guide/terminus-client
 ---
 
-# Code
+# Contributing to terminus-client
 {: .no_toc }
 
 ## Table of contents
@@ -18,7 +18,7 @@ permalink: /docs/developer-guide/terminus-client
 
 ---
 
-## Inline code
+## Development setup
 
 Code can be rendered inline by wrapping it in single back ticks.
 
@@ -31,7 +31,7 @@ Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiu
 
 ---
 
-## Syntax highlighted code blocks
+## Code style guide
 
 Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
 
@@ -51,34 +51,5 @@ var fun = function lang(l) {
   dateformat.i18n = require('./lang/' + l)
   return true;
 }
-```
-{% endhighlight %}
-
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
 ```
 {% endhighlight %}

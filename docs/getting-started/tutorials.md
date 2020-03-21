@@ -1,8 +1,8 @@
 ---
 layout: default
-title: My First TerminusDB Graph Visualisation — Bike Share Data
-parent: Tutorials
-nav_order: 1
+title: Tutorials
+parent: Getting started
+nav_order: 10
 ---
 
 # Code

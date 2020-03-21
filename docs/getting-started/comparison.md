@@ -2,7 +2,7 @@
 layout: default
 title: Comparison with other tools
 parent: Getting started
-nav_order: 8
+nav_order: 9
 ---
 
 # Code

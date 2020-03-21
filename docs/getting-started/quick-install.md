@@ -5,7 +5,7 @@ parent: Getting started
 nav_order: 1
 ---
 
-# Code
+# Quick install with docker
 {: .no_toc }
 
 ## Table of contents
@@ -16,67 +16,134 @@ nav_order: 1
 
 ---
 
-## Inline code
+## Prerequisites
 
-Code can be rendered inline by wrapping it in single back ticks.
+### Docker
 
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Since this script uses the TerminusDB Docker container, you need to have Docker running.
+
+On Windows and Mac, Docker Desktop can be [downloaded here](https://www.docker.com/products/docker-desktop)
+
+On Linux, use your distro's package manager, or find [more information here](https://www.docker.com/products/container-runtime)
+
+### Git
+
+This script is distributed via GitHub, so you will need git to clone and update it, if you don't already have git, you can [download it here](https://git-scm.com/downloads)
+
+Windows users should use the application "Git Bash" for all terminal commands described below, this application comes with Git for Windows.
+
+### Sudo
+
+Sudo is optional. As letting unprivileged users run docker is insecure, this script uses sudo by default if it is available.
+
+Most users will not need to do anything here, sudo is installed by default on Macs and many populer Linux distros such as Fedora, Red Hat, Debian, Ubuntu and Mint. Linux users who use minmal distros such as Archlinux, are advised to install sudo and confugure their sudoers file accordingly.
+
+Windows users do not need to do anything here.
+
+---
+
+## Quick Start
+
+Get the script in the [terminus-quickstart repo](https://github.com/terminusdb/terminus-quickstart), cd to it
+
+```
+git clone https://github.com/terminusdb/terminus-quickstart
+cd terminus-quickstart
+```
+
+Run the container (the first time)
+
+```
+./terminus-container run
+Unable to find image 'terminusdb/terminus-server:latest' locally
+latest: Pulling from terminusdb/terminus-server
+8f91359f1fff: Pulling fs layer
+939634dec138: Pulling fs layer
+f30474226dd6: Pulling fs layer
+32a63113e3ae: Pulling fs layer
+ae35de9092ce: Pulling fs layer
+023c02983955: Pulling fs layer
+d9fa4a1acf93: Pulling fs layer
+[ ... ]
 ```
 
 ---
 
-## Syntax highlighted code blocks
+## If you've installed before
 
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
+You may need to move or remove previous volumes or you may encounter bugs or the old console.
 
-<div class="code-example" markdown="1">
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+*Warning: This will lead to losing local data.*
+
 ```
-</div>
-{% highlight markdown %}
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+ ./terminus-container rm
+
+removing will delete storage and config volumes
+Are you sure? [y/N] y
+terminus_storage
+terminus-config
 ```
-{% endhighlight %}
 
 ---
 
-## Code blocks with rendered examples
+## Using the console
 
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
+Ready to terminate? Open the TerminusDB Console in your web browser.
+```
+./terminus-container console
+```
+Or go here: [http://localhost:6363/console](http://localhost:6363/console)
 
-<div class="code-example" markdown="1">
+---
 
-<div class="code-example" markdown="1">
+## To stop, attach, etc, see usage
 
-[Link button](http://example.com/){: .btn }
+```
+./terminus-container
 
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
+USAGE:
+  terminus-container [COMMAND]
+
+  help        show usage
+  run         run container
+  stop        stop container
+  console     launch console in web browser
+  attach      attach to prolog shell
+  stats       show container stats
+  rm-config   remove config volume
+  rm-storage  remove storage volume
+  rm          remove volumes
 ```
 
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
+That's it! You're ready to go!
 
-[Link button](http://example.com/){: .btn }
+---
 
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
+## Using The Enviroment
+
+* Mount a local directory inside the container
 ```
-{% endhighlight %}
+TERMINUS_LOCAL=/path/to/dir ./terminus-container [COMMAND]
+```
+* Using the latest release
+```
+TERMINUS_TAG=latest ./terminus-container [COMMAND]
+```
+* Using the development release
+```
+TERMINUS_TAG=dev ./terminus-container [COMMAND]
+```
+* Using a specific release instead of latest realease
+```
+TERMINUS_TAG=v1.1.2 ./terminus-container [COMMAND]
+```
+* Not using sudo even when sudo is available
+```
+TERMINUS_DOCKER=docker ./terminus-container [COMMAND]
+```
+* Using podman instead of docker command
+```
+TERMINUS_DOCKER="podman" ./terminus-container [COMMAND]
+```
+
+See the source code to find the other environment variables that can be set.

@@ -39,7 +39,7 @@ aux_links:
     - "https://github.com/terminusdb/terminus-server"
 
 # Footer content appears at the bottom of every page's main content
-footer_content: "Copyright &copy; ©2020 - TerminusDB |  Distributed by an <a href=\"https://github.com/terminusdb/terminus-server/blob/master/LICENSE\">GPL-3.0 license.</a>"
+footer_content: "Copyright &copy; 2020 - TerminusDB |  Distributed by an <a href=\"https://github.com/terminusdb/terminus-server/blob/master/LICENSE\">GPL-3.0 license.</a>"
 
 # Color scheme currently only supports "dark" or nil (default)
 color_scheme: nil

@@ -21,25 +21,40 @@ $grey-dk-200: #44434d !default;
 $grey-dk-250: #302d36 !default;
 $grey-dk-300: #27262b !default;
 
-$grey-lt-000: #f5f6fa !default;
-$grey-lt-100: #eeebee !default;
-$grey-lt-200: #ecebed !default;
-$grey-lt-300: #e6e1e8 !default;
+//$grey-lt-000: #f5f6fa !default;
+//$grey-lt-100: #eeebee !default;
+//$grey-lt-200: #ecebed !default;
+//$grey-lt-300: #e6e1e8 !default;
+
+$grey-lt-000: #fafafa;
+$grey-lt-100: #eeeeee;
+$grey-lt-200: #ededed;
+$grey-lt-300: #e8e8e8;
 
 $purple-000: #7253ed !default;
 $purple-100: #5e41d0 !default;
 $purple-200: #4e26af !default;
 $purple-300: #381885 !default;
 
-$blue-000: #2c84fa !default;
-$blue-100: #2869e6 !default;
-$blue-200: #264caf !default;
-$blue-300: #183385 !default;
+//$blue-000: #2c84fa !default;
+//$blue-100: #2869e6 !default;
+//$blue-200: #264caf !default;
+//$blue-300: #183385 !default;
 
-$green-000: #41d693 !default;
-$green-100: #11b584 !default;
-$green-200: #009c7b !default;
-$green-300: #026e57 !default;
+$blue-000: #cdd4dd;
+$blue-100: #8093aa;
+$blue-200: #335377;
+$blue-300: #002856;
+
+//$green-000: #41d693 !default;
+//$green-100: #11b584 !default;
+//$green-200: #009c7b !default;
+//$green-300: #026e57 !default;
+
+$green-000: #cdf2e8;
+$green-100: #80e0c5;
+$green-200: #32cca2;
+$green-300: #00c08b;
 
 $yellow-000: #ffeb82 !default;
 $yellow-100: #fadf50 !default;
@@ -52,17 +67,18 @@ $red-200: #e94c4c !default;
 $red-300: #dd2e2e !default;
 
 $body-background-color: $white !default;
-$sidebar-color: $grey-lt-000 !default;
+$sidebar-color: $blue-300 !default;
 $search-background-color: $white !default;
 $table-background-color: $white !default;
 $code-background-color: $grey-lt-000 !default;
 
 $body-text-color: $grey-dk-100 !default;
+$sidebar-text-color: $green-000;
 $body-heading-color: $grey-dk-300 !default;
 $search-result-preview-color: $grey-dk-000 !default;
-$nav-child-link-color: $grey-dk-100 !default;
-$link-color: $purple-000 !default;
-$btn-primary-color: $purple-100 !default;
+$nav-child-link-color: $white !default;
+$link-color: $green-300 !default;
+$btn-primary-color: $green-100 !default;
 $base-button-color: #f7f7f7 !default;
 
 //

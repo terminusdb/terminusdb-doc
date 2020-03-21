@@ -23,13 +23,13 @@
       position: absolute;
       margin-top: 0.3em;
       margin-left: -0.8em;
-      color: rgba($body-text-color, 0.3);
-      content: "- ";
+      color: rgba($nav-child-link-color, 0.1);
+      content: ">  ";
     }
 
     &.active {
       &::before {
-        color: $body-text-color;
+        color: $nav-child-link-color;
       }
     }
   }
@@ -61,7 +61,7 @@
 
   &.active {
     font-weight: 600;
-    color: $body-heading-color;
+    color: $blue-200;
     text-decoration: none;
   }
 }

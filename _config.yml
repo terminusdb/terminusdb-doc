@@ -22,7 +22,7 @@ permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"]
 
 # Set a path/url to a logo that will be displayed instead of the title
-#logo: "/assets/images/just-the-docs.png"
+logo: "/assets/images/horizontal_lockup_white.png"
 
 # Enable or disable the site search
 search_enabled: true
@@ -39,14 +39,18 @@ aux_links:
     - "https://github.com/terminusdb/terminus-server"
 
 # Footer content appears at the bottom of every page's main content
-footer_content: "Copyright &copy; 2017-2019 Patrick Marsceill. Distributed by an <a href=\"https://github.com/pmarsceill/just-the-docs/tree/master/LICENSE.txt\">MIT license.</a>"
+footer_content: "Copyright &copy; ©2020 - TerminusDB |  Distributed by an <a href=\"https://github.com/terminusdb/terminus-server/blob/master/LICENSE\">GPL-3.0 license.</a>"
 
 # Color scheme currently only supports "dark" or nil (default)
 color_scheme: nil
 
+sass:
+  sass_dir: _sass
+  style: compressed
+
 # Google Analytics Tracking (optional)
 # e.g, UA-1234567-89
-ga_tracking: UA-2709176-10
+ga_tracking:
 
 plugins:
   - jekyll-seo-tag

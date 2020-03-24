@@ -54,6 +54,8 @@ Download the terminus-client.min.js file from the /dist directory and save it to
 <script src="http://my.saved.location/terminus-client.min.js"></script>
 ```
 
+[JavaScript Client Documentaiton](https://terminusdb.github.io/terminus-client/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+
 ---
 
 ## Python Client
@@ -79,3 +81,5 @@ Install from source:
 ```
 python -m pip install git+https://github.com/terminusdb/terminus-client-python.git
 ```
+
+[Python Client Documentation](https://terminusdb.github.io/terminus-client-python/){: .btn .fs-5 .mb-4 .mb-md-0 }

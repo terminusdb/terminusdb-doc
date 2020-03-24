@@ -5,7 +5,9 @@ parent: Getting started
 nav_order: 10
 ---
 
-# Code
+# Tutorials
+
+Here are a list of tutorials that shows what TerminusDB can do.
 {: .no_toc }
 
 ## Table of contents
@@ -16,67 +18,32 @@ nav_order: 10
 
 ---
 
-## Inline code
+## My First TerminusDB Graph Visualisation — Bike Share Data
 
-Code can be rendered inline by wrapping it in single back ticks.
+In this tutorial, we will start using TerminusDB and its query client — WOQL.js — to quickly build a database and a schema; import and organise data; create a visualisation; and plug it in to your website.
 
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
+[Go to tutorial](http://blog.terminusdb.com/2020/01/14/my-first-terminusdb-graph-visualisation-bike-share-data/){: .btn }
 
 ---
 
-## Syntax highlighted code blocks
+## TerminusDB graph visualisation of Dublin Council voting data
 
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
+In this tutorial, we will use TerminusDB to show you how to analyse the voting behavior of politicians.
 
-<div class="code-example" markdown="1">
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-</div>
-{% highlight markdown %}
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
+[Go to tutorial](http://blog.terminusdb.com/2020/01/14/my-first-terminusdb-graph-visualisation-bike-share-data/){: .btn }
 
 ---
 
-## Code blocks with rendered examples
+## Loading your local files in TerminusDB
 
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
+Answer one of the most common questions: how to load a local CSV in the hard drive into your TerminusDB running in a local docker container.
 
-<div class="code-example" markdown="1">
+[Go to tutorial](http://blog.terminusdb.com/2020/01/21/loading-your-local-files-in-terminusdb/){: .btn }
 
-<div class="code-example" markdown="1">
+---
 
-[Link button](http://example.com/){: .btn }
+## Loading data in turtle RDF format to TerminusDB
 
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
+Loading data in turtle RDF format to TerminusDB is elegant and simple. In this tutorial we will show you how.
 
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-{% endhighlight %}
+[Go to tutorial](http://blog.terminusdb.com/2020/01/30/loading-data-in-turtle-rdf-format-to-terminusdb/){: .btn }

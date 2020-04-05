@@ -16,6 +16,10 @@ nav_order: 8
 
 ---
 
+## Introduction
+
+Terminus DB uses a graph structure for modelling data.  
+
 ## Inline code
 
 Code can be rendered inline by wrapping it in single back ticks.

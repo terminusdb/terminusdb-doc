@@ -5,7 +5,7 @@ parent: Getting started
 nav_order: 5
 ---
 
-# Code
+# 10 minutes to TerminusDB
 {: .no_toc }
 
 ## Table of contents
@@ -16,6 +16,7 @@ nav_order: 5
 
 ---
 
+The terminus console is a simple javascript client application which provides users with a User Interface for managing and querying TerminusDB.
 ## Inline code
 
 Code can be rendered inline by wrapping it in single back ticks.

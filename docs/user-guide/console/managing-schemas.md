@@ -5,7 +5,7 @@ parent: TerminusDB Console
 nav_order: 5
 ---
 
-# Code
+# Managing Schemas
 {: .no_toc }
 
 ## Table of contents
@@ -16,67 +16,17 @@ nav_order: 5
 
 ---
 
-## Inline code
+This Interface allows User to understand and manage schema. 3 views of schema are provided in this section.
 
-Code can be rendered inline by wrapping it in single back ticks.
+## Classes
 
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
+This tab displays a table of classes available in the database schema
 
----
+## Properties
+This tab displays a table of all available properties in the database
 
-## Syntax highlighted code blocks
+## OWL
 
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
+This tab displays an Ontology of the Schema. User is able to edit and update the schema in this area. On Success the new database will be working according to the updated schema. If there were any VIO errors then this attempt will not succeed and user will have to adhere to the VIO rules.
 
-<div class="code-example" markdown="1">
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-</div>
-{% highlight markdown %}
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
-
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-{% endhighlight %}
+Note: User is also provided with a service here in which new changes can be committed.

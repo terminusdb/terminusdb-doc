@@ -159,35 +159,26 @@ A document of type terminus:Capability (or one of its subclasses) http://terminu
 
 ## Create Database
 
-Creates a new database with the requested id in the terminus db server `POST http://terminus.db/DBID`
+    POST [http://terminus.db/](http://terminus.db/DBNAME)db/<account>/<dbid>
 
-where DBID is the ID of the new DB
-
-`curl --user ':secret_key'  -d "@my-db.json" -X POST http://localhost/tcre/`
 
 ### Arguments
 
-A document of type terminus:Database is wrapped in a terminus:APIUpdate document and sent to the Terminus DB Server
+Post argument is a JSON document of the following form
 
-`Content-Type: application/json`
+    { <"base_uri" : MY_BASE_DOCUMENT_URI>,
+      "label" : "A Label", 
+      "comment" : "A Comment" 
+    }
 
-```json
-{
-      "@context":{
-           "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
-           "terminus":"http://terminusdb.com/schema/terminus#"
-      },
-      "terminus:document":{
-              "@type":"terminus:Database",
-              "rdfs:label":{"@language":"en","@value":"Testing Creation"},
-              "rdfs:comment":{"@language":"en","@value":"Testing the create API"},
-              "terminus:allow_origin":{"@type":"xsd:string","@value":"*"},
-              "@id":"http://localhost/tcre"
-      },
-      "@type":"terminus:APIUpdate",
-      }
-}
-```
+Base_URI will default to "http://hub.terminusdb.com/account/db/document/"
+
+terminus://dbid/
+
+Hub create DB will POST [http://terminus.db/](http://terminus.db/DBNAME)db/account/dbid with
+
+    { "base_uri": "http://hub.terminusdb.com/account/db"
+    }
 
 ### Return
 
@@ -203,7 +194,7 @@ Deletes an entire Database
 Sends a HTTP DELETE request to the URL of the Database on a Terminus Server
 
 ```
-DELETE http://localhost/mydb
+DELETE http://terminus.db/db/<account>/<dbid>
 
 curl --user ":secret_key" -X "DELETE" http://localhost/tcre`
 ```

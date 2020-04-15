@@ -5,50 +5,40 @@ parent: Schema
 nav_order: 1
 ---
 
-# Code
-{: .no_toc }
+## Introduction
 
-## Table of contents
-{: .no_toc .text-delta }
+In TerminusDB, classes are used to define the shapes of the data structures that we store in the database.  Every fragment of data saved in the database is associated with a particular type and this type is defined by it's class definition in the schema. So, if, for example, we wanted to save data structures of type "Customer", we would first define the "Customer" class in the schema.  
 
-1. TOC
-{:toc}
+Classes are relatively simple structures - but they can be combined in a variety of ways to produce complex results. 
 
 ---
 
-## Inline code
+## Class Definitions
 
-Code can be rendered inline by wrapping it in single back ticks.
+A class definition is composed of several properties in the schema: 
 
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
+1. ID
+2. Label / Name
+3. Description
+4. Parent Classes
 
----
-
-## Syntax highlighted code blocks
-
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
+### OWL
 
 <div class="code-example" markdown="1">
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+```turtle
+scm:MyClass 
+  a owl:Class;
+  rdfs:label "Class Name"@en;
+  rdfs:comment "Class Description"@en;
+  rdfs:subClassOf scm:MyOtherClass.
 ```
 </div>
 {% highlight markdown %}
 ```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+  WOQL.add_class("MyClass")
+      .label("Class Name")
+      .description("Class Description")
+      .parent("MyOtherClass")
 ```
 {% endhighlight %}
 

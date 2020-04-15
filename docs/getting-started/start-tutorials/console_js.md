@@ -8,6 +8,8 @@ nav_order: 1
 # Create TerminusDB Graph with Console
 {: .no_toc }
 
+In here you will see a step-by-step guide to create your first knowledge with Terminus DB with TerminusDB console using WOQLjs.
+
 ## Table of contents
 {: .no_toc .text-delta }
 
@@ -16,7 +18,7 @@ nav_order: 1
 
 ---
 
-##  Create a database
+## Create a database
 
 Open up the Terminus DB console ( default: http://localhost:6363/console ). Click on `Create Database` to start with.
 
@@ -62,9 +64,9 @@ WOQL.when(true).and(
 
 and click `Submit`
 
-Let’s stop to review this schema-building WOQL query:
+To review this schema-building WOQL query:
 
-1. The when will perform the operation for every time its first argument istrue. In this case, exactly once.
+1. The when will perform the operation for every time its first argument is true. In this case, exactly once.
 2. We perform all operations within the and.
 
 So here’s the operations we have performed:
@@ -86,11 +88,9 @@ Check that you have successfully created the schema by clicking the Schema butto
 
 ---
 
-## Let’s Load in the Data
+## Load in the Data
 
-Now let’s get to the good part. We have our schema, which defines the shape of the data and ensures data integrity.
-
-We’ll now load the data from the CSV. We’re going to progressively extend the query to import the data, cleaning it and matching it as we go. WOQL is a highly composable language, you can combine queries arbitrarily using logical ANDs and ORs.
+Now load the data from the CSV. We’re going to progressively extend the query to import the data, cleaning it and matching it as we go. WOQL is a highly composable language, you can combine queries arbitrarily using logical ANDs and ORs.
 
 **Let’s build the next query in steps and only hit `Submit` at the end of the query (full query is available at the bottom of the section)**
 

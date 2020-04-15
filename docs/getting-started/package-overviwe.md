@@ -24,27 +24,27 @@ TerminusDB consists of a large number of different code-repositories and package
 
 These packages are part of the core TerminusDB DB Server engine
 
-### terminus-server
+### <a href="https://github.com/terminusdb/terminus-server">terminus-server</a>
 
 The main server package - built in Prolog - contains much of the logic and orchestration of the system
 
-### terminus-store
+### <a href="https://github.com/terminusdb/terminus-store">terminus-store</a>
 
 The underlying data store - built in Rust - provides fast access to an immutable append only data-store
 
-### jwt_io 
+### <a href="https://github.com/terminusdb/jwt_io">jwt_io</a> 
 
 JWT authentication support for Prolog - used by terminus-server to enable JWT authentication
 
-### terminus_store_prolog 
+### <a href="https://github.com/terminusdb/terminus_store_prolog">terminus_store_prolog</a>
 
 Prolog bindings which allow Terminus Server to talk to terminus-store 
 
-### terminus-store-test 
+### <a href="https://github.com/terminusdb/terminus-store-test">terminus-store-test</a> 
 
 Automated load testing scripts for terminus-store
 
-### terminus-upgrade-to-store 
+### <a href="https://github.com/terminusdb/terminus-upgrade-to-store">terminus-upgrade-to-store</a> 
 
 Old package to support upgrading from terminus-server 1.0 to terminus-server 1.1 - requiring a change in underlying storage engine from HDT to terminus-store
 
@@ -52,31 +52,31 @@ Old package to support upgrading from terminus-server 1.0 to terminus-server 1.1
 
 Client libraries for accessing TerminusDB from programming languages
 
-### terminus-client 
+### <a href="https://github.com/terminusdb/terminus-client">terminus-client</a> 
 
 Javascript client library - comes as npm model or script
 
-### terminus-client-python 
+### <a href="https://github.com/terminusdb/terminus-client-python">terminus-client-python</a> 
 
 Python client library - includes panda dataframes integration. 
 
-## User Interface
+##  User Interface
 
 User Interface libraries for visualising TerminusDB contents and query results
 
-### terminus-dashboard 
+### <a href="https://github.com/terminusdb/terminus-dashboard">terminus-dashboard</a> 
 
 The management dashboard that ships with TerminusDB
 
-### terminus-react-table 
+### <a href="https://github.com/terminusdb/terminus-react-table">terminus-react-table</a> 
 
 A react table element for displaying TerminusDB query results
 
-### terminus-react-graph 
+### <a href="https://github.com/terminusdb/terminus-react-graph">terminus-react-graph</a>
 
 A react graph element based on d3, for displaying TerminusDB query results as graphs
 
-### terminus-react-chart 
+### <a href="https://github.com/terminusdb/terminusdb-doc">terminus-react-chart</a> 
 
 A react charting element, for displaying TerminusDB query results as charts
 
@@ -89,31 +89,31 @@ Repositories which provide documentation and news about TerminusDB
 
 The documentation site for terminus DB - includes this page!
 
-### terminus-tutorials 
+### <a href="https://github.com/terminusdb/terminus-tutorials">terminus-tutorials</a> 
 
 A collection of tutorials and useful scripts to help users better understand TerminusDB
 
-### terminus-schema
+### <a href="https://github.com/terminusdb/terminus-schema">terminus-schema</a>
 
 Documentation on the internal datastructures used by TerminusDB
 
-### terminusdb-blog 
+### <a href="https://github.com/terminusdb/terminusdb-blog">terminusdb-blog</a>
 
 The TerminusDB blog site
 
-### terminusdb-community 
+### <a href="https://github.com/terminusdb/terminusdb-community">terminusdb-community</a> 
 
 The TerminusDB community website
 
-### terminusdb-events 
+### <a href="https://github.com/terminusdb/terminusdb-events">terminusdb-events</a> 
 
 The TerminusDB events listing site 
 
-### documentation-sprint 
+### <a href="https://github.com/terminusdb/documentation-sprint">documentation-sprint</a> 
 
 Special repository for supporting documentation sprints
 
-### terminusdb-knowledge 
+### <a href="https://github.com/terminusdb/terminusdb-knowledge">terminusdb-knowledge</a> 
 
 Some background articles on terminus DB
 
@@ -121,18 +121,18 @@ Some background articles on terminus DB
 
 Repositories to help deploy TerminusDB 
 
-### terminus-quickstart 
+### <a href="https://github.com/terminusdb/terminus-quickstart">terminus-quickstart</a>
 
 Quickstart script for loading TerminusDB as a docker container 
 
-### terminus-heroku 
+### <a href="https://github.com/terminusdb/terminus-heroku">terminus-heroku</a>
 
 One click deploy of TerminusDB to a heroku account. 
 
-### katacoda-scenarios 
+### <a href="https://github.com/terminusdb/katacoda-scenarios">katacoda-scenarios</a>
 
 TerminusDB deployed as a katacode tutorial (Deprecated as service has become tumbleweed)
 
-### swi-prolog-docker 
+### <a href="https://github.com/terminusdb/swi-prolog-docker">swi-prolog-docker</a>
 
 Docker container pre-built for SWI-Prolog

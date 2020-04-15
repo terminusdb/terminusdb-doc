@@ -5,17 +5,6 @@ parent: Getting started
 nav_order: 4
 ---
 
-# Code
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 ## Introduction
 
 TerminusDB consists of a large number of different code-repositories and packages, each of which is made available individually on <a href="https://github.com/terminusdb/">the TerminusDB github page</a>, as well as being bundled into releases.  This document describes the different packages and what they do and why you might need them. 

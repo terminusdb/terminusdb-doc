@@ -12,19 +12,19 @@ permalink: /docs/getting-started/api
 
 The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of 12 endpoints:
 
-connect - GET http://terminus.db/
-create_database - POST http://terminus.db/DBNAME
-delete_database - DELETE http://terminus.db/DBNAME
-create_document - POST http://terminus.db/DBNAME/document/DOCID
-get_document - GET http://terminus.db/DBNAME/document/DOCID
-update_document - POST http://terminus.db/DBNAME/document/DOCID
-delete_document - DELETE http://terminus.db/DBNAME/document/DOCID
-get_schema - GET http://terminus.db/DBNAME/schema
-update_schema - POST http://terminus.db/DBNAME/schema
-class_frame - GET http://terminus.db/DBNAME/frame
-woql_select - GET http://terminus.db/DBNAME/woql
-woql_update - POST http://terminus.db/DBNAME/woql
-metadata - GET http://terminus.db/DBNAME/metadata
+- connect - GET http://terminus.db/
+- create_database - POST http://terminus.db/DBNAME
+- delete_database - DELETE http://terminus.db/DBNAME
+- create_document - POST http://terminus.db/DBNAME/document/DOCID
+- get_document - GET http://terminus.db/DBNAME/document/DOCID
+- update_document - POST http://terminus.db/DBNAME/document/DOCID
+- delete_document - DELETE http://terminus.db/DBNAME/document/DOCID
+- get_schema - GET http://terminus.db/DBNAME/schema
+- update_schema - POST http://terminus.db/DBNAME/schema
+- class_frame - GET http://terminus.db/DBNAME/frame
+- woql_select - GET http://terminus.db/DBNAME/woql
+- woql_update - POST http://terminus.db/DBNAME/woql
+- metadata - GET http://terminus.db/DBNAME/metadata
 
 Where *DBNAME* and *DOCID* are the local identifiers of a specific database and specific document respectively.
 

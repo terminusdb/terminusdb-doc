@@ -5,7 +5,7 @@ parent: TerminusDB Console
 nav_order: 2
 ---
 
-# Code
+# Managing Databases
 {: .no_toc }
 
 ## Table of contents
@@ -15,68 +15,16 @@ nav_order: 2
 {:toc}
 
 ---
+This interface allows you to create a brand new database in 3 ways.
 
-## Inline code
+## Create New Database
 
-Code can be rendered inline by wrapping it in single back ticks.
+Creates a fresh new database. You can choose weather you want to create this new database locally or in Terminus Hub. Note that in order to create a database in the Hub you will need to be logged in.
 
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
+## Clone Local Database
 
----
+You can create a new database by cloning from a local database available in your machine.
 
-## Syntax highlighted code blocks
+## Clone Remote Database
 
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
-
-<div class="code-example" markdown="1">
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-</div>
-{% highlight markdown %}
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
-
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-{% endhighlight %}
+Allows you to create a new database by cloning from a remote database. You can clone from anywhere as long as its a valid URL. 

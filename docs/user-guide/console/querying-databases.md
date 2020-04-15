@@ -5,7 +5,7 @@ parent: TerminusDB Console
 nav_order: 4
 ---
 
-# Code
+# Querying the Database
 {: .no_toc }
 
 ## Table of contents
@@ -15,68 +15,28 @@ nav_order: 4
 {:toc}
 
 ---
+The Query page allows you to query the database and view results.
+A set of pre loaded queries are available to load and fire.
 
-## Inline code
+1) Schema Queries: these includes queries related to schema as shown below
+1.1) Show All Schema Elements
+1.2) Show All Classes
+1.3) Show Document Classes
+1.4) Show All properties
 
-Code can be rendered inline by wrapping it in single back ticks.
 
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
+2) Data Queries: these includes queries related to actual instances or data of defines classes and properties in schema
+2.1) A dropdown list of classes are provided which allows user to view all instances of the chosen class
+2.2) A dropdown list of properties are provided which allows user to view all instances of the chosen property
+2.3) Show All Data
 
+
+3) Show All Documents: these includes queries related to documents
+3.1) Allows you to filter a document by its ID
+3.2) Show All Documents
+
+
+On choosing any of the above saved queries the Query Editor is auto loaded with the respective query. You can set limit, start and customize a query as per requirements.
+
+The results of the fired query appears in table view by default. The user is also provided with a view tool bar which allows to flick through different views of the result such as graph view etc.
 ---
-
-## Syntax highlighted code blocks
-
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
-
-<div class="code-example" markdown="1">
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-</div>
-{% highlight markdown %}
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
-
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-{% endhighlight %}

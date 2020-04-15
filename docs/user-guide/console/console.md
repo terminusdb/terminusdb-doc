@@ -7,7 +7,8 @@ has_children: true
 permalink: /docs/user-guide/console
 ---
 
-# Code
+
+# Deep Dive into how to use the Console
 {: .no_toc }
 
 ## Table of contents
@@ -18,67 +19,29 @@ permalink: /docs/user-guide/console
 
 ---
 
-## Inline code
 
-Code can be rendered inline by wrapping it in single back ticks.
+The terminus console is a simple javascript client application which provides users with a User Interface for managing and querying TerminusDB.
+The console is implemented using React Javascript which takes the help of Terminus Client as a gateway for API calls and other libraries which talks to the Terminus Server.
 
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
+![alt](/assets/images/console/overview.jpeg)
 
----
+You can load the console in the browser - http://localhost:6363
+Note - You will have to login in order to use the Hub services. The documentation in this section is restricted to console services.
 
-## Syntax highlighted code blocks
+## Home
 
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
+The Home Page, will be the landing page on loading the above URL which displays a list of all Database to which you have access. User is able to choose any Database from the list which will display more Database centric actions.
 
-<div class="code-example" markdown="1">
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-</div>
-{% highlight markdown %}
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
+On download of the console, User will always be able to view the local Terminus DB installed in their local machine. The local database comes with the name terminus and holds information related to all other database and associated strings. Consider this terminus db as the master to which all other database are tied to. User can always look at a database document in this master database.
 
----
+## New Database
 
-## Code blocks with rendered examples
+The New Database page allows user to create a new Database and manage them, more of this will be covered in [link text](/docs/console/managing-databases.md)
 
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
+## Schema
 
-<div class="code-example" markdown="1">
+The Schema page shows off the database schema and provides tools to view and update the schema.
 
-<div class="code-example" markdown="1">
+## Query
 
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-{% endhighlight %}
+The Query page allows you to query the database and view results. A set of saved queries are available to load and fire.

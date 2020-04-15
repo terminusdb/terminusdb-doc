@@ -13,15 +13,22 @@ permalink: /docs/getting-started/api
 The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of 12 endpoints:
 
 - connect - GET http://terminus.db/
-- create_database - POST http://terminus.db/DBNAME
-- delete_database - DELETE http://terminus.db/DBNAME
-- create_document - POST http://terminus.db/DBNAME/document/DOCID
+- create_database - POST http://terminus.db/ACCOUNT\_NAME/DBNAME
+- delete_database - DELETE http://terminus.db/ACCOUNT\DBNAME
+- create_document - POST http://terminus.db/DBNAME/documen
 - get_document - GET http://terminus.db/DBNAME/document/DOCID
 - update_document - POST http://terminus.db/DBNAME/document/DOCID
 - delete_document - DELETE http://terminus.db/DBNAME/document/DOCID
-- get_schema - GET http://terminus.db/DBNAME/schema
-- update_schema - POST http://terminus.db/DBNAME/schema
-- class_frame - GET http://terminus.db/DBNAME/frame
+- get_schema - GET http://terminus.db/schema/<account>/<dbid>/<repo>/branch/<branchid>/[<schema_graphid>]
+- update_schema - POST http://terminus.db/schema/<account>/<dbid>/local/branch/<branchid>/[<schema_graphid>]
+- class_frame - GET http://terminus.db/frame/<account>/<dbid>/<repo>/branch/<branchid>
+- clone - POST http://terminus.db/clone/<account>/[<new_dbid>]
+- fetch - POST http://terminus.db/fetch/<account>/<dbid>/<repo_id>
+- rebase - POST http://terminus.db/rebase/<account>/<dbid>/<repo>/<branchid>/[<remote_repo_id>]/[<remote_branch_id>]
+- push - POST http://terminus.db/push/<account>/<dbid>/<repo>/<branchid>/[<remote_repo_id>]/[<remote_branch_id>]
+- branch - POST http://terminus.db/branch/<account>/<dbid>/<repo>/<new_branchid>
+- create graph - POST http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
+- delete graph - DELETE http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
 - woql_select - GET http://terminus.db/DBNAME/woql
 - woql_update - POST http://terminus.db/DBNAME/woql
 - metadata - GET http://terminus.db/DBNAME/metadata

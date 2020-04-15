@@ -7,7 +7,7 @@ has_children: true
 permalink: /docs/getting-started/api
 ---
 
-# TerminusDB APi
+# TerminusDB API
 {: .no_toc }
 
 The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of 12 endpoints:

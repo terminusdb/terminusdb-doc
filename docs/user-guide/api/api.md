@@ -544,3 +544,85 @@ A `terminus:DatabaseMetadata` object is returned whose structure is as follows:
       "terminus:database_modified_time": {"@type":"xsd:dateTime", "@value":"2019-09-30T09:42:26+00:00"},
       "terminus:database_size": {"@type":"xsd:nonNegativeInteger", "@value":113781}
     }
+
+
+## Clone
+
+POST [http://terminus.db/](http://terminus.db/DBNAME)clone/<account>/[<new_dbid>]
+
+### Arguments
+
+The payload is the **resource identifier of** repo / db that we want to clone. If the new_dbid is provided, this id will be used locally to refer to the DB, otherwise whatever the cloned one uses will be used. 
+
+    {
+       @type: "terminus:APIUpdate"
+       terminus:resource: URI_OF_RESOURCE_ID
+    }
+
+## Fetch
+
+    POST http://terminus.db/fetch/<account>/<dbid>/<repo_id>
+
+POST is empty
+
+    POST http://terminus.db/fetch/<account>/<dbid>/ = http://terminus.db/fetch/<dbid>/origin
+
+## Rebase
+
+    POST http://terminus.db/rebase/<account>/<dbid>/<repo>/<branchid>/[<remote_repo_id>]/[<remote_branch_id>]
+
+Merges deltas from remote_repo_id into dbid/branchid
+
+POST is **empty**
+
+Rebases into dbid/branchid
+
+    POST http://terminus.db/rebase/<account>/<dbid>/<repo>/<branchid> = http://terminus.db/rebase/<dbid>/<branchid>/origin/master
+
+## Push
+
+    POST http://terminus.db/push/<account>/<dbid>/<repo>/<branchid>/[<remote_repo_id>]/[<remote_branch_id>]
+
+Pushes deltas from dbid / branchid the remote repo
+
+POST is empty
+
+e.g.
+
+    http://terminus.db/push/dbid = http://terminus.db/push/dbid/master/origin/master
+
+
+## Branch
+
+POST http://terminus.db/branch/<account>/<dbid>/<repo>/<new_branchid>
+
+Creates a new branch with parent dbid/new_branchid
+
+### Arguments
+
+POST is a **terminus:Ref resource ID** specifying the base of the new branch to be created.
+
+    {
+       "@type" : "terminus:APIUpdate"
+       "terminus:resource" : URI_OF_REF_RESOURCE_ID
+    }
+
+## Create graph
+
+POST http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
+
+### Arguments
+
+This takes a post parameter:
+
+    {"commit_info" : { "author" : Author, "message" : Message }}
+
+## Delete graph
+
+    DELETE http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
+
+### Arguments
+
+This takes a post parameter:
+
+    {"commit_info" : { "author" : Author, "message" : Message }}

@@ -13,12 +13,8 @@ permalink: /docs/getting-started/api
 The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of 12 endpoints:
 
 - connect - GET http://terminus.db/
-- create_database - POST http://terminus.db/ACCOUNT\_NAME/DBNAME
-- delete_database - DELETE http://terminus.db/ACCOUNT\DBNAME
-- create_document - POST http://terminus.db/DBNAME/documen
-- get_document - GET http://terminus.db/DBNAME/document/DOCID
-- update_document - POST http://terminus.db/DBNAME/document/DOCID
-- delete_document - DELETE http://terminus.db/DBNAME/document/DOCID
+- create_database - POST http://terminus.db/<account>/<dbid>
+- delete_database - DELETE http://terminus.db/<account>/<dbid>
 - get_schema - GET http://terminus.db/schema/<account>/<dbid>/<repo>/branch/<branchid>/[<schema_graphid>]
 - update_schema - POST http://terminus.db/schema/<account>/<dbid>/local/branch/<branchid>/[<schema_graphid>]
 - class_frame - GET http://terminus.db/frame/<account>/<dbid>/<repo>/branch/<branchid>
@@ -29,11 +25,9 @@ The TerminusDB Server includes a built in HTTP server which implements the Termi
 - branch - POST http://terminus.db/branch/<account>/<dbid>/<repo>/<new_branchid>
 - create graph - POST http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
 - delete graph - DELETE http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
-- woql_select - GET http://terminus.db/DBNAME/woql
-- woql_update - POST http://terminus.db/DBNAME/woql
-- metadata - GET http://terminus.db/DBNAME/metadata
-
-Where *DBNAME* and *DOCID* are the local identifiers of a specific database and specific document respectively.
+- woql_select - GET http://terminus.db/<account>/<dbid>/woql
+- woql_update - POST http://terminus.db/<account>/<dbid>/woql
+- metadata - GET http://terminus.db/<account>/<dbid>/metadata
 
 The terminus administration schema ( http://terminusdb.com/schema/terminus ) contains definitions for all of the data structures and properties used in the API. All arguments and returned messages are encoded as JSON.
 

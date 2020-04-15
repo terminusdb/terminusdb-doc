@@ -4,7 +4,7 @@ title: TerminusDB Console
 parent: User guide
 nav_order: 1
 has_children: true
-permalink: /docs/getting-started/console
+permalink: /docs/user-guide/console
 ---
 
 # Code

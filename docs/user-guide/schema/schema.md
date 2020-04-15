@@ -4,7 +4,7 @@ title: Schema
 parent: User guide
 nav_order: 3
 has_children: true
-permalink: /docs/getting-started/schema
+permalink: /docs/user-guide/schema
 ---
 
 # Code

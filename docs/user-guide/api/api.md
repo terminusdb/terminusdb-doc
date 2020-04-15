@@ -4,7 +4,7 @@ title: TerminusDB API
 parent: User guide
 nav_order: 5
 has_children: true
-permalink: /docs/getting-started/api
+permalink: /docs/user-guide/api
 ---
 
 # Code

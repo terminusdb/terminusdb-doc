@@ -4,7 +4,7 @@ title: Visualisation
 parent: User guide
 nav_order: 4
 has_children: true
-permalink: /docs/getting-started/visualisation
+permalink: /docs/user-guide/visualisation
 ---
 
 # Code

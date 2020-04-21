@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: TerminusDB Documentation
 description: Documentation for TerminusDB
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "/docs" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty

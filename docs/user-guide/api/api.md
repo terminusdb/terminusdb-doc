@@ -13,40 +13,40 @@ permalink: /docs/user-guide/api
 The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of the following endpoints:
 
 - Connect
--- GET `http://<server>/`
+  - `GET http://<server>/`
 - Create database
--- POST `http://<server>/db/<account>/<dbid>`
+  - `POST http://<server>/db/<account>/<dbid>`
 - Delete database
--- DELETE `http://<server>/db/<account>/<dbid>`
+  - `DELETE http://<server>/db/<account>/<dbid>`
 - Get triples
--- GET `http://<server>/triples/<account>/<dbid>/<repo>/branch/<branchid>/<type>/<schema_graphid>`
--- GET `http://<server>/triples/<account>/<dbid>/<repo>/commit/<refid>/<type>/<schema_graphid>`
+  - `GET http://<server>/triples/<account>/<dbid>/<repo>/branch/<branchid>/<type>/<schema_graphid>`
+  - `GET http://<server>/triples/<account>/<dbid>/<repo>/commit/<refid>/<type>/<schema_graphid>`
 - Update triples
--- POST `http://<server>/triples/<account>/<dbid>/local/branch/<branchid>/<type>/<schema_graphid>`
+  - `POST http://<server>/triples/<account>/<dbid>/local/branch/<branchid>/<type>/<schema_graphid>`
 - Class frame
--- GET `http://<server>/frame/<account>/<dbid>/<repo>/branch/<branchid>`
--- GET `http://<server>/frame/<account>/<dbid>/<repo>/commit/<refid>`
+  - `GET http://<server>/frame/<account>/<dbid>/<repo>/branch/<branchid>`
+  - `GET http://<server>/frame/<account>/<dbid>/<repo>/commit/<refid>`
 - Clone
--- POST `http://<server>/clone/<account>/<new_dbid>`
+  - `POST http://<server>/clone/<account>/<new_dbid>`
 - Fetch
--- POST `http://<server>/fetch/<account>/<dbid>/<repo_id>`
+  - `POST http://<server>/fetch/<account>/<dbid>/<repo_id>`
 - Rebase
--- POST `http://<server>/rebase/<account>/<dbid>/<repo>/branch/<branchid>`
+  - `POST http://<server>/rebase/<account>/<dbid>/<repo>/branch/<branchid>`
 - Push
--- POST `http://<server>/push/<account>/<dbid>/<repo>/branch/<branchid>`
+  - `POST http://<server>/push/<account>/<dbid>/<repo>/branch/<branchid>`
 - Branch
--- POST `http://<server>/branch/<account>/<dbid>/<repo>/branch/<new_branchid>`
+  - `POST http://<server>/branch/<account>/<dbid>/<repo>/branch/<new_branchid>`
 - Create graph
--- POST `http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
+  - `POST http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
 - Delete graph
--- DELETE `http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
+  - `DELETE http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
 - Woql Query
--- POST `http://<server>/woql/<account>/<dbid>`
--- POST `http://<server>/woql/<account>/<dbid>/_meta`
--- POST `http://<server>/woql/<account>/<dbid>/<repo>`
--- POST `http://<server>/woql/<account>/<dbid>/<repo>/_commit`
--- POST `http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>`
--- POST `http://<server>/woql/<account>/<dbid>/<repo>/commit/<refid>`
+  - `POST http://<server>/woql/<account>/<dbid>`
+  - `POST http://<server>/woql/<account>/<dbid>/_meta`
+  - `POST http://<server>/woql/<account>/<dbid>/<repo>`
+  - `POST http://<server>/woql/<account>/<dbid>/<repo>/_commit`
+  - `POST http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>`
+  - `POST http://<server>/woql/<account>/<dbid>/<repo>/commit/<refid>`
 
 The terminus administration schema ( http://terminusdb.com/schema/terminus ) contains definitions for all of the data structures and properties used in the API. All arguments and returned messages are encoded as JSON.
 
@@ -328,6 +328,7 @@ An array of frames, each of which is encoded as a JSON-LD frame document and eac
 
 ```
 POST http://<server>/woql/
+POST http://<server>/woql/terminus
 POST http://<server>/woql/<account>/<dbid>
 POST http://<server>/woql/<account>/<dbid>/_meta
 POST http://<server>/woql/<account>/<dbid>/<repo>
@@ -343,7 +344,17 @@ source.
 ### Example
 
 ```bash
-curl -X POST "http://<server>/woql/<account>/<dbid>" -d { }
+curl -X POST --user 'admin:root' "http://localhost:6363/woql/terminus" \
+   -d '{ "@type" : "Triple",                                           \
+         "subject" : { "@type" : "Variable",                           \
+                       "variable_name" : { "@type" : "xsd:string",     \
+                                           "@value" : "Subject"}},     \
+         "predicate" : { "@type" : "Variable",                         \
+                         "variable_name" : { "@type" : "xsd:string",   \
+                                             "@value" : "Predicate"}}, \
+         "object" : { "@type" : "Variable",                            \
+                      "variable_name" : { "@type" : "xsd:string",      \
+                                          "@value" : "Object"}}}' 
 ```
 
 ## WOQL Update

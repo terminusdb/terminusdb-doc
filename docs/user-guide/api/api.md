@@ -10,24 +10,47 @@ permalink: /docs/user-guide/api
 # TerminusDB API
 {: .no_toc }
 
-The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of 12 endpoints:
+The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of the following endpoints:
 
-- connect - GET http://terminus.db/
-- create_database - POST http://terminus.db/<account>/<dbid>
-- delete_database - DELETE http://terminus.db/<account>/<dbid>
-- get_schema - GET http://terminus.db/schema/<account>/<dbid>/<repo>/branch/<branchid>/[<schema_graphid>]
-- update_schema - POST http://terminus.db/schema/<account>/<dbid>/local/branch/<branchid>/[<schema_graphid>]
-- class_frame - GET http://terminus.db/frame/<account>/<dbid>/<repo>/branch/<branchid>
-- clone - POST http://terminus.db/clone/<account>/[<new_dbid>]
-- fetch - POST http://terminus.db/fetch/<account>/<dbid>/<repo_id>
-- rebase - POST http://terminus.db/rebase/<account>/<dbid>/<repo>/<branchid>/[<remote_repo_id>]/[<remote_branch_id>]
-- push - POST http://terminus.db/push/<account>/<dbid>/<repo>/<branchid>/[<remote_repo_id>]/[<remote_branch_id>]
-- branch - POST http://terminus.db/branch/<account>/<dbid>/<repo>/<new_branchid>
-- create graph - POST http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
-- delete graph - DELETE http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
-- woql_select - GET http://terminus.db/<account>/<dbid>/woql
-- woql_update - POST http://terminus.db/<account>/<dbid>/woql
-- metadata - GET http://terminus.db/<account>/<dbid>/metadata
+- Connect
+-- GET `http://<server>/`
+- Create database
+-- POST `http://<server>/db/<account>/<dbid>`
+- Delete database
+-- DELETE `http://<server>/db/<account>/<dbid>`
+- Get triples
+-- GET `http://<server>/triples/<account>/<dbid>/<repo>/branch/<branchid>/<type>/<schema_graphid>`
+-- GET `http://<server>/triples/<account>/<dbid>/<repo>/commit/<refid>/<type>/<schema_graphid>`
+- Update triples
+-- POST `http://<server>/triples/<account>/<dbid>/local/branch/<branchid>/<type>/<schema_graphid>`
+- Class frame
+-- GET `http://<server>/frame/<account>/<dbid>/<repo>/branch/<branchid>`
+-- GET `http://<server>/frame/<account>/<dbid>/<repo>/commit/<refid>`
+- Clone
+-- POST `http://<server>/clone/<account>/<new_dbid>`
+- Fetch
+-- POST `http://<server>/fetch/<account>/<dbid>/<repo_id>`
+- Rebase
+-- POST `http://<server>/rebase/<account>/<dbid>/<repo>/branch/<branchid>`
+- Push
+-- POST `http://<server>/push/<account>/<dbid>/<repo>/branch/<branchid>`
+- Branch
+-- POST `http://<server>/branch/<account>/<dbid>/<repo>/branch/<new_branchid>`
+- Create graph
+-- POST `http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
+- Delete graph
+-- DELETE `http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
+- Woql Select
+-- GET `http://<server>/woql/<account>/<dbid>`
+-- GET `http://<server>/woql/<account>/<dbid>/_meta`
+-- GET `http://<server>/woql/<account>/<dbid>/<repo>`
+-- GET `http://<server>/woql/<account>/<dbid>/<repo>/_commit`
+-- GET `http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>`
+-- GET `http://<server>/woql/<account>/<dbid>/<repo>/commit/<refid>`
+- Woql Update
+-- POST `http://<server>/woql/<account>/<dbid>`
+-- POST `http://<server>/woql/<account>/<dbid>/<repo>`
+-- POST `http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>`
 
 The terminus administration schema ( http://terminusdb.com/schema/terminus ) contains definitions for all of the data structures and properties used in the API. All arguments and returned messages are encoded as JSON.
 
@@ -47,8 +70,8 @@ Connects to a TerminusDB Server and receives a Capability Document which defines
 
 ### Example
 
-```
-GET http://terminus.db/ curl --user 'username:password' "http://localhost"
+```bash
+curl -X GET http://localhost:6363/ --user 'username:password'
 ```
 
 ### Arguments
@@ -156,351 +179,154 @@ A document of type terminus:Capability (or one of its subclasses) http://terminu
 }
 ```
 
-
 ## Create Database
 
-    POST [http://terminus.db/](http://terminus.db/DBNAME)db/<account>/<dbid>
+```
+POST http://<server>/db/<account>/<dbid>
+```
 
+Create a new database ex nihilo.
+
+### Example
+
+```bash
+curl -X POST http://localhost:6363/db/dima/test --user 'username:password'
+```
 
 ### Arguments
 
 Post argument is a JSON document of the following form
 
+```json
     { <"base_uri" : MY_BASE_DOCUMENT_URI>,
-      "label" : "A Label", 
-      "comment" : "A Comment" 
+      "label" : "A Label",
+      "comment" : "A Comment"
     }
+```
 
-Base_URI will default to "http://hub.terminusdb.com/account/db/document/"
-
-terminus://dbid/
+Base_URI will default to `http://hub.terminusdb.com/<account>/<db>/document/`
 
 Hub create DB will POST [http://terminus.db/](http://terminus.db/DBNAME)db/account/dbid with
 
-    { "base_uri": "http://hub.terminusdb.com/account/db"
-    }
+```json
+    { "base_uri" : "http://hub.terminusdb.com/account/db" }
+```
 
 ### Return
 
 A terminus result message indicating either terminus:success or terminus:failure
 
-`{"terminus:status":"terminus:success"}`
-
+```json
+    { "terminus:status" : "terminus:success" }
+```
 
 ## Delete Database
 
-Deletes an entire Database
+Deletes an entire Database.
 
 Sends a HTTP DELETE request to the URL of the Database on a Terminus Server
 
-```
-DELETE http://terminus.db/db/<account>/<dbid>
-
-curl --user ":secret_key" -X "DELETE" http://localhost/tcre`
+```bash
+curl -X DELETE --user 'user:secret_key' http://localhost:6363/dima/test
 ```
 
 ### Return
 
 A terminus result message indicating either terminus:success or terminus:failure
 
-`{"terminus:status":"terminus:success"}`
-
-
-## Create Document
-
-Create a document by sending a JSON-LD document which conforms to the database schema, to the Terminus API.
-
-```
-POST http://localhost/DBID/document/DOCID`
-
-curl --user ":secret_key" -d "@my-doc.json" -X POST http://localhost/dima/document/terminusAPI
+```json
+    { "terminus:status" : "terminus:success" }
 ```
 
-### Argument
-
-A JSON-LD document of a valid document type for the given database, wrapped in a terminus:APIUpdate document.
+## Get Triples
 
 ```
-{
-   "@context":
-   {
-         "doc":"http://195.201.12.87:6363/dima/document/",
-         "owl":"http://www.w3.org/2002/07/owl#",
-         "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-         "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
-         "xsd":"http://www.w3.org/2001/XMLSchema#"
-    },
-    "terminus:document":{
-        "rdfs:label":[{"@value":"The Terminus API itself","@type":"xsd:string"}],
-        "rdfs:comment":[{"@value":"here we go","@type":"xsd:string"}],
-        "@type":"http://terminusdb.com/schema/documentation#APIDefinition",
-        "@id":"http://localhost/dima/document/terminusAPI"
-     },
-     "@type":"terminus:APIUpdate",
-}
+GET http://<server>/triples/<account>/<dbid>/<repo>/branch/<branchid>/<type>/<schema_graphid>`
+GET http://<server>/triples/<account>/<dbid>/<repo>/commit/<refid>/<type>/<schema_graphid>
 ```
 
-### Return
+Retrieves the database triples for a graph as a turtle encoding.
 
-A terminus result message indicating either terminus:success or terminus:failure
-
-`{"terminus:status":"terminus:success"}`
-
-
-## Get Document
-
-Retrieves a terminus document in JSON-LD form, from a terminus server
-
-`GET --user "username:secret_key" http://localhost/terminus/document/server`
-
-### Arguments
-
-The terminus:encoding parameter can be either terminus:jsonld or terminus:frame - both are json-ld representations.
-
-    terminus:encodingterminus:jsonld | terminus:frame
-
-### Return
-
-A JSON-LD document representing the requested item
-
-     "@context": {
-        "doc":"http://localhost/terminus/document/",
-        "owl":"http://www.w3.org/2002/07/owl#",
-        "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-        "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
-        "terminus":"http://terminusdb.com/schema/terminus#",
-        "xsd":"http://www.w3.org/2001/XMLSchema#"
-      },
-      "@id":"doc:server",
-      "@type":"terminus:Server",
-      "rdfs:comment": {"@language":"en", "@value":"The current Database Server itself"},
-      "rdfs:label": {"@language":"en", "@value":"The DB server"},
-      "terminus:allow_origin": {"@type":"xsd:string", "@value":"*"},
-      "terminus:resource_includes": [
-        {"@id":"doc:dbWhichIAmGoingToDelete", "@type":"terminus:Database"},
-        {"@id":"doc:dima", "@type":"terminus:Database"},
-        {"@id":"doc:documentation", "@type":"terminus:Database"},
-        {"@id":"doc:documentaton", "@type":"terminus:Database"},
-        {"@id":"doc:dummy", "@type":"terminus:Database"},
-        {"@id":"doc:terminus", "@type":"terminus:Database"},
-        {"@id":"doc:test", "@type":"terminus:Database"}
-      ]
-    }
-
-
-## Update Document
-
-Updates a document by sending a new version to the api endpoint - all document updates are atomic - the entire document is replaced with the passed version.
-
-`POST http://localhost/DBID/document/DOCID`
-
-  `curl --user 'username::secret_key'  -d "@my-doc.json" -X POST http://localhost/dima/document/terminusAPI`
-
-
-### Argument
-
-The document in JSON-LD format
-
-    {
-          "@context": {
-                    "doc":"http://localhost/dima/document/",
-                    "owl":"http://www.w3.org/2002/07/owl#",
-                    "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-                    "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
-                    "xdd":"https://datachemist.net/ontology/xdd#",
-                    "xsd":"http://www.w3.org/2001/XMLSchema#"
-           },
-           "terminus:document":{
-              "rdfs:label":[{"@value":"The Terminus API itself","@type":"xsd:string"}],
-              "rdfs:comment":[{"@value":"here we goaaaa","@type":"xsd:string"}],
-              "@type":"http://terminusdb.com/schema/documentation#APIDefinition",
-              "@id":"http://localhost/dima/document/terminusAPI"
-           },
-          "@type":"terminus:APIUpdate"
-    }
-
-### Return
-
-A terminus result message indicating success or failure
-
-      {"terminus:status":"terminus:success"}
-
-## Delete Document
-
-Send a HTTP delete to the Document URL
-
-    curl --user ':secret_key'  -X "DELETE" http://localhost/dima/document/terminusAPI
-
-### Return
-
-A terminus result message indicating either terminus:success or terminus:failure
-
-      {"terminus:status":"terminus:success"}
-
-
-## Get Schema
-
-Retrieves the database schema as a turtle encoding from the database `GET http://localhost/DBID/schema`
-
-    curl --user ':secret_key'  http://localhost/dima/schema?terminus:encoding=terminus:turtle
+### Example
+```bash
+curl --user ':secret_key'  http://localhost/dima/test/local/branch/master/instance/main
+```
 
 ### Arguments:
 
-    terminus:encodingtterminus:turtle
+    None
 
 ### Return
 
 The database schema encoded as a JSON string containing the contents of a turtle file
 
     "@prefix rdf: pre>http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-    @prefix
+     @prefix
         ... OWL schema serialised as turtle ...
     "
 
+## Update Triples
 
-## Update Schema
+```
+POST http://<server>/triples/<account>/<dbid>/local/branch/<branchid>/<type>/<schema_graphid>
+```
 
-Updates the schema by posting a new schema version to the database API. Schema updates are atomic - the entire schema is replaced by the updated version
+Updates the specified graph by posting a new turtle version. Updates are atomic - the entire graph is replaced by the updated version by producing the necessary delta automatically.
 
-`POST http://localhost/dima/schema`
+### Example
 
-    curl --user ':secret_key'  -d "@my-schema.ttl" -X POST http://localhost/dima/document/terminusAPI
+```
+curl --user 'user:secret_key' -d "@my-schema.ttl" -X POST http://localhost:6363/triples/dima/test/local/branch/master/schema/main
+```
 
 ### Argument
 
 A terminus:APIUpdate document with the contents of the turtle held by the terminus:turtle predicate.
 
-    {
-                "terminus:turtle": "@prefix rdf:
-                                                ... OWL schema serialised as turtle ...",
-                "terminus:schema":"schema",
-                "@type":"terminus:APIUpdate"
+```json
+    { "turtle": "@prefix rdf:
+                 ... OWL schema serialised as turtle ...",
+      "commit_info": { "author" : "dima", "message" : "Fixing frob class" }
     }
+```
 
 ### Return
 
 A terminus result message indicating either terminus:success or terminus:failure
 
+```json
       {"terminus:status":"terminus:success"}
-
+```
 
 ## Class Frame
+```
+    GET http://<server>/frame/<account>/<dbid>/<repo>/branch/<branchid>
+    GET http://<server>/frame/<account>/<dbid>/<repo>/commit/<refid>
+```
 
 Retrieves a frame representation of a class within the ontology - a json representation of all the logic contained in the class.
 
-`GET http://terminus.db/DBID/frame`
+### Example
 
-    curl --user ':secret_key' "http://localhost/dima/schema?terminus:class=
-    http://terminusdb.com/schema/documentation#APIEndpointSpecification"
-
+```bash
+    curl -X GET --user 'admin:secret_key' "http://localhost:6363/dima/test/local/branch/master"
+```
 ### Argument
 
 The class that the frame is for must be passed in the terminus:class property
 
-    terminus:classthttp://terminusdb.com/schema/documentation#APIEndpointSpecification
-    terminus:user_keytsecret
+```json
+    { "class" : "http://terminusdb.com/schema/terminus#Agent"
+    }
+```
 
 ### Return
 
 An array of frames, each of which is encoded as a JSON-LD frame document and each of which represents a single property in the class frame.
 
-    [
-      {
-        "@context": {
-          "doc":"http://localhost/dima/document/",
-          "docs":"http://terminusdb.com/schema/documentation#",
-          "owl":"http://www.w3.org/2002/07/owl#",
-          "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-          "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
-          "terminus":"http://terminusdb.com/schema/terminus#",
-          "xsd":"http://www.w3.org/2001/XMLSchema#"
-        },
-        "domain":"docs:APIEndpointSpecification",
-        "frame": {
-          "operands": [
-    [
-      {
-        "domain":"docs:APIReturnValue",
-        "property":"docs:type",
-        "range":"xsd:string",
-        "restriction":"true",
-        "type":"datatypeProperty"
-      },
-      {
-        "domain":"docs:APIReturnValue",
-        "property":"docs:summary",
-        "range":"xsd:string",
-        "restriction":"true",
-        "type":"datatypeProperty"
-      },
-      {
-        "domain":"docs:APIReturnValue",
-        "property":"docs:name",
-        "range":"xsd:string",
-        "restriction":"true",
-        "type":"datatypeProperty"
-      },
-      {
-        "domain":"docs:APIReturnValue",
-        "frame": {
-          "elements": [
-    {
-      "class":"docs:json"
-    },
-    {
-      "class":"docs:text"
-    },
-    {
-      "class":"docs:jsonld"
-    },
-    {
-      "class":"docs:css"
-    },
-    {
-      "class":"docs:ttl"
-    },
-    {
-      "class":"docs:html"
-    },
-    {
-      "class":"docs:owl"
-    },
-    {
-      "class":"docs:csv"
-    }
-          ],
-          "type":"oneOf"
-        },
-        "property":"docs:encoding",
-        "range":"docs:DataLanguage",
-        "restriction":"true",
-        "type":"objectProperty"
-      },
-      {
-        "domain":"docs:APIReturnValue",
-        "property":"docs:description",
-        "range":"xsd:string",
-        "restriction":"true",
-        "type":"datatypeProperty"
-      }
-    ]
-      },
-      {
-        "@context": {
-          "docs":"http://terminusdb.com/schema/documentation#",
-          "owl":"http://www.w3.org/2002/07/owl#",
-          "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-          "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
-          "xsd":"http://www.w3.org/2001/XMLSchema#"
-        },
-        "domain":"docs:APIEndpointSpecification",
-        "property":"rdfs:comment",
-        "range":"xsd:string",
-        "restriction":"true",
-        "type":"datatypeProperty"
-      }
-    ]
+```json
 
+```
 
 ## WOQL Select
 

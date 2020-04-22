@@ -47,3 +47,14 @@ Answer one of the most common questions: how to load a local CSV in the hard dri
 Loading data in turtle RDF format to TerminusDB is elegant and simple. In this tutorial we will show you how.
 
 [Go to tutorial](http://blog.terminusdb.com/2020/01/30/loading-data-in-turtle-rdf-format-to-terminusdb/){: .btn }
+
+---
+
+## Demos and tutorials provided by Chrisjhorn
+
+Two demo and tutorials:
+
+* charities -- an example of an M:N relationship schema, using public data about registered Irish charities.
+* family-tree -- an example of using composable subqueries
+
+[Go to GitHub repo](https://github.com/Chrisjhorn/terminusDB){: .btn }

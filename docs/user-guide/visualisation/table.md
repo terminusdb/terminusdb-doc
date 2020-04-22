@@ -6,7 +6,7 @@ nav_order: 1
 ---
 
 # Code
-{: .no_toc }
+Table View
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -16,67 +16,74 @@ nav_order: 1
 
 ---
 
-## Inline code
+This section covers all of the rules which can be applied to a table view. As mentioned in previous section a table view can be defined as shown below:
 
-Code can be rendered inline by wrapping it in single back ticks.
-
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+```js
+view = View.table()   
 ```
 
+All other rules are accessible as chaining functions of variable view.
 ---
 
-## Syntax highlighted code blocks
+1) column_order
 
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
+column_order helps to arrange columns based on whatever order is specified, columns are accesed by header names. This function also hides column names which are not mentioned as arguments in the function
 
-<div class="code-example" markdown="1">
 ```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+view.table().column_order("c", "b", "d")  
 ```
-</div>
-{% highlight markdown %}
+
+2) column
+
+You can refer to a column using its header name
+
 ```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
-
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
+view.column('c')
 ```
 
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
+3) header
 
-[Link button](http://example.com/){: .btn }
+Renames a particular column to another name
 
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
+```js
+view.column('c').header('New Name')
 ```
-{% endhighlight %}
+
+4) header
+
+Renames a particular column to another name
+
+```js
+view.column('c').header('New Name')
+```
+5) pager
+
+on set to true allows paging in table  
+
+```js
+view.pager(true)
+```
+
+5) changeSize
+
+Allows to change table page size  
+
+```js
+view.changeSize(true)
+```
+
+5) pager
+
+on set to true allows pagination
+
+```js
+view.pager(true)
+```
+
+6) pagesize
+
+Defines minimum page size of a table
+
+```js
+view.pagesize(10) // displays only 10 rows per page
+```

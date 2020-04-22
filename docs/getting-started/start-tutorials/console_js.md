@@ -39,20 +39,20 @@ The schema allows you to organise data into meaningful objects, and it ensures d
 The TerminusDB Console provides a schema editor using WOQL.js. Remaining on the query page, copy this WOQL.js query into the text box (remember to delete the previous query before entering this one):
 
 ```js
-WOQL.when(true).and(         
-    WOQL.doctype("Station")             
-        .label("Bike Station")             
-        .description("A station where bicycles are deposited"),         
-    WOQL.doctype("Bicycle")             
-        .label("Bicycle"),         
-    WOQL.doctype("Journey")             
-        .label("Journey")             
+WOQL.when(true).and(
+    WOQL.doctype("Station")
+        .label("Bike Station")
+        .description("A station where bicycles are deposited"),
+    WOQL.doctype("Bicycle")
+        .label("Bicycle"),
+    WOQL.doctype("Journey")
+        .label("Journey")
         .property("start_station", "Station")
-            .label("Start Station")             
+            .label("Start Station")
         .property("end_station", "Station")
-            .label("End Station")                                                
+            .label("End Station")
         .property("duration", "integer")
-            .label("Journey Duration")         
+            .label("Journey Duration")
         .property("start_time", "dateTime")
             .label("Time Started")
         .property("end_time", "dateTime")

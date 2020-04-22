@@ -6,7 +6,7 @@ nav_order: 2
 ---
 
 # Code
-{: .no_toc }
+Graph View
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -16,67 +16,64 @@ nav_order: 2
 
 ---
 
-## Inline code
+This section covers all of the rules which can be applied to a graph view. As mentioned in previous section a graph view can be defined as shown below:
 
-Code can be rendered inline by wrapping it in single back ticks.
-
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
-
----
-
-## Syntax highlighted code blocks
-
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
-
-<div class="code-example" markdown="1">
 ```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+view = View.graph()   
 ```
-</div>
-{% highlight markdown %}
+
+
+1) Width
+
+Allows you to set the width of graph component. The argument value is considered as pixels.
+
 ```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
-
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
+view.graph().width(100)  
 ```
 
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
+2) Height
 
-[Link button](http://example.com/){: .btn }
+Allows you to set the height of graph component. The argument value is considered as pixels.
 
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
+```js
+view.graph().width(100).height(50)
 ```
-{% endhighlight %}
+
+3) show_force
+
+Provides a Gravitational view over the graph component. If set to false the graoh would simply appear rather than the floating effect.
+
+```js
+view.graph().width(100).show_force(true)
+```
+4) source
+
+Alters the graph's view by treating the element mentioned in argument as the graph's source
+
+```js
+view.graph().source("v:A")
+```
+
+5) color
+
+You can set color for graph's nodes in rgb format.
+
+```js
+view.graph().node("v:A").color([233, 54, 65])
+```
+
+5) fontfamily
+
+Helps you to load icon families. By default Font Awesome is used here.
+
+```js
+view.graph().fontfamily('font')
+```
+
+6) edges
+
+Alters the direction of edges pointing, based on values provided as arguments
+
+```js
+view.graph().edges(["v:B","v:A"])   
+```

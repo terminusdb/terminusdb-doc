@@ -40,17 +40,13 @@ The TerminusDB Server includes a built in HTTP server which implements the Termi
 -- POST `http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
 - Delete graph
 -- DELETE `http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
-- Woql Select
--- GET `http://<server>/woql/<account>/<dbid>`
--- GET `http://<server>/woql/<account>/<dbid>/_meta`
--- GET `http://<server>/woql/<account>/<dbid>/<repo>`
--- GET `http://<server>/woql/<account>/<dbid>/<repo>/_commit`
--- GET `http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>`
--- GET `http://<server>/woql/<account>/<dbid>/<repo>/commit/<refid>`
-- Woql Update
+- Woql Query
 -- POST `http://<server>/woql/<account>/<dbid>`
+-- POST `http://<server>/woql/<account>/<dbid>/_meta`
 -- POST `http://<server>/woql/<account>/<dbid>/<repo>`
+-- POST `http://<server>/woql/<account>/<dbid>/<repo>/_commit`
 -- POST `http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>`
+-- POST `http://<server>/woql/<account>/<dbid>/<repo>/commit/<refid>`
 
 The terminus administration schema ( http://terminusdb.com/schema/terminus ) contains definitions for all of the data structures and properties used in the API. All arguments and returned messages are encoded as JSON.
 
@@ -328,9 +324,27 @@ An array of frames, each of which is encoded as a JSON-LD frame document and eac
 
 ```
 
-## WOQL Select
+## WOQL Query
 
-To be documented
+```
+POST http://<server>/woql/
+POST http://<server>/woql/<account>/<dbid>
+POST http://<server>/woql/<account>/<dbid>/_meta
+POST http://<server>/woql/<account>/<dbid>/<repo>
+POST http://<server>/woql/<account>/<dbid>/<repo>/_commit
+POST http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>
+POST http://<server>/woql/<account>/<dbid>/<repo>/commit/<refid>
+```
+
+WOQL select allows users to perform queries from WOQL. The default
+query object is formed from the path. No path means no default query
+source.
+
+### Example
+
+```bash
+curl -X POST "http://<server>/woql/<account>/<dbid>" -d { }
+```
 
 ## WOQL Update
 

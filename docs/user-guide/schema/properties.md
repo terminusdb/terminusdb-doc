@@ -23,6 +23,19 @@ There are 7 important parts to a property definition:
 
 ### Property ID
 
+Under the hood TerminusDB uses OWL and RDF for defining Schemas. In RDF, all ids are IRIs and this is the case with property IDs, like all IDs in TerminusDB. However, rather than using full URLs, it’s much more convenient to express things in a compressed form, with prefixes that map to an IRI base providing namespace safety, with fragment ids which identify the particular class. So for example, rather than writing
+
+http://terminusdb.com/john/crm#address
+
+it’s much more convenient to write:
+
+crm:address - and define the crm prefix to map to the actual URL.
+
+In TerminusDB, a predefined prefix is part of every database - the scm namespace is local to every database and allows you to create a class that is local to that database, with a valid IRI which will not clash with any other namespaces. In general, unless you know what you are doing, you should always just use the scm: prefix for all your properties. 
+
+In TerminusDB we generally follow the convention that property names are all lower case and use snake-case to make compound property names: word1_word2
+
+In most cases, in TerminusDB you won’t need to specify the prefix - if you are using the default scm: prefix, it will be automatically added when no prefix is supplied. You just need to choose an id for your property that is meaningful, if possible according to the naming convention above. Because the property ID forms part of an IRI, you cannot use spaces in property ids, other special characters are permitted but should be used with extreme caution.
 
 ### Property Type
 
@@ -58,6 +71,7 @@ Defining a color property for a Car which takes a string value (e.g. "red")
 
 #### WOQL.js
 <div class="code-example">
+    
 ```js
 WOQL.add_property("color", "string")
     .label("Color")
@@ -69,6 +83,7 @@ WOQL.add_property("color", "string")
 #### WOQL.py
 
 <div class="code-example">
+    
 ```py
 WOQLQuery().add_property("color", "string")
     .label("Color")
@@ -80,6 +95,7 @@ WOQLQuery().add_property("color", "string")
 #### OWL (turtle encoding)
 
 <div class="code-example">
+    
 ```OWL
 scm:color
     a owl:DatatypeProperty;
@@ -96,6 +112,7 @@ Defining an address property for a Person which takes a structured Address objec
 
 #### WOQL.js
 <div class="code-example">
+    
 ```js
 WOQL.add_property("address", "Address")
     .label("Address")
@@ -106,6 +123,7 @@ WOQL.add_property("address", "Address")
 
 #### WOQL.py
 <div class="code-example">
+    
 ```py
 WOQLQuery().add_property("address", "Address")
     .label("Address")
@@ -117,6 +135,7 @@ WOQLQuery().add_property("address", "Address")
 #### OWL (turtle encoding)
 
 <div class="code-example">
+    
 ```OWL
 scm:address
     a owl:ObjectProperty;
@@ -133,6 +152,7 @@ Defining a social security number property for a Person which is mandatory and u
 
 #### WOQL.js
 <div class="code-example">
+    
 ```js
 WOQL.add_property("ssn", "integer")
     .label("SSN")
@@ -144,6 +164,7 @@ WOQL.add_property("ssn", "integer")
 
 #### WOQL.py
 <div class="code-example">
+    
 ```js
 WOQLQuery().add_property("ssn", "integer")
     .label("SSN")
@@ -158,6 +179,7 @@ WOQLQuery().add_property("ssn", "integer")
 In OWL we have to make the domain class a subclass of the restriction to encode the constraint. 
 
 <div class="code-example">
+    
 ```
 scm:ssn
     a owl:ObjectProperty;
@@ -195,6 +217,7 @@ WOQL.add_property("tasks", "Task")
 
 #### WOQL.py
 <div class="code-example">
+    
 ```js
 WOQLQuery().add_property("tasks", "Task")
     .label("Tasks")
@@ -208,6 +231,7 @@ WOQLQuery().add_property("tasks", "Task")
 #### OWL (turtle encoding)
 
 <div class="code-example">
+    
 ```owl
 scm:tasks
     a owl:ObjectProperty;

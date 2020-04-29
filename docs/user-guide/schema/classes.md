@@ -106,21 +106,7 @@ scm:MyClass
 
 TerminusDB allows you to access data within it as documents as well as graphs. To take advantage of this feature, you need to tell the Database which classes should be treated as documents - classes that are not documents can be contained within documents, allowing you to build out documents with complex internal structure.  TerminusDB provides the special `terminus:Document` class - all subclasses of this class are considered to be document classes. The below examples show how you define a document class in OWL, WOQL.js and WOQL.py
 
-
-### OWL
-
-<div class="code-example">
-  
-```ttl
-scm:MyClass 
-  a owl:Class;
-  rdfs:label "Class Name"@en;
-  rdfs:comment "Class Description"@en;
-  rdfs:subClassOf terminus:Document.
-```
-</div>
-
-We provide a shortcut function doctype in WOQL.js and WOQL.py
+We provide a shortcut function doctype in WOQL.js and WOQL.py to allow easy definition of document classes. 
 
 ```WOQL.doctype("X")` is equivalent to `WOQL.add_class("X").parent("Document")```
 
@@ -143,6 +129,20 @@ WOQL.doctype("MyClass")
 WOQLQuery().doctype("MyClass")
       .label("Class Name")
       .description("Class Description")
+```
+</div>
+
+
+### OWL
+
+<div class="code-example">
+  
+```ttl
+scm:MyClass 
+  a owl:Class;
+  rdfs:label "Class Name"@en;
+  rdfs:comment "Class Description"@en;
+  rdfs:subClassOf terminus:Document.
 ```
 </div>
 

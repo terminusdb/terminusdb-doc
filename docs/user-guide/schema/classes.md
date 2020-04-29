@@ -5,6 +5,11 @@ parent: Schema
 nav_order: 1
 ---
 
+1. TOC
+{:toc}
+
+---
+
 >
 > Tell me what type of a thing it is and I will know what to do with it
 >

@@ -6,6 +6,8 @@ nav_order: 7
 ---
 
 # Essential basic functionality
+{:toc}
+
 ## Retrieve and query datasets others have created
 There are many high-quality datasets out there already, and we host
 many of them on terminushub. You can easily clone these datasets or

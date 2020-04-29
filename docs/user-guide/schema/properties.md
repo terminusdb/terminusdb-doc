@@ -96,7 +96,7 @@ WOQLQuery().add_property("color", "string")
 
 <div class="code-example">
     
-```OWL
+```ttl
 scm:color
     a owl:DatatypeProperty;
     rdfs:label "Color"@en;
@@ -136,7 +136,7 @@ WOQLQuery().add_property("address", "Address")
 
 <div class="code-example">
     
-```OWL
+```ttl
 scm:address
     a owl:ObjectProperty;
     rdfs:label "Address"@en;
@@ -165,7 +165,7 @@ WOQL.add_property("ssn", "integer")
 #### WOQL.py
 <div class="code-example">
     
-```js
+```py
 WOQLQuery().add_property("ssn", "integer")
     .label("SSN")
     .description("An official social security number")
@@ -205,6 +205,7 @@ Defining a rule that each employee must be assigned at least 3 tasks and no more
 
 #### WOQL.js
 <div class="code-example">
+    
 ```js
 WOQL.add_property("tasks", "Task")
     .label("tasks")
@@ -218,7 +219,7 @@ WOQL.add_property("tasks", "Task")
 #### WOQL.py
 <div class="code-example">
     
-```js
+```py
 WOQLQuery().add_property("tasks", "Task")
     .label("Tasks")
     .description("A task assigned to an employee")
@@ -232,7 +233,7 @@ WOQLQuery().add_property("tasks", "Task")
 
 <div class="code-example">
     
-```owl
+```ttl
 scm:tasks
     a owl:ObjectProperty;
     rdfs:label "Tasks"@en;

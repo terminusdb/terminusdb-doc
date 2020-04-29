@@ -13,44 +13,40 @@ permalink: /docs/user-guide/api
 The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of the following endpoints:
 
 - Connect
--- GET `http://<server>/`
+  - `GET http://<server>/`
 - Create database
--- POST `http://<server>/db/<account>/<dbid>`
+  - `POST http://<server>/db/<account>/<dbid>`
 - Delete database
--- DELETE `http://<server>/db/<account>/<dbid>`
+  - `DELETE http://<server>/db/<account>/<dbid>`
 - Get triples
--- GET `http://<server>/triples/<account>/<dbid>/<repo>/branch/<branchid>/<type>/<schema_graphid>`
--- GET `http://<server>/triples/<account>/<dbid>/<repo>/commit/<refid>/<type>/<schema_graphid>`
+  - `GET http://<server>/triples/<account>/<dbid>/<repo>/branch/<branchid>/<type>/<schema_graphid>`
+  - `GET http://<server>/triples/<account>/<dbid>/<repo>/commit/<refid>/<type>/<schema_graphid>`
 - Update triples
--- POST `http://<server>/triples/<account>/<dbid>/local/branch/<branchid>/<type>/<schema_graphid>`
+  - `POST http://<server>/triples/<account>/<dbid>/local/branch/<branchid>/<type>/<schema_graphid>`
 - Class frame
--- GET `http://<server>/frame/<account>/<dbid>/<repo>/branch/<branchid>`
--- GET `http://<server>/frame/<account>/<dbid>/<repo>/commit/<refid>`
+  - `GET http://<server>/frame/<account>/<dbid>/<repo>/branch/<branchid>`
+  - `GET http://<server>/frame/<account>/<dbid>/<repo>/commit/<refid>`
 - Clone
--- POST `http://<server>/clone/<account>/<new_dbid>`
+  - `POST http://<server>/clone/<account>/<new_dbid>`
 - Fetch
--- POST `http://<server>/fetch/<account>/<dbid>/<repo_id>`
+  - `POST http://<server>/fetch/<account>/<dbid>/<repo_id>`
 - Rebase
--- POST `http://<server>/rebase/<account>/<dbid>/<repo>/branch/<branchid>`
+  - `POST http://<server>/rebase/<account>/<dbid>/<repo>/branch/<branchid>`
 - Push
--- POST `http://<server>/push/<account>/<dbid>/<repo>/branch/<branchid>`
+  - `POST http://<server>/push/<account>/<dbid>/<repo>/branch/<branchid>`
 - Branch
--- POST `http://<server>/branch/<account>/<dbid>/<repo>/branch/<new_branchid>`
+  - `POST http://<server>/branch/<account>/<dbid>/<repo>/branch/<new_branchid>`
 - Create graph
--- POST `http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
+  - `POST http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
 - Delete graph
--- DELETE `http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
-- Woql Select
--- GET `http://<server>/woql/<account>/<dbid>`
--- GET `http://<server>/woql/<account>/<dbid>/_meta`
--- GET `http://<server>/woql/<account>/<dbid>/<repo>`
--- GET `http://<server>/woql/<account>/<dbid>/<repo>/_commit`
--- GET `http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>`
--- GET `http://<server>/woql/<account>/<dbid>/<repo>/commit/<refid>`
-- Woql Update
--- POST `http://<server>/woql/<account>/<dbid>`
--- POST `http://<server>/woql/<account>/<dbid>/<repo>`
--- POST `http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>`
+  - `DELETE http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
+- Woql Query
+  - `POST http://<server>/woql/<account>/<dbid>`
+  - `POST http://<server>/woql/<account>/<dbid>/_meta`
+  - `POST http://<server>/woql/<account>/<dbid>/<repo>`
+  - `POST http://<server>/woql/<account>/<dbid>/<repo>/_commit`
+  - `POST http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>`
+  - `POST http://<server>/woql/<account>/<dbid>/<repo>/commit/<refid>`
 
 The terminus administration schema ( http://terminusdb.com/schema/terminus ) contains definitions for all of the data structures and properties used in the API. All arguments and returned messages are encoded as JSON.
 
@@ -328,127 +324,143 @@ An array of frames, each of which is encoded as a JSON-LD frame document and eac
 
 ```
 
-## WOQL Select
+## WOQL Query
 
-To be documented
+```
+POST http://<server>/woql/
+POST http://<server>/woql/terminus
+POST http://<server>/woql/<account>/<dbid>
+POST http://<server>/woql/<account>/<dbid>/_meta
+POST http://<server>/woql/<account>/<dbid>/<repo>
+POST http://<server>/woql/<account>/<dbid>/<repo>/_commit
+POST http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>
+POST http://<server>/woql/<account>/<dbid>/<repo>/commit/<refid>
+```
 
-## WOQL Update
+WOQL select allows users to perform queries from WOQL. The default
+query object is formed from the path. No path means no default query
+source.
 
-To be documented
+The path following WOQL will set the default collection to query. For
+instance, if you specify `terminus`, you will see information from the
+terminus core database (assuming that you have admin privileges). If
+you specify `<dbid>/_meta` you will see the graph which contains
+information about all repositories available for `<dbid>`.
 
-## Metadata
+For more information on collection descriptors, see: [Collection
+Descriptors].
 
-`GET http://terminus.db/DBNAME/metadata`
 
-The metadata associated with a database can be retrieved with a GET to the `metadata`.
+### Example
 
-    curl --user 'username:secret_key' -X GET -H 'Content-Type: application/json' 'http://localhost:6363/terminus/metadata' 
-
-### Return
-
-A `terminus:DatabaseMetadata` object is returned whose structure is as follows:
-
-    {
-      "@context": {
-        "doc":"http://localhost:6363/terminus/document/",
-        "owl":"http://www.w3.org/2002/07/owl#",
-        "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-        "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
-        "scm":"http://localhost:6363/terminus/schema#",
-        "tbs":"http://terminusdb.com/schema/tbs#",
-        "tcs":"http://terminusdb.com/schema/tcs#",
-        "terminus":"http://terminusdb.com/schema/terminus#",
-        "vio":"http://terminusdb.com/schema/vio#",
-        "xdd":"http://terminusdb.com/schema/xdd#",
-        "xsd":"http://www.w3.org/2001/XMLSchema#"
-      },
-      "@type":"terminus:DatabaseMetadata",
-      "terminus:database_created_time": {
-        "@type":"xsd:dateTime",
-        "@value":"2019-09-30T09:42:26+00:00"
-      },
-      "terminus:database_modified_time": {"@type":"xsd:dateTime", "@value":"2019-09-30T09:42:26+00:00"},
-      "terminus:database_size": {"@type":"xsd:nonNegativeInteger", "@value":113781}
-    }
-
+```bash
+curl -X POST --user 'admin:root' "http://localhost:6363/woql/terminus" \
+   -d '{ "@type" : "Triple",                                           \
+         "subject" : { "@type" : "Variable",                           \
+                       "variable_name" : { "@type" : "xsd:string",     \
+                                           "@value" : "Subject"}},     \
+         "predicate" : { "@type" : "Variable",                         \
+                         "variable_name" : { "@type" : "xsd:string",   \
+                                             "@value" : "Predicate"}}, \
+         "object" : { "@type" : "Variable",                            \
+                      "variable_name" : { "@type" : "xsd:string",      \
+                                          "@value" : "Object"}}}'      \
+   -H "Content-Type: application/json"
+```
 
 ## Clone
 
-POST [http://terminus.db/](http://terminus.db/DBNAME)clone/<account>/[<new_dbid>]
+```
+POST http://<server>/clone/<account>/[<new_dbid>]
+```
+
+Allows you to clone a database which already exists into `[<new_dbid>]`.
 
 ### Arguments
 
-The payload is the **resource identifier of** repo / db that we want to clone. If the new_dbid is provided, this id will be used locally to refer to the DB, otherwise whatever the cloned one uses will be used. 
+The payload is the **resource identifier of** repo / db that we want
+to clone. If the new_dbid is provided, this id will be used locally to
+refer to the DB, otherwise whatever the cloned one uses will be used.
 
-    {
-       @type: "terminus:APIUpdate"
-       terminus:resource: URI_OF_RESOURCE_ID
-    }
+```json
+{ "clone": URI_OF_RESOURCE_ID }
+```
 
 ## Fetch
 
-    POST http://terminus.db/fetch/<account>/<dbid>/<repo_id>
+```
+POST http://terminus.db/fetch/<account>/<dbid>/<repo_id>
+```
 
-POST is empty
-
-    POST http://terminus.db/fetch/<account>/<dbid>/ = http://terminus.db/fetch/<dbid>/origin
+Fetches all new commits from a remote repository.
 
 ## Rebase
 
-    POST http://terminus.db/rebase/<account>/<dbid>/<repo>/<branchid>/[<remote_repo_id>]/[<remote_branch_id>]
+```
+POST http://terminus.db/rebase/<account>/<dbid>/<repo>/<branchid>
+```
 
-Merges deltas from remote_repo_id into dbid/branchid
+Replays commits from another branch or ref ontop of the branch
+identified in the URI. This allows you to merge changes originating
+from elsewhere.
 
-POST is **empty**
-
-Rebases into dbid/branchid
-
-    POST http://terminus.db/rebase/<account>/<dbid>/<repo>/<branchid> = http://terminus.db/rebase/<dbid>/<branchid>/origin/master
+### Arguments
+```json
+{ "from": URI_OF_RESOURCE_ID }
+```
+The "from" resource can be a resource identifier of a ref or branch.
 
 ## Push
 
-    POST http://terminus.db/push/<account>/<dbid>/<repo>/<branchid>/[<remote_repo_id>]/[<remote_branch_id>]
-
-Pushes deltas from dbid / branchid the remote repo
-
-POST is empty
-
-e.g.
-
-    http://terminus.db/push/dbid = http://terminus.db/push/dbid/master/origin/master
-
+```
+POST http://terminus.db/push/<account>/<dbid>/<repo>
+```
+Pushes commits from a repository to the repositories origin.
 
 ## Branch
 
+```
 POST http://terminus.db/branch/<account>/<dbid>/<repo>/<new_branchid>
+```
 
 Creates a new branch with parent dbid/new_branchid
 
 ### Arguments
 
-POST is a **terminus:Ref resource ID** specifying the base of the new branch to be created.
+We send a resource identifier specifying the base of the new branch to be created.
 
-    {
-       "@type" : "terminus:APIUpdate"
-       "terminus:resource" : URI_OF_REF_RESOURCE_ID
-    }
+```json
+{ "from" : URI_OF_REF_RESOURCE_ID }
+```
 
 ## Create graph
 
+```
 POST http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
+```
+
+Creates a new graph in a given branch as either instance, schema or inference with the name "graphid".
 
 ### Arguments
 
 This takes a post parameter:
 
+```json
     {"commit_info" : { "author" : Author, "message" : Message }}
+```
 
 ## Delete graph
 
-    DELETE http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
+```
+DELETE http://terminus.db/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
+```
+
+Deletes the already existing graph from a given branch as either instance, schema or inference with the name "graphid".
 
 ### Arguments
 
 This takes a post parameter:
 
+```json
     {"commit_info" : { "author" : Author, "message" : Message }}
+```

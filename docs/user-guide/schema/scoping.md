@@ -16,7 +16,7 @@ nav_order: 5
 
 ---
 
-## Inline code
+## Boxing
 
 Code can be rendered inline by wrapping it in single back ticks.
 

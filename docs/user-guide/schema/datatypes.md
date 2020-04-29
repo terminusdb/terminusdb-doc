@@ -293,7 +293,7 @@ Note: internally Terminus supports more xsd datatypes but most of them are not u
 <td>A valid Email Address according to rfc 5322</td></tr>
 <tr>
 <td>xdd:html</td>
-<td> {@type: "xdd:html", @value: "<p>hello world</p>"}</td>
+<td> {@type: "xdd:html", @value: "&lt;p&gt;hello world&lt;/p&gt;"}</td>
 <td>A HTML encoded string</td></tr>
 <tr>
 <td>xdd:json</td>

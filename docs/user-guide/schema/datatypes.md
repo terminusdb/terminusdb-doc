@@ -4,26 +4,24 @@ title: Datatypes
 parent: Schema
 nav_order: 3
 ---
-
-# Code
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
 1. TOC
 {:toc}
 
 ---
 
-## Inline code
-erminus supports the full range of <a href="https://www.w3.org/2011/rdf-wg/wiki/XSD_Datatypes">xsd datatypes</a> and adds a number of our own <a href="https://terminusdb.com/schema/xdd">extended datatypes</a> which are particularly  useful in practice and are typically omitted from datatype defintions</p>
+## Introduction
 
+TermiusDB follows OWL in using the xsd datatypes for defining basic literal types like strings and numbers. Every datatype property must be defined as having a specfic datatype which defines the range of acceptable values for that property. 
 
-<h3>Useful XSD Types Supported</h3>
-<p><i>Note internally Terminus supports more xsd datatypes but most of them are not useful in practice - this table just lists the useful ones</i></p>
-<p>
-</p><table cellpadding="4" border="1">
+TerminusDB supports the full range of <a href="https://www.w3.org/2011/rdf-wg/wiki/XSD_Datatypes">xsd datatypes</a> and adds a number of our own <a href="https://terminusdb.com/schema/xdd">extended datatypes</a> which are particularly  useful in practice and are typically omitted from datatype defintions. 
+
+In practice, many of the XSD datatypes are not particularly useful - focused on legacy features of XML. However, xsd provides a well-defined and extensible framework for datatype definitions. 
+
+### Principle XSD Types Supported
+
+Note: internally Terminus supports more xsd datatypes but most of them are not useful in practice - this table just lists the useful ones
+
+<table cellpadding="4" border="1">
 <tbody><tr>
 <th> Datatype
 </th>
@@ -307,9 +305,13 @@ erminus supports the full range of <a href="https://www.w3.org/2011/rdf-wg/wiki/
 
 <h3>Datatype Example Schema</h3>
 
-<p>The <a href="https://github.com/terminusdb/terminus-schema">terminus-schema repository</a> contains a datatypes.owl.ttl file which includes an entity type that has a broad range of TerminusDB datatypes in use. If you load the file below into a TerminusDB schema, you should be able to see all the examples. 
-</p><p>
-</p><pre> 
+<p>The <a href="https://github.com/terminusdb/terminus-schema">terminus-schema repository</a> contains a datatypes.owl.ttl file which includes a class that has a broad range of TerminusDB datatypes in use. If you load the file below into a TerminusDB schema, you should be able to see all the examples of datatypes in action. 
+</p>
+
+<div class="code-example">
+  
+```ttl
+
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 @prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
@@ -465,8 +467,7 @@ datatypes:json
   rdfs:label "xdd:JSON"@en ;
   a owl:DatatypeProperty ;
   rdfs:domain datatypes:DatatypeHolder ;
-  rdfs:range xdd:json .
-
+  rdfs:range xdd:json.
 
 xdd:coordinate
   a rdfs:Datatype ;
@@ -571,56 +572,5 @@ tcs:Entity
   rdfs:subClassOf tcs:Document ;
   rdfs:label "Entity Class"@en ;
   rdfs:comment "The class of entities (business objects / documents) managed by the system"@en .
-
-
-## Syntax highlighted code blocks
-
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
-
-<div class="code-example" markdown="1">
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
 ```
 </div>
-{% highlight markdown %}
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
-
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-{% endhighlight %}

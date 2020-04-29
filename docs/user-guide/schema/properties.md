@@ -2,104 +2,228 @@
 layout: default
 title: Properties
 parent: Schema
-nav_order: 4
----
-
-# Code
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
+nav_order: 2
 ---
 
 ## Introduction
 
-In Terminus DB, properties are used in the traditional way, for defining the attributes that things can have.
-
-Properties are divided into two distinct types - datatype properties and object properties. Datatype properties point at simple literal types - strings, numbers and so on, while object properties point at structured objects. In our schema, definition we specify the type of the property, and the types of the objects which can appear on the left (domain) and the right (range) of the property.  If the property is a Datatype property, the range will always be a datatype, if the property is an object property, the range will always be a class. In all cases, the domain of a property must be a class. 
+In a TerminusDB schema, there are objects, defined by classes, and these objects can have attributes associated with them which are defined by proprties in the schema. 
 
 Property Definitions
 
-There are 5 important parts to a property definition:
+There are 7 important parts to a property definition:
 
-    ex:address a owl:ObjectProperty | owl:DatatypeProperty - defines the property as either having a value that is an object or a simple datatype.
-    rfds:label "Address"@en; - defines "Address" to be the primary name for the property in English - this is the text string that will appear in UIs, dropdowns, etc - recommended
-    rfds:comment "The postal address at which the entity resides"@en; - defines a comment for the property in English - this is help text that appears in titles, etc - optional
-    rfds:domain ex:Person - defines the domain of the property - i.e. the class that is on the left hand side of the property, or the class that 'owns' the property - mandatory
-    rfds:range ex:Address - defines the range of the property - i.e. the value that is on the right hand side of the property, or the value that the property is assigned
+1. Property ID
+1. Property Type
+1. Property Label
+1. Property Description
+1. Property Domain
+1. Property Range
+1. Property Cardinality Constraints
 
-Datatype Properties
-
-Datatype properties must have a range that is a supported datatype, as listed in the datatypes documentation
-
-Object Properties
-
-The range of an object property must be a class - if that class is a subClass of tcs:Entity, then the property is interpreted as being a link to the other object, otherwise, it is interpreted as being a containment relationship - the object is contained by the class that is the domain of the property. This makes a difference in how documents are formed and in delete semantics. Contained objects appear as complex elements within the containing objects, whereas links appear as links to the linked object. When a document is deleted through the delete API, all contained elements are also deleted, whereas this is not the case when the property is a link to another document, all links to the deleted object are also deleted but the documents themselves are not. 
+### Property ID
 
 
-Code can be rendered inline by wrapping it in single back ticks.
+### Property Type
 
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
+Properties are divided into two distinct types - datatype properties and object properties. Datatype properties point at simple literal types - strings, numbers and so on, while object properties point at structured objects. In our schema definition we specify the type of the property, and the types of the objects which can appear on the left (domain) and the right (range) of the property.  If the property is a Datatype property, the range will always be a datatype, if the property is an object property, the range will always be a class. In all cases, the domain of a property must be a class. 
 
----
+### Property Label 
 
-## Syntax highlighted code blocks
+Like classes, properties can have a label - a simple text string that can be used in UI elements to refer to the property. This uses the standard `rdfs:label` predicate. Labels are optional but strongly recommended. 
 
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
+### Property Description 
 
-<div class="code-example" markdown="1">
+Properties can also have a description defined in the schema - a longer text string describing the meaning or rationale of the property. Providing descriptions is good practice as it provides readable documentation for others who want to understand the schema. Under the hood, descriptions are encoded using the standard `rdfs:comment` predicate. Descriptions are optional but strongly recommended. 
+
+### Property Domain
+
+The domain of a property is the class that can be considered to 'own' the property - that is to say that the domain of a property appears on the left hand side of the triple that uses the property.  So, for example, if I have a property called `color` with a domain of `Car`, then an object of type car can have a color property associated with it. This uses the standard `rdfs:domain` predicate under the hood.  
+
+### Property Range
+
+The range of the value is the class or datatype that can be considered to represent the value of the property.  For example, if my color property is defined as having a range of 'xsd:string' this means that the value of the property must be a string. If, on the other hand, it is defined as being an instance of a defined 'Color' class, then this means that the value should be an object of type `Color`. This uses the standard `rdfs:range` predicate under the hood. 
+
+### Property Cardinality Constraints
+
+Properties can have cardinality constraints associated with them. The semantics of these constraints are simple. We can define a maximum cardinality, a minimum cardinality or an exact cardinality for any property in the schema and this will be enforced by the system - in that TerminusDB will prevent you from writing any data to the database that breaks the cardinality constraints. So, for example, if I define a property to have a cardinality of exactly one, then if I create an object of a class that is the domain of this property, I must provide exactly one value for this property or it will be rejected - this is a mandatory and unique property. Similarly, if I define a property to have a maximum cardinality of 1, then the property is unique but not mandatory and if I define a property as having a minimum cardinality of 1, then it is a mandatory but not necessarily unique property. 
+
+Under the hood, OWL has a non-intuitive way of defining such restrictions, although it is mathematically precise, using inheritance from a special owl:Restriction. Some example are provided below. 
+
+## Examples
+
+### Simple Datatype Property
+
+Defining a color property for a Car which takes a string value (e.g. "red")
+
+#### WOQL.js
+<div class="code-example">
 ```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+WOQL.add_property("color", "string")
+    .label("Color")
+    .description("The color of the object")
+    .domain("Car")
 ```
 </div>
-{% highlight markdown %}
+
+#### WOQL.py
+
+<div class="code-example">
+```py
+WOQLQuery().add_property("color", "string")
+    .label("Color")
+    .description("The color of the object")
+    .domain("Car")
+```
+</div>
+
+#### OWL (turtle encoding)
+
+<div class="code-example">
+```OWL
+scm:color
+    a owl:DatatypeProperty;
+    rdfs:label "Color"@en;
+    rdfs:comment "The color of the object"@en;
+    rdfs:domain scm:Car
+    rdfs:range xsd:string.
+```
+</div>
+
+### Simple Object Property
+
+Defining an address property for a Person which takes a structured Address object
+
+#### WOQL.js
+<div class="code-example">
 ```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+WOQL.add_property("address", "Address")
+    .label("Address")
+    .description("The postal address at which the person lives")
+    .domain("Person")
 ```
-{% endhighlight %}
-
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
 </div>
-```markdown
-[Link button](http://example.com/){: .btn }
+
+#### WOQL.py
+<div class="code-example">
+```py
+WOQLQuery().add_property("address", "Address")
+    .label("Address")
+    .description("The postal address at which the person lives")
+    .domain("Person")
 ```
-
 </div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
 
-[Link button](http://example.com/){: .btn }
+#### OWL (turtle encoding)
 
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
+<div class="code-example">
+```OWL
+scm:address
+    a owl:ObjectProperty;
+    rdfs:label "Address"@en;
+    rdfs:comment "The postal address at which the person lives"@en;
+    rdfs:domain scm:Person
+    rdfs:range scm:Address.
 ```
-{% endhighlight %}
+</div>
+
+### Datatype Property with Cardinality Constraints
+
+Defining a social security number property for a Person which is mandatory and unique
+
+#### WOQL.js
+<div class="code-example">
+```js
+WOQL.add_property("ssn", "integer")
+    .label("SSN")
+    .description("An official social security number")
+    .domain("Person")
+    .cardinality(1)
+```
+</div>
+
+#### WOQL.py
+<div class="code-example">
+```js
+WOQLQuery().add_property("ssn", "integer")
+    .label("SSN")
+    .description("An official social security number")
+    .domain("Person")
+    .cardinality(1)
+```
+</div>
+
+#### OWL (turtle encoding)
+
+In OWL we have to make the domain class a subclass of the restriction to encode the constraint. 
+
+<div class="code-example">
+```
+scm:ssn
+    a owl:ObjectProperty;
+    rdfs:label "SSN"@en;
+    rdfs:comment "An official social security number"@en;
+    rdfs:domain scm:Person
+    rdfs:range xsd:integer.
+
+scm:ssn_property_constraint
+    a owl:Restriction;
+    owl:onProperty scm:ssn;
+    owl:cardinality 1^^xsd:nonNegativeInteger.
+    
+scm:Person
+    a owl:Class;
+    rdfs:subClassOf scm:ssn_property_constraint.
+```
+</div>
+
+### Datatype Property with Cardinality Constraints
+
+Defining a rule that each employee must be assigned at least 3 tasks and no more than 5 tasks at any one time. 
+
+#### WOQL.js
+<div class="code-example">
+```js
+WOQL.add_property("tasks", "Task")
+    .label("tasks")
+    .description("A task assigned to an employee")
+    .domain("Employee")
+    .min(3)
+    .max(5)
+```
+</div>
+
+#### WOQL.py
+<div class="code-example">
+```js
+WOQLQuery().add_property("tasks", "Task")
+    .label("Tasks")
+    .description("A task assigned to an employee")
+    .domain("Employee")
+    .min(3)
+    .max(5)
+```
+</div>
+
+#### OWL (turtle encoding)
+
+<div class="code-example">
+```owl
+scm:tasks
+    a owl:ObjectProperty;
+    rdfs:label "Tasks"@en;
+    rdfs:comment "A task assigned to an employee"@en;
+    rdfs:domain scm:Employee
+    rdfs:range scm:Task.
+
+scm:tasks_property_constraint
+    a owl:Restriction;
+    owl:onProperty scm:tasks;
+    owl:minCardinality 5^^xsd:nonNegativeInteger;
+    owl:maxCardinality 5^^xsd:nonNegativeInteger.
+    
+scm:Task
+    a owl:Class;
+    rdfs:subClassOf scm:tasks_property_constraint.
+```
+</div>

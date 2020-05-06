@@ -39,7 +39,7 @@ For example a simple query which returns every source, predicate and object in a
                 "variable_name" : {"@type" : "xsd:string",
                                    "@value" : "Predicate"}},
  "object" : {"@type" : "Variable",
-             "variable_name : {"@type" : "xsd:string",
+             "variable_name" : {"@type" : "xsd:string",
                                "@value" : "Object"}}}
 ```
 
@@ -362,5 +362,37 @@ Example of using WOQLjs and WOQLpy to load the insert data form csvs can be foun
 ---
 
 # Querying Database
+
+You can use both WOQLjs or WOQLpy to Query the data from the database. The following describe a few ways to do that and with the result presented in the console or as a Pandas DataFrame (WOQLpy)
+
+## Query at Console
+
+Queries can be done within the console, just click on the `Query` button on the left for the queries windows:
+
+<pictures to be added>
+
+An example of Query in WOQLjs would be:
+
+```js
+WOQL.select("v:Start", "v:Start_Label", "v:End", "v:End_Label").and(
+	WOQL.triple("v:Journey", "type", "scm:Journey"),
+	WOQL.triple("v:Journey", "start_station", "v:Start"),
+	WOQL.opt().triple("v:Start", "label", "v:Start_Label"),
+	WOQL.triple("v:Journey", "end_station", "v:End"),
+	WOQL.opt().triple("v:End", "label", "v:End_Label"),
+	WOQL.triple("v:Journey", "journey_bicycle", "v:Bike")
+)
+```
+
+Multiple `WOQL.triple`s are used to describe the relations of the objects in the graph. They are combined with a `WOQL.and`. `WOQL.quad` can be used in similar way if the graph of that triple needed to be specified.
+
+Without the `WOQL.select`, all the variables, described with prefix `v:`, that matches with the relations will be returned as result. However, using `WOQL.select` can limit which variable are returned in the result. This can be used if some of the variables are intermediate links in the relations and not needed in the result. The result can be presented in wither table view or graph view.
+
+`WOQL.opt` is used if that conditional is optional. In this example, both `label`s for the Start Station and End Stations are not required. Using `opt` would avoid getting an error if any `label`s are missing.
+
+
+## WOQLpy - Getting Result as a Pandas DataFrame
+
+If `dataframe` option is chosen when installing `terminus-client-python` ([details here]()) after executing the query with `query.execute(client)` a result binding is returned and it could be convert as a Pandas DataFrame by `woql.query_to_df(result)`. See [tutorial]() as example.
 
 ---

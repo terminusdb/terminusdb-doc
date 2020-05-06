@@ -5,7 +5,14 @@ parent: Schema
 nav_order: 1
 ---
 
+1. TOC
+{:toc}
+
+---
+
+>
 > Tell me what type of a thing it is and I will know what to do with it
+>
 
 ## Introduction
 
@@ -19,7 +26,7 @@ Classes are relatively simple structures - but they can be combined in a variety
 
 A class definition is made up of a small number of properties in the Terminus schema: 
 
-1. ID
+1. Class ID
 2. Label / Name
 3. Description
 4. Parent Classes
@@ -29,11 +36,7 @@ A class definition is made up of a small number of properties in the Terminus sc
 
 Under the hood TerminusDB uses OWL and RDF for defining Schemas. In RDF, all ids are IRIs and this is the case with class IDs, like all IDs in TerminusDB. However, rather than using full URLs, it's much more convenient to express things in a compressed form, with prefixes that map to an IRI base providing namespace safety, with fragment ids which identify the particular class. So for example, rather than writing 
 
-`http://terminusdb.com/john/crm#Person`
-
-it's much more convenient to write: 
-
-`crm:Person` - and define the crm prefix to map to the actual URL. 
+`http://terminusdb.com/john/crm#Person` it's much more convenient to write: `crm:Person` - and define the crm prefix to map to the actual URL. 
 
 In TerminusDB, a predefined prefix is part of every database - the `scm` namespace is local to every database and allows you to create a class that is local to that database, with a valid IRI which will not clash with any other namespaces. In general, unless you know what you are doing, you should always just use the scm: prefix for all your classes. You can use whatever URLs you like for your classes but this makes it more difficult to work with prefixed forms - you have to define all the prefixes you want to use explicitly and have to remember what belongs where.  
 
@@ -63,22 +66,10 @@ TerminusDB includes a mechanism for tagging a class as abstract - a common requi
 
 There are two ways in which we can define classes in TerminusDB - directly in OWL, or through one of the WOQL coding language libraries like WOQL.js or WOQL.py. Generally we find that it is easier and quicker to use WOQL.  Below we show parallel examples of class definitions in OWL, WOQL.js and WOQL.py
 
-### OWL
-
-<div class="code-example" markdown="1">
-```turtle
-scm:MyClass 
-  a owl:Class;
-  rdfs:label "Class Name"@en;
-  rdfs:comment "Class Description"@en;
-  terminus:tag terminus:abstract;
-  rdfs:subClassOf scm:MyOtherClass.
-```
-</div>
-
 ### WOQL.js
 
-<div class="code-example" markdown="1">
+<div class="code-example">
+  
 ```js
 WOQL.add_class("MyClass")
       .label("Class Name")
@@ -90,8 +81,9 @@ WOQL.add_class("MyClass")
 
 ### WOQL.py
 
-<div class="code-example" markdown="1">
-```python
+<div class="code-example">
+  
+```py
 WOQLQuery().add_class("MyClass")
       .label("Class Name")
       .description("Class Description")
@@ -100,30 +92,33 @@ WOQLQuery().add_class("MyClass")
 ```
 </div>
 
-## Document Classes
-
-TerminusDB allows you to access data within it as documents as well as graphs. To take advantage of this feature, you need to tell the Database which classes should be treated as documents - classes that are not documents can be contained within documents, allowing you to build out documents with complex internal structure.  TerminusDB provides the special `tcs:Document` class - all subclasses of this class are considered to be document classes. The below examples show how you define a document class in OWL, WOQL.js and WOQL.py
-
-
 ### OWL
 
-<div class="code-example" markdown="1">
-```turtle
+<div class="code-example">
+  
+```ttl
 scm:MyClass 
   a owl:Class;
   rdfs:label "Class Name"@en;
   rdfs:comment "Class Description"@en;
-  rdfs:subClassOf tcs:Document.
+  terminus:tag terminus:abstract;
+  rdfs:subClassOf scm:MyOtherClass.
 ```
 </div>
 
-We provide a shortcut function doctype in WOQL.js and WOQL.py
 
-`WOQL.doctype("X")` is equivalent to `WOQL.add_class("X").parent("Document")`
+## Document Classes
+
+TerminusDB allows you to access data within it as documents as well as graphs. To take advantage of this feature, you need to tell the Database which classes should be treated as documents - classes that are not documents can be contained within documents, allowing you to build out documents with complex internal structure.  TerminusDB provides the special `terminus:Document` class - all subclasses of this class are considered to be document classes. The below examples show how you define a document class in OWL, WOQL.js and WOQL.py
+
+We provide a shortcut function doctype in WOQL.js and WOQL.py to allow easy definition of document classes. 
+
+```WOQL.doctype("X")` is equivalent to `WOQL.add_class("X").parent("Document")```
 
 ### WOQL.js
 
-<div class="code-example" markdown="1">
+<div class="code-example">
+
 ```js
 WOQL.doctype("MyClass")
       .label("Class Name")
@@ -133,11 +128,26 @@ WOQL.doctype("MyClass")
 
 ### WOQL.py
 
-<div class="code-example" markdown="1">
-```python
+<div class="code-example">
+
+```py
 WOQLQuery().doctype("MyClass")
       .label("Class Name")
       .description("Class Description")
+```
+</div>
+
+
+### OWL
+
+<div class="code-example">
+  
+```ttl
+scm:MyClass 
+  a owl:Class;
+  rdfs:label "Class Name"@en;
+  rdfs:comment "Class Description"@en;
+  rdfs:subClassOf terminus:Document.
 ```
 </div>
 

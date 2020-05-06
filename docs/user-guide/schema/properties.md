@@ -252,3 +252,32 @@ scm:Task
     rdfs:subClassOf scm:tasks_property_constraint.
 ```
 </div>
+
+## Enumerated Type Properties
+
+It is often useful to have properties that can take on one or more of an enumerated set of values (e.g. absent|present|unknown) rather than just using strings. In the TerminusDB schema you can define specific properties as having ranges that are enumerated types. 
+
+<div class="code-example">
+    
+```js
+let choices = [
+  ["scm:absent", "Absent", "The feature was absent in this historical context"],
+  ["scm:present", "Present", "The feature was present in this historical context"],
+  ["scm:unknown", "Unknown", "It is not known whether the feature was present or absent in the context."]    
+]
+WOQL.schema().generateChoiceList("Presence", "Presence", "The epistemic state - is the feature present?", choices)
+```
+
+</div>
+Which generates a choice list with id scm:Presence, this becomes the range of the enumerated property:
+
+
+<div class="code-example">
+    
+```js
+WOQL.add_property("enhancement", "Presence")
+```
+
+</div>
+
+In OWL, the 

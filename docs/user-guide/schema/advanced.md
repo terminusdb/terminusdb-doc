@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Scoping
+title: Advanced Topics
 parent: Schema
-nav_order: 5
+nav_order: 6
 ---
 
 # Code

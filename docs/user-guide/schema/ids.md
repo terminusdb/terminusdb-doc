@@ -2,7 +2,7 @@
 layout: default
 title: Constrains
 parent: Schema
-nav_order: 2
+nav_order: 5
 ---
 
 # Code

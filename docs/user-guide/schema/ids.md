@@ -30,18 +30,55 @@ Each TerminusDB database comes preconfigured with a configurable and extensible 
 
 To address the second issue, WOQL provides several functions which help with generating new ids. 
 
-## Instance Data Base URI
-
-
 ## Namespace Prefixes
 
 The following URL prefixes are pre-configured (and fixed) for every TerminusDB Database: 
 
+```
+"@context":{
+    "owl":"http://www.w3.org/2002/07/owl#",
+    "rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
+    "xsd":"http://www.w3.org/2001/XMLSchema#"
+    "xdd":"http://terminusdb.com/schema/xdd#",
+    "terminus":"http://terminusdb.com/schema/terminus#",
+    "ref":"http://terminusdb.com/schema/ref#",
+    "repo":"http://terminusdb.com/schema/repository#",
+    "vio":"http://terminusdb.com/schema/vio#",
+    "woql":"http://terminusdb.com/schema/woql#",
+    "layer":"http://terminusdb.com/schema/layer#",
+}
+```
+
+owl, rdf, rdfs, xsd, xdd are language primitives and datatypes. 
+ref, repo and layer refer to entities within the terminus layered storage system. 
+woql refers to the web object query language
+terminus defines high level constructs such as databases and resources. 
+
+## Instance Data Base URI
+
+In addition to the built in URL prefixes which are fixed, each database has it's own namespace.  This defines two important features - firstly the URLs which will be used to represent the instance data and secondly the namespace that will be used to represent classes and properties that are local to the specific database. 
+
+Each terminus DB database has two useful prefixes defined by default. doc: is the default prefix that will be used for instance data in the database. TerminusDB allows users to define this to be whatever URL they want. So, for example, we can create a document with id "doc:John" and define the databases base uri to be "http://my.endpoint.com/" so that the data is actually stored and consumed as http://my.endpoint.com/John 
+
+The prefix is specified in the create database api cal and can be updated by writing to the terminus Database. 
+
+WOQLClient.createDatabase(...)
+
+or 
+
+....
+
 ## Extended Prefixes
+
+Users can add new prefixes to a database, to conveniently support imported rdf data which may use a variety of namespaces and URLs. This can be achieved through the schema section of the console or through the following API call 
+
+???
+
 
 ## ID Generation
 
-
+When inserting data, it is often the case that we need to generate an id that 
 
 
 

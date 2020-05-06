@@ -15,17 +15,33 @@ nav_order: 6
 {:toc}
 
 ---
+## Introduction
 
-## Boxing
+TerminusDB supports a large fragment of the OWL language. This enables a large number of complex constraints to be expressed in a wide variety of different ways. However, as OWL supports multiple inheritance, it is almost never necessary to use anything much more esoteric than subclassing to achieve a desired effect. This section demonstrates how we can solve some common data-modelling problems with TerminusDB. 
 
-Code can be rendered inline by wrapping it in single back ticks.
+## Scoping
 
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
+When we construct knowledge graphs, consisting of relationships between things, we often want to scope the relationships, or the properties of the things, especially by time.  In a more general sense, the relationships between things are often complex and can't be represented by a simple property. In TerminusDB this is easy to achieve by creating classes to represent the common properties.
+
+For example, if we wanted to model a situation where a person was a shareholder of a company for a certain period of time.  We want our knowledge graph to contain a shareholder relationship between the person and the company, but it should be scoped by the time of the relationship. 
+
+This is simple to achieve by creating an abstract super-class called "EphermeralEntity", making the shareholder relationship a subclass of this class along with the properties which point at the people involved in the relationships. 
+
+In TerminusDB there is no fundamental distiction between things and relationships - relationships are things that can be interepreted as relationships by virtue of having properties that point at other things.    
+
+## Boxing Datatypes
+
+In RDF it is not possible to address triples with literal values directly. Therefore, if we want to add scopings or other annotations to a datatype property, we can't do so directly. However, it is straightforward to create box classes to wrap the datatype properties in a simple object, with a regular naming convention. 
+
+Terminus WOQL contains some functions to support this situation. 
+
+boxClasses(prefix, classes, except, graph)
+loadXDDBoxes(parent, graph, prefix);
+this.loadXSDBoxes(parent, graph, prefix)
+
+## OWL Supprted
+
+Here goes the diagram of the bits of owl we support
 
 ---
 

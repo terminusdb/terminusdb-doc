@@ -16,9 +16,36 @@ nav_order: 4
 
 ---
 
-## Inline code
+## Introduction
 
-Code can be rendered inline by wrapping it in single back ticks.
+Under the hood, TerminusDB uses <a href="">RDF triples</a> to store all it's data. In RDF, all ids are defined to be IRIs - which can be thought of as URLs for all practical purposes. The benefits of using URLs as your principle IDs are many - you have a universal addressing space, which can be made automatically dereferencable and in complex data integration projects, namespaces are critical if we want to avoid undesirable naming collisions. 
+
+The disadvantages of using URLs for IDs are, firstly, URLs tend to be long and difficult to remember and secondly, that you have to put some effort into the process of figuring out how to generate good URLs to represent you data. 
+
+To address the first issue. rather than using full URLs, it's much more convenient to express things in a compressed form, with prefixes that map to an IRI base providing namespace safety, with fragment ids which identify the particular unit. So for example, rather than writing
+
+http://www.w3.org/1999/02/22-rdf-syntax-ns#type we can use rdf:type
+
+Each TerminusDB database comes preconfigured with a configurable and extensible set of namespace prefixes. 
+
+To address the second issue, WOQL provides several functions which help with generating new ids. 
+
+## Instance Data Base URI
+
+
+## Namespace Prefixes
+
+The following URL prefixes are pre-configured (and fixed) for every TerminusDB Database: 
+
+## Extended Prefixes
+
+## ID Generation
+
+
+
+
+
+
 
 <div class="code-example" markdown="1">
 Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

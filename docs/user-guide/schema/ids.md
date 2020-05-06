@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Constrains
+title: IDs, IRIs, URLs and Prefixes
 parent: Schema
-nav_order: 5
+nav_order: 4
 ---
 
 # Code

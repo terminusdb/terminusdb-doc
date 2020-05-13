@@ -5,7 +5,7 @@ parent: Schema
 nav_order: 6
 ---
 
-# Code
+# Advanced Topics - OWL Unleashed
 {: .no_toc }
 
 ## Table of contents
@@ -27,6 +27,21 @@ For example, if we wanted to model a situation where a person was a shareholder 
 
 This is simple to achieve by creating an abstract super-class called "EphermeralEntity", making the shareholder relationship a subclass of this class along with the properties which point at the people involved in the relationships. 
 
+<div class="code-example" markdown="1">
+
+```js
+WOQL.add_class("EphemeralEntity")
+    .label("Ephemeral Entity").abstract(true)
+    .property("from", "xsd:dateTime")
+      .label("From")
+    .property("to", "xsd:dateTime")
+      .label("To")
+      
+WOQL.add_class("Shareholding").parent("EphemeralEntity")
+
+```
+</div>
+
 In TerminusDB there is no fundamental distiction between things and relationships - relationships are things that can be interepreted as relationships by virtue of having properties that point at other things.    
 
 ## Boxing Datatypes
@@ -35,64 +50,38 @@ In RDF it is not possible to address triples with literal values directly. There
 
 Terminus WOQL contains some functions to support this situation. 
 
+<div class="code-example" markdown="1">
+
+```js
 boxClasses(prefix, classes, except, graph)
 loadXDDBoxes(parent, graph, prefix);
 this.loadXSDBoxes(parent, graph, prefix)
+```
+</div>
 
-## OWL Supprted
+## Open and Closed World Reasoning
 
-Here goes the diagram of the bits of owl we support
+Terminus supports both open and closed world reasoning. Schema graphs use closed world reasoning, but inference graphs use open world reasoning and allow the expression of inference rules. These rules are evaluated dynamically at query time rather than being materialised. 
+
+### Inference Graph
+
+The master terminus database makes use of an inference graph to describe the concept whereby authority should commute over resource inclusion (i.e. if I have authority for a thing, I have authority for the things that are included within that thing). 
+
+<div class="code-example" markdown="1">
+
+```ttl
+
+terminus:authority_scope
+  owl:propertyChainAxiom ( terminus:authority_scope terminus:resource_includes ) .
+
+```
+</div>
+
+
+## Freestyle OWL
+
+OWL is an almost infinitely flexible language. This document just provides a taste of the complex configurations that can be achieved by defining OWL schema and inference rules. TerminusDB supports a large subset of OWL in both inference and schema modes. The diagram below provies a snapshot of the OWL predicates that we currently support. It should be noted that all of OWL can be used in schemata and inference graphs, but only this subset will be correctly reasoned over. In some cases, the reason that we do not support a predicate is because, in practice, the way that the predicate is used does not correspond with it's semantic definition (owl:SameAs) in other cases, it is because we have never had the need to use that specific formulation. It is normally possible to adequately capture a situation using a much smaller subset of the language.   
 
 ---
 
-## Syntax highlighted code blocks
-
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
-
-<div class="code-example" markdown="1">
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-</div>
-{% highlight markdown %}
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
-
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-{% endhighlight %}
+<img src="https://terminusdb.com/docs/img/owl-support.png" />

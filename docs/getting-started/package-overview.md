@@ -41,11 +41,11 @@ Old package to support upgrading from terminusdb-server 1.0 to terminusdb-server
 
 Client libraries for accessing TerminusDB from programming languages
 
-### <a href="https://github.com/terminusdb/terminus-client">terminus-client</a> 
+### <a href="https://github.com/terminusdb/terminusdb-client">terminusdb-client</a> 
 
 Javascript client library - comes as npm model or script
 
-### <a href="https://github.com/terminusdb/terminus-client-python">terminus-client-python</a> 
+### <a href="https://github.com/terminusdb/terminusdb-client-python">terminusdb-client-python</a> 
 
 Python client library - includes panda dataframes integration. 
 

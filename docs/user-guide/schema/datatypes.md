@@ -4,7 +4,7 @@ title: Datatypes
 parent: Schema
 nav_order: 3
 ---
-1. TOC
+Datatypes - Literals and Enumerated Types
 {:toc}
 
 ---
@@ -15,11 +15,13 @@ TermiusDB follows OWL in using the xsd datatypes for defining basic literal type
 
 TerminusDB supports the full range of <a href="https://www.w3.org/2011/rdf-wg/wiki/XSD_Datatypes">xsd datatypes</a> and adds a number of our own <a href="https://terminusdb.com/schema/xdd">extended datatypes</a> which are particularly  useful in practice and are typically omitted from datatype defintions. 
 
-In practice, many of the XSD datatypes are not particularly useful - focused on legacy features of XML. However, xsd provides a well-defined and extensible framework for datatype definitions. 
+In practice, many of the XSD datatypes are not particularly useful - focused on legacy features of XML. However, xsd provides a well-defined and extensible framework for datatype definitions.
+
+Terminus DB also provides support for the definition of enumerated datatypes. 
 
 ### Principle XSD Types Supported
 
-Note: internally Terminus supports more xsd datatypes but most of them are not useful in practice - this table just lists the useful ones
+Internally Terminus supports more xsd datatypes but most of them are not useful in practice - this table just lists the useful ones
 
 <table cellpadding="4" border="1">
 <tbody><tr>
@@ -302,8 +304,76 @@ Note: internally Terminus supports more xsd datatypes but most of them are not u
 </tbody></table>
 <p></p>
 
+## Enumerated Types
 
-<h3>Datatype Example Schema</h3>
+It is often useful to have properties that can take on one or more of an enumerated set of values (e.g. we might want a property that has a value of either: `absent`, `present`, or `unknown`) rather than just using strings.  These types In the TerminusDB schema you can define specific properties as having ranges that are enumerated types in the following way.
+
+
+<div class="code-example" markdown="1">
+
+```js
+let choices = [ 
+    ["scm:absent", "Absent", "The feature was absent in this historical context"], 
+    ["scm:present", "Present", "The feature was present in this historical context"], 
+    ["scm:unknown", "Unknown", "It is not known whether the feature was present or absent in the context"]
+] 
+
+WOQL.schema().generateChoiceList("Presence", "Presence", "The epistemic state - is the feature present?", choices) 
+```
+</div>
+
+In OWL, this is encoded in the following way: 
+
+<div class="code-example" markdown="1">
+
+```ttl
+scm:Presence
+  a owl:Class ;
+  rdfs:comment "The epistemic state - is the feature present?"@en ;
+  rdfs:label "Presence"@en ;
+  owl:oneOf ( scm:unknown scm:absent scm:present ) .
+
+scm:absent
+  a scm:Presence ;
+  rdfs:comment "The feature was absent in this historical context"@en ;
+  rdfs:label "Absent"@en .
+  
+scm:present
+  a scm:Presence ;
+  rdfs:comment "The feature was present in this historical context"@en ;
+  rdfs:label "Present"@en .  
+  
+scm:unknown
+  a scm:Presence ;
+  rdfs:comment "It is not known whether the feature was present or absent in the context"@en ;
+  rdfs:label "Unkown"@en .  
+
+```
+</div>
+
+Once an enumerated type has been created in this way, we can use it as the range of any properties we want.  
+
+<div class="code-example" markdown="1">
+
+```js
+WOQL.add_property("wear", "Presence").label("Signs of Wear").domain("Article") 
+```
+</div>
+
+<div class="code-example" markdown="1">
+
+```ttl
+scm:wear 
+   a owl:ObjectProperty;
+   rdfs:label "Signs of Wear"@en;
+   rdfs:domain scm:Article;
+   rdfs:range scm:Presence.
+```
+</div>
+
+Note that in OWL, properties that use enumerated datatypes are objectProperties, not datatype properties. Finally, note that there are a very large number of ways in which enumerated properties can be implemented in OWL. TerminusDB provides various shortcuts which use this particular encoding but does not put any limit on how you choose to encode such concepts in the schema. You are free to use another different encoding schema at your pleaure. 
+
+## Example Datatype Schema 
 
 <p>The <a href="https://github.com/terminusdb/terminus-schema">terminus-schema repository</a> contains a datatypes.owl.ttl file which includes a class that has a broad range of TerminusDB datatypes in use. If you load the file below into a TerminusDB schema, you should be able to see all the examples of datatypes in action. 
 </p>
@@ -541,36 +611,10 @@ xdd:json
   rdfs:label "JSON"@en ;
   rdfs:comment "A JSON encoded string"@en .
 
-
-tcs:Tag
+terminus:Document
   a owl:Class ;
-  tcs:tag tcs:abstract ;
-  rdfs:label "Tag"@en ;
-  rdfs:comment "Abstract class representing a tag that can be added to an element to qualify it"@en .
-
-tcs:ClassTag
-  a owl:Class ;
-  rdfs:label "Class Tags"@en ;
-  rdfs:subClassOf tcs:Tag ;
-  rdfs:comment "Tags that can be added to classes to add meta information"@en ;
-  owl:oneOf ( tcs:abstract ) .
-
-tcs:abstract
-  rdfs:label "Abstract"@en ;
-  rdfs:comment "Indicates that the class is abstract - purely a logical construct, no base instantiations exist"@en ;
-  a tcs:ClassTag .
-
-tcs:Document
-  a owl:Class ;
-  tcs:tag tcs:abstract ;
   rdfs:label "Document Class"@en ;
   rdfs:comment "A class used to designate the primary data objects managed by the system - relationships and entities"@en .
 
-tcs:Entity
-  a owl:Class ;
-  tcs:tag tcs:abstract ;
-  rdfs:subClassOf tcs:Document ;
-  rdfs:label "Entity Class"@en ;
-  rdfs:comment "The class of entities (business objects / documents) managed by the system"@en .
 ```
 </div>

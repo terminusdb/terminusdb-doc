@@ -55,8 +55,8 @@ Run the container (the first time)
 
 ```
 ./terminus-container run
-Unable to find image 'terminusdb/terminus-server:latest' locally
-latest: Pulling from terminusdb/terminus-server
+Unable to find image 'terminusdb/terminusdb-server:latest' locally
+latest: Pulling from terminusdb/terminusdb-server
 8f91359f1fff: Pulling fs layer
 939634dec138: Pulling fs layer
 f30474226dd6: Pulling fs layer

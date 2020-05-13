@@ -37,7 +37,7 @@ Installation is done using the npm install command:
 Using npm:
 
 ```
-$ npm install --save @terminusdb/terminus-client
+$ npm install --save @terminusdb/terminusdb-client
 ```
 
 #### Minified Script
@@ -45,16 +45,16 @@ $ npm install --save @terminusdb/terminus-client
 Using cdn:
 
 ```html
-<script src="https://unpkg.com/@terminusdb/terminus-client/dist/terminus-client.min.js"></script>
+<script src="https://unpkg.com/@terminusdb/terminusdb-client/dist/terminusdb-client.min.js"></script>
 ```
 Downloading:
 
-Download the terminus-client.min.js file from the /dist directory and save it to your location of choice, then:
+Download the terminusdb-client.min.js file from the /dist directory and save it to your location of choice, then:
 ```html
-<script src="http://my.saved.location/terminus-client.min.js"></script>
+<script src="http://my.saved.location/terminusdb-client.min.js"></script>
 ```
 
-[JavaScript Client Documentaiton](https://terminusdb.github.io/terminus-client/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[JavaScript Client Documentaiton](https://terminusdb.github.io/terminusdb-client/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
 
@@ -68,23 +68,23 @@ Download the terminus-client.min.js file from the /dist directory and save it to
 
 Terminus Client Python can be download form PyPI using pip:
 ```
-python -m pip install terminus-client-python
+python -m pip install terminusdb-client-python
 ```
 this only include the core Python Client and WOQLQuery.
 
 If you want to use woqlDataframe:
 ```
-python -m pip install terminus-client-python[dataframe]
+python -m pip install terminusdb-client-python[dataframe]
 ```
 
 *if you are installing form zsh you have to quote the argument like this:*
 ```
-python -m pip install 'terminus-client-python[dataframe]'
+python -m pip install 'terminusdb-client-python[dataframe]'
 ```
 
 Install from source:
 ```
-python -m pip install git+https://github.com/terminusdb/terminus-client-python.git
+python -m pip install git+https://github.com/terminusdb/terminusdb-client-python.git
 ```
 
-[Python Client Documentation](https://terminusdb.github.io/terminus-client-python/){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Python Client Documentation](https://terminusdb.github.io/terminusdb-client-python/){: .btn .fs-5 .mb-4 .mb-md-0 }

@@ -12,7 +12,7 @@ permalink: /
 Documentation for TerminusDB - an open-source graph databse that stores data like git.
 {: .fs-6 .fw-300 }
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/terminusdb/terminus-server){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/terminusdb/terminusdb-server){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ![Cowduck](/assets/images/cowduck_sitting_logo.png)
 
@@ -37,8 +37,8 @@ Run the container (the first time)
 
 ```
 ./terminus-container run
-Unable to find image 'terminusdb/terminus-server:latest' locally
-latest: Pulling from terminusdb/terminus-server
+Unable to find image 'terminusdb/terminusdb-server:latest' locally
+latest: Pulling from terminusdb/terminusdb-server
 8f91359f1fff: Pulling fs layer
 939634dec138: Pulling fs layer
 f30474226dd6: Pulling fs layer
@@ -63,7 +63,7 @@ For details, go to [Quick install with docker](/docs/getting-started/quick-insta
 
 ### License
 
-TerminusDB is Distributed by an <a href=\"https://github.com/terminusdb/terminus-server/blob/master/LICENSE\">GPL-3.0 license.</a>.
+TerminusDB is Distributed by an <a href=\"https://github.com/terminusdb/terminusdb-server/blob/master/LICENSE\">GPL-3.0 license.</a>.
 
 ### Contributing
 

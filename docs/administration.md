@@ -36,6 +36,9 @@ machine as well and use it as a backup remote.
 
 Restoring the database can be done by pulling from the remote.
 
+Users of Docker or terminusdb-quickstart will be able to backup there data by backing their Docker volumes.
+
+
 # Security
 
 * Always change the default password!

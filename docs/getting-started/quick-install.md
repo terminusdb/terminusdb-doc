@@ -119,7 +119,7 @@ That's it! You're ready to go!
 
 ---
 
-## Using The Enviroment
+## Using the Enviroment
 
 * Mount a local directory inside the container
 ```

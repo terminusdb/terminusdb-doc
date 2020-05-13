@@ -81,4 +81,4 @@ Read more about becoming a contributor in [Developer Guide](/docs/developer-guid
 
 ### Code of Conduct
 
-TerminusDB is committed to an inclusive and welcoming community. Please follows [Berlin Code of Conduct](https://berlincodeofconduct.org/).
+TerminusDB is committed to an inclusive and welcoming community. Please follow [Berlin Code of Conduct](https://berlincodeofconduct.org/).

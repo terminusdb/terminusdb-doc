@@ -23,19 +23,17 @@ Linux distributions.
 
 ### Debian or Ubuntu
 
-The following directions should work on debian or ubuntu.
+The following directions should work on Debian or Ubuntu.
 
 #### Rust
 
-Install Rust by following the following instructions on the official
-Rust installation guide.
-
-https://www.rust-lang.org/tools/install
+Install Rust by following the following instructions on the [official
+Rust installation guide](https://www.rust-lang.org/tools/install).
 
 #### SWIPL
 
 To use Terminus Server, you will need the SWIPL installation of
-prolog. To install this in Debian variants simply use the apt package
+Prolog. To install this in Debian variants simply use the apt package
 manager:
 
 ```
@@ -94,10 +92,8 @@ Fedora / Red Hat release.
 
 #### Rust
 
-Install Rust by following the following instructions on the official
-Rust installation guide.
-
-https://www.rust-lang.org/tools/install
+Install Rust by following the following instructions on the [official
+Rust installation guide](https://www.rust-lang.org/tools/install).
 
 #### SWIPL
 
@@ -160,10 +156,8 @@ Now you are ready to interact with the HTTP server.
 
 #### Rust
 
-Install Rust by following the following instructions on the official
-Rust installation guide.
-
-https://www.rust-lang.org/tools/install
+Install Rust by following the following instructions on the [official
+Rust installation guide](https://www.rust-lang.org/tools/install).
 
 #### Library dependencies
 
@@ -219,4 +213,3 @@ At this point you can enter the terminusDB directory and start the server:
 ```
 
 Now you are ready to interact with the HTTP server.
-

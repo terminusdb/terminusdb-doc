@@ -31,7 +31,7 @@ https://github.com/terminusdb/terminusdb-server
 
 # Backup / restore
 
-Backupping up is as simple as pushing your data to a remote on TerminusHub. You can run TerminusDB on a different
+Backing up is as simple as pushing your data to a remote on TerminusHub. You can run TerminusDB on a different
 machine as well and use it as a backup remote.
 
 Restoring the database can be done by pulling from the remote.

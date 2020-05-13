@@ -4,6 +4,9 @@ title: Administration
 nav_order: 5
 ---
 
+1. TOC
+{:toc}
+
 # Deployment options
 
 Currently, terminus-quickstart is the supported distribution of TerminusDB. To find out about all

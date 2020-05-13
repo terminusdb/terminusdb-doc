@@ -13,7 +13,7 @@ TerminusDB consists of a large number of different code-repositories and package
 
 These packages are part of the core TerminusDB DB Server engine
 
-### <a href="https://github.com/terminusdb/terminus-server">terminus-server</a>
+### <a href="https://github.com/terminusdb/terminusdb-server">terminusdb-server</a>
 
 The main server package - built in Prolog - contains much of the logic and orchestration of the system
 
@@ -23,7 +23,7 @@ The underlying data store - built in Rust - provides fast access to an immutable
 
 ### <a href="https://github.com/terminusdb/jwt_io">jwt_io</a> 
 
-JWT authentication support for Prolog - used by terminus-server to enable JWT authentication
+JWT authentication support for Prolog - used by terminusdb-server to enable JWT authentication
 
 ### <a href="https://github.com/terminusdb/terminus_store_prolog">terminus_store_prolog</a>
 
@@ -35,17 +35,17 @@ Automated load testing scripts for terminus-store
 
 ### <a href="https://github.com/terminusdb/terminus-upgrade-to-store">terminus-upgrade-to-store</a> 
 
-Old package to support upgrading from terminus-server 1.0 to terminus-server 1.1 - requiring a change in underlying storage engine from HDT to terminus-store
+Old package to support upgrading from terminusdb-server 1.0 to terminusdb-server 1.1 - requiring a change in underlying storage engine from HDT to terminus-store
 
 ## Client Language Packages
 
 Client libraries for accessing TerminusDB from programming languages
 
-### <a href="https://github.com/terminusdb/terminus-client">terminus-client</a> 
+### <a href="https://github.com/terminusdb/terminusdb-client">terminusdb-client</a> 
 
 Javascript client library - comes as npm model or script
 
-### <a href="https://github.com/terminusdb/terminus-client-python">terminus-client-python</a> 
+### <a href="https://github.com/terminusdb/terminusdb-client-python">terminusdb-client-python</a> 
 
 Python client library - includes panda dataframes integration. 
 

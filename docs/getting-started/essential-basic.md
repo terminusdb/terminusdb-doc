@@ -57,5 +57,26 @@ won't be modified. When you are satisfied with all your changes, you
 can merge these changes back into your master version.
 
 ## Share your work with others
+When you've contributed to a dataset, or when you've created a
+completely new data set, you may want to share this with other
+people. Just like you can query and retrieve data sets others have
+made, others can also query and retrieve your data sets, if you make
+them available.
+
+You can host these data sets yourself, by setting up TerminusDB on a
+server of your own, or you can use TerminusHub and let us handle the
+hosting for you. In both cases, any time you have changes you wish to
+share with the world, you can simply push these from your local
+machine to the central server, where others can pick them up.
 
 ## Collaborate on data
+Many datasets aren't the work of one individual. They are built
+through the efforts of many collaborators. With TerminusDB, several
+people can collaborate on the same dataset and integrate eachother's
+changes.
+
+You can integrate other people's work by rebasing your work on top of
+theirs, or by merging the changes together. In both cases, TerminusDB
+will help you ensure that the combined result will still pass all your
+constraints, and provides you with strategies to fix any problems that
+arise.

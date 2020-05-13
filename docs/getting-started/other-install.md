@@ -61,8 +61,8 @@ For built-in help, use ?- help(Topic). or ?- apropos(Word).
 The Terminus Server source tree should then be cloned from GitHub:
 
 ```
-git clone https://github.com/terminusdb/terminus-server
-cd terminus-server
+git clone https://github.com/terminusdb/terminusdb-server
+cd terminusdb-server
 git submodule init
 git submodule update
 ```
@@ -97,7 +97,7 @@ Rust installation guide](https://www.rust-lang.org/tools/install).
 
 #### SWIPL
 
-SWI-Prolog is needed to run terminus-server. Install SWI-PROLOG with:
+SWI-Prolog is needed to run terminusdb-server. Install SWI-PROLOG with:
 
 ```
 sudo dnf install pl pl-devel
@@ -127,8 +127,8 @@ For built-in help, use ?- help(Topic). or ?- apropos(Word).
 The Terminus Server source tree should then be cloned from GitHub:
 
 ```
-git clone https://github.com/terminusdb/terminus-server
-cd terminus-server
+git clone https://github.com/terminusdb/terminusdb-server
+cd terminusdb-server
 git submodule init
 git submodule update
 ```
@@ -191,8 +191,8 @@ For built-in help, use ?- help(Topic). or ?- apropos(Word).
 The Terminus Server source tree should then be cloned from GitHub:
 
 ```
-git clone https://github.com/terminusdb/terminus-server
-cd terminus-server
+git clone https://github.com/terminusdb/terminusdb-server
+cd terminusdb-server
 git submodule init
 git submodule update
 ```

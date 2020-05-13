@@ -5,13 +5,12 @@ parent: Schema
 nav_order: 4
 ---
 
-# Code
+# IDs in TerminusDB - IRIs, URLs and Prefixes
 {: .no_toc }
 
 ## Table of contents
 {: .no_toc .text-delta }
 
-1. TOC
 {:toc}
 
 ---
@@ -30,7 +29,7 @@ Each TerminusDB database comes preconfigured with a configurable and extensible 
 
 To address the second issue, WOQL provides several functions which help with generating new ids. 
 
-## Namespace Prefixes
+## Predefined Namespace Prefixes
 
 The following URL prefixes are pre-configured (and fixed) for every TerminusDB Database: 
 
@@ -50,97 +49,47 @@ The following URL prefixes are pre-configured (and fixed) for every TerminusDB D
 }
 ```
 
-owl, rdf, rdfs, xsd, xdd are language primitives and datatypes. 
-ref, repo and layer refer to entities within the terminus layered storage system. 
-woql refers to the web object query language
-terminus defines high level constructs such as databases and resources. 
+* `owl`, `rdf`, `rdfs`, `xsd`, `xdd` are language primitives and datatypes. 
+* `ref`, `repo` and `layer` refer to entities within the terminus layered storage system. 
+* `woql` refers to the web object query language
+* `terminus` defines high level constructs such as databases and resources specific to the terminus db administration db. 
 
-## Instance Data Base URI
+## User Defined URIs 
 
 In addition to the built in URL prefixes which are fixed, each database has it's own namespace.  This defines two important features - firstly the URLs which will be used to represent the instance data and secondly the namespace that will be used to represent classes and properties that are local to the specific database. 
 
-Each terminus DB database has two useful prefixes defined by default. doc: is the default prefix that will be used for instance data in the database. TerminusDB allows users to define this to be whatever URL they want. So, for example, we can create a document with id "doc:John" and define the databases base uri to be "http://my.endpoint.com/" so that the data is actually stored and consumed as http://my.endpoint.com/John 
+Each terminus DB database has two useful prefixes defined by default. `doc:` is the default prefix that will be used for instance data in the database. TerminusDB allows users to define this to be whatever URL they want. So, for example, we can create a document with id "doc:John" and define the databases base uri to be "http://my.endpoint.com/" so that the data is actually stored and consumed as http://my.endpoint.com/John 
 
-The prefix is specified in the create database api cal and can be updated by writing to the terminus Database. 
+The prefix is specified in the create database api call and can be changed on a per-branch level, with different prefixes applying to different branch and can be specified during branch creation. 
 
-WOQLClient.createDatabase(...)
-
-or 
-
-....
+```WOQLClient.createDatabase({uri_prefix: "http://my.data.com/"})```
 
 ## Extended Prefixes
 
-Users can add new prefixes to a database, to conveniently support imported rdf data which may use a variety of namespaces and URLs. This can be achieved through the schema section of the console or through the following API call 
+Users can add new prefixes to a database, to conveniently support imported rdf data which may use a variety of namespaces and URLs. This can be achieved through the schema section of the console or through the following API call. 
 
-???
-
+```Does not exist yet```
 
 ## ID Generation
 
-When inserting data, it is often the case that we need to generate an id that 
+When inserting data, it is frequently the case that we need to generate new ids to represent the new objects that we are writing to the database. In general, we can always use the `doc:` prefix for all data objects which provides us with local namespace safety as well as potential universal addressability.  However, this still leaves the case of the appropriate local extension to use for each object within the database. How should we form our doc:something ids?
 
+TerminusDB puts no restrictions on the IDs that are used for any object. As long as the id is unique within that database (and is a valid id without spaces or colons), it is valid. In the case of datasets where each entity has an existing unique identifier, we can choose to simply use these ids directly as is and that will work fine. However, in the more general case, where we can generate new ids for the entities in our database, the choice of which ids to use is signficant for several important reasons. Firstly, it is always quicker to lookup a value by its doc:id than it is search for it by the value of one of its properties - so when we first generate a new unique ID it pays to consider how easy it will be to regenerate that ID automatically without having to look it up. Secondly, without some principled way of naming objects, we quickly get to a situation where we have namespace clashes and confusion about types (we may, for example, have a Wine and a Person object both with the id: "doc:Rose").
 
+In the case of schema and inference graphs, we are normally dealing with a small enough number of entities that it is normally possible to name them individually without too much risk of namespace collisions.  However, in general, in terminusDB we use the naming convention where we use capital letters (CamelCase) for class names and lowercase with underscores (snake_case) for property names. We encourage the use of this convention to guard against confusion. 
 
+When it comes to instance data, TerminusDB provides two functions in WOQL that are explicitly concerned with generating unique ids for new objects in the database.  They allow users to reliably generate unique identifiers for objects from input variables with the guarantee that the functions will always produce the same output IDs when given the same input identifiers. The trick to using these functions is to find input variables that suitably make the value unique while being widely enough available to be likely useful in future situations where you want to generate the IDs again. For example, a customers name and address might be good choices. 
 
+The second assistance that TerminusDB offers is the use of a convention whereby all objects ids should include the most-specific-class id in the name, so, for example, rather than using the id: doc:Rome, we would use the id doc:City_Rome to avoid later namespace collisions, and to include more information within the id/URL itself. 
 
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
+The two functions that generate IDs in WOQL are idgen and unique. 
 
----
-
-## Syntax highlighted code blocks
-
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
+### idgen & unique
 
 <div class="code-example" markdown="1">
 ```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+WOQL.idgen("doc:City", ["v:Name", "v:State", "v:Country"], "v:CityID") 
+WOQL.unique("doc:Person", ["v:FirstName", "v:Family_Name", "v:DOB"], "v:PersonID") 
 ```
 </div>
-{% highlight markdown %}
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
 
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-{% endhighlight %}

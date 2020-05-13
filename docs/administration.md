@@ -15,7 +15,7 @@ To use terminusdb-quickstart you need to have Git and Docker installed, then
 you can clone the terminusdb-quickstart repo and run the server by following
 the instructions in the README.md on GitHub:
 
-https://github.com/terminusdb/terminusdb-quickstart/blob/master/README.md
+(https://github.com/terminusdb/terminusdb-quickstart/blob/master/README.md)
 
 Experienced users can use the Docker container in their own configuration, or
 compile from source code.

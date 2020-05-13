@@ -9,8 +9,25 @@ nav_order: 5
 
 # Deployment options
 
-Currently, terminus-quickstart is the supported distribution of TerminusDB. To find out about all
-the options, check out the README on GitHub. https://github.com/terminusdb/terminusdb-quickstart/blob/master/README.md
+The recommend way of running TerminusDB is to use terminusdb-quickstart.
+
+To use terminusdb-quickstart you need to have Git and Docker installed, then
+you can clone the terminusdb-quickstart repo and run the server by following
+the instructions in the README.md on GitHub:
+
+https://github.com/terminusdb/terminusdb-quickstart/blob/master/README.md
+
+Experienced users can use the Docker container in their own configuration, or
+compile from source code.
+
+The TerminusDB Docker container is available on Docker Hub:
+
+https://hub.docker.com/r/terminusdb/terminusdb-server
+
+Source code and compilation instructions can be found in the terminusdb/terminusdb-server repo on github:
+
+https://github.com/terminusdb/terminusdb-server
+
 
 # Backup / restore
 

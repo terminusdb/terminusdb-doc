@@ -4,7 +4,7 @@ title: Datatypes
 parent: Schema
 nav_order: 3
 ---
-Datatypes - Literals and Enumerated Types
+# Datatypes - Literals and Enumerated Types
 {:toc}
 
 ---

@@ -5,6 +5,8 @@ parent: Schema
 nav_order: 1
 ---
 
+## Classes in the TerminusDB Schema
+
 1. TOC
 {:toc}
 

@@ -7,14 +7,13 @@ nav_order: 1
 
 ## Classes in the TerminusDB Schema
 
-1. TOC
-{:toc}
-
----
-
 >
 > Tell me what type of a thing it is and I will know what to do with it
 >
+
+{:toc}
+
+---
 
 ## Introduction
 

@@ -65,11 +65,14 @@ Note that the default usage of WOQL.triple() is in fact just `WOQL.from("instanc
 
 Functions which update graphs need to provide a specific graph identifier (e.g. schema/main, instance/main) and cannot use wildcards (because we need to know which specific graph to update). Otherwise, the use of graph identifiers is identifical to graph filters: 
 
-```
+<div class="code-example" markdown="1">
+
+```js
 WOQL.into("schema/main").add_triple()
 WOQL.add_quad("a", "p", "c", "schema/main")
 WOQL.delete_quad("a", "p", "c", "schema/main")
 ```
+</div>
 
 ## Creating and Deleting Graphs
 

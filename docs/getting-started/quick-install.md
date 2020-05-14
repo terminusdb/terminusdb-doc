@@ -44,17 +44,17 @@ Windows users do not need to do anything here.
 
 ## Quick Start
 
-Get the script in the [terminus-quickstart repo](https://github.com/terminusdb/terminus-quickstart), cd to it
+Get the script in the [terminusdb-quickstart repo](https://github.com/terminusdb/terminusdb-quickstart), cd to it
 
 ```
-git clone https://github.com/terminusdb/terminus-quickstart
-cd terminus-quickstart
+git clone https://github.com/terminusdb/terminusdb-quickstart
+cd terminusdb-quickstart
 ```
 
 Run the container (the first time)
 
 ```
-./terminus-container run
+./terminusdb-container run
 Unable to find image 'terminusdb/terminusdb-server:latest' locally
 latest: Pulling from terminusdb/terminusdb-server
 8f91359f1fff: Pulling fs layer
@@ -76,12 +76,12 @@ You may need to move or remove previous volumes or you may encounter bugs or the
 *Warning: This will lead to losing local data.*
 
 ```
- ./terminus-container rm
+ ./terminusdb-container rm
 
 removing will delete storage and config volumes
 Are you sure? [y/N] y
 terminus_storage
-terminus-config
+terminusdb-config
 ```
 
 ---
@@ -90,7 +90,7 @@ terminus-config
 
 Ready to terminate? Open the TerminusDB Console in your web browser.
 ```
-./terminus-container console
+./terminusdb-container console
 ```
 Or go here: [http://localhost:6363/console](http://localhost:6363/console)
 
@@ -99,10 +99,10 @@ Or go here: [http://localhost:6363/console](http://localhost:6363/console)
 ## To stop, attach, etc, see usage
 
 ```
-./terminus-container
+./terminusdb-container
 
 USAGE:
-  terminus-container [COMMAND]
+  terminusdb-container [COMMAND]
 
   help        show usage
   run         run container
@@ -123,27 +123,27 @@ That's it! You're ready to go!
 
 * Mount a local directory inside the container
 ```
-TERMINUS_LOCAL=/path/to/dir ./terminus-container [COMMAND]
+TERMINUS_LOCAL=/path/to/dir ./terminusdb-container [COMMAND]
 ```
 * Using the latest release
 ```
-TERMINUS_TAG=latest ./terminus-container [COMMAND]
+TERMINUS_TAG=latest ./terminusdb-container [COMMAND]
 ```
 * Using the development release
 ```
-TERMINUS_TAG=dev ./terminus-container [COMMAND]
+TERMINUS_TAG=dev ./terminusdb-container [COMMAND]
 ```
 * Using a specific release instead of latest realease
 ```
-TERMINUS_TAG=v1.1.2 ./terminus-container [COMMAND]
+TERMINUS_TAG=v1.1.2 ./terminusdb-container [COMMAND]
 ```
 * Not using sudo even when sudo is available
 ```
-TERMINUS_DOCKER=docker ./terminus-container [COMMAND]
+TERMINUS_DOCKER=docker ./terminusdb-container [COMMAND]
 ```
 * Using podman instead of docker command
 ```
-TERMINUS_DOCKER="podman" ./terminus-container [COMMAND]
+TERMINUS_DOCKER="podman" ./terminusdb-container [COMMAND]
 ```
 
 See the source code to find the other environment variables that can be set.

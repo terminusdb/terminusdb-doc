@@ -369,7 +369,7 @@ You can use both WOQLjs or WOQLpy to Query the data from the database. The follo
 
 Queries can be done within the console, just click on the `Query` button on the left for the queries windows:
 
-<pictures to be added>
+(pictures to be added)
 
 An example of Query in WOQLjs would be:
 

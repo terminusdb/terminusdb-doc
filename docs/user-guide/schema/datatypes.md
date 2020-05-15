@@ -2,6 +2,7 @@
 layout: default
 title: Datatypes
 parent: Schema
+grand_parent: User guide
 nav_order: 3
 ---
 # Datatypes - Literals and Enumerated Types
@@ -11,13 +12,13 @@ nav_order: 3
 
 ## Introduction
 
-TermiusDB follows OWL in using the xsd datatypes for defining basic literal types like strings and numbers. Every datatype property must be defined as having a specfic datatype which defines the range of acceptable values for that property. 
+TermiusDB follows OWL in using the xsd datatypes for defining basic literal types like strings and numbers. Every datatype property must be defined as having a specfic datatype which defines the range of acceptable values for that property.
 
-TerminusDB supports the full range of <a href="https://www.w3.org/2011/rdf-wg/wiki/XSD_Datatypes">xsd datatypes</a> and adds a number of our own <a href="https://terminusdb.com/schema/xdd">extended datatypes</a> which are particularly  useful in practice and are typically omitted from datatype defintions. 
+TerminusDB supports the full range of <a href="https://www.w3.org/2011/rdf-wg/wiki/XSD_Datatypes">xsd datatypes</a> and adds a number of our own <a href="https://terminusdb.com/schema/xdd">extended datatypes</a> which are particularly  useful in practice and are typically omitted from datatype defintions.
 
 In practice, many of the XSD datatypes are not particularly useful - focused on legacy features of XML. However, xsd provides a well-defined and extensible framework for datatype definitions.
 
-Terminus DB also provides support for the definition of enumerated datatypes. 
+Terminus DB also provides support for the definition of enumerated datatypes.
 
 ### Principle XSD Types Supported
 
@@ -312,17 +313,17 @@ It is often useful to have properties that can take on one or more of an enumera
 <div class="code-example" markdown="1">
 
 ```js
-let choices = [ 
-    ["scm:absent", "Absent", "The feature was absent in this historical context"], 
-    ["scm:present", "Present", "The feature was present in this historical context"], 
+let choices = [
+    ["scm:absent", "Absent", "The feature was absent in this historical context"],
+    ["scm:present", "Present", "The feature was present in this historical context"],
     ["scm:unknown", "Unknown", "It is not known whether the feature was present or absent in the context"]
-] 
+]
 
-WOQL.schema().generateChoiceList("Presence", "Presence", "The epistemic state - is the feature present?", choices) 
+WOQL.schema().generateChoiceList("Presence", "Presence", "The epistemic state - is the feature present?", choices)
 ```
 </div>
 
-In OWL, this is encoded in the following way: 
+In OWL, this is encoded in the following way:
 
 <div class="code-example" markdown="1">
 
@@ -337,12 +338,12 @@ scm:absent
   a scm:Presence ;
   rdfs:comment "The feature was absent in this historical context"@en ;
   rdfs:label "Absent"@en .
-  
+
 scm:present
   a scm:Presence ;
   rdfs:comment "The feature was present in this historical context"@en ;
   rdfs:label "Present"@en .  
-  
+
 scm:unknown
   a scm:Presence ;
   rdfs:comment "It is not known whether the feature was present or absent in the context"@en ;
@@ -356,14 +357,14 @@ Once an enumerated type has been created in this way, we can use it as the range
 <div class="code-example" markdown="1">
 
 ```js
-WOQL.add_property("wear", "Presence").label("Signs of Wear").domain("Article") 
+WOQL.add_property("wear", "Presence").label("Signs of Wear").domain("Article")
 ```
 </div>
 
 <div class="code-example" markdown="1">
 
 ```ttl
-scm:wear 
+scm:wear
    a owl:ObjectProperty;
    rdfs:label "Signs of Wear"@en;
    rdfs:domain scm:Article;
@@ -371,15 +372,15 @@ scm:wear
 ```
 </div>
 
-Note that in OWL, properties that use enumerated datatypes are objectProperties, not datatype properties. Finally, note that there are a very large number of ways in which enumerated properties can be implemented in OWL. TerminusDB provides various shortcuts which use this particular encoding but does not put any limit on how you choose to encode such concepts in the schema. You are free to use another different encoding schema at your pleaure. 
+Note that in OWL, properties that use enumerated datatypes are objectProperties, not datatype properties. Finally, note that there are a very large number of ways in which enumerated properties can be implemented in OWL. TerminusDB provides various shortcuts which use this particular encoding but does not put any limit on how you choose to encode such concepts in the schema. You are free to use another different encoding schema at your pleaure.
 
-## Example Datatype Schema 
+## Example Datatype Schema
 
-<p>The <a href="https://github.com/terminusdb/terminus-schema">terminus-schema repository</a> contains a datatypes.owl.ttl file which includes a class that has a broad range of TerminusDB datatypes in use. If you load the file below into a TerminusDB schema, you should be able to see all the examples of datatypes in action. 
+<p>The <a href="https://github.com/terminusdb/terminus-schema">terminus-schema repository</a> contains a datatypes.owl.ttl file which includes a class that has a broad range of TerminusDB datatypes in use. If you load the file below into a TerminusDB schema, you should be able to see all the examples of datatypes in action.
 </p>
 
 <div class="code-example">
-  
+
 ```ttl
 
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .

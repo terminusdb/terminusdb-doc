@@ -2,6 +2,7 @@
 layout: default
 title: Querying Database
 parent: TerminusDB Console
+grand_parent: User guide
 nav_order: 4
 ---
 

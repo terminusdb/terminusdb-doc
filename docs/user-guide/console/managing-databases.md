@@ -2,6 +2,7 @@
 layout: default
 title: Managing Databases
 parent: TerminusDB Console
+grand_parent: User guide
 nav_order: 2
 ---
 
@@ -27,4 +28,4 @@ You can create a new database by cloning from a local database available in your
 
 ## Clone Remote Database
 
-Allows you to create a new database by cloning from a remote database. You can clone from anywhere as long as its a valid URL. 
+Allows you to create a new database by cloning from a remote database. You can clone from anywhere as long as its a valid URL.

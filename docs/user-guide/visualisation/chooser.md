@@ -2,6 +2,7 @@
 layout: default
 title: Chooser View
 parent: Visualisation
+grand_parent: User guide
 nav_order: 1
 ---
 

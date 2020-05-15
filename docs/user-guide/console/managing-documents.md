@@ -2,6 +2,7 @@
 layout: default
 title: Managing Documents
 parent: TerminusDB Console
+grand_parent: User guide
 nav_order: 3
 ---
 

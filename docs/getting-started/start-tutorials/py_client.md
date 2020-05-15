@@ -2,6 +2,7 @@
 layout: default
 title: Create TerminusDB Graph with Python Client
 parent: Getting started tutorials
+grand_parent: Getting started
 nav_order: 2
 ---
 

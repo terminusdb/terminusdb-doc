@@ -2,6 +2,7 @@
 layout: default
 title: Database Home
 parent: TerminusDB Console
+grand_parent: User guide
 nav_order: 5
 ---
 
@@ -27,4 +28,4 @@ If user is logged into Hub then the below tabs are made visible to User
 In Manage tab, User can also push changes made to the database to Hub. If there's a conflict while merging the database a WOQL Query is automatically generated which fix
 
 ## Collaborate
-In Collaborate tab, Users are provided with options in which they can invite or add other Hub users to access the current Database. In Order to perform this action the User should be having Manage rights on the database. On having Manage rights User can also assign/ update different capabilities to users. 
+In Collaborate tab, Users are provided with options in which they can invite or add other Hub users to access the current Database. In Order to perform this action the User should be having Manage rights on the database. On having Manage rights User can also assign/ update different capabilities to users.

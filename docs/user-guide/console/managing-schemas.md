@@ -2,6 +2,7 @@
 layout: default
 title: Managing DB Schemas
 parent: TerminusDB Console
+grand_parent: User guide
 nav_order: 5
 ---
 

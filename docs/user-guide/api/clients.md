@@ -2,6 +2,7 @@
 layout: default
 title: TerminusDB Clients
 parent: TerminusDB API
+grand_parent: User guide
 nav_order: 1
 ---
 

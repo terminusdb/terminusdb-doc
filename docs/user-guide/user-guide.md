@@ -8,7 +8,7 @@ permalink: /docs/user-guide
 
 # User guide
 
-(content to be added)
+This session documents details about TerminusDB for users.
 
 
 {: .fs-6 .fw-300 }

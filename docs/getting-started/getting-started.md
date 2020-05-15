@@ -8,7 +8,7 @@ permalink: /docs/getting-started
 
 # Getting started
 
-(content to be added)
+This session will have new users to start using TerminusDB.
 
 
 {: .fs-6 .fw-300 }

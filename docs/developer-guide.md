@@ -15,11 +15,11 @@ Please refer to CONTRIBUTION.md in terminusdb/terminusdb-server
 
 [Show me](https://github.com/terminusdb/terminusdb-server/blob/master/docs/CONTRIBUTING.md){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-## Contributing to terminus-store
+## Contributing to terminusdb-store
 
-Please refer to CONTRIBUTION.md in terminusdb/terminus-store
+Please refer to CONTRIBUTION.md in terminusdb/terminusdb-store
 
-[Show me](https://github.com/terminusdb/terminus-store/blob/master/CONTRIBUTING.md){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Show me](https://github.com/terminusdb/terminusdb-store/blob/master/CONTRIBUTING.md){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ## Contributing to terminusdb-client
 

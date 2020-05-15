@@ -26,17 +26,17 @@ Documentation for TerminusDB - an open-source graph databse that stores data lik
 
 ### Quick start: install with docker
 
-Get the script in the [terminus-quickstart repo](https://github.com/terminusdb/terminus-quickstart), cd to it
+Get the script in the [terminusdb-quickstart repo](https://github.com/terminusdb/terminusdb-quickstart), cd to it
 
 ```
-git clone https://github.com/terminusdb/terminus-quickstart
-cd terminus-quickstart
+git clone https://github.com/terminusdb/terminusdb-quickstart
+cd terminusdb-quickstart
 ```
 
 Run the container (the first time)
 
 ```
-./terminus-container run
+./terminusdb-container run
 Unable to find image 'terminusdb/terminusdb-server:latest' locally
 latest: Pulling from terminusdb/terminusdb-server
 8f91359f1fff: Pulling fs layer

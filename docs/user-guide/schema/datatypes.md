@@ -376,7 +376,7 @@ Note that in OWL, properties that use enumerated datatypes are objectProperties,
 
 ## Example Datatype Schema
 
-<p>The <a href="https://github.com/terminusdb/terminus-schema">terminus-schema repository</a> contains a datatypes.owl.ttl file which includes a class that has a broad range of TerminusDB datatypes in use. If you load the file below into a TerminusDB schema, you should be able to see all the examples of datatypes in action.
+<p>The <a href="https://github.com/terminusdb/terminusdb-schema">terminusdb-schema repository</a> contains a datatypes.owl.ttl file which includes a class that has a broad range of TerminusDB datatypes in use. If you load the file below into a TerminusDB schema, you should be able to see all the examples of datatypes in action.
 </p>
 
 <div class="code-example">

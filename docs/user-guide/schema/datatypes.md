@@ -6,10 +6,15 @@ grand_parent: User guide
 nav_order: 3
 ---
 # Datatypes - Literals and Enumerated Types
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
 {:toc}
 
 ---
-
 ## Introduction
 
 TermiusDB follows OWL in using the xsd datatypes for defining basic literal types like strings and numbers. Every datatype property must be defined as having a specfic datatype which defines the range of acceptable values for that property.
@@ -379,7 +384,7 @@ Note that in OWL, properties that use enumerated datatypes are objectProperties,
 <p>The <a href="https://github.com/terminusdb/terminusdb-schema">terminusdb-schema repository</a> contains a datatypes.owl.ttl file which includes a class that has a broad range of TerminusDB datatypes in use. If you load the file below into a TerminusDB schema, you should be able to see all the examples of datatypes in action.
 </p>
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```ttl
 

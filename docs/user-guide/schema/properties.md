@@ -7,7 +7,15 @@ nav_order: 2
 ---
 
 # Schema Properties in TerminusDB
+{: .no_toc }
 
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 ## Introduction
 
 In a TerminusDB schema, there are objects, defined by classes, and these objects can have attributes associated with them which are defined by proprties in the schema.
@@ -71,7 +79,7 @@ Under the hood, OWL has a non-intuitive way of defining such restrictions, altho
 Defining a color property for a Car which takes a string value (e.g. "red")
 
 #### WOQL.js
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```js
 WOQL.add_property("color", "string")
@@ -83,7 +91,7 @@ WOQL.add_property("color", "string")
 
 #### WOQL.py
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```py
 WOQLQuery().add_property("color", "string")
@@ -95,7 +103,7 @@ WOQLQuery().add_property("color", "string")
 
 #### OWL (turtle encoding)
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```ttl
 scm:color
@@ -112,7 +120,7 @@ scm:color
 Defining an address property for a Person which takes a structured Address object
 
 #### WOQL.js
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```js
 WOQL.add_property("address", "Address")
@@ -123,7 +131,7 @@ WOQL.add_property("address", "Address")
 </div>
 
 #### WOQL.py
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```py
 WOQLQuery().add_property("address", "Address")
@@ -135,7 +143,7 @@ WOQLQuery().add_property("address", "Address")
 
 #### OWL (turtle encoding)
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```ttl
 scm:address
@@ -152,7 +160,7 @@ scm:address
 Defining a social security number property for a Person which is mandatory and unique
 
 #### WOQL.js
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```js
 WOQL.add_property("ssn", "integer")
@@ -164,7 +172,7 @@ WOQL.add_property("ssn", "integer")
 </div>
 
 #### WOQL.py
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```py
 WOQLQuery().add_property("ssn", "integer")
@@ -179,7 +187,7 @@ WOQLQuery().add_property("ssn", "integer")
 
 In OWL we have to make the domain class a subclass of the restriction to encode the constraint.
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```
 scm:ssn
@@ -205,7 +213,7 @@ scm:Person
 Defining a rule that each employee must be assigned at least 3 tasks and no more than 5 tasks at any one time.
 
 #### WOQL.js
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```js
 WOQL.add_property("tasks", "Task")
@@ -218,7 +226,7 @@ WOQL.add_property("tasks", "Task")
 </div>
 
 #### WOQL.py
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```py
 WOQLQuery().add_property("tasks", "Task")
@@ -232,7 +240,7 @@ WOQLQuery().add_property("tasks", "Task")
 
 #### OWL (turtle encoding)
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```ttl
 scm:tasks

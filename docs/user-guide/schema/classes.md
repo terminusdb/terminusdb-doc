@@ -6,13 +6,20 @@ grand_parent: User guide
 nav_order: 1
 ---
 
-## Classes in the TerminusDB Schema
+# Classes in the TerminusDB Schema
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 
 >
 > Tell me what type of a thing it is and I will know what to do with it
 >
-
-{:toc}
 
 ---
 
@@ -70,7 +77,7 @@ There are two ways in which we can define classes in TerminusDB - directly in OW
 
 ### WOQL.js
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```js
 WOQL.add_class("MyClass")
@@ -83,7 +90,7 @@ WOQL.add_class("MyClass")
 
 ### WOQL.py
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```py
 WOQLQuery().add_class("MyClass")
@@ -96,7 +103,7 @@ WOQLQuery().add_class("MyClass")
 
 ### OWL
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```ttl
 scm:MyClass
@@ -119,7 +126,7 @@ We provide a shortcut function doctype in WOQL.js and WOQL.py to allow easy defi
 
 ### WOQL.js
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```js
 WOQL.doctype("MyClass")
@@ -130,7 +137,7 @@ WOQL.doctype("MyClass")
 
 ### WOQL.py
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```py
 WOQLQuery().doctype("MyClass")
@@ -142,7 +149,7 @@ WOQLQuery().doctype("MyClass")
 
 ### OWL
 
-<div class="code-example">
+<div class="code-example" markdown="1">
 
 ```ttl
 scm:MyClass

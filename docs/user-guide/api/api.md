@@ -10,43 +10,7 @@ permalink: /docs/user-guide/api
 # TerminusDB API
 {: .no_toc }
 
-The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of the following endpoints:
-
-- Connect
-  - `GET http://<server>/`
-- Create database
-  - `POST http://<server>/db/<account>/<dbid>`
-- Delete database
-  - `DELETE http://<server>/db/<account>/<dbid>`
-- Get triples
-  - `GET http://<server>/triples/<account>/<dbid>/<repo>/branch/<branchid>/<type>/<schema_graphid>`
-  - `GET http://<server>/triples/<account>/<dbid>/<repo>/commit/<refid>/<type>/<schema_graphid>`
-- Update triples
-  - `POST http://<server>/triples/<account>/<dbid>/local/branch/<branchid>/<type>/<schema_graphid>`
-- Class frame
-  - `GET http://<server>/frame/<account>/<dbid>/<repo>/branch/<branchid>`
-  - `GET http://<server>/frame/<account>/<dbid>/<repo>/commit/<refid>`
-- Clone
-  - `POST http://<server>/clone/<account>/<new_dbid>`
-- Fetch
-  - `POST http://<server>/fetch/<account>/<dbid>/<repo_id>`
-- Rebase
-  - `POST http://<server>/rebase/<account>/<dbid>/<repo>/branch/<branchid>`
-- Push
-  - `POST http://<server>/push/<account>/<dbid>/<repo>/branch/<branchid>`
-- Branch
-  - `POST http://<server>/branch/<account>/<dbid>/<repo>/branch/<new_branchid>`
-- Create graph
-  - `POST http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
-- Delete graph
-  - `DELETE http://<server>/graph/<account>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>`
-- Woql Query
-  - `POST http://<server>/woql/<account>/<dbid>`
-  - `POST http://<server>/woql/<account>/<dbid>/_meta`
-  - `POST http://<server>/woql/<account>/<dbid>/<repo>`
-  - `POST http://<server>/woql/<account>/<dbid>/<repo>/_commit`
-  - `POST http://<server>/woql/<account>/<dbid>/<repo>/branch/<branchid>`
-  - `POST http://<server>/woql/<account>/<dbid>/<repo>/commit/<refid>`
+The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of a number of endpoints which can be used to modify or query the system. 
 
 The terminus administration schema ( http://terminusdb.com/schema/terminus ) contains definitions for all of the data structures and properties used in the API. All arguments and returned messages are encoded as JSON.
 
@@ -62,6 +26,8 @@ The terminus administration schema ( http://terminusdb.com/schema/terminus ) con
 
 ## Connect
 
+`GET http://<server>/`
+
 Connects to a TerminusDB Server and receives a Capability Document which defines the client's permissions on the server.
 
 ### Example
@@ -72,7 +38,7 @@ curl -X GET http://localhost:6363/ --user 'username:password'
 
 ### Arguments
 
-The username and password for the client to connect to the server needs to be supplied as basic auth.
+The username and password for the client to connect to the server needs to be supplied as basic-auth.
 Depending if the server has been compiled with JWT support, the authentication can be a JWT token
 with the `https://terminusdb.com/nickname` key provided as the username.
 
@@ -191,22 +157,19 @@ curl -X POST http://localhost:6363/db/dima/test --user 'username:password'
 
 ### Arguments
 
-Post argument is a JSON document of the following form
+Post argument is a JSON document of the following form:
 
 ```json
-    { <"base_uri" : MY_BASE_DOCUMENT_URI>,
+    { "prefixes" : { "doc" : "http://my_document_prefix/document/",
+                     "scm" : "http://my_document_prefix/schema#"}
       "label" : "A Label",
       "comment" : "A Comment"
     }
 ```
 
-Base_URI will default to `http://hub.terminusdb.com/<account>/<db>/document/`
-
-Hub create DB will POST [http://terminus.db/](http://terminus.db/DBNAME)db/account/dbid with
-
-```json
-    { "base_uri" : "http://hub.terminusdb.com/account/db" }
-```
+The prefixes "doc" and "scm" are required for normal operation of the
+database. They help define the default location of new elements
+greated with `idgen`, `hash` etc.
 
 ### Return
 
@@ -217,6 +180,8 @@ A terminus result message indicating either terminus:success or terminus:failure
 ```
 
 ## Delete Database
+
+`DELETE http://<server>/db/<account>/<dbid>`
 
 Deletes an entire Database.
 
@@ -241,7 +206,9 @@ GET http://<server>/triples/<account>/<dbid>/<repo>/branch/<branchid>/<type>/<sc
 GET http://<server>/triples/<account>/<dbid>/<repo>/commit/<refid>/<type>/<schema_graphid>
 ```
 
-Retrieves the database triples for a graph as a turtle encoding.
+Retrieves the database triples for a graph encoded as turtle. This can
+be used to dump graphs from the database for import to other
+databases.
 
 ### Example
 ```bash
@@ -277,7 +244,7 @@ curl --user 'user:secret_key' -d "@my-schema.ttl" -X POST http://localhost:6363/
 
 ### Argument
 
-A terminus:APIUpdate document with the contents of the turtle held by the terminus:turtle predicate.
+An update document with the contents of the turtle held by the "turtle" key.
 
 ```json
     { "turtle": "@prefix rdf:
@@ -341,7 +308,7 @@ WOQL select allows users to perform queries from WOQL. The default
 query object is formed from the path. No path means no default query
 source.
 
-The path following WOQL will set the default collection to query. For
+The path following WOQL will set the default collection for the query. For
 instance, if you specify `terminus`, you will see information from the
 terminus core database (assuming that you have admin privileges). If
 you specify `<dbid>/_meta` you will see the graph which contains
@@ -378,13 +345,26 @@ Allows you to clone a database which already exists into `[<new_dbid>]`.
 
 ### Arguments
 
-The payload is the **resource identifier of** repo / db that we want
-to clone. If the new_dbid is provided, this id will be used locally to
-refer to the DB, otherwise whatever the cloned one uses will be used.
+The payload provides the **resource identifier of** the repo / db that we want
+to clone.
+
+If the new_dbid is provided, this id will be used locally to
+refer to the DB, otherwise whatever the cloned name is will be used. 
 
 ```json
-{ "clone": URI_OF_RESOURCE_ID }
+{ "clone": "http://hub.terminusdb.com/jimbob/special_sauces" }
 ```
+
+### Example
+
+```bash
+curl -X POST --user 'admin:root' "http://localhost:6363/admin/into" \
+   -d '{ "clone" : "http://hub.terminusdb.com/xlea/from" }'      \
+   -H "Content-Type: application/json"
+```
+
+This clones the remote repository "from" on "terminusdb.com" into our
+local database "into".
 
 ## Fetch
 
@@ -392,21 +372,37 @@ refer to the DB, otherwise whatever the cloned one uses will be used.
 POST http://terminus.db/fetch/<account>/<dbid>/<repo_id>
 ```
 
-Fetches all new commits from a remote repository.
+Fetches all new commits from a remote repository. This enables you to
+get current with a remote so that all changes since last fetch are now
+stored locally.
+
+### Arguments
+
+The payload is the id of the last repository head commit. This is
+visible in the graph `/<account>/<dbid>/_meta` on the repository of
+interest under the `repository:repository_head` property.
+
+### Example
+
+```bash
+curl -X POST --user 'admin:root' "http://localhost:6363/admin/into" \
+   -d '{ "clone" : "http://hub.terminusdb.com/xlea/from" }'      \
+   -H "Content-Type: application/json"
+```
 
 ## Rebase
 
 ```
-POST http://terminus.db/rebase/<account>/<dbid>/<repo>/<branchid>
+POST http://terminus.db/rebase/<account>/<dbid>/<repo>/branch/<branchid>
 ```
 
-Replays commits from another branch or ref ontop of the branch
+Replays commits from another branch or ref on top of the branch
 identified in the URI. This allows you to merge changes originating
 from elsewhere.
 
 ### Arguments
 ```json
-{ "from": URI_OF_RESOURCE_ID }
+{ "from": "db/repo/branch/other_branch" }
 ```
 The "from" resource can be a resource identifier of a ref or branch.
 
@@ -415,22 +411,38 @@ The "from" resource can be a resource identifier of a ref or branch.
 ```
 POST http://terminus.db/push/<account>/<dbid>/<repo>
 ```
-Pushes commits from a repository to the repositories origin.
+Pushes commits and all deltas from a repository to the repository origin. This allows a remote to obtain all deltas which were created locally.
+
+### Arguments
+
+None.
+
+### Errors
+
+This errors when the remote has advanced. This can be resolve with "fetch"+"rebase" or "pull".
 
 ## Branch
 
 ```
-POST http://terminus.db/branch/<account>/<dbid>/<repo>/<new_branchid>
+POST http://terminus.db/branch/<account>/<dbid>/<repo>/branch/<new_branchid>
 ```
 
-Creates a new branch with parent dbid/new_branchid
+Creates a new branch, enabling the user to split off from a current branch or ref to create a new updatable database which leaves the original unchanged.
 
 ### Arguments
 
 We send a resource identifier specifying the base of the new branch to be created.
 
 ```json
-{ "from" : URI_OF_REF_RESOURCE_ID }
+{ "from" : "<resource>" }
+```
+
+### Example
+
+```bash
+curl -X POST --user 'admin:root' "http://localhost:6363/admin/into/local/branch/dev" \
+   -d '{ "from" : "admin/into/local/branch/master" }'      \
+   -H "Content-Type: application/json"
 ```
 
 ## Create graph
@@ -462,5 +474,5 @@ Deletes the already existing graph from a given branch as either instance, schem
 This takes a post parameter:
 
 ```json
-    {"commit_info" : { "author" : Author, "message" : Message }}
+    {"commit_info" : { "author" : "Steinbeck", "message" : "My Commit Message" }}
 ```

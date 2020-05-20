@@ -2,14 +2,14 @@
 layout: default
 title: Home
 nav_order: 1
-description: "Documentation for TerminusDB - an open-source graph databse that stores data like git."
+description: "Documentation for TerminusDB - an open-source graph database that stores data like git."
 permalink: /
 ---
 
 # TerminusDB Documentations
 {: .fs-9 }
 
-Documentation for TerminusDB - an open-source graph databse that stores data like git.
+Documentation for TerminusDB - an open-source graph database that stores data like git.
 {: .fs-6 .fw-300 }
 
 [Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/terminusdb/terminusdb-server){: .btn .fs-5 .mb-4 .mb-md-0 }

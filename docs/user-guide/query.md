@@ -369,7 +369,7 @@ You can use both WOQLjs or WOQLpy to Query the data from the database. The follo
 
 Queries can be done within the console, just click on the `Query` button at the top for the queries windows:
 
-![Query at Console](assets/images/console/query_at_console.png)
+![Query at Console](/assets/images/console/query_at_console.png)
 
 An example of Query in WOQLjs would be:
 

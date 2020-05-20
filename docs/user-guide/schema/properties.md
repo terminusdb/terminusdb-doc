@@ -7,11 +7,15 @@ nav_order: 2
 ---
 
 # Schema Properties in TerminusDB
+{: .no_toc }
+
+## Table of contents
 {: .no_toc .text-delta }
 
+1. TOC
 {:toc}
 
-
+---
 ## Introduction
 
 In a TerminusDB schema, there are objects, defined by classes, and these objects can have attributes associated with them which are defined by proprties in the schema.

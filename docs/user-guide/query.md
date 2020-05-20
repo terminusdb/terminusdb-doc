@@ -367,9 +367,9 @@ You can use both WOQLjs or WOQLpy to Query the data from the database. The follo
 
 ## Query at Console
 
-Queries can be done within the console, just click on the `Query` button on the left for the queries windows:
+Queries can be done within the console, just click on the `Query` button at the top for the queries windows:
 
-(pictures to be added)
+![Query at Console](assets/images/console/query_at_console.png)
 
 An example of Query in WOQLjs would be:
 

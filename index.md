@@ -22,7 +22,8 @@ Documentation for TerminusDB - an open-source graph database that stores data li
 
 ### Dependencies
 
-(To be added)
+- Docker
+- Git
 
 ### Quick start: install with docker
 
@@ -50,10 +51,6 @@ d9fa4a1acf93: Pulling fs layer
 ```
 
 For details, go to [Quick install with docker](/docs/getting-started/quick-install/)
-
-### Local installation: TO BE ADDED
-
-(To be added)
 
 ---
 

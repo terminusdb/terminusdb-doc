@@ -6,12 +6,15 @@ grand_parent: User guide
 nav_order: 5
 ---
 # Graphs
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
 ---
-
 ## Introduction - Triples, Quads and (Named) Graphs
 
 In RDF everything is a `subject - property - object` triple. The major benefit of this formulation is that we can achieve a naturally interlinked graph just by virtue of some triples having the same object as the subjects of other triples, and vice versa. The major drawback is that we naturally interlink everything without discrimination. In practice, it is often useful to divide up an RDF triple-store into separate chunks that can be managed seperately, interpreted differently, and can be selectively integrated - or not - with the rest of the triples in the database. The concept of an order Graph being internally divided into multiple `Graphs`, often known as `Named Graphs` has been developed to address this problem.  They are a very simple concept - they allow you to store triples in different buckets, each identified by a name.

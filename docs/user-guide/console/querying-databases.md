@@ -7,15 +7,8 @@ nav_order: 4
 ---
 
 # Querying the Database
-{: .no_toc }
 
-## Table of contents
-{: .no_toc .text-delta }
 
-1. TOC
-{:toc}
-
----
 The Query page allows you to query the database and view results.
 A set of pre loaded queries are available to load and fire.
 
@@ -37,7 +30,4 @@ A set of pre loaded queries are available to load and fire.
 3.2) Show All Documents
 
 
-On choosing any of the above saved queries the Query Editor is auto loaded with the respective query. You can set limit, start and customize a query as per requirements.
-
-The results of the fired query appears in table view by default. The user is also provided with a view tool bar which allows to flick through different views of the result such as graph view etc.
----
+On choosing any of the above saved queries the Query Editor is auto loaded with the respective query. You can set limit, start and customize a query as per requirements. The results of the fired query appears in table view by default. The user is also provided with a view tool bar which allows to flick through different views of the result such as graph view etc.

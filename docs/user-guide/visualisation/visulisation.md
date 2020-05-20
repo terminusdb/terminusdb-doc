@@ -7,8 +7,7 @@ has_children: true
 permalink: /docs/user-guide/visualisation
 ---
 
-# Code
-Visualization
+# Visualization
 
 ## Table of contents
 {: .no_toc .text-delta }

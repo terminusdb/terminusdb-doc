@@ -5,27 +5,14 @@ parent: TerminusDB Console
 grand_parent: User guide
 nav_order: 2
 ---
+# Managing Database
 
-# Managing Databases
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-This interface allows you to create a brand new database in 3 ways.
+This interface allows you to create a new database in 2 ways.
 
 ## Create New Database
 
-Creates a fresh new database. You can choose weather you want to create this new database locally or in Terminus Hub. Note that in order to create a database in the Hub you will need to be logged in.
+Creates a fresh new empty database. You can choose weather you want to create this new database locally or in Terminus Hub. Note that in order to create a database on TerminusDB.com you will need to be logged in.
 
-## Clone Local Database
+## Copy Database
 
-You can create a new database by cloning from a local database available in your machine.
-
-## Clone Remote Database
-
-Allows you to create a new database by cloning from a remote database. You can clone from anywhere as long as its a valid URL.
+Allows you to Copy from another existing database from a remote server or your local machine. You can also choose weather you want to fork or clone from existing database. You can choose to create a copy of an existing database locally or on TerminusDB.com

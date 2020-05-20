@@ -3,19 +3,12 @@ layout: default
 title: Chooser View
 parent: Visualisation
 grand_parent: User guide
-nav_order: 1
+nav_order: 2
 ---
 
-# Code
-Chooser View
+# Chooser View
 
-## Table of contents
-{: .no_toc .text-delta }
 
-1. TOC
-{:toc}
-
----
 
 This section covers all of the rules which can be applied to a chooser view. As mentioned in previous section a chooser view can be defined as shown below:
 
@@ -24,9 +17,9 @@ view = View.chooser()
 ```
 
 All other rules are accessible as chaining functions of variable view.
----
 
-1) show_empty
+
+1) ###### show_empty
 
 Takes a string as argument and displays this as placeholder on load of chooser when nothing hasm been chosen yet.
 
@@ -34,7 +27,7 @@ Takes a string as argument and displays this as placeholder on load of chooser w
 view.chooser().show_empty("Select Something")  
 ```
 
-2) sort
+2) ###### sort
 
 Allows to select a result and sort it in any direction.
 
@@ -42,7 +35,7 @@ Allows to select a result and sort it in any direction.
 view.sort('c')
 ```
 
-3) direction
+3) ###### direction
 
 Specifies the direction in which chooser value needs to be sorted (asc or desc)
 
@@ -50,14 +43,14 @@ Specifies the direction in which chooser value needs to be sorted (asc or desc)
 view.sort('c').direction('asc')
 ```
 
-4) values
+4) ###### values
 
 Displays the values of chooser of whatever you want to display
 
 ```js
 view.values('v:Names') // displays the values of v:Name
 ```
-5) labels
+5) ###### labels
 
 Displays labels of results as values in drop down of chooser
 
@@ -65,7 +58,7 @@ Displays labels of results as values in drop down of chooser
 view.labels("v:Label")
 ```
 
-5) changeSize
+6) ###### changeSize
 
 Allows to change table page size  
 
@@ -73,7 +66,7 @@ Allows to change table page size
 view.changeSize(true)
 ```
 
-5) pager
+7) ###### pager
 
 on set to true allows pagination
 
@@ -81,7 +74,7 @@ on set to true allows pagination
 view.pager(true)
 ```
 
-6) pagesize
+8) ###### pagesize
 
 Defines minimum page size of a table
 

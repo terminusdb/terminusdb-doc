@@ -7,17 +7,8 @@ nav_order: 5
 ---
 
 # Managing Schemas
-{: .no_toc }
 
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
-This Interface allows User to understand and manage schema. 3 views of schema are provided in this section.
+This Interface allows User to understand and manage schema. TerminusDB supports database with multiple schemas.
 
 ## Classes
 
@@ -30,4 +21,11 @@ This tab displays a table of all available properties in the database
 
 This tab displays an Ontology of the Schema. User is able to edit and update the schema in this area. On Success the new database will be working according to the updated schema. If there were any VIO errors then this attempt will not succeed and user will have to adhere to the VIO rules.
 
-Note: User is also provided with a service here in which new changes can be committed.
+Note: A select with available graphs such as Inference graph, Schema graph for database can be toggled to view their OWLs respectively
+
+## Graphs
+
+Here you can create and manage different types of graph such as Schema, Inference or Instance graphs.
+
+## URL Prefixes
+Provides you with a table which shows the value of prefixes being used in TerminusDB.

@@ -21,11 +21,12 @@ In here you will see a step-by-step guide to create your first knowledge with Te
 
 ## Create a database
 
-First, import `WOQLClient` and `WOQLQuery` form the client library:
+First, import `WOQLClient`, `WOQLQuery` and `query_to_df` form the client library:
 
 ```python
 from woqlclient import WOQLClient
 from woqlclient import WOQLQuery
+from woqlclient import query_to_df
 ```
 
 Then set up server_url and key for the client. For a local database, it's "http://localhost:6363" and "root" by default. Here we use the [docker image of TerminusDB](/docs/getting-started/quick-install/).
@@ -302,8 +303,10 @@ The query can be translated as below:
 Note that we store the result as a variable which can be used with `query_to_df` to turn it into a pandas DataFrame
 
 ```python
-woql.query_to_df(result)
+query_to_df(result)
 ```
+
+![Result as a DataFrame](/terminusdb-doc/assets/images/console/result_as_df.png)
 
 ---
 

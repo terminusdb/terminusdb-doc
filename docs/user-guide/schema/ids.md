@@ -12,10 +12,10 @@ nav_order: 4
 ## Table of contents
 {: .no_toc .text-delta }
 
+1. TOC
 {:toc}
 
 ---
-
 ## Introduction
 
 Under the hood, TerminusDB uses <a href="">RDF triples</a> to store all it's data. In RDF, all ids are defined to be IRIs - which can be thought of as URLs for all practical purposes. The benefits of using URLs as your principle IDs are many - you have a universal addressing space, which can be made automatically dereferencable and in complex data integration projects, namespaces are critical if we want to avoid undesirable naming collisions.

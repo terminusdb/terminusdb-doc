@@ -16,7 +16,7 @@ view = View.table()
 ######   All other rules are accessible as chaining functions of variable view.
 ---
 
-1) ######   column_order
+1)   column_order
 
 column_order helps to arrange columns based on whatever order is specified, columns are accesed by header names. This function also hides column names which are not mentioned as arguments in the function
 
@@ -24,7 +24,7 @@ column_order helps to arrange columns based on whatever order is specified, colu
 view.table().column_order("c", "b", "d")  
 ```
 
-2) ######   column
+2)   column
 
 You can refer to a column using its header name
 
@@ -32,7 +32,7 @@ You can refer to a column using its header name
 view.column('c')
 ```
 
-3) ######   header
+3)   header
 
 Renames a particular column to another name
 
@@ -40,14 +40,14 @@ Renames a particular column to another name
 view.column('c').header('New Name')
 ```
 
-4) ######   header
+4)   header
 
 Renames a particular column to another name
 
 ```js
 view.column('c').header('New Name')
 ```
-5) ######   pager
+5)   pager
 
 on set to true allows paging in table  
 
@@ -55,7 +55,7 @@ on set to true allows paging in table
 view.pager(true)
 ```
 
-5) ######   changeSize
+5)   changeSize
 
 Allows to change table page size  
 
@@ -63,7 +63,7 @@ Allows to change table page size
 view.changeSize(true)
 ```
 
-5) ######   pager
+5)   pager
 
 on set to true allows pagination
 
@@ -71,7 +71,7 @@ on set to true allows pagination
 view.pager(true)
 ```
 
-6) ######   pageSize
+6)   pageSize
 
 Defines minimum page size of a table
 

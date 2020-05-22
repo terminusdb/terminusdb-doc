@@ -30,7 +30,7 @@ However, in certain cases, this can be overkill - for example, when you are firs
 
 ## Schema Definition Language
 
-Under the hood, TerminusDB uses <a href="">OWL, the Web Ontology Language</a> for defining its schema.  OWL is a very rich and expressive language which allows you to encode a vast amount of business logic and rules in the schema itself. Furthermore, it has a solid mathematical basis, meaning that the definitions are precise and formally verifiable by reasoners. It is by some way, the most sophisticated data description standard that humankind has thus produced. However, it has a couple of major problems. Firstly, it lacks much in the way of tool support - using native OWL tools is a painful expreience. Secondly, it was defined as having only an 'open world' interpretation which is of limited use in practice. 
+Under the hood, TerminusDB uses <a href="schema/advanced">OWL, the Web Ontology Language</a> for defining its schema.  OWL is a very rich and expressive language which allows you to encode a vast amount of business logic and rules in the schema itself. Furthermore, it has a solid mathematical basis, meaning that the definitions are precise and formally verifiable by reasoners. It is by some way, the most sophisticated data description standard that humankind has thus produced. However, it has a couple of major problems. Firstly, it lacks much in the way of tool support - using native OWL tools is a painful expreience. Secondly, it was defined as having only an 'open world' interpretation which is of limited use in practice. 
 
 Therefore, although TerminusDB uses OWL under the hood, our interpretation is a standard, ordinary closed world one when using it for schema checking. We also support open world interpretations, via an inference graph - which supports almost all of the sophisticated reasoning capabilities of the language. Furthermore, rather than using OWL directly, in TerminusDB we typically use our programming language query composers WOQL.js and WOQL.py for actually defining schemas. These hide a lot of the syntactic complexity of the language and allow you to define your schema in familiar ways, using simple syntax. 
 
@@ -40,88 +40,35 @@ Therefore, although TerminusDB uses OWL under the hood, our interpretation is a 
 
 ### Classes
 
-Basic intro to classes with link to classes section
+In the TerminusDB schema, classes are used to define the shapes of the data structures that we store in the database. Every fragment of data saved in the database is associated with a particular type and this type is defined by it's class definition in the schema. Classes are relatively simple structures - but they can be combined in a variety of ways to produce complex results. <a href="schema/classes"> More </a>
 
 ---
 
 ### Properties
 
-Basic intro to properties with link to classes section
+In a TerminusDB schema, there are objects, defined by classes, and these objects can have attributes associated with them which are defined by proprties in the schema.  TerminusDB provides a wide range of prebuilt property types. <a href="./properties">See More</a>
 
 ---
 
 ### Datatypes
 
-Basic intro to datatypes with link to section
+Not everything is an object. In addition to supporting sophisticated class and object hierarchies, TerminusDB also support a wide range of simple datatypes from the generic - strings, different types of numbers - to the advanced: built in coordinate data types, built-in uncertainty range primitive datatypes. <a href="schema/datatypes"> Read More </a>
 
 ---
 
 ### IRIs, URLs, IDs and Prefixes
 
+If we want to easily integrate data from different sources, unique identifiers and namespaces are particularly useful - TerminusDB is based on OWL which uses RDF triples to store all data as IRIs. In most cases you won't need to know the details of these IRIs and URLs that are used under the hood, but it is always useful to put some thought into choosing identifiers wisely and TerminusDB offers a lot of support for solving this problem. <a href="schema/ids">Read More</a>
+
 ---
 
 ### Graphs - Schema - Instance & Inference
 
-
-Code can be rendered inline by wrapping it in single back ticks.
-
-<div class="code-example" markdown="1">
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-</div>
-```markdown
-Lorem ipsum dolor sit amet, `<inline code snippet>` adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-```
+Graphs (or Named Graphs) are internal structures that TerminusDB can use to segregate different parts of the database from one another. At the most basic level, TerminusDB has three types of graphs - instance graphs which are where we store ordinary data as RDF triples. Schema graphs are where we store rules governing the shape of the data while inference graphs are where we can encode complex runtime inference rules - both schema and inference graphs speak OWL. <a href="schema/graphs">Read More </a>
 
 ---
 
-## Syntax highlighted code blocks
+### Advanced - OWL Unleashed
 
-Use Jekyll's built-in syntax highlighting with Rouge for code blocks by using three backticks, followed by the language name:
+TerminusDB supports a large fragment of the OWL language as both a schema and inference language. This enables a large number of complex constraints to be expressed in a wide variety of different ways. For most users, simple class hierarchies and properties are more than enough for their data modelling requires, but for advanced users who wish to build complex business rules into their data flows, there is no substitute for pure logical axiom writing in OWL. <a href="schema/advanced">Read More</a>
 
-<div class="code-example" markdown="1">
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-</div>
-{% highlight markdown %}
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endhighlight %}
-
----
-
-## Code blocks with rendered examples
-
-To demonstrate front end code, sometimes it's useful to show a rendered example of that code. After including the styles from your project that you'll need to show the rendering, you can use a `<div>` with the `code-example` class, followed by the code block syntax. If you want to render your output with Markdown instead of HTML, use the `markdown="1"` attribute to tell Jekyll that the code you are rendering will be in Markdown format... This is about to get meta...
-
-<div class="code-example" markdown="1">
-
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-
-</div>
-{% highlight markdown %}
-<div class="code-example" markdown="1">
-
-[Link button](http://example.com/){: .btn }
-
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-```
-{% endhighlight %}

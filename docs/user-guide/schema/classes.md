@@ -6,19 +6,22 @@ grand_parent: User guide
 nav_order: 1
 ---
 
-## Classes in the TerminusDB Schema
+# Classes in the TerminusDB Schema
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 
 >
 > Tell me what type of a thing it is and I will know what to do with it
 >
 
-1. TOC
-{: .no_toc .text-delta }
-
-{:toc}
-
 ---
-
 
 ## Introduction
 

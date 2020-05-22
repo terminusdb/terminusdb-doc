@@ -3,19 +3,12 @@ layout: default
 title: Chooser View
 parent: Visualisation
 grand_parent: User guide
-nav_order: 1
+nav_order: 2
 ---
 
-# Code
-Chooser View
+# Chooser View
 
-## Table of contents
-{: .no_toc .text-delta }
 
-1. TOC
-{:toc}
-
----
 
 This section covers all of the rules which can be applied to a chooser view. As mentioned in previous section a chooser view can be defined as shown below:
 
@@ -24,7 +17,7 @@ view = View.chooser()
 ```
 
 All other rules are accessible as chaining functions of variable view.
----
+
 
 1) show_empty
 
@@ -65,7 +58,7 @@ Displays labels of results as values in drop down of chooser
 view.labels("v:Label")
 ```
 
-5) changeSize
+6) changeSize
 
 Allows to change table page size  
 
@@ -73,7 +66,7 @@ Allows to change table page size
 view.changeSize(true)
 ```
 
-5) pager
+7) pager
 
 on set to true allows pagination
 
@@ -81,7 +74,7 @@ on set to true allows pagination
 view.pager(true)
 ```
 
-6) pagesize
+8) pagesize
 
 Defines minimum page size of a table
 

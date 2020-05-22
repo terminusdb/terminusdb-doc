@@ -6,16 +6,8 @@ grand_parent: User guide
 nav_order: 2
 ---
 
-# Code
-Graph View
+# Graph View
 
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
 
 This section covers all of the rules which can be applied to a graph view. As mentioned in previous section a graph view can be defined as shown below:
 

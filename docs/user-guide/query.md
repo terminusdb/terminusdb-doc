@@ -359,6 +359,12 @@ inserts = WOQL.and(
 
 Example of using WOQLjs and WOQLpy to load the insert data form csvs can be found in [this GitHub repo](https://github.com/terminusdb/terminusdb-tutorials/tree/master/bike-tutorial). Example of programatically creating schema and inserting data directly from WOQLpy can be found in [this GitHub repo](https://github.com/terminusdb/terminusdb-tutorials/tree/master/schema.org).
 
+To complete loading in the data, the previous steps need to be join together with `inserts` using a `WOQL.and()`. For example loading data from csv:
+
+```js
+WOQL.and(csv, ...wrangles, inserts)
+```
+
 ---
 
 # Querying Database

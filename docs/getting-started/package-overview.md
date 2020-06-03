@@ -53,7 +53,7 @@ Python client library - includes panda dataframes integration.
 
 User Interface libraries for visualising TerminusDB contents and query results
 
-### <a href="https://github.com/terminusdb/terminusdb-dashboard">terminusdb-dashboard</a> 
+### <a href="https://github.com/terminusdb/terminusdb-console">terminusdb-console</a> 
 
 The management dashboard that ships with TerminusDB
 

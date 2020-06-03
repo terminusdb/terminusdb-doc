@@ -23,13 +23,19 @@ In here you will see a step-by-step guide to create your first knowledge with Te
 
 Open up the Terminus DB console ( default: http://localhost:6363/console ). Click on `Create Database` to start with.
 
-You can specify an id for the database, to make it memorable, let’s make it `1stdb` (note that Terminus IDs are URLs and they cannot have spaces!). As a title, enter the name you want to give your Database, something meaningful like `My First Database`. Then you can add a short description to your database, like `It is my first database using TerminusDB`.
+![Create Database](https://miro.medium.com/max/1400/1*Npdm3Q71Vt3lupDR9quKsw.png)
 
-![Create Database](https://miro.medium.com/max/2232/1*_05f3gD0v45a-Xncpv1SUQ.png)
+Click the `Create Local Database`
 
-Click the `Create` button at the bottom, and you should see the `Successfully Created Database` 1stDB in green at the top. Something like this:
+![Create Local Database](https://miro.medium.com/max/1400/1*NCbwmytJKyKSQoIOaxvukQ.png)
 
-![Successfully created Database](https://miro.medium.com/max/2096/1*iDole0nJP9PpxQHCkzaUBw.png)
+You have to specify an id for the database, to make it memorable, let’s make it `1stdb` (note that Terminus’ IDs are URLs and they cannot have spaces). As a title, enter the name you want to give your Database, something meaningful like `My First Database`. Then you can add a short description to your database, like `It is my first database using TerminusDB 2.0.`
+
+![Fill in info for Database](https://miro.medium.com/max/1400/1*groaLJ3uIJHJ5nW-0h_X4A.png)
+
+Click the `Create New Database` button at the top right, and you’ll automatically go to the main database page. Something like this:
+
+![After Created Database](https://miro.medium.com/max/1400/1*9EPD3ICI4NTfUh1Cs2rv_A.png)
 
 ---
 
@@ -40,7 +46,7 @@ The schema allows you to organise data into meaningful objects, and it ensures d
 The TerminusDB Console provides a schema editor using WOQL.js. Remaining on the query page, copy this WOQL.js query into the text box (remember to delete the previous query before entering this one):
 
 ```js
-WOQL.when(true).and(
+WOQL.and(
     WOQL.doctype("Station")
         .label("Bike Station")
         .description("A station where bicycles are deposited"),
@@ -63,12 +69,11 @@ WOQL.when(true).and(
 )
 ```
 
-and click `Submit`
+and click `Run Query`
 
-To review this schema-building WOQL query:
+Let’s stop to review this schema-building WOQL query:
 
-1. The when will perform the operation for every time its first argument is true. In this case, exactly once.
-2. We perform all operations within the and.
+We perform all operations within the and.
 
 So here’s the operations we have performed:
 
@@ -77,23 +82,13 @@ So here’s the operations we have performed:
 3. We created properties for `Journey`, we do that by using the `property` function after `Journey` with the first argument as the name of the property and the second argument as the type (or range) of the property.
 4. For each property, you have to provide an id and the type of that property in `property`, as with class you can add a `label` to it as well.
 
-Check that you have successfully created the schema by clicking the Schema button on the left. You should now be able to see the classes and properties in table format and get a graph representation by clicking the ‘graph’ button (circled in red):
-
-![showing classes in schema](https://miro.medium.com/max/2756/1*1e2iw6CJnWm3NWTFuc9HKw.png)
-
-![graph of the classes in schema](https://miro.medium.com/max/2780/1*x95n_XNGsO5-pNJci1iTJA.png)
-
-![showing properties in schema](https://miro.medium.com/max/2754/1*ty448DHo8KcoUsFZGJ8n_Q.png)
-
-![graph of the properties in schema](https://miro.medium.com/max/2736/1*xY5-Liid961dk1T-GfuE3g.png)
-
 ---
 
 ## Load in the Data
 
 Now load the data from the CSV. We’re going to progressively extend the query to import the data, cleaning it and matching it as we go. WOQL is a highly composable language, you can combine queries arbitrarily using logical ANDs and ORs.
 
-**Let’s build the next query in steps and only hit `Submit` at the end of the query (full query is available at the bottom of the section)**
+**Let’s build the next query in steps and only hit `Run Query` at the end of the query (full query is available at the bottom of the section)**
 
 Go back to the Query page, and copy in the following query:
 
@@ -128,7 +123,15 @@ const wrangles = [
 WOQL.and(csv, ...wrangles)
 ```
 
-![Result of import / clean data query](https://miro.medium.com/max/4478/1*MXJohHDXNIN6zuoBVjacnQ.png)
+If we hit `Run Query` for this section and you should see the following in the `Results Viewer` tab:
+
+![Result of import / clean data query](https://miro.medium.com/max/1400/1*J90xWiEM0T1SDzPwd2_4DA.png)
+
+Click on the `table` drop down menu in the top left of the results and switch to `graph` view:
+
+![Result of import / clean data query in graph](https://miro.medium.com/max/1400/1*INPkkOcVBTUea88xwqbr6w.png)
+
+Now you can see your results in graph form.
 
 We’ll explain each of the steps in this query in turn. As a first step, we saved the part of the query that imports the data from CSV in a `const` variable named `csv`. Then we create a list of WOQL operators and save it in another constvariable called `wrangles`, we combine the two parts of the query with a `WOQL.and` operator.
 
@@ -167,18 +170,12 @@ This is the clause that actually inserts the data into the structure that we def
 Finally, we have to put all of the above together and create the query that reads the data from the csv, do the data wrangling and add them in the graph as triples. We add this to complete the query:
 
 ```js
-WOQL.when(inputs, inserts);
+WOQL.and(inputs, inserts);
 ```
 
-and click `submit`. Remember, this is getting the data in to our graph so you won’t have a query output just yet. It should look something like this:
+and click `Run Query`. Remember, this is getting the data in to our graph so you won’t have a query output just yet. It should look something like this:
 
-![query result](https://miro.medium.com/max/2688/1*fKSEaLdiwPdpNH_QOOiStw.png)
-We are working to make it prettier!
-
-Or this if you have the view pane open:
-
-![open view pane](https://miro.medium.com/max/2710/1*x-Pj1FTVVeVLqll7e3EGuw.png)
-The little x closes the view pane and the button opens it (both circled in red)
+![query result](https://miro.medium.com/max/1400/1*yAGqDFbnvi9vp2gNJyMOsw.png)
 
 The full query in all it’s glory and in easy to copy format:
 
@@ -232,9 +229,7 @@ const inserts = WOQL.and(
 WOQL.when(inputs, inserts);
 ```
 
-and click `submit`.
-
-> Extra: Check out how to [Load your local files in TerminusDB](http://blog.terminusdb.com/2020/01/21/loading-your-local-files-in-terminusdb/)
+and click `Run Query`.
 
 ---
 
@@ -253,11 +248,11 @@ WOQL.select("v:Start", "v:Start_Label", "v:End", "v:End_Label").and(
 )
 ```
 
-click `Submit`
+click `Run Query`
 
 You should see the query returning a table:
 
-![query returns a table](https://miro.medium.com/max/2716/1*gv6sXsUvEjXteY0wZqgYfA.png)
+![query returns a table](https://miro.medium.com/max/1400/1*9UuFcy8EHCJlm4qojSxqAw.png)
 
 Here we used `select` to filter out the variables (those starting with `v:`) that appear in our output. Then we used `and` to link all the conditions we want to include, as you can see there are lot's of `triples` to be conditioned. The ones with `opt()` means that they are optional — it will be ignored if that data is missing (instead of returning an error — very handy).
 
@@ -274,38 +269,8 @@ The query can be translated as below:
 
 ## Graph Visualisation
 
-Click the graph button and that gives us a basic graph:
+We can click the table drop down menu in the top right and get a graph view of the results:
 
-![result as graph](https://miro.medium.com/max/2742/1*uKREL4NhiB3MdDAQQx9Iog.png)
+![result as graph](https://miro.medium.com/max/1400/1*XNMYRFv1XkXu7Tpsb1i-2Q.png)
 
-We want to change the view and turn the query output into a graph visualisation that give us insights about bike journeys in Washington D.C.
-
-Click on the view button beside the graph (circled in red):
-
-![click on the view button](https://miro.medium.com/max/2742/1*T2kI7TkDtmjsbQLjKXarqw.png)
-
-You should get this:
-
-![start editing the view script](https://miro.medium.com/max/2730/1*1xr6zU_ezS5dpB5D2Pwk3w.png)
-
-In the view text box (the query builder is still visible above) input the following (remembering to delete the text already in the box):
-
-```js
-view = View.graph();
-view.node("Start_Label", "End_Label").hidden(true)
-view.node("End").icon({color: [255,0,0], unicode: "\uf84a"})
-    .text("v:End_Label").size(25).charge(-10)
-view.node("Start").icon({color: [255,0,0], unicode: "\uf84a"})
-    .text("v:Start_Label").size(25).collisionRadius(10)
-view.edge("Start", "End").weight(100)
-```
-
-First we use `hidden(true)` to hide some nodes — too many nodes complicate the graph with information we don’t need to see right now.
-
-Updating `color` and `unicode` changed the colours and inserted icons size set the icon `size`, making the nodes a little bigger so they pop, and `charge` pushes the nodes away from each other so the view isn’t too cluttered.
-
-Setting `text` in the graph so when you hover over the node you get the label — in this case the names of bike stations in Washington D.C. We use `collisionRadius` to determine the radius of the node in terms of collisions. Finally, we use `view.edge` to create lines between nodes setting what the end points are and set the weight to determine how dark the edges are — we don’t want the edges to dominate the view.
-
-Click on `Update View`, we have a graphical model of all the journeys in the dataset between bike station.
-
-![graph showing all bike journeys](https://miro.medium.com/max/1640/1*cbF3mvAVCJAOS09F-FHMCw.png)
+You can experiment with the query to find different things in the data.

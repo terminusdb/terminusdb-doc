@@ -2,7 +2,7 @@
 layout: default
 title: Essential basic functionality
 parent: Getting started
-nav_order: 7
+nav_order: 6
 ---
 
 # Essential basic functionality

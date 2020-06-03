@@ -3,14 +3,12 @@ layout: default
 title: TerminusDB API
 parent: User guide
 nav_order: 5
-has_children: true
-permalink: /docs/user-guide/api
 ---
 
 # TerminusDB API
 {: .no_toc }
 
-The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of a number of endpoints which can be used to modify or query the system. 
+The TerminusDB Server includes a built in HTTP server which implements the Terminus API consisting of a number of endpoints which can be used to modify or query the system.
 
 The terminus administration schema ( http://terminusdb.com/schema/terminus ) contains definitions for all of the data structures and properties used in the API. All arguments and returned messages are encoded as JSON.
 
@@ -349,7 +347,7 @@ The payload provides the **resource identifier of** the repo / db that we want
 to clone.
 
 If the new_dbid is provided, this id will be used locally to
-refer to the DB, otherwise whatever the cloned name is will be used. 
+refer to the DB, otherwise whatever the cloned name is will be used.
 
 ```json
 { "clone": "http://hub.terminusdb.com/jimbob/special_sauces" }

@@ -2,7 +2,7 @@
 layout: default
 title: Getting started tutorials
 parent: Getting started
-nav_order: 6
+nav_order: 5
 has_children: true
 permalink: /docs/getting-started/start-tutorials
 ---

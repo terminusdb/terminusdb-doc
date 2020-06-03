@@ -9,6 +9,8 @@ nav_order: 2
 # Create TerminusDB Graph with Python Client
 {: .no_toc }
 
+**Note that this tutorial is based on TerminusDB v1.0. Tutorial for new version coming soon.**
+
 In here you will see a step-by-step guide to create your first knowledge with Terminus DB Python Client in Jupyter notebook. We assume already have [Jupyter notebook](https://jupyter.org/install) and [TerminusDB Python Client (with woqlDataframe)](/docs/getting-started/install-clients/#python-client) installed and have TerminusDB up and running.
 
 ## Table of contents

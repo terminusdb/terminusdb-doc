@@ -60,6 +60,8 @@ Download the terminusdb-client.min.js file from the /dist directory and save it 
 
 ## Python Client
 
+**Note that this Python Client works with TerminusDB v1.0. Python Client for new version coming soon.**
+
 ### Requirements
 * TerminusDB
 * Python >= 3.6

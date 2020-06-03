@@ -19,7 +19,7 @@ view = View.chooser()
 All other rules are accessible as chaining functions of variable view.
 
 
-1) ###### show_empty
+1) show_empty
 
 Takes a string as argument and displays this as placeholder on load of chooser when nothing hasm been chosen yet.
 
@@ -27,7 +27,7 @@ Takes a string as argument and displays this as placeholder on load of chooser w
 view.chooser().show_empty("Select Something")  
 ```
 
-2) ###### sort
+2) sort
 
 Allows to select a result and sort it in any direction.
 
@@ -35,7 +35,7 @@ Allows to select a result and sort it in any direction.
 view.sort('c')
 ```
 
-3) ###### direction
+3) direction
 
 Specifies the direction in which chooser value needs to be sorted (asc or desc)
 
@@ -43,14 +43,14 @@ Specifies the direction in which chooser value needs to be sorted (asc or desc)
 view.sort('c').direction('asc')
 ```
 
-4) ###### values
+4) values
 
 Displays the values of chooser of whatever you want to display
 
 ```js
 view.values('v:Names') // displays the values of v:Name
 ```
-5) ###### labels
+5) labels
 
 Displays labels of results as values in drop down of chooser
 
@@ -58,7 +58,7 @@ Displays labels of results as values in drop down of chooser
 view.labels("v:Label")
 ```
 
-6) ###### changeSize
+6) changeSize
 
 Allows to change table page size  
 
@@ -66,7 +66,7 @@ Allows to change table page size
 view.changeSize(true)
 ```
 
-7) ###### pager
+7) pager
 
 on set to true allows pagination
 
@@ -74,7 +74,7 @@ on set to true allows pagination
 view.pager(true)
 ```
 
-8) ###### pagesize
+8) pagesize
 
 Defines minimum page size of a table
 

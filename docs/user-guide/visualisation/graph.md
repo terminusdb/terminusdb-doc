@@ -16,7 +16,7 @@ view = View.graph()
 ```
 
 
-1) ###### Width
+1) Width
 
 Allows you to set the width of graph component. The argument value is considered as pixels.
 
@@ -24,7 +24,7 @@ Allows you to set the width of graph component. The argument value is considered
 view.graph().width(100)  
 ```
 
-2) ###### Height
+2) Height
 
 Allows you to set the height of graph component. The argument value is considered as pixels.
 
@@ -32,14 +32,14 @@ Allows you to set the height of graph component. The argument value is considere
 view.graph().width(100).height(50)
 ```
 
-3) ###### show_force
+3) show_force
 
 Provides a Gravitational view over the graph component. If set to false the graoh would simply appear rather than the floating effect.
 
 ```js
 view.graph().width(100).show_force(true)
 ```
-4) ###### source
+4) source
 
 Alters the graph's view by treating the element mentioned in argument as the graph's source
 
@@ -47,7 +47,7 @@ Alters the graph's view by treating the element mentioned in argument as the gra
 view.graph().source("v:A")
 ```
 
-5) ###### color
+5) color
 
 You can set color for graph's nodes in rgb format.
 
@@ -55,7 +55,7 @@ You can set color for graph's nodes in rgb format.
 view.graph().node("v:A").color([233, 54, 65])
 ```
 
-5) ###### fontfamily
+5) fontfamily
 
 Helps you to load icon families. By default Font Awesome is used here.
 
@@ -63,7 +63,7 @@ Helps you to load icon families. By default Font Awesome is used here.
 view.graph().fontfamily('font')
 ```
 
-6) ###### edges
+6) edges
 
 Alters the direction of edges pointing, based on values provided as arguments
 

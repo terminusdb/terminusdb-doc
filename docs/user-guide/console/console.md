@@ -23,7 +23,7 @@ permalink: /docs/user-guide/console
 The terminus console is a simple javascript client application which provides users with a User Interface for managing and querying TerminusDB.
 The console is implemented using React Javascript which takes the help of Terminus Client as a gateway for API calls and other libraries which talks to the Terminus Server.
 
-![alt](/assets/images/console/overview.JPG)
+![console fig](../../assets/images/console/overview.JPG)
 
 You can load the console in the browser - http://localhost:6363
 Note - You will have to login in order to use the Hub services. The documentation in this section is restricted to console services.

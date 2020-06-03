@@ -188,10 +188,10 @@ A fully qualified graph object is referred to with its source branch name or com
 
 # Creating Schema
 
-When creating a schema with WOQL, a `when` cause is used, it takes two arguments: the first argument is the condition that need to full fill to execute the second argument. With WOQLjs and WOQLpy, you may chain the executable query following `WOQL.when()` (in WOQLjs) or `WOQLQuery.when()` (in WQQLpy). In most cases in creating a schema, a condition is not required and thus the first argument will be `true`. for example in WOQLjs:
+Schema can be constructed by creating `doctype` follow by its `property` (if any), each of them can have its own `label` and `discription`. for example in WOQLjs:
 
 ```js
-WOQL.when(true).and(
+WOQL.and(
     WOQL.doctype("Station")
         .label("Bike Station")
         .description("A station where bicycles are deposited"),
@@ -392,6 +392,8 @@ Without the `WOQL.select`, all the variables, described with prefix `v:`, that m
 
 
 ## WOQLpy - Getting Result as a Pandas DataFrame
+
+**Only in python client for TerminusDB v1.0**
 
 If `dataframe` option is chosen when installing `terminusdb-client-python` ([details here]()) after executing the query with `query.execute(client)` a result binding is returned and it could be convert as a Pandas DataFrame by `woql.query_to_df(result)`. See [tutorial]() as example.
 

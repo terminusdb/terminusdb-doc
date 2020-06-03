@@ -52,9 +52,6 @@ Loading data in turtle RDF format to TerminusDB is elegant and simple. In this t
 
 ## Demos and tutorials provided by Chrisjhorn
 
-Two demo and tutorials:
-
-* charities -- an example of an M:N relationship schema, using public data about registered Irish charities.
-* family-tree -- an example of using composable subqueries
+Some contributed tutorial and example software in Python to the TerminusDB open source graph base.
 
 [Go to GitHub repo](https://github.com/Chrisjhorn/terminusDB){: .btn }

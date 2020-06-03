@@ -18,4 +18,4 @@ nav_order: 6
 
 ## Coming Soon
 
-![Cowduck](/assets/images/cowduck_sitting_logo.png)
+![Cowduck](/terminusdb-doc/assets/images/cowduck_sitting_logo.png)

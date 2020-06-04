@@ -4,7 +4,7 @@ title: Comparison with other tools
 parent: Getting started
 nav_order: 8
 has_children: true
-permalink: /docs/getting-started/comparison
+permalink: /getting-started/comparison
 ---
 
 # Comparison with other tools

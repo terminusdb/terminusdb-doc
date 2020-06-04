@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Administration
+permalink: /administration
 nav_order: 5
 ---
 

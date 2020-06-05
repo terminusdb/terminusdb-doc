@@ -32,7 +32,7 @@ if you have never used TerminusDB before, this article includes everything you n
 
 In our examples we use the collection of data about the bike journeys between stations in Washington D.C., USA.
 
-![](/assets/images/bike_table.png)
+![](/docs/assets/images/bike_table.png)
 
 The CSV data used this tutorial is available at [https://terminusdb.com/t/data/bike_tutorial.csv](https://terminusdb.com/t/data/bike_tutorial.csv)
 

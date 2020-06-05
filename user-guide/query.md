@@ -188,7 +188,7 @@ A fully qualified graph object is referred to with its source branch name or com
 
 # Creating Schema
 
-Schema can be constructed by creating `doctype` follow by its `property` (if any), each of them can have its own `label` and `description`. for example in WOQLjs:
+Schema can be constructed by creating `doctype` followed by its `property` (if any), each of which can have its own `label` and `description`. For example in WOQLjs:
 
 ```js
 WOQL.and(

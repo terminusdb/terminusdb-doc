@@ -36,7 +36,8 @@ In a graph database, this would look like the following
 
 The big advantage is that it is much easier to interpret the model and understand how it maps to real world entities compared to the relational example.  This increased ease also extends to querying the database.
 
-#Query
+##Query
+
 For example, if we wanted to fetch the name of john's mother and grandmother from the database, if we were using a relational database, we could use the following two SQL queries to get the name of the mother and grandmother respectively:
 
 ```

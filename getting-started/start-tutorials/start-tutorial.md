@@ -4,7 +4,7 @@ title: Getting started tutorials
 parent: Getting started
 nav_order: 5
 has_children: true
-permalink: /docs/getting-started/start-tutorials
+permalink: /getting-started/start-tutorials
 ---
 
 # Getting started tutorials

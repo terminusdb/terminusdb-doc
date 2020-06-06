@@ -18,4 +18,4 @@ nav_order: 6
 
 ## Hub is Coming Soon
 
-![Cowduck](/terminusdb-doc/assets/images/cowduck_sitting_logo.png)
+![Cowduck](../assets/images/cowduck_sitting_logo.png)

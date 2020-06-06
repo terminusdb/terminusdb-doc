@@ -308,7 +308,7 @@ Note that we store the result as a variable which can be used with `query_to_df`
 query_to_df(result)
 ```
 
-![Result as a DataFrame](/terminusdb-doc/assets/images/console/result_as_df.png)
+![Result as a DataFrame](../..//assets/images/console/result_as_df.png)
 
 ---
 

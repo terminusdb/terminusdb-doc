@@ -69,7 +69,7 @@ WOQL.and(
 )
 ```
 
-and click `Run Query`
+add a commit message in the box below (e.g. "creating schema") and click `Run Query`
 
 Let’s stop to review this schema-building WOQL query:
 
@@ -173,7 +173,7 @@ Finally, we have to put all of the above together and create the query that read
 WOQL.and(inputs, inserts);
 ```
 
-and click `Run Query`. Remember, this is getting the data in to our graph so you won’t have a query output just yet. It should look something like this:
+write some commit message again (e.g. "inserting data") and click `Run Query`. Remember, this is getting the data in to our graph so you won’t have a query output just yet. It should look something like this:
 
 ![query result](https://miro.medium.com/max/1400/1*yAGqDFbnvi9vp2gNJyMOsw.png)
 
@@ -229,7 +229,7 @@ const inserts = WOQL.and(
 WOQL.when(inputs, inserts);
 ```
 
-and click `Run Query`.
+don't forget to put in the commit message, then click `Run Query`.
 
 ---
 

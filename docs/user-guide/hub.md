@@ -2,7 +2,7 @@
 layout: default
 title: TerminusHub
 parent: User guide
-nav_order: 6
+nav_order: 7
 ---
 
 # TerminusHub

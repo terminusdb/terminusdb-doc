@@ -1,11 +1,10 @@
 ---
 layout: default
 title: Research
-parent: User guide
 nav_order: 7
 ---
 
-# Code
+# Gavin put your papers here please
 {: .no_toc }
 
 ## Table of contents

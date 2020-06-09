@@ -3,6 +3,8 @@ layout: default
 title: Query
 parent: User guide
 nav_order: 2
+has_children: true
+permalink: /user-guide/query
 ---
 
 # Query

@@ -6,7 +6,7 @@ description: "Documentation for TerminusDB - an open-source graph database that 
 permalink: /
 ---
 
-# TerminusDB Documentations
+# TerminusDB Documentation
 {: .fs-9 }
 
 Documentation for TerminusDB - an open-source graph database that stores data like git.

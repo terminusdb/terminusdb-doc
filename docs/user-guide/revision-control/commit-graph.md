@@ -18,7 +18,7 @@ nav_order: 1
 ---
 
 # Introduction
-In TerminusDB every database has an internal graph called the _commit_ graph which TerminusDB uses to keep track of all operations which modify the state of the database, along with timestamps, comments and designation of authorship. In TerminusDB every transaction produces a commit, as does every api call which changes the state of the database (such as creating a new graph).  Just like everything else in TerminusDB, this commit data is exposed as a graph which can be queried just like any other graph. .
+In TerminusDB, every operation that updates the state of a database generates a _commit_ record which allows us to recreate the state of the database exactly as it was at the time that the update was completed. Commit records and their associated metadata (timestamps, comments and designation of authorship) can be accessed through a special internal graph called the commit graph within each database.   Just like everything else in TerminusDB, this commit data is exposed as a graph which can be queried just like any other graph.
 
 There are three things that make the _commit_ graph special and different from normal TerminusDB data and schema graphs: 
 
@@ -26,12 +26,9 @@ There are three things that make the _commit_ graph special and different from n
 1. Unlike normal data and schema graphs, it is not itself versioned because it contains it's full history within it.
 1. It has a very simple, pre-defined schema consisting of two principle object types (Branch & Commit) and 5 main properties (timestamp, parent, author, message, head)
 
-While it is not absolutely necessary to understand the structure of the commit graph to use the various revision control operations, it
-can be helpful to have a mental model, and very helpful to query the graph itself to understand what actually happened in these operations.
-
 TerminusDB provides a simple history query library, covered in the next section on time-travelling which provides simple-pre-rolled queries which will extract all of the important information needed to support revision control operations for you, and a simple time-slider UI in the console which does all the work for you, so in the vast majority of use-cases, you will never have to look inside the commits graph or worry about its structure.  
 
-However, for those who are curious, or who want more complex custom ways of accessing revision history metadata, this section provides full details of the data structures and queries that are used with enough detail that you should be able to construct your own custom revision control queries from scratch. 
+So, while it is not absolutely necessary to understand the structure of the commit graph to use the various revision control operations, itcan be helpful to have a mental model, and very helpful to query the graph itself to understand what actually happened in these operations. This section provides full details of the data structures and queries that are used in the _commit_ graph with enough detail that you should be able to construct your own custom revision control queries from scratch. 
 
 ## Commit Chains - the basic data structure
 
@@ -46,7 +43,8 @@ Table shows all properties that exist in the commit graph
 
 # Revision Control Queries
 
-To carry out revision control operations, we first query the _commit_ graph to find the ID of the branch or transaction that we are interested in. This ID is then used to parameterise the revision control operation we are interested in. 
+Translating results from _commit_ graph queries into actual revision control operations is very simple. 
+We first query the _commit_ graph to find the ID of the specific commit that we are interested in (maybe by a certain author or at a certain time). This ID can then used to parameterise the revision control operation we are interested in. 
 
 So, for example, the following operations can be parameterised by results from queries to the _commit_ graph:
 

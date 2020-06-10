@@ -9,6 +9,18 @@ nav_order: 1
 # The Commit Graph
 {: .no_toc }
 
+The commit graph stores all of the metadata about our revision
+history. TerminusDB will keep track of all operations which modify the
+state of the database here, along with timestamps, comments and
+designation of authorship.
+
+While it is not absolutely necessary to understand the structure of
+the commit graph to use the various revision control operations, it
+can be helpful to have a mental model, and very helpful to query the
+graph itself to understand what actually happened in these operations.
+
+When an update is made to the database, TerminusDB will create a *delta layer* which is i
+
 ## Table of contents
 {: .no_toc .text-delta }
 

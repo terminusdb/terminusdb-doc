@@ -42,11 +42,26 @@ created equal. Some collections are read-only, and some are writable.
 
 For instance, you can write to a branch, but it makes no sense to
 write to a commit, as a commit itself refers to a particular
-update. You can, however, search a commit.
+update. You can, however, query a commit to get back the data as it
+was at the time of that commit.
+
+Collections are referred to using a path string. Inside of a query,
+you can use this string with the `using` keyword to query something
+different from your context. Outside of queries, you use these strings
+to set up your querying context, or refer to collections in any other
+operation that needs them.
+
+Collection resource strings come in two forms:
+- absolute resource strings give an absolute path to the resource.
+- relative paths give a path relative to your current context. This
+  generally only makes sense while querying with the `using` keyword.
+  
+Let's now go over all the collection types, and the resource string
+you'd use to refer to them.
 
 ### References
 
-References are (currently) either branches or commits. For some
+References are currently either branches or commits. For some
 operations it is necessary to have a genuine branch (for instance, you
 can not update a commit), but for other operations either a branch or
 commit object will do.
@@ -76,16 +91,83 @@ this commit onto your current branch.
 <account>/<dbid>/<repository>/_commits
 ```
 
-The Commit graph stores information about all commits that have been
+The commit graph stores information about all commits that have been
 made in a given branch. You can query this to find information about
 historical updates, the author and time of these updates as well as
 which branches exist.
 
-### Repository Metadata
+### Database Metadata
 
 ```
 <account>/<dbid>/_meta
 ```
+
+The database metadata graph holds metadata about the entire
+database. This includes the default prefixes of this database, as well
+as all the local and remote repositories linked to this database.
+
+### Resource string autocompletion
+Generally, incomplete resource strings will be autocompleted. The system generally assumes that you intend to access the master branch of the local repository of your database, so if you just specify an absolute resource string like
+
+```
+<acount>/<dbid>
+```
+
+The system will actually assume you meant
+
+```
+<account>/<dbid>/local/branch/master
+```
+
+Likewise, if you specify
+
+```
+<account>/<dbid>/origin
+```
+
+The system will assume you meant
+```
+<account>/<dbid>/origin/branch/master
+```
+
+### Relative resource strings
+While querying, it is possible to query other collections than the one
+in the current context with the `using` keyword. The `using` keyword
+takes a relative resource string. Failing to parse that as a valid
+relative string, it'll try to parse it as an absolute resource string.
+
+#### The resource hierarchy
+To understand relative resource strings, it is helpful to consider the paths as a hierarchy. In order, this hierarchy consists of
+- the root
+- A user namespace
+- a database
+- a repository
+- a reference (branch or commit)
+
+For those resources lower in the hierarchy, it is possible for us to easily refer to any of the elements higher up in the hierarchy and build a path off that. Just like with absolute resource strings, they will get auto-completed. Suppose for example that you are currently working in `joe/data/local/branch/work` and you wish to query `joe/data/origin/branch/master`, you can do so using the path
+```
+_database/origin
+```
+Which gets resolved to
+```
+joe/data/origin
+```
+and then autocompleted to
+```
+joe/data/origin/branch/master
+```
+
+The full list of such keywords are
+- `_root`
+- `_user`
+- `_database`
+- `_repository`
+
+#### Building off the parent resource
+THIS IS STILL IN PROGRESS
+
+#### Special considerations for branches and commits
+THIS IS STILL IN PROGRESS
 
 ## Graphs
 

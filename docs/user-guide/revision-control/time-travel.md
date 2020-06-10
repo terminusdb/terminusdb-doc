@@ -45,6 +45,11 @@ here is how you change the api endpoint to affect time travel
 
 6 key queries <- explain them
 
+# The WOQL Time Travel Console
+
+6 key queries <- explain them
+
+
 ---
 
 # Use Cases

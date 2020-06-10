@@ -61,6 +61,8 @@ woqlClient.checkout(branch)
 
 (using)
 
+It should be noted that internally in TerminusDB, a commit ID refers to a very complex structure which actually contains all of the relevant historical data, if you are interested in the internal data structures, they are fully documented in the Full Architecture section and associated papers. However from a user point of view, all you have to know is Commit IDs allow you to set the state of the database to exactly the state that it was when the related update completed and queries to the _commit graph_ allow you to find the Commit IDs that you are interested in.  
+
 ## Other Contents of Commit Graph - Database Level Meta-data
 
 (stored here because some things have to have global database scope and we don't want to change them on branches etc as it makes things too complicated

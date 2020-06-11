@@ -1,0 +1,10 @@
+language: ruby
+# only run CI-builds on master branch
+branches:
+  only:
+    - dev
+rvm:
+  - 2.3.0
+script: ./script/cibuild
+exclude: [vendor]
+sudo: false

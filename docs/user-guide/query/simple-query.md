@@ -25,9 +25,22 @@ To unleash the power of WOQL, you just need to understand two very simple things
 
 In Terminus DB every single fragment of information is always and universally stored and accessible as triples. Triples are the universal and fundamental atom of information in TerminusDB - objects and documents and everything else is stored as collections of triples and it is always possible to break any object down in a reliable and deterministic way into a precise set of triples. Not only that, but TerminusDB adheres to the RDF standard, which means all triples have a regular structure and interpretation and strong norms. From a query writer point of view, this regularity is very helpful - you don't have to care about the low-level structure of the data (what table it is stored in, how many columns there, etc), you just have to care about the patterns of meaning you are interested in.  
 
-(table about Triples)
+| Form  | Triple Part 1  | Triple Part 2  |  Triple Part 3 |
+|---|---|---|---|
+|Terminus DB Terminology  |ID   | Property   | Value   |   
+|RDF Terminogy |Subject   |  Predicte | Object  |  
+|Formal Specification|IRI   |  IRI | IRI or JSON-LD Encoded Datatype  |  
+|TerminusDB Simple Triple Example  | joe  | date_born  | 1/2/34  |  
+|Underlying JSON-LD Format  | doc:joe  | scm:date_born  | @type: xsd:date, @value: 19340201  |  
+|Triple Interpretation  | The record with ID _joe_  | has the _date_born_ property   | with Value 1/2/34    |
+|TerminusDB Linking Triple Example  | joe  | parent  | mary  |  
+|Underlying JSON-LD Format  | doc:joe  | scm:parent  | doc:mary  |   
+|Triple Interpretation  | The record with ID _joe_  | has the _parent_ property   | with Value _mary    |
 
-Simple Add Triple Queries 
+Every triple with the same ID is interpreted as being _about the same thing_. So if we add triples with different properties to our database which have the same IDs, they will be interpreted as representing different properties of the same thing. That's how we build up information about things - just add properties to the appropriate record ID. The magic of triples is that the Value of a triple can be another record ID (as in the joe _mother_ mary example) - IDs can appear in either the first or the third slot of the triple. 
+
+Writing the above examples into TerminusDB with WOQL
+```WOQL.add_triple('joe', 'date_born', '1/2/34').add_triple('joe', 'parent', 'mary')```
 
 ## Rule 2 Unify All The Things
 

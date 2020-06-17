@@ -162,4 +162,4 @@ scm:MyClass
 
 ## Class Properties
 
-Properties are associated with properties via the rdfs:range and rdfs:domain predicates within property definitions.  Intuitively, we can imagine that each class 'owns' the properties that it is the domain of (the left hand side of the property relationship) and these properties have ranges that represent the type of the value of that property (the right hand side of the triple). Property definitions are covered in the next section.
+Classes are associated with properties via the rdfs:range and rdfs:domain predicates within property definitions.  Intuitively, we can imagine that each class 'owns' the properties that it is the domain of (the left hand side of the property relationship) and these properties have ranges that represent the type of the value of that property (the right hand side of the triple). Property definitions are covered in the next section.

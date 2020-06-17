@@ -32,13 +32,9 @@ A triple is just a data structure with three slots in which we can put values. E
 |---|---|---|---|
 |*Terminus DB Terminology*  |Object ID   | Property   | Value   |   
 |Triple Example 1  | joe  | date_born  | 1/2/34  |  
+|Example 1 Interpretation  | The record with ID _joe_  | has a property called _date_born_    | with Value _1/2/34_    |
 |Triple Example 2  | joe  | parent  | mary  |  
-|Example 1 Interpretation  | The record with ID _joe_  | has the _date_born_ property   | with Value 1/2/34    |
-|Example 2 Interpretation  | The record with ID _joe_  | has the _parent_ property   | with Value _mary    |
-|Example 1 JSON-LD (Storage) Format  | doc:joe  | scm:date_born  | @type: xsd:date, @value: 19340201  |  
-|Example 2 JSON-LD Format  | doc:joe  | scm:parent  | doc:mary  |   
-|RDF Terminogy |Subject   |  Predicte | Object  |  
-|Storage Specification|IRI   |  IRI | IRI or JSON-LD Encoded Datatype  |  
+|Example 2 Interpretation  | The record with ID _joe_  | has a property named _parent_    | with Value _mary_    |
 
 Every triple with the same ID is interpreted as being _about the same thing_. So if we add triples with different properties to our database which have the same IDs, they will be interpreted as representing different properties of the same thing. That's how we build up information about things - just add properties to the appropriate record ID. The magic of triples is that the Value of a triple can be another record ID (as in the joe _mother_ mary example) - IDs can appear in either the first or the third slot of the triple. 
 

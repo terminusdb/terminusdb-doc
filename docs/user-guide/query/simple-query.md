@@ -35,7 +35,7 @@ The second fundamental concept behind WOQL is unification. This is an old comput
 
 ### WOQL Variables
 
-In WOQL we have the concept of variables, which are normally represented by a string that starts with `v:` - we use them to store the results of queries. For example we might define variables like 'v:First Name' , 'v:Family Name', 'v:Date of Birth' for a query to find somebody's basic identifying information. 
+In WOQL we have the concept of variables, which are normally represented by a string that starts with `v:` - we use them to store the results of queries. For example we might define variables like `v:First Name` , `v:Family Name`, `v:Date of Birth` for a query to find somebody's basic identifying information. 
 
 If we use a variable in a triple query, TerminusDB will show us every possible value that exists in the database that could possibly fill that variable in that position in the query. 
 
@@ -45,9 +45,9 @@ Table showing all combinations of triple variable pattern matches on our simple 
 
 Single triple pattern matching like the above, is certainly neat, but there's a limited number of things that can be expressed as a single pattern of triples, even with all our variables turned on.  However, WOQL also provides logical operators, AND, OR which allow you to combine as many basic patterns as you like into incredibly expressive queries in very simple forms.  
 
-The most useful operator is logical AND - WOQL.and() which behaves as we would logically expect - if all of the patterns defined within a WOQL.and() can be filled by the database, all of the results will be returned, otherwise, no results will be returned. 
+The most useful operator is logical AND - `WOQL.and()` which behaves as we would logically expect - if all of the patterns defined within a `WOQL.and()` can be filled by the database, all of the results will be returned, otherwise, no results will be returned. 
 
-The other basic logical operators: OR - WOQL.or() and NOT - WOQL.not() are also very useful - they are interpreted also as expected, - in the first case, the query will return the first result that it matches in a list of possibilities, in the second case, the query will only return true if the pattern specified is not found in the database. 
+The other basic logical operators: OR - `WOQL.or()` and NOT - `WOQL.not()` are also very useful - they are interpreted also as expected, - in the first case, the query will return the first result that it matches in a list of possibilities, in the second case, the query will only return true if the pattern specified is not found in the database. 
 
 Below are some simple examples of using these logical operators in practice. It is amazing how many things you can readily express simply by combining these patterns in different ways. Extreme simplicity and absolutely regularity in the little things allows extreme elegance of description in the big things.  
 
@@ -62,12 +62,14 @@ I want to ask my database for the full records of all living people whose direct
 
 In WOQL my query would look like this: 
 
-```WOQL.("v:Living Person Record ID", "status", "alive")
+```javascript
+WOQL.("v:Living Person Record ID", "status", "alive")
        .path("v:Living Person Record ID", "parent+", "v:Italian Ancestor", "v:Ancestry Line")
        .triple("v:Italian Ancestor", "date_born", "v:Date of Birth")
        .less("v:Date of Birth", 1850)
        .triple("v:Italian Ancestor", "country_born", "Italy")
-       .get_object("v:Living Person Record ID", "v:Full Record")```
+       .get_object("v:Living Person Record ID", "v:Full Record")
+```
 
 How would you ask your database this question? 
   

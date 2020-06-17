@@ -25,22 +25,28 @@ To unleash the power of WOQL, you just need to understand two very simple things
 
 In Terminus DB every single fragment of information is always and universally stored and accessible as triples. Triples are the universal and fundamental atom of information in TerminusDB - objects and documents and everything else is stored as collections of triples and it is always possible to break any object down in a reliable and deterministic way into a precise set of triples. Not only that, but TerminusDB adheres to the RDF standard, which means all triples have a regular structure and interpretation and strong norms. From a query writer point of view, this regularity is very helpful - you don't have to care about the low-level structure of the data (what table it is stored in, how many columns there, etc), you just have to care about the patterns of meaning you are interested in.  
 
-| Form  | Triple Part 1  | Triple Part 2  |  Triple Part 3 |
+A triple is just a data structure with three slots in which we can put values. Each row in the table below shows a different view of what each of the three slots means 
+
+### Three is the Magic Number - Understanding Triples
+| Form  | Triple Slot 1  | Triple Slot 2  |  Triple Slot 3 |
 |---|---|---|---|
-|Terminus DB Terminology  |ID   | Property   | Value   |   
+|*Terminus DB Terminology*  |Object ID   | Property   | Value   |   
+|Triple Example 1  | joe  | date_born  | 1/2/34  |  
+|Triple Example 2  | joe  | parent  | mary  |  
+|Example 1 Interpretation  | The record with ID _joe_  | has the _date_born_ property   | with Value 1/2/34    |
+|Example 2 Interpretation  | The record with ID _joe_  | has the _parent_ property   | with Value _mary    |
+|Example 1 JSON-LD (Storage) Format  | doc:joe  | scm:date_born  | @type: xsd:date, @value: 19340201  |  
+|Example 2 JSON-LD Format  | doc:joe  | scm:parent  | doc:mary  |   
 |RDF Terminogy |Subject   |  Predicte | Object  |  
-|Formal Specification|IRI   |  IRI | IRI or JSON-LD Encoded Datatype  |  
-|TerminusDB Simple Triple Example  | joe  | date_born  | 1/2/34  |  
-|Underlying JSON-LD Format  | doc:joe  | scm:date_born  | @type: xsd:date, @value: 19340201  |  
-|Triple Interpretation  | The record with ID _joe_  | has the _date_born_ property   | with Value 1/2/34    |
-|TerminusDB Linking Triple Example  | joe  | parent  | mary  |  
-|Underlying JSON-LD Format  | doc:joe  | scm:parent  | doc:mary  |   
-|Triple Interpretation  | The record with ID _joe_  | has the _parent_ property   | with Value _mary    |
+|Storage Specification|IRI   |  IRI | IRI or JSON-LD Encoded Datatype  |  
 
 Every triple with the same ID is interpreted as being _about the same thing_. So if we add triples with different properties to our database which have the same IDs, they will be interpreted as representing different properties of the same thing. That's how we build up information about things - just add properties to the appropriate record ID. The magic of triples is that the Value of a triple can be another record ID (as in the joe _mother_ mary example) - IDs can appear in either the first or the third slot of the triple. 
 
 Writing the above examples into TerminusDB with WOQL
-```WOQL.add_triple('joe', 'date_born', '1/2/34').add_triple('joe', 'parent', 'mary')```
+```
+WOQL.add_triple('joe', 'date_born', '1/2/34')
+    .add_triple('joe', 'parent', 'mary')
+```
 
 ## Rule 2 Unify All The Things
 
@@ -52,7 +58,37 @@ In WOQL we have the concept of variables, which are normally represented by a st
 
 If we use a variable in a triple query, TerminusDB will show us every possible value that exists in the database that could possibly fill that variable in that position in the query. 
 
-Table showing all combinations of triple variable pattern matches on our simple database. 
+#### Single Variable Triple Pattern Examples
+Putting a variable in the first slot of the triple, will find the IDs of all the Objects that have a specific property set to the specified value
+``` 
+ WOQL.triple('v:Person ID', 'date_born', '1/2/34')
+```
+Putting a variable in the second slot will find the names of all the properties that the specified object has which have that value
+```
+WOQL.triple('joe', 'v:Property List', 10)  // returns list of all the properties of joe that have a value equal to 10  
+```
+Putting a variable in the third slot will find the value(s) of the specified property for the specified object ID:
+```
+WOQL.triple('joe', 'parent', "v:Joes Parents")   
+```
+
+#### Two Variable Triple Pattern Examples
+Putting a variable in the first two slots of the triple, will find all object IDs and properties in the database that have the specified value
+``` 
+ WOQL.triple('v:Object ID', 'v:Properties', 10) //list of all objects and property names that have the value 10
+```
+Putting variables in the first and third slots will find the names of all the properties that the specified object has which have that value
+```
+WOQL.triple('v:Object ID', 'date_born', 'v:Date of Births')  // returns list of all object ids and the values of theie date_born properties   
+```
+Putting variables in the second and third slot find all the properties and their values for the object with the specified ID:
+```
+WOQL.triple('joe', 'v:Joes Properties', "v:Property Values")   
+```
+The third and final pattern is easiest still - putting variables in all 3 of the slots will match every single triple in the database. In fact, because this is so useful, WOQL provides a special built in shortcut for generating this pattern: 
+```
+WOQL.star() //generates a triple query with variables in all 3 spots - returns all triples in the database
+```
 
 ### Logical Operators
 
@@ -86,4 +122,3 @@ WOQL.("v:Living Person Record ID", "status", "alive")
 
 How would you ask your database this question? 
   
-How 

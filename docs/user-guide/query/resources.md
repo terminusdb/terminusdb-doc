@@ -208,6 +208,8 @@ A graph filter is a relative reference which allows the user to specify a collec
 
 We can either refer directly to the name of a graph, or some list of names or even just use the `*` as a wildcard.
 
+The default filter that is used when no filter is specified will be `instance/*`.
+
 ### Graph Objects
 
 ```

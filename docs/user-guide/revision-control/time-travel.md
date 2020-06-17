@@ -63,6 +63,8 @@ WOQLLibrary.prototype.getFirstCommit = function(cresource) {
 Explanation - there is only single commit in the graph that does not have a parent - it is the first commit. 
 
 # getCommitProperties
+
+```javascript
 WOQLLibrary.prototype.getCommitProperties = function(commit_id, cresource) {
     cresource= cresource || this.commits
     let woql = new WOQLQuery().using(cresource).and(
@@ -70,7 +72,7 @@ WOQLLibrary.prototype.getCommitProperties = function(commit_id, cresource) {
         new WOQLQuery().triple("v:CommitIRI", 'ref:commit_id', commit_id),
         new WOQLQuery().triple("v:CommitIRI", 'ref:commit_timestamp', 'v:Time'),
         new WOQLQuery().opt().triple("v:CommitIRI", 'ref:commit_author', 'v:Author'),
-        new WOQLQuery().opt().triple("v:CommitIRI", 'ref:commit_message', 'v:Message'),        
+        new WOQLQuery().opt().triple("v:CommitIRI", 'ref:commit_message', 'v:Message'),
         new WOQLQuery()
             .opt()
             .and(
@@ -94,6 +96,7 @@ WOQLLibrary.prototype.getCommitProperties = function(commit_id, cresource) {
     )
     return woql
 }
+```
 
 Branch, Message, Time, Author, Children, Parent, Branch
 
@@ -102,10 +105,13 @@ Gets all possible metadata about a specific commit and loads it into a single bi
 (note this is fast because we consider the commit in isolation without the branch context and do not have to traverse any relationships)
 
 ## Compounding Version 1:
+```javascript
 WOQL.lib().getFirstCommit().and().lib().getCommitProperties()
+```
 
 ## Get Commit Child On Branch
 
+```javascript
 getChildOnBranch(commit_id, branch){
   new WOQLQuery().and(
       new WOQLQuery().triple('v:Branch', 'ref:branch_name', branch),
@@ -116,9 +122,11 @@ getChildOnBranch(commit_id, branch){
       new WOQLQuery().triple('v:ChildIRI', 'ref:commit_id', "v:CommitID"),
   )
 }
+```
 
 ## loadBranchDetails(branch)
 
+```javascript
  let woql = new WOQLQuery().and(
         new WOQLQuery().triple('v:BranchIRI', 'ref:branch_name', branch),
         new WOQLQuery()
@@ -129,13 +137,15 @@ getChildOnBranch(commit_id, branch){
                 new WOQLQuery().triple('v:HeadIRI', 'ref:commit_timestamp', 'v:Time'),
             ),
     )
-    
+```
+
 Returns the name of a branch and the time of the last commit to head of that branch
 
 This is important because this tells you if somebody has advance head while you were doing something else. 
 
 ## loadActiveCommitAtTime(ts, branch)
 
+```javascript
 WOQLQuery()
     .limit(1)
     .or(
@@ -154,10 +164,11 @@ WOQLQuery()
                 ),
         ),
     )
-
+```
 
 6 key queries <- explain them
 
+```javascript
 /**
  * pass the client and uses looks for current branch in current commits graph
  */
@@ -218,6 +229,7 @@ WOQLLibrary.prototype.getGraphStructure = function(branch, ref, cresource) {
     )
     return full
 }
+```
 
 # The WOQL Time Travel Console
 

@@ -326,7 +326,7 @@
   }
   ,"55": {
     "title": "WOQL Standard Library",
-    "content": "WOQL Standard Library . .",
+    "content": "WOQL Standard Library . . Introduction | Introduction . WOQL has a standard library which ships with it. It includes library functions for constructing parameterised queries and pre-built query libraries for accessing all of the fundamental data structures of terminus DB. Below are listed the basic libraries available. They are part of the Javascript 2.0 alpha release and will be ported to the Python and other clients before the 2.0 beta release . WOQL.lib().classes() | WOQL.lib().properties() | WOQL.lib().objects() | WOQL.lib().object_metadata() | WOQL.lib().document_metadata() | WOQL.lib().users() | WOQL.lib().branches() | WOQL.lib().graphs() | WOQL.lib().dbs() | WOQL.lib().commit_chain() | WOQL.lib().commits() | WOQL.lib().repos() |",
     "url": "/docs/user-guide/query/woql-lib/",
     "relUrl": "/user-guide/query/woql-lib/"
   }

@@ -164,10 +164,27 @@ The full list of such keywords are
 - `_repository`
 
 #### Building off the parent resource
-THIS IS STILL IN PROGRESS
+In adition to the keywords described above, there's also a special
+kind of path component, `..`. Just as in file paths, this path
+component gets you in the scope of a parent resource. For example, if
+your current context is `joe/data/origin/branch/master` and you
+specify the relative resource `../work`, you'll get
+`joe/dasta/origin/branch/work`.
+
+Again, auto-completion applies. So if you are on
+`joe/data/origin/branch/work` and you lookup `../`, it will
+autocomplete to `joe/data/origin/branch/master`.
 
 #### Special considerations for branches and commits
-THIS IS STILL IN PROGRESS
+since branches and commits don't have any children of their own, as an
+extra convenience, relative lookups aren't relative to the
+branch/commit, but relative to their repository. So for example, if
+you are currently on `joe/data/origin/branch/master`, you can specify
+`branch/work` or `commit/commit_abcde` or `_commits`, and they'll be
+resolved in the context of the repository.
+
+The one exception, as mentioned above, is `..`, which will be relative
+to the branch or commit, not relative to the repository.
 
 ## Graphs
 
@@ -190,6 +207,8 @@ graph filters or graph objects.
 A graph filter is a relative reference which allows the user to specify a collection of graphs from a given collection resource (generally the current query collection). The `<type>` must be drawn from the set `{instance,schema,inference}` which specifies precisely which variety of graph we are referring to.
 
 We can either refer directly to the name of a graph, or some list of names or even just use the `*` as a wildcard.
+
+The default filter that is used when no filter is specified will be `instance/*`.
 
 ### Graph Objects
 

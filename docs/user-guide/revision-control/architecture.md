@@ -18,7 +18,7 @@ nav_order: 8
 ---
 
 
-TerminusDB is architected as a revision controlled database from the 
+TerminusDB is architected as a revision controlled database from the
 ground up. In TerminusDB, revision control is based on a model quite
 similar to the one used in git. However, where git uses *lines of
 code* added or deleted, TerminusDB uses *triples* added or deleted.
@@ -41,7 +41,7 @@ updates.
 
 ## Architecture
 
-*image of architecture*
+![](/docs/assets/images/architecture.png)
 
 TerminusDB is structured as a hierarchy of graphs. Each level of the
 hierarchy is itself a graph which can be queried and which stores

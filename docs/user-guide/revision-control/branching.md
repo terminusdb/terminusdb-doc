@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Braanching
+title: Branching
 parent: Revision Control
 grand_parent: User guide
 nav_order: 3

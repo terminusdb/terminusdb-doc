@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Form RDBMS databases to TerminusDB
+title: From RDBMS databases to TerminusDB
 parent: Comparison with other tools
 grand_parent: Getting started
 nav_order: 1
 ---
 
-# Form RDBMS databases to TerminusDB
+# From RDBMS databases to TerminusDB
 {: .no_toc }
 
 ## Table of contents
@@ -64,9 +64,9 @@ Let’s see a fragment of schema:
   ......),
  FOREIGN KEY (bikeId) REFERENCES bikes(idBike),
 ```
-Here our logical relationship from tables: *The **bikeId** column is a FOREIGN KEY to the table **bikes** (idBike column).* 
+Here our logical relationship from tables: *The **bikeId** column is a FOREIGN KEY to the table **bikes** (idBike column).*
 
-In terminusDB instead of tables we have documents, so for our dataset we need to create three different documents: Station, Journey and Bicycle, every document have a label and a description and is identified by an unique URL. 
+In terminusDB instead of tables we have documents, so for our dataset we need to create three different documents: Station, Journey and Bicycle, every document have a label and a description and is identified by an unique URL.
 In our documents we have properties to describe the type of data and the documents are related to each other as interlinked concepts.
 
 An example of relationship between documents written in woql.js
@@ -90,7 +90,7 @@ In the **Journey** document the range data type of the **journey_bicycle** prope
 
 --------------------
 
-## Load Data 
+## Load Data
 
 What we wish to do now is load the data from our .csv file inside our relational database, but which road map follows to save the integrity of the data relationship, you can use an external tool or you can implement your sql statement.  
 
@@ -98,7 +98,7 @@ You could write an sql statement like this to import the csv file inside bikes o
 
 ```sql
 
-LOAD DATA LOCAL INFILE 'bike_tutorial.csv' INTO TABLE bikes 
+LOAD DATA LOCAL INFILE 'bike_tutorial.csv' INTO TABLE bikes
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'  IGNORE 1 LINES
 (@col1,@col2,@col3,@col4,@col5,@col6,@col7,@col8) set bikeNumber=@col8;
 
@@ -140,7 +140,7 @@ const wrangles = [
     WOQL.idgen("doc:Bicycle",["v:Bike_Label"],"v:Bike_URL"),    
     WOQL.concat("v:Start_ID - v:End_ID @ v:Start_Time","v:J_Label"),
     WOQL.concat("Bike v:Bike from v:Start_Station to v:End_Station at v:Start_Time until v:End_Time","v:Journey_Description")
-]; 
+];
 
 ```
 
@@ -175,10 +175,10 @@ Here an Sql example
 
 ```sql
 
-SELECT journeys.startTime, journeys.endTime, bikes.bikeNumber, journeys.memberType, journeys.duration, startStation.address as startStation, startStation.stationNumber as startStationNumber, endStation.address as endStation, endStation.stationNumber as endStationNumber 
-FROM journeys 
+SELECT journeys.startTime, journeys.endTime, bikes.bikeNumber, journeys.memberType, journeys.duration, startStation.address as startStation, startStation.stationNumber as startStationNumber, endStation.address as endStation, endStation.stationNumber as endStationNumber
+FROM journeys
 INNER JOIN stations as startStation ON journeys.startStation = startStation.idStation
-INNER JOIN stations as endStation ON journeys.endStation = endStation.idStation 
+INNER JOIN stations as endStation ON journeys.endStation = endStation.idStation
 INNER JOIN bikes ON journeys.bikeId=bikes.idbike;
 
 ```
@@ -191,7 +191,7 @@ Let's see the TerminusDB woql query
     WOQL.triple("v:Journey", "duration", "v:Duration"),
     WOQL.triple("v:Journey", "end_time", "v:End_Time"),
     WOQL.triple("v:Journey", "start_time", "v:Start_Time"),
-    
+
     WOQL.triple("v:Journey", "start_station", "v:Start"),
     WOQL.opt().triple("v:Start", "label", "v:Start_Label"),
 

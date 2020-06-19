@@ -6,7 +6,7 @@ grand_parent: User guide
 nav_order: 3
 ---
 
-# Braanching
+# Branching
 {: .no_toc }
 
 ## Table of contents

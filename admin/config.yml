@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: terminusdb/terminusdb-doc # Path to your GitHub repository
+  branch: dev # Branch to update (optional; defaults to master)
+media_folder: 'assets/uploads'
+public_folder: '/docs/assets/uploads'
+collections:
+  - name: 'docs'
+    label: 'Docs'
+    folder: 'docs/'
+    create: true
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Discription (optional)', name: 'description', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }

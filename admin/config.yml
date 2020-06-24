@@ -10,7 +10,7 @@ collections:
     folder: 'docs/'
     create: true
     slug: '{{slug}}'
-    nested: { depth: 10 }
+    nested: { depth: 100 }
     editor:
       preview: false
     fields:

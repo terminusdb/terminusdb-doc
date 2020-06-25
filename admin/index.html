@@ -30,7 +30,7 @@
         // Function to create a text block from an instance of this component
         toBlock: function(obj) {
             const videoId = obj.url.match(/watch\?v=(.*)/)[1]
-            return `![${obj.url}](https://i3.ytimg.com/vi/${videoId}/0.jpg)`
+            return `[![](https://i3.ytimg.com/vi/${videoId}/0.jpg)](obj.url)`
         },
         // Preview output for this component. Can either be a string or a React component
         // (component gives better render performance)

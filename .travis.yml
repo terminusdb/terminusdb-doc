@@ -2,7 +2,7 @@ language: ruby
 # only run CI-builds on master branch
 branches:
   only:
-    - dev
+    - master
 rvm:
   - 2.3.0
 script: ./script/cibuild

@@ -4,4 +4,4 @@ layout: default
 ---
 Youtube vid again
 
-[![](https://i3.ytimg.com/vi/dulKiZuI_NE/0.jpg)](https://www.youtube.com/watch?v=dulKiZuI_NE)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dulKiZuI_NE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

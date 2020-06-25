@@ -9,37 +9,5 @@
   <!-- Include the script that builds the page and powers Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   <script src="https://unpkg.com/netlify-auth-providers"></script>
-  <script>
-    CMS.registerEditorComponent({
-        // Internal id of the component
-        id: "youtube",
-        // Visible label
-        label: "Youtube",
-        // Fields the user need to fill out when adding an instance of the component
-        fields: [
-            {name: 'url', label: 'Youtube Video URL', widget: 'string'}
-        ],
-        // Pattern to identify a block as being an instance of this component
-        pattern: /^youtube (\S+)$/,
-        // Function to extract data elements from the regexp match
-        fromBlock: function(match) {
-            return {
-                id: match[1]
-            };
-        },
-        // Function to create a text block from an instance of this component
-        toBlock: function(obj) {
-            const videoId = obj.url.match(/watch\?v=(.*)/)[1]
-            return `[![](https://i3.ytimg.com/vi/${videoId}/0.jpg)](${obj.url})`
-        },
-        // Preview output for this component. Can either be a string or a React component
-        // (component gives better render performance)
-        toPreview: function(obj) {
-            return (
-                '<img src="http://img.youtube.com/vi/' + obj.id + '/maxresdefault.jpg" alt="Youtube Video"/>'
-            )
-        }
-    });
-    </script>
 </body>
 </html>

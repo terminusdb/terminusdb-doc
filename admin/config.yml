@@ -16,3 +16,4 @@ collections:
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - {label: "Layout", name: "layout", widget: "hidden", default: "default"}

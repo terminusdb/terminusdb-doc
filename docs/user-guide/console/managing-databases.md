@@ -7,7 +7,7 @@ nav_order: 2
 ---
 # Managing Database
 
-This interface allows you to create a new database in 2 ways.
+This interface allows you to create a new database in two ways.
 
 ## Create New Database
 

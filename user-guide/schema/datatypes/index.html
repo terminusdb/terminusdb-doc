@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><title>Datatypes - TerminusDB Documentation</title><link rel="shortcut icon" href="/docs/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/docs/assets/css/just-the-docs.css"> <script type="text/javascript" src="/docs/assets/js/vendor/lunr.min.js"></script> <script type="text/javascript" src="/docs/assets/js/just-the-docs.js"></script><meta name="viewport" content="width=device-width, initial-scale=1"><title>Datatypes | TerminusDB Documentation</title><meta name="generator" content="Jekyll v3.8.7" /><meta property="og:title" content="Datatypes" /><meta property="og:locale" content="en_US" /><meta name="description" content="Documentation for TerminusDB" /><meta property="og:description" content="Documentation for TerminusDB" /><link rel="canonical" href="/docs/user-guide/schema/datatypes/" /><meta property="og:url" content="/docs/user-guide/schema/datatypes/" /><meta property="og:site_name" content="TerminusDB Documentation" /> <script type="application/ld+json"> {"description":"Documentation for TerminusDB","@type":"WebPage","url":"/docs/user-guide/schema/datatypes/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/docs/assets/images/horizontal_lockup_white.png"}},"headline":"Datatypes","@context":"https://schema.org"}</script> <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script> <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript> <script> var _paq = window._paq || []; /* tracker methods like "setCustomDimension" should be called before "trackPageView" */ _paq.push(['disableCookies']); _paq.push(['trackPageView']); _paq.push(['enableLinkTracking']); (function() { var u="https://terminusdb.matomo.cloud/"; _paq.push(['setTrackerUrl', u+'matomo.php']); _paq.push(['setSiteId', '1']); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.defer=true; g.src='//cdn.matomo.cloud/terminusdb.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s); })(); </script><body> <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"> <symbol id="link" viewBox="0 0 16 16"><title>Link</title><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path> </symbol> </svg><div class="page-wrap"><div class="side-bar"><div class="site-header"> <a href="/docs/" class="site-title lh-tight"><div class="site-logo"></div></a> <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button></div><div class="navigation main-nav js-main-nav"><nav role="navigation" aria-label="Main navigation"><ul class="navigation-list"><li class="navigation-list-item"><a href="/docs/" class="navigation-list-link">Home</a><li class="navigation-list-item"><a href="/docs/getting-started" class="navigation-list-link">Getting started</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/docs/getting-started/quick-install/" class="navigation-list-link">Quick install with docker</a><li class="navigation-list-item "><a href="/docs/getting-started/other-install/" class="navigation-list-link">Other ways of installing TerminusDB</a><li class="navigation-list-item "><a href="/docs/getting-started/install-clients/" class="navigation-list-link">Installation of JS/ Python Clients</a><li class="navigation-list-item "><a href="/docs/getting-started/package-overview/" class="navigation-list-link">Package overview</a><li class="navigation-list-item "><a href="/docs/getting-started/start-tutorials" class="navigation-list-link">Getting started tutorials</a><li class="navigation-list-item "><a href="/docs/getting-started/essential-basic/" class="navigation-list-link">Essential basic functionality</a><li class="navigation-list-item "><a href="/docs/getting-started/intro-graph/" class="navigation-list-link">Intro to graph data modelling</a><li class="navigation-list-item "><a href="/docs/getting-started/comparison" class="navigation-list-link">Comparison with other tools</a><li class="navigation-list-item "><a href="/docs/getting-started/tutorials/" class="navigation-list-link">Tutorials</a></ul><li class="navigation-list-item active"><a href="/docs/user-guide" class="navigation-list-link">User guide</a><ul class="navigation-list-child-list "><li class="navigation-list-item "><a href="/docs/user-guide/revision-control" class="navigation-list-link">Revision Control</a><li class="navigation-list-item "><a href="/docs/user-guide/query" class="navigation-list-link">Query</a><li class="navigation-list-item active"><a href="/docs/user-guide/schema" class="navigation-list-link">Schema</a><ul class="navigation-list-grand-child-list"><li class="navigation-list-item "> <a href="/docs/user-guide/schema/classes/" class="navigation-list-link">Classes</a><li class="navigation-list-item "> <a href="/docs/user-guide/schema/properties/" class="navigation-list-link">Properties</a><li class="navigation-list-item active"> <a href="/docs/user-guide/schema/datatypes/" class="navigation-list-link active">Datatypes</a><li class="navigation-list-item "> <a href="/docs/user-guide/schema/ids/" class="navigation-list-link">IDs, IRIs, URLs and Prefixes</a><li class="navigation-list-item "> <a href="/docs/user-guide/schema/graphs/" class="navigation-list-link">Graphs</a><li class="navigation-list-item "> <a href="/docs/user-guide/schema/advanced/" class="navigation-list-link">Advanced Topics</a></ul><li class="navigation-list-item "><a href="/docs/user-guide/console" class="navigation-list-link">TerminusDB Console</a><li class="navigation-list-item "><a href="/docs/user-guide/visualisation" class="navigation-list-link">Visualisation</a><li class="navigation-list-item "><a href="/docs/user-guide/api/" class="navigation-list-link">TerminusDB API</a></ul><li class="navigation-list-item"><a href="/docs/api-reference/" class="navigation-list-link">API reference</a><li class="navigation-list-item"><a href="/docs/administration/" class="navigation-list-link">Administration</a><li class="navigation-list-item"><a href="/docs/developer-guide/" class="navigation-list-link">Developer guide</a><li class="navigation-list-item"><a href="/docs/release_notes/" class="navigation-list-link">Release notes</a></ul></nav></div><footer class="site-footer"><p class="text-small text-grey-dk-000 mb-4">This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.</p></footer></div><div class="main-content-wrap js-main-content" tabindex="0"><div class="main-content"><div class="page-header js-page-header"><div class="search"><div class="search-input-wrap"> <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search TerminusDB Documentation" aria-label="Search TerminusDB Documentation" autocomplete="off"> <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg></div><div class="js-search-results search-results-wrap"></div></div><ul class="list-style-none text-small aux-nav"><li class="d-inline-block my-0"><a href="https://github.com/terminusdb/terminusdb-server">TerminusDB on GitHub</a></ul></div><div class="page"><nav class="breadcrumb-nav"><ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="/docs/user-guide">User guide</a><li class="breadcrumb-nav-list-item"><a href="/docs/user-guide/schema">Schema</a><li class="breadcrumb-nav-list-item"><span>Datatypes</span></ol></nav><div id="main-content" class="page-content" role="main"><h1 class="no_toc" id="datatypes---literals-and-enumerated-types"> <a href="#datatypes---literals-and-enumerated-types" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Datatypes - Literals and Enumerated Types</h1><h2 class="no_toc text-delta" id="table-of-contents"> <a href="#table-of-contents" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Table of contents</h2><ol id="markdown-toc"><li><a href="#introduction" id="markdown-toc-introduction">Introduction</a><ol><li><a href="#principle-xsd-types-supported" id="markdown-toc-principle-xsd-types-supported">Principle XSD Types Supported</a></ol><li><a href="#enumerated-types" id="markdown-toc-enumerated-types">Enumerated Types</a><li><a href="#example-datatype-schema" id="markdown-toc-example-datatype-schema">Example Datatype Schema</a></ol><hr /><h2 id="introduction"> <a href="#introduction" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Introduction</h2><p>TermiusDB follows OWL in using the xsd datatypes for defining basic literal types like strings and numbers. Every datatype property must be defined as having a specfic datatype which defines the range of acceptable values for that property.</p><p>TerminusDB supports the full range of <a href="https://www.w3.org/2011/rdf-wg/wiki/XSD_Datatypes">xsd datatypes</a> and adds a number of our own <a href="https://terminusdb.com/schema/xdd">extended datatypes</a> which are particularly useful in practice and are typically omitted from datatype defintions.</p><p>In practice, many of the XSD datatypes are not particularly useful - focused on legacy features of XML. However, xsd provides a well-defined and extensible framework for datatype definitions.</p><p>Terminus DB also provides support for the definition of enumerated datatypes.</p><h3 id="principle-xsd-types-supported"> <a href="#principle-xsd-types-supported" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Principle XSD Types Supported</h3><p>Internally Terminus supports more xsd datatypes but most of them are not useful in practice - this table just lists the useful ones</p><div class="table-wrapper"><table cellpadding="4" border="1"><tbody><tr><th> Datatype<th> JSON LD Example<th> Notes<tr><td> xsd:anyURI<td> {@type : "xsd:anyURI", @value: "https://veryloose definition/of a/uri"}<td><tr><td> xsd:base64Binary<td> {@type : "xsd:base64Binary", @value: "aGVsbG8gd29ybGQ="}<td><tr><td> xsd:boolean<td> {@type : "xsd:boolean", @value: true}<td><tr><td> xsd:byte<td> {@type : "xsd:byte", @value: 123}<td>A number between -128 and 127<tr><td> xsd:date<td> {@type : xsd:boolean, @value: "2001-10-23"}<td>YYYY-MM-DD format with optional timezone suffix<tr><td> xsd:dateTime<td> {@type : "xsd:dateTime", @value: "2001-10-23T23:12:11.1"}<td>YYYY-MM-DDTHH:MM:SS.sss format with optional timezone suffix<tr><td> xsd:dateTimeStamp<td> {@type : "xsd:dateTimeStamp", @value: "2001-10-23T23:12:11.1-05:00"}<td>Same YYYY-MM-DDTHH:MM:SS.sss format as xsd:dateTime but the timezone suffix is required (+-HH:MM or Z to indicate UTC)<tr><td> xsd:decimal<td> {@type : "xsd:decimal", @value: 23.323}<td><tr><td> xsd:double<td> {@type : "xsd:double", @value: 23.323323323423423}<td><tr><td> xsd:float<td> {@type : "xsd:float", @value: 23.3233223}<td><tr><td> xsd:gDay<td> {@type: "xsd:gDay", @value: "---01"}<td>Refers to a day that occurs once every month format is ---DD<tr><td> xsd:gMonth<td> {@type: "xsd:gMonth", @value: "--09"}<td>Refers to a month that occurs once every year, format is --MM<tr><td> xsd:gMonthDay<td> {@type: "xsd:gMonthDay", @value: "--09-23"}<td>Refers to a month and day that occurs once every year, format is --MM-DD<tr><td> xsd:gYear<td> {@type: "xsd:gYear", @value: "2011"}<td>4 digit year - can also be negative -1000 refers to 1000 BCE<tr><td> xsd:gYearMonth<td> {@type: "xsd:gYearMonth", @value: "2011-01"}<td>A specific month in a specific hear - format is YYYY-MM<tr><td> xsd:int<td> {@type: "xsd:int", @value: 2}<td>The value space of xsd:int is the set of common single-size integers (32 bits), the integers between -2147483648 and 2147483647. Its lexical space allows any number of insignificant leading zeros.<tr><td> xsd:integer<td> {@type: "xsd:integer", @value: -2}<td>The value space of xsd:integer includes the set of all the signed integers, with no restriction on range. Its lexical space allows any number of insignificant leading zeros.<tr><td> xsd:language<td> {@type: "xsd:language", @value: "EN-IE"}<td>Values of the <code>xsd:language</code> type conform to RFC 3066, <cite>Tags for the Identification of Languages</cite>.<tr><td> xsd:long<td> {@type: "xsd:long", @value: 543245345}<td>Long integer - double-size integers (64 bits) — the integers between -9223372036854775808 and 9223372036854775807. Its lexical space allows any number of insignificant leading zeros.<tr><td> xsd:negativeInteger<td> {@type: "xsd:negativeInteger", @value: -543245345}<td>Less than 0<tr><td> xsd:nonNegativeInteger<td> {@type: "xsd:nonNegativeInteger", @value: 0}<td>Greater than or equal to 0<tr><td> xsd:nonPositiveInteger<td> {@type: "xsd:nonPositiveInteger", @value: 0}<td>Less than or equal to 0<tr><td> xsd:positiveInteger<td> {@type: "xsd:positiveInteger", @value: 1}<td>Greater than zero<tr><td> xsd:short<td> {@type: "xsd:short", @value: 1}<td>A short integer (16 bits) between -32768 and 32767<tr><td> xsd:string<td> {@language: "en", @type: "xsd:string", @value: "this is the string"}<td>If strings have a language, we can omit the type<tr><td> xsd:time<td> {@type: "xsd:time", @value: "01:02:03.3223"}<td>Format is HH:MM:SS.ssss with an optional timezone suffix<tr><td> xsd:unsignedByte<td> {@type: "xsd:unsignedByte", @value: 1}<td>Can take values of 0 to 255<tr><td> xsd:unsignedInt<td> {@type: "xsd:unsignedInt", @value: 64000}<td>Can take any value between 0 and 4294967295<tr><td> xsd:unsignedLong<td> {@type: "xsd:unsignedLong", @value: 64000}<td>An integer between 0 and 18446744073709551615<tr><td> xsd:unsignedShort<td> {@type: "xsd:unsignedShort", @value: 64000}<td>An integer between 0 and 65535</table></div><p></p><h3> XDD Types Supported</h3><p></p><div class="table-wrapper"><table cellpadding="4" border="1"><tbody><tr><th>Datatype<th>Example<th>Notes<tr><td>xdd:coordinate<td> {@type: "xdd:coordinate", @value: "[43.35353234,45.66645634]"}<td>Represents a point coordinate on the earth's surface, identified by a latitude, longitude pair, separated by a comma and wrapped with square brackets<tr><td>xdd:coordinatePolyline<td> {@type: "xdd:coordinatePolyline", @value: "[[23.23423432,-42.423423535],[43.35353234,45.66645634]]"}<td>Represents a line across the earth's surface. An array of xdd:coordinate values, separated by a comma and wrapped with square brackets - there must be at least 2 coordinate pairs in the line.<tr><td>xdd:coordinatePolygon<td> {@type: "xdd:coordinatePolygon", @value: "[[23.23423432,-42.423423535],[43.35353234,45.66645634],[-65.35353234,-2.66645634]]"}<td>Represents a closed polygon on the earth's surface. An array of xdd:coordinate values, separated by a comma and wrapped with square brackets - there must be at least 3 coordinate pairs in the line and they should form a closed shape.<tr><td>xdd:integerRange<td> {@type: "xdd:integerRange", @value: "[23,30]"}<td>An uncertain integer number, what is somewhere between the two ranges, expressed either as i) an uncertainty range - somewhere between a and b, separated by a comma and wrapped in square brackets, or ii) a simple integer<tr><td>xdd:decimalRange<td> {@type: "xdd:decimalRange", @value: "[23.323,-3.6754]"}<td>A decimal value expressed as an uncertainty range - somewhere between a and b (or a simple decimal number)<tr><td>xdd:dateRange<td> {@type: "xdd:dateRange", @value: "[2001-01-02,2003-03-01]"}<td>A date expressed as an uncertainty range - somewhere between date a and date b<tr><td>xdd:gYearRange<td> {@type: "xdd:gYearRange", @value: "[2001,2003]"}<td>A year expressed as an uncertainty range - somewhere between year a and year b<tr><td>xdd:url<td> {@type: "xdd:url", @value: "http://my.url.com/hello_world.png"}<td>A valid HTTP/HTTPS URL<tr><td>xdd:email<td> {@type: "xdd:email", @value: "obama@whitehouse.gov"}<td>A valid Email Address according to rfc 5322<tr><td>xdd:html<td> {@type: "xdd:html", @value: "&lt;p&gt;hello world&lt;/p&gt;"}<td>A HTML encoded string<tr><td>xdd:json<td> {@type: "xdd:json", @value: "{hello: \"world\"}"}<td>A JSON encoded string</table></div><p></p><h2 id="enumerated-types"> <a href="#enumerated-types" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Enumerated Types</h2><p>It is often useful to have properties that can take on one or more of an enumerated set of values (e.g. we might want a property that has a value of either: <code class="highlighter-rouge">absent</code>, <code class="highlighter-rouge">present</code>, or <code class="highlighter-rouge">unknown</code>) rather than just using strings. These types In the TerminusDB schema you can define specific properties as having ranges that are enumerated types in the following way.</p><div class="code-example"><div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">choices</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="dl">"</span><span class="s2">scm:absent</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Absent</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">The feature was absent in this historical context</span><span class="dl">"</span><span class="p">],</span>
+    <span class="p">[</span><span class="dl">"</span><span class="s2">scm:present</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Present</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">The feature was present in this historical context</span><span class="dl">"</span><span class="p">],</span>
+    <span class="p">[</span><span class="dl">"</span><span class="s2">scm:unknown</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Unknown</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It is not known whether the feature was present or absent in the context</span><span class="dl">"</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="nx">WOQL</span><span class="p">.</span><span class="nx">schema</span><span class="p">().</span><span class="nx">generateChoiceList</span><span class="p">(</span><span class="dl">"</span><span class="s2">Presence</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Presence</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">The epistemic state - is the feature present?</span><span class="dl">"</span><span class="p">,</span> <span class="nx">choices</span><span class="p">)</span>
+</code></pre></div></div></div><p>In OWL, this is encoded in the following way:</p><div class="code-example"><pre><code class="language-ttl">scm:Presence
+  a owl:Class ;
+  rdfs:comment "The epistemic state - is the feature present?"@en ;
+  rdfs:label "Presence"@en ;
+  owl:oneOf ( scm:unknown scm:absent scm:present ) .
+
+scm:absent
+  a scm:Presence ;
+  rdfs:comment "The feature was absent in this historical context"@en ;
+  rdfs:label "Absent"@en .
+
+scm:present
+  a scm:Presence ;
+  rdfs:comment "The feature was present in this historical context"@en ;
+  rdfs:label "Present"@en .  
+
+scm:unknown
+  a scm:Presence ;
+  rdfs:comment "It is not known whether the feature was present or absent in the context"@en ;
+  rdfs:label "Unkown"@en .  
+
+</code></pre></div><p>Once an enumerated type has been created in this way, we can use it as the range of any properties we want.</p><div class="code-example"><div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">WOQL</span><span class="p">.</span><span class="nx">add_property</span><span class="p">(</span><span class="dl">"</span><span class="s2">wear</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Presence</span><span class="dl">"</span><span class="p">).</span><span class="nx">label</span><span class="p">(</span><span class="dl">"</span><span class="s2">Signs of Wear</span><span class="dl">"</span><span class="p">).</span><span class="nx">domain</span><span class="p">(</span><span class="dl">"</span><span class="s2">Article</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div></div><div class="code-example"><pre><code class="language-ttl">scm:wear
+   a owl:ObjectProperty;
+   rdfs:label "Signs of Wear"@en;
+   rdfs:domain scm:Article;
+   rdfs:range scm:Presence.
+</code></pre></div><p>Note that in OWL, properties that use enumerated datatypes are objectProperties, not datatype properties. Finally, note that there are a very large number of ways in which enumerated properties can be implemented in OWL. TerminusDB provides various shortcuts which use this particular encoding but does not put any limit on how you choose to encode such concepts in the schema. You are free to use another different encoding schema at your pleaure.</p><h2 id="example-datatype-schema"> <a href="#example-datatype-schema" class="anchor-heading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#link"></use></svg></a> Example Datatype Schema</h2><p>The <a href="https://github.com/terminusdb/terminusdb-schema">terminusdb-schema repository</a> contains a datatypes.owl.ttl file which includes a class that has a broad range of TerminusDB datatypes in use. If you load the file below into a TerminusDB schema, you should be able to see all the examples of datatypes in action.</p><div class="code-example"><pre><code class="language-ttl">
+@prefix rdfs: &amp;lt;http://www.w3.org/2000/01/rdf-schema#&amp;gt; .
+@prefix xsd: &amp;lt;http://www.w3.org/2001/XMLSchema#&amp;gt; .
+@prefix owl: &amp;lt;http://www.w3.org/2002/07/owl#&amp;gt; .
+@prefix tcs: &amp;lt;http://terminusdb.com/schema/tcs#&amp;gt; .
+@prefix xdd: &amp;lt;http://terminusdb.com/schema/xdd#&amp;gt; .
+@prefix datatypes: &amp;lt;http://terminusdb.com/schema/datatypes#&amp;gt; .
+
+datatypes:DatatypeHolder
+  a owl:Class ;
+  rdfs:subClassOf tcs:Entity;
+  rdfs:comment "An entity that contains an example of every atomic datatype (non-compound) supported by the DB"@en;
+  rdfs:label "Datatype Examples"@en .
+
+datatypes:link
+  a owl:ObjectProperty;
+  rdfs:label "Document Link Type"@en;
+  rdfs:domain datatypes:DatatypeHolder;
+  rdfs:range datatypes:DatatypeHolder.  
+
+datatypes:coord
+  rdfs:label "xdd:coordinate"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:coordinate .
+
+datatypes:coordline
+  rdfs:label "xdd:coordinatePolyline"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:coordinatePolyline .
+
+datatypes:coordpoly
+  rdfs:label "xdd:coordinatePolygon"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:coordinatePolygon .
+
+datatypes:dateRange
+  rdfs:label "xdd:dateRange"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:dateRange .
+
+datatypes:gYearRange
+  rdfs:label "xdd:gYearRange"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:gYearRange .
+
+datatypes:integerRange
+  rdfs:label "xdd:integerRange"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:integerRange .
+
+datatypes:decimalRange
+  rdfs:label "xdd:decimalRange"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:decimalRange .
+
+datatypes:email
+  rdfs:label "xdd:email"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:email .
+
+datatypes:html
+  rdfs:label "xdd:html"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:html .
+
+datatypes:url
+  rdfs:label "xdd:url"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:url .
+
+datatypes:anySimpleType
+  rdfs:label "xsd:anySimpleType"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:anySimpleType .
+
+datatypes:boolean
+  rdfs:label "xsd:boolean"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:boolean .
+
+datatypes:decimal
+  rdfs:label "xsd:decimal"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:decimal .
+
+datatypes:double
+  rdfs:label "xsd:double"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:double .
+
+datatypes:float
+  rdfs:label "xsd:float"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:float .
+
+datatypes:time
+  rdfs:label "xsd:time"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:time .
+
+datatypes:date
+  rdfs:label "xsd:date"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:date .
+
+datatypes:dateTime
+  rdfs:label "xsd:dateTime"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:dateTime .
+
+datatypes:dateTimeStamp
+  rdfs:label "xsd:dateTimeStamp"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:dateTimeStamp .
+
+datatypes:gYear
+  rdfs:label "xsd:gYear"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:gYear .
+
+datatypes:gYearMonth
+  rdfs:label "xsd:gYearMonth"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:gYearMonth .
+
+datatypes:gMonth
+  rdfs:label "xsd:gMonth"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xsd:gMonth .
+
+datatypes:json
+  rdfs:label "xdd:JSON"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain datatypes:DatatypeHolder ;
+  rdfs:range xdd:json.
+
+xdd:coordinate
+  a rdfs:Datatype ;
+  tcs:refines xsd:string ;
+  rdfs:label "Coordinate"@en ;
+  rdfs:comment "A longitude / latitude pair making up a coordinate."@en .
+
+xdd:coordinatePolyline
+  a rdfs:Datatype ;
+  tcs:refines xsd:string ;
+  rdfs:label "Coordinate Polyline"@en ;
+  rdfs:comment "A JSON list of coordinates."@en .
+
+xdd:coordinatePolygon
+  a rdfs:Datatype ;
+  rdfs:label "Coordinate Polygon"@en ;
+  tcs:refines xdd:coordinatePolyline ;
+  rdfs:comment "A JSON list of coordinates forming a closed polygon."@en .
+
+xdd:range
+  a rdfs:Datatype ;
+  tcs:tag tcs:abstract ;
+  rdfs:label "Range"@en ;
+  rdfs:comment "Abstract datatype representing a value that is within a range of values. Enables uncertainty to be encoded directly in the data"@en .
+
+xdd:dateRange
+  a rdfs:Datatype ;
+  rdfs:label "Date Range"@en ;
+  tcs:refines xdd:range ;
+  rdfs:comment "A date (YYYY-MM-DD) or an uncertain date range [YYYY-MM-DD1,YYYY-MM-DD2]. Enables uncertainty to be encoded directly in the data"@en .
+
+xdd:gYearRange
+  a rdfs:Datatype ;
+  rdfs:label "Year Range"@en ;
+  tcs:refines xdd:range ;
+  rdfs:comment "A year (e.g. 1999) or an uncertain range of years: (e.g. [1999,2001]). Enables uncertainty to be encoded directly in the data"@en .
+
+xdd:integerRange
+  a rdfs:Datatype ;
+  tcs:refines xdd:range ;
+  rdfs:label "Integer Range"@en ;
+  rdfs:comment "Either an integer (e.g. 30) or an uncertain range of integers [28,30]. Enables uncertainty to be encoded directly in the data"@en.
+
+xdd:decimalRange
+  a rdfs:Datatype ;
+  rdfs:label "Decimal Range"@en ;
+  tcs:refines xdd:range ;
+  rdfs:comment "Either a decimal value (e.g. 23.34) or an uncertain range of decimal values (e.g.[23.4, 4.143]. Enables uncertainty to be encoded directly in the data"@en .
+
+xdd:email
+  a rdfs:Datatype ;
+  tcs:refines xsd:string ;
+  rdfs:label "Email"@en ;
+  rdfs:comment "A valid email address"@en .
+
+xdd:url
+  a rdfs:Datatype ;
+  tcs:refines xsd:string ;
+  rdfs:label "URL"@en ;
+  rdfs:comment "A valid http(s) URL"@en .
+
+xdd:html
+  a rdfs:Datatype ;
+  tcs:refines xsd:string ;
+  rdfs:label "HTML"@en ;
+  rdfs:comment "A string with embedded HTML"@en .
+
+xdd:json
+  a rdfs:Datatype ;
+  tcs:refines xsd:string ;
+  rdfs:label "JSON"@en ;
+  rdfs:comment "A JSON encoded string"@en .
+
+terminus:Document
+  a owl:Class ;
+  rdfs:label "Document Class"@en ;
+  rdfs:comment "A class used to designate the primary data objects managed by the system - relationships and entities"@en .
+
+</code></pre></div><hr><footer role="contentinfo"><p class="text-small text-grey-dk-000 mb-0">Copyright &copy; 2020 - TerminusDB | Distributed by an <a href="https://github.com/terminusdb/terminusdb-server/blob/master/LICENSE">GPL-3.0 license.</a></p></footer></div></div></div></div>

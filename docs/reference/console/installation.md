@@ -17,7 +17,7 @@ Here we are going to explain how to install console into your local machine. Con
 
 [@terminusdb/terminusdb-react-graph](https://github.com/terminusdb/terminusdb-react-graph)
 
-Most likely, if you are running console locally, it's because you are a developer, and thus will be working with the `dev` branch of console. Which would mean that you would want to point to dev branch of the above mentioned modules as well. In order to do so, you want to point npm to our dev repository as well, simply by adding this line to your `.npmrc`inside your terminusdb-console folder.
+Most likely, if you are running console locally, it's because you are a developer, and thus will be working with the `dev` branch of console. Which would mean that you would want to point to dev branch of the above mentioned modules as well. In order to do so, simply add this line to your `.npmrc` inside your terminusdb-console folder.
 
 `@terminusdb:registry=https://api.bintray.com/npm/terminusdb/npm-dev`
 

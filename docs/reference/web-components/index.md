@@ -4,9 +4,9 @@ layout: default
 parent: Reference
 nav_order: 6
 has_children: true
-permalink: /reference/console
+permalink: /reference/web-components
 ---
-# Console
+# Web Components
 
 The TerminusDB Console is a ReactJS application that provides users with an interface for managing and querying TerminusDB. TerminusDB Console is included when you run TerminusDB, so you wont normally need to run this on your own unless you are a developer of TerminusDB.
 

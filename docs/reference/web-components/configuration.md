@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Configuration
-parent: Console
+parent: Web Components
 grand_parent: Reference
 nav_order: 2
 ---

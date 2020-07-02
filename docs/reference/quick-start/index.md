@@ -25,6 +25,7 @@ of the script.
 The file `ENV.example` contains an example `ENV` file.
 
 | ENV name                    | Default value                                                               | Purpose                                                       |
+|-----------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------|
 | TERMINUSDB_DOCKER           | sudo docker                                                                 | Default docker command                                        |
 | TERMINUSDB_CONTAINER        | terminusdb-server                                                           | Name of the running container                                 |
 | TERMINUSDB_REPOSITORY       | terminusdb/terminusdb-server                                                | Docker image                                                  |

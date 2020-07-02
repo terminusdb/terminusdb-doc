@@ -34,15 +34,25 @@ git clone https://github.com/terminusdb/terminusdb-console.git
 
 
 
-After cloning the Repository using the above code, hop into the directory terminusdb-console
+After cloning the Repository using the above code, hop into the directory terminusdb-console via your command line
 
 `cd terminusdb-console`
 
+Then install all dependencies via an npm install
 
+`npm install `
 
+In order to kick start the console, create an .env file under terminusdb-console/console where you will have to define the server, key and user.
 
+`TERMINUSDB_SERVER=http://127.0.0.1:6363/
+TERMINUSDB_KEY=root
+TERMINUSDB_USER=admin`
 
+After creating your .env file, in your command line you are ready to fire the console on your browser by running the below command
 
+`npm run serve`
+
+By running `npm run serve`, this command will automatically kick start your local console in dev mode - `http://localhost:3005/`
 
 
 

@@ -39,7 +39,7 @@ You can clone the repository into your local machine via git clone. Follow the b
 * Clone the Repo
 * Hop into the directory terminusdb-console
 * Install all dependencies 
-* Hope into console folder
+* Hop into console folder
 
 ```shell
 git clone https://github.com/terminusdb/terminusdb-console.git

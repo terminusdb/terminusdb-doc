@@ -30,9 +30,7 @@ Most likely, if you are running console locally, it's because you are a develope
 
 - - -
 
-## Install from bintray
 
-content of section 1
 
 ## Clone from GitHub
 

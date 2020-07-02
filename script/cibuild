@@ -12,7 +12,7 @@ rm -rf _site
 mkdir _site
 
 # clone remote repo to "_site"
-git clone https://${GH_TOKEN}@github.com/terminusdb/terminusdb-doc --branch test _site
+git clone https://${GH_TOKEN}@github.com/terminusdb/terminusdb-doc --branch gh-pages _site
 
 bundle exec rake move:init
 
@@ -25,4 +25,4 @@ git config user.email "robin@datachemist.com"
 git config user.name "Robin"
 git add --all
 git commit -a -m "Travis #$TRAVIS_BUILD_NUMBER"
-git push --force origin test
+git push --force origin gh-pages

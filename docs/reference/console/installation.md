@@ -26,11 +26,23 @@ content of section 1
 
 ## Clone from GitHub
 
-You can clone the repo into your local machine via git clone
+You can clone the repository into your local machine via git clone and run console locally.
 
 ```shell
 git clone https://github.com/terminusdb/terminusdb-console.git
 ```
+
+
+
+After cloning the Repository using the above code, hop into the directory terminusdb-console
+
+`cd terminusdb-console`
+
+
+
+
+
+
 
 
 

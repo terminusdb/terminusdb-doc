@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Quick Start
+title: Quickstart
 parent: Reference
 nav_order: 5
 has_children: true
-permalink: /reference/quick-start
+permalink: /reference/quickstart
 ---
 
-# Quick Start
+# Quickstart
 
 Quickstart is a shell script that makes use of Docker to run TerminusDB.
 It is currently the official supported way of running TerminusDB.

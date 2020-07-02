@@ -34,34 +34,33 @@ Most likely, if you are running console locally, it's because you are a develope
 
 ## Clone from GitHub
 
-You can clone the repository into your local machine via git clone and run console locally.
+You can clone the repository into your local machine via git clone. Follow the below steps 
+
+* Clone the Repo
+* Hop into the directory terminusdb-console
+* Install all dependencies 
+* Hope into console folder
 
 ```shell
 git clone https://github.com/terminusdb/terminusdb-console.git
+cd terminusdb-console
+npm install 
+cd ./console
+
 ```
 
+In order to kick start the console, create an .env file inside console folder, where you will have to define the server end point, key and user.
 
-
-After cloning the Repository using the above code, hop into the directory terminusdb-console via your command line
-
-`cd terminusdb-console`
-
-Then install all dependencies via an npm install
-
-`npm install `
-
-In order to kick start the console, create an .env file under terminusdb-console/console where you will have to define the server, key and user.
-
-`TERMINUSDB_SERVER=http://127.0.0.1:6363/
-TERMINUSDB_KEY=root
-TERMINUSDB_USER=admin`
+`TERMINUSDB_SERVER=https://127.0.0.1:6363/
+TERMINUSDB_KEY=my_key
+TERMINUSDB_USER=my_user_name`
 
 After creating your .env file, in your command line you are ready to fire the console on your browser by running the below command
 
-`npm run serve`
+```shell
+npm run serve
+```
 
-By running `npm run serve`, this command will automatically kick start your local console in dev mode - `http://localhost:3005/`
+This command will automatically kick start your local console in dev mode - `http://localhost:3005/`
 
 If you also want to have local versions of the dependencies of console, such as `@terminusdb/terminusdb-client`, then you should clone those repos locally and use `npm link` to make npm use the local version.
-
-Use `npmlink` if you want to use local packages, or set `.npmrc` if you want to use our dev packages.

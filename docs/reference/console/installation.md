@@ -54,12 +54,7 @@ After creating your .env file, in your command line you are ready to fire the co
 
 By running `npm run serve`, this command will automatically kick start your local console in dev mode - `http://localhost:3005/`
 
-
-
 If you also want to have local versions of the dependencies of console, such as `@terminusdb/terminusdb-client`, then you should clone those repos locally and use `npm link` to make npm use the local version.
 
-**Do not edit `package.json` or the webpack config with file paths** Use `npm
-link` if you want to use local packages, or set `.npmrc` if you want to use our
+Use `npmlink` if you want to use local packages, or set `.npmrc` if you want to use our
 dev packages.
-
-etc

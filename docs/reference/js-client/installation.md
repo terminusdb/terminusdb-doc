@@ -1,0 +1,49 @@
+---
+title: Installation
+layout: default
+parent: JS Client
+grand_parent: Reference
+nav_order: 1
+---
+# Installation
+
+{: .no_toc }
+
+Here we are going to explain how to 
+
+## Table of contents
+
+{: .no_toc .text-delta }
+
+1. TOC
+   {:toc}
+
+- - -
+
+## Dependencies 
+
+The TerminusDB Javascript Client has no external dependencies. It comes bundled with the axios libarary for communicating over HTTP, but otherwise has no third party dependencies.  
+
+## Install from bintray
+
+Installation
+
+TerminusDB Client can be used as either a Node.js module available through the npm registry
+
+Installation is done using the npm install command:
+
+Using npm:
+
+$ npm install --save @terminusdb/terminusdb-client
+
+Minified Script
+
+Using cdn:
+
+<script src="https://unpkg.com/@terminusdb/terminusdb-client/dist/terminusdb-client.min.js"></script>
+
+Downloading:
+
+Download the terminusdb-client.min.js file from the /dist directory and save it to your location of choice, then:
+
+<script src="http://my.saved.location/terminusdb-client.min.js"></script> 

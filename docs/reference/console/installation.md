@@ -13,6 +13,10 @@ Here we are going to explain how to install console into your local machine.
 
 Most likely, if you are running console locally, it's because you are a developer, and thus will be working with the `dev` branch of console, so you probably want to point npm to our dev repository by adding this line to your .npmrc
 
+`@terminusdb:registry=https://api.bintray.com/npm/terminusdb/npm-dev`
+
+``
+
 ## Table of contents
 
 {: .no_toc .text-delta }

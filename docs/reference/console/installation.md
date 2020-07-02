@@ -51,8 +51,12 @@ cd ./console
 
 In order to kick start the console, create an .env file inside console folder, where you will have to define the server end point, key and user.
 
-`TERMINUSDB_SERVER=https://127.0.0.1:6363/
-TERMINUSDB_KEY=my_key
+`TERMINUSDB_SERVER=https://127.0.0.1:6363/`
+
+`
+TERMINUSDB_KEY=my_key`
+
+`
 TERMINUSDB_USER=my_user_name`
 
 After creating your .env file, in your command line you are ready to fire the console on your browser by running the below command

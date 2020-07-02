@@ -9,15 +9,15 @@ nav_order: 1
 
 {: .no_toc }
 
-Here we are going to explain how to install console into your local machine. But before we do so, it is necessary to understand how console is dependent on other external modules. Below is a list of modules on which console depends on
+Here we are going to explain how to install console into your local machine. Console is dependent on the below modules as well... 
 
-[terminusdb-client ](https://github.com/terminusdb/terminusdb-client)
+[@terminusdb/terminusdb-client](https://github.com/terminusdb/terminusdb-client)
 
+[@terminusdb/terminusdb-react-table](https://github.com/terminusdb/terminusdb-react-table)
 
+[@terminusdb/terminusdb-react-graph](https://github.com/terminusdb/terminusdb-react-graph)
 
-
-
-Most likely, if you are running console locally, it's because you are a developer, and thus will be working with the `dev` branch of console, so you probably want to point npm to our dev repository, by adding this line to your `.npmrc `inside your terminusdb-console folder.
+Most likely, if you are running console locally, it's because you are a developer, and thus will be working with the `dev` branch of console, so you probably want to point npm to our dev repository, by adding this line to your `.npmrc`inside your terminusdb-console folder.
 
 `@terminusdb:registry=https://api.bintray.com/npm/terminusdb/npm-dev`
 

@@ -9,7 +9,9 @@ nav_order: 1
 
 {: .no_toc }
 
-Here we are going to explain how to 
+Here we are going to explain how to install console into your local machine.
+
+Most likely, if you are running console locally, it's because you are a developer, and thus will be working with the `dev` branch of console, so you probably want to point npm to our dev repository by adding this line to your .npmrc
 
 ## Table of contents
 
@@ -56,5 +58,4 @@ By running `npm run serve`, this command will automatically kick start your loca
 
 If you also want to have local versions of the dependencies of console, such as `@terminusdb/terminusdb-client`, then you should clone those repos locally and use `npm link` to make npm use the local version.
 
-Use `npmlink` if you want to use local packages, or set `.npmrc` if you want to use our
-dev packages.
+Use `npmlink` if you want to use local packages, or set `.npmrc` if you want to use our dev packages.

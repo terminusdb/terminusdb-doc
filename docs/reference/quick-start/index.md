@@ -12,10 +12,6 @@ permalink: /reference/quick-start
 Quickstart is a shell script that makes use of Docker to run TerminusDB.
 It is currently the official supported way of running TerminusDB.
 
-## Table of Contents
-{: .fs-6 .fw-300 }
-
-
 ## ENV variables
 
 TerminusDB is configurable from ENV variables that can be set by either setting ENV

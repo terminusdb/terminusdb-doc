@@ -8,7 +8,7 @@ nav_order: 6
 # Importing and Cleaning Data From CSVs
 {: .no_toc }
 
-In this tutorial, we will learn how to load data from a csv file then clean it up with some data wrangling, like changing the type of the data, combining strings and generate ids for objects.
+In this tutorial, we will learn how to load data from a CSV file then clean it up with some data wrangling, like changing the type of the data, combining strings and generate ids for objects.
 
 ## Jump to
 {: .no_toc .text-delta }
@@ -22,7 +22,7 @@ In this tutorial, we will learn how to load data from a csv file then clean it u
 
 In our example, we will try to load data from this CSV: <https://terminusdb.com/t/data/bike_tutorial.csv>
 
-This can be done by making woql queries. In this tutorial, we will be making queries in the TerminusDB console. However, you can also do ti with the TerminusDB clients.
+This can be done by making woql queries. In this tutorial, we will be making queries in the TerminusDB console. However, you can also do it with TerminusDB clients.
 
 To make a query in the console. Go to the query tab by clicking on `query` at the top.
 
@@ -46,9 +46,9 @@ WOQL.get(
 
 This script involved `get`, `as` and `remote` method. For more explanation about those methods, please see their reference in woql.
 
-This is loading a remote csv from the link. For loading a local file, please see the reference of `file` method.
+This is loading a remote CSV from the link. For loading a local file, please see the reference of `file` method.
 
-If you click `run query` now, you will see the csv is imported and the result is shown in a tabular format.
+If you click `run query` now, you will see the CSV is imported and the result is shown in a tabular format.
 
 ![read csv](/docs/assets/images/tutorials/read-csv.png)
 
@@ -106,9 +106,9 @@ const wrangles = [
 WOQL.and(csv, ...wrangles)
 ```
 
-For explanation about the `idgen`, `typecast` and `concat` methods that is used in the data wrangling, please see their reference in woql.
+For explanations about the `idgen`, `typecast` and `concat` methods that are used in the data wrangling, please see their reference in woql.
 
-If you click `run query` now, you will see that we have got new variables that is created with the data wrangling. However, the data is not loaded in the graph yet.
+If you click `run query` now, you will see that we have got new variables that are created with the data wrangling. However, the data is not loaded in the graph yet.
 
 ![data wrangling](/docs/assets/images/tutorials/data-wrangling.png)
 
@@ -168,7 +168,7 @@ WOQL.and(inputs, inserts);
 
 For details about how `insert` works, please refer to the woql reference.
 
-As this time we are updating the graph, we can put in a commit message (e.g. Insert data form csv) in the box above the query which says "Enter reason for update here" before we hit `run query`. If there's no commit message given, a default message will be used as a commit message.
+As this time we are updating the graph, we can put in a commit message (e.g. Insert data form CSV) in the box above the query which says "Enter reason for update here" before we hit `run query`. If there's no commit message given, a default message will be used as a commit message.
 
 ![commit message](/docs/assets/images/tutorials/commit-message.png)
 

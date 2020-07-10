@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Configuration
-parent: Quick Start
+parent: Quickstart
 grand_parent: Reference
 nav_order: 1
 ---

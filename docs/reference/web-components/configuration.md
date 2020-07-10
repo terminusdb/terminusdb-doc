@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Installation
-parent: Console
+title: Configuration
+parent: Web Components
 grand_parent: Reference
-nav_order: 1
+nav_order: 2
 ---
 
-# Installation
+# Configuration
 {: .no_toc }
 
 (intro to what this page is about)

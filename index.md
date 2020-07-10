@@ -25,7 +25,7 @@ Documentation for TerminusDB - an open-source graph database that stores data li
 - Docker
 - Git
 
-### Quick start: install with docker
+### Quickstart: install with docker
 
 Get the script in the [terminusdb-quickstart repo](https://github.com/terminusdb/terminusdb-quickstart), cd to it
 
@@ -50,7 +50,7 @@ d9fa4a1acf93: Pulling fs layer
 [ ... ]
 ```
 
-For details, go to [Quick install with docker](/docs/getting-started/quick-install/)
+For details, go to [Quickstart](/docs/quickstart/)
 
 ---
 

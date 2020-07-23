@@ -34,9 +34,7 @@ Finally commits point to the instance and schema graphs associated with a commit
 
 We will look more closely at the commit graph and then move on to the various operations which TerminusDB can perform.
 
-
-
 Here are some posts:
 
-1. Blog post 1
+1. https://youtu.be/dulKiZuI_NE
 2. Blog post 2

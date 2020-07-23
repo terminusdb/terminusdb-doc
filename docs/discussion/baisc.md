@@ -1,11 +1,11 @@
 ---
+title: Basic Ideas
 layout: default
-title: Baisc Ideas
 parent: Discussion
 nav_order: 1
 ---
+# Basic Ideas
 
-# Baisc Ideas
 {: .no_toc }
 
 Here are some posts:

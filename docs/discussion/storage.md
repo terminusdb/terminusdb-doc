@@ -36,5 +36,7 @@ We will look more closely at the commit graph and then move on to the various op
 
 Here are some posts:
 
-1. https://youtu.be/dulKiZuI_NE
+1. [TerminusDB: Database Architecture](https://youtu.be/dulKiZuI_NE)
+
+   ![](/docs/assets/uploads/db-arch.jpg)
 2. Blog post 2

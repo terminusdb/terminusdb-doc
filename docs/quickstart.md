@@ -14,7 +14,9 @@ nav_order: 2
 
 ## What is TerminusDB and what does it do?
 
-TerminusDB is an open source graph database 
+TerminusDB is an open-source full-featured in-memory graph database management system with a rich query language, WOQL.
+
+TerminusDB allows for the whole suite of revision control features: branch, merge, squash, rollback, blame, and time-travel.
 
 - - -
 

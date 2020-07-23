@@ -60,7 +60,7 @@ For most use cases, that’s all you really need to know. You define a hierarchy
 
 Here are some posts:
 
-1. https://youtu.be/IdsUAiQ6TS8
+1. [Data Modeling: Painting Pictures in the Medium of Pure Abstraction](https://youtu.be/IdsUAiQ6TS8) 
 
    ![](/docs/assets/uploads/model.jpg)
 2. Blog post 2

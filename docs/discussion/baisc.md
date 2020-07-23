@@ -22,3 +22,5 @@ Here are some posts:
 
 1. [Technical history of the development of TerminusDB](https://terminusdb.com/blog/2020/04/14/terminusdb-a-technical-history/)
 2. [Continuous Everything as Code](https://terminusdb.com/blog/2020/05/29/continuous-everything-as-code/)
+
+   ![](/docs/assets/uploads/code.jpg)

@@ -47,17 +47,20 @@ Basic Usage:
 ```javascript
 
 let client = new TerminusClient.Client(SERVER_URL, opts)
-client.connect(opts).then(() => {
+client.connect(server, opts).then(() => {
     client.db("test")
     client.checkout("dev")
     client.getTriples("schema", "main")
 })
 ```
 
+## Connecting To Server
 
+* Arguments:
+** Server - the URL of the TerminusDB server you want to connect to:
+** Options:
+***  
 
-## 
+* client.connect(server, options)
 
-content of section 2
-
-etc
+## Changing Server Endpoint - 

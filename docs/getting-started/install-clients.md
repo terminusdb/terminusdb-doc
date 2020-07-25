@@ -70,18 +70,18 @@ Download the terminusdb-client.min.js file from the /dist directory and save it 
 
 Terminus Client Python can be download form PyPI using pip:
 ```
-python -m pip install terminusdb-client-python
+python -m pip install terminusdb-client
 ```
 this only include the core Python Client and WOQLQuery.
 
 If you want to use woqlDataframe:
 ```
-python -m pip install terminusdb-client-python[dataframe]
+python -m pip install terminusdb-client[dataframe]
 ```
 
 *if you are installing form zsh you have to quote the argument like this:*
 ```
-python -m pip install 'terminusdb-client-python[dataframe]'
+python -m pip install 'terminusdb-client[dataframe]'
 ```
 
 Install from source:

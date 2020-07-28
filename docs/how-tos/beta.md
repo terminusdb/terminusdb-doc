@@ -73,6 +73,6 @@ TERMINUSDB_HTTPS_ENABLED=true
 ```
 
 3. Run `./terminusdb-container run`
-4. You should be able to access terminusdb on https://127.0.0.1:6363/console/ . Unfortunately, the browser
+4. You should be able to access terminusdb on https://127.0.0.1:6363/ . Unfortunately, the browser
    will give you a certificate warning. Do not worry, since the server is running on your own machine, nobody
    is intercepting your traffic.

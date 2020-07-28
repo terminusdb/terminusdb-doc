@@ -18,6 +18,7 @@ WOQL Client Class
 TerminusDB API
 Accessing and Changing Client Context
 How Context Affects API Calls
+Utility Functions
 
 {:toc}
 
@@ -99,7 +100,7 @@ Return Type:
     a JSON-LD document of system:User class [link]
 
 Example
-    client.connect("https://127.0.0.1:6363/api/", {key="root"})
+    client.connect("https://127.0.0.1:6363/", {key="root"})
 
 ### Create Database
 
@@ -231,11 +232,12 @@ Arguments:
     commit_msg (string - optional) - a message describing the reason for the change that will be written into the commit log (only relevant if the query contains an update)
 
 Returns Promise: HTTP 200 status on success, contents being a WOQL Query Response, HTTP error code on failure
-    bindings: 
-    variables_used:
-    deletes
-    inserts:
-    ??
+    api:WoqlResponse 
+        bindings: (Array) - an array of json values, each representing a single result, with each being indexed by variables 
+        api:variable_names: (Array) - an array of strings, which shows the order in which variables were used in the query
+        deletes: (int) - the number of triples that were deleted by the query 
+        inserts: (int) - the number of triples that were inserted by the query
+        transaction_retry_count: (int) - the number of times the transaction was restarted due to contention
 
 Example
     let result = await client.query(WOQL.star())
@@ -453,7 +455,7 @@ Example
 | updateTriples  | db from organization         | Database for operation   | local                       | NA                        | NA                         |
 | query          | db from organization         | Database for operation   | Repository for operation    | branch to be queried      | commit root for query*     |
 | clonedb        | db from organization         | Database for operation   | local                       | NA                        | NA                         |
-| branch         | db from organization         | Database for operation   | local                       | NA                        | NA                         |
+| branch         | db from organization         | Database for operation   | Repository of branch origin | branch (head) of origin   | commit id of branch origin*|
 | rebase         | db from organization         | Database for operation   | Repository of rebase target | rebase to target branch   | NA                         |
 | push           | db from organization         | Database for operation   | local                       | push from branch          | NA                         |
 | pull           | db from organization         | Database for operation   | local                       | pull to branch            | NA                         |
@@ -464,6 +466,7 @@ Example
 ## Setting and Getting Client Configuration Options
 
 * server
+* api
 * uid
 * user_organization
 * local_auth
@@ -489,6 +492,23 @@ Returns:
   
 Example:
     let server_url = client.server()
+
+
+### api
+
+client.api()
+
+Description: Retrieve the URL of the server's API base that we are currently connected to
+
+Status: Stable
+
+Arguments: None 
+
+Returns:
+    (string) the URL of the TerminusDB server api endpoint we are connected to (typically server() + "api/")
+  
+Example:
+    let api_url = client.api()
 
 ### uid
 
@@ -660,7 +680,7 @@ Returns: None
 Example:
     client.set({key: "mypass", branch: "dev", repo: "origin"})
 
-## Useful Utility Functions
+## Utility Functions
 
 ### copy 
 

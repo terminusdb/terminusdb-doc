@@ -17,6 +17,7 @@ Windows users: Git Bash and Docker
 
 git clone https://github.com/terminusdb/terminusdb-quickstart.git
 cd terminusdb-quickstart
+git checkout rc
 ```
 
 2. Run the following command to change the default options, to be part of our beta
@@ -42,7 +43,7 @@ echo "
 #TERMINUSDB_LABEL_FILE=labels
 
 # Version
-TERMINUSDB_TAG=beta
+#TERMINUSDB_TAG=beta
 
 # Name of Docker Storage Volume
 #TERMINUSDB_STORAGE=terminusdb_storage_local

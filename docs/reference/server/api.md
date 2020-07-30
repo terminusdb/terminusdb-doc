@@ -28,7 +28,7 @@ The TerminusDB Server HTTP API. JSON documents have optional elements notated wi
 
 ## Connect
 
-```jsx
+```
 GET http://localhost:6363/
 ```
 
@@ -40,7 +40,7 @@ user.
 
 ## Create Database
 
-```jsx
+```
 POST http://localhost:6363/db/<organization>/<dbid>
 ```
 
@@ -71,14 +71,14 @@ defaults to false.
 
 ## Delete Database
 
-```jsx
+```
 DELETE http://localhost:6363/<organization>/<dbid>
 ```
 Delete the database with organisation <organization> and database ID, `dbid`.
 
 ## Get Triples
 
-```jsx
+```
 GET http://localhost:6363/triples/<organization>/<dbid>/<repo>/branch/<branchid>/<type>/<name><?format=turtle>
 GET http://localhost:6363/triples/<organization>/<dbid>/<repo>/commit/<refid>/<type>/<name><?format=turtle>
 ```
@@ -90,7 +90,7 @@ support other formats.
 
 ## Update Triples
 
-```jsx
+```
 POST http://localhost:6363/triples/<organization>/<dbid>/local/branch/<branchid>/<type>/<name>
 ```
 Post argument is a JSON document of the following form
@@ -107,7 +107,7 @@ it can be an empty string).
 
 ## Query
 
-```jsx
+```
 POST http://localhost:6363/woql
 POST http://localhost:6363/woql/<organization>/<dbid>
 POST http://localhost:6363/woql/<organization>/<dbid>/_meta
@@ -142,7 +142,7 @@ result object, which has the form:
 
 ## Clone
 
-```jsx
+```
 POST http://localhost:6363/clone/<organization>/[<new_dbid>]
 ```
 
@@ -164,7 +164,7 @@ The other options are exactly as with create db.
 
 ## Fetch
 
-```jsx
+```
 POST http://localhost:6363/fetch/<organization>/<dbid>
 ```
 
@@ -173,7 +173,7 @@ commit history.
 
 ## Rebase
 
-```jsx
+```
 POST http://localhost:6363/rebase/<organization>/<dbid>[/<repo>/branch/<branchid>]
 ```
 
@@ -194,7 +194,7 @@ of diverging commits.
 
 ## Push
 
-```jsx
+```
 POST http://localhost:6363/push/<organization>/<dbid>[/<repo>/branch/<branchid>/]
 ```
 
@@ -202,7 +202,7 @@ Pushes deltas from this database to the remote repository.
 
 ## Pull
 
-```jsx
+```
 POST http://localhost:6363/push/<organization>/<dbid>[/<repo>/branch/<branchid>/]
 ```
 JSON API document is:
@@ -217,7 +217,7 @@ Fetch layers from `remote`, then attempt a rebase from the remote branch `remote
 
 ## Branch
 
-```jsx
+```
 POST http://localhost:6363/branch/<organization>/<dbid>/<repo>/<new_branchid>
 ```
 
@@ -232,7 +232,7 @@ Creates a new branch as specified by the URI, starting from the branch given by 
 
 ## Create Graph
 
-```jsx
+```
 POST http://localhost:6363/graph/<organization>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
 ```
 
@@ -246,7 +246,7 @@ This API call creates a new graph as specified by the absolute graph descriptor 
 
 ## Delete Graph
 
-```jsx
+```
 DELETE http://localhost:6363/graph/<organization>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
 ```
 

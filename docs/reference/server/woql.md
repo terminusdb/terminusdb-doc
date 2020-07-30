@@ -23,7 +23,7 @@ to this ontology.
 
 # Terminus DB WOQL Query Syntax Schema (`http://terminusdb.com/schema/woql`)
 
-Authors: Gavin Mendel-Gleason Kevin C. Feeney 
+Authors: Gavin Mendel-Gleason Kevin C. Feeney
 
 Schema describing all the structure of the WOQL query language
 
@@ -31,7 +31,9 @@ Schema describing all the structure of the WOQL query language
 
 An arbitrary node identifier
 
-### Super classes:   (`woql:NodeRestriction`)
+### Super classes 
+ *  (`woql:NodeRestriction`)
+
 
 
 ### Property:  node (`woql:node`)
@@ -47,7 +49,9 @@ The URI of an object of an edge
 
 A WOQL logic variable
 
-### Super classes:   (`woql:VariableNameRestriction`)
+### Super classes 
+ *  (`woql:VariableNameRestriction`)
+
 
 
 ### Property:  Variable Name (`woql:variable_name`)
@@ -63,7 +67,11 @@ A name for the variable
 
 Box for an element of an array
 
-### Super classes:   Indexable (`woql:Indexable`) ,  (`woql:IndexableRestriction`) ,  (`woql:Value`)
+### Super classes 
+ *  Indexable (`woql:Indexable`)
+ *  (`woql:IndexableRestriction`)
+ *  (`woql:Value`)
+
 
 
 
@@ -71,7 +79,9 @@ Box for an element of an array
 
 An arbitrary node identifier
 
-### Super classes:   (`woql:DatatypeRestriction`)
+### Super classes 
+ *  (`woql:DatatypeRestriction`)
+
 
 
 ### Property:  datatype (`woql:datatype`)
@@ -87,7 +97,9 @@ The datatype value of an object of an edge
 
 Something with an index
 
-### Super classes:   (`woql:IndexableRestriction`)
+### Super classes 
+ *  (`woql:IndexableRestriction`)
+
 
 
 ### Property:  index (`woql:index`)
@@ -103,7 +115,9 @@ The index of a list
 
 A WOQL Query
 
-### Super classes:   Document Class (`system:Document`)
+### Super classes 
+ *  Document Class (`system:Document`)
+
 
 
 ### Property:  document (`woql:document`)
@@ -119,7 +133,14 @@ Document associated with a query
 
 An element of a list of queries
 
-### Super classes:   Document Class (`system:Document`) ,  Indexable (`woql:Indexable`) ,  (`woql:IndexableRestriction`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Indexable (`woql:Indexable`)
+ *  (`woql:IndexableRestriction`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 
@@ -127,7 +148,10 @@ An element of a list of queries
 
 A Query with an indexed sub-query
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  query list (`woql:query_list`)
@@ -143,7 +167,11 @@ A list of queries
 
 A WOQL Query with a subquery
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+
 
 
 ### Property:  (`woql:query`)
@@ -159,7 +187,11 @@ A WOQL Query with a subquery
 
 A conjunction of clauses
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  Query with indexable sub query (`woql:QueryWithIndexedSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  Query with indexable sub query (`woql:QueryWithIndexedSubQuery`)
+
 
 
 
@@ -170,7 +202,12 @@ Introduce a default collection.
  'comment' : collection_descriptor}
 
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 ### Property:  comment (`woql:comment`)
@@ -186,7 +223,13 @@ A comment
 
 A query with a graph filter for selection
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  Query with graph filter (`woql:QueryWithGraphFilter`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  Query with graph filter (`woql:QueryWithGraphFilter`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 
@@ -194,7 +237,13 @@ A query with a graph filter for selection
 
 A query with a graph for selection
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  Query with graph (`woql:QueryWithGraph`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  Query with graph (`woql:QueryWithGraph`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 
@@ -202,7 +251,11 @@ A query with a graph for selection
 
 A disjunction of clauses
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  Query with indexable sub query (`woql:QueryWithIndexedSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  Query with indexable sub query (`woql:QueryWithIndexedSubQuery`)
+
 
 
 
@@ -210,7 +263,10 @@ A disjunction of clauses
 
 A query with a specified graph
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  graph (`woql:graph`)
@@ -226,7 +282,10 @@ the string to form a graph descriptor
 
 A query with a graph filter
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  graph filter (`woql:graph_filter`)
@@ -242,7 +301,13 @@ the string to form a graph filter descriptor
 
 A Selection of variables from subquery
 
-### Super classes:   Document Class (`system:Document`) ,  Has Variable List (`woql:HasVariableList`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Has Variable List (`woql:HasVariableList`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 
@@ -254,7 +319,12 @@ Introduce a default collection.
  'query' : query}
 
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 ### Property:  Collection (`woql:collection`)
@@ -270,7 +340,12 @@ A collection
 
 An element of a list by position
 
-### Super classes:   Indexable (`woql:Indexable`) ,  (`woql:IndexableRestriction`) ,  Variable (`woql:Variable`) ,  (`woql:VariableNameRestriction`)
+### Super classes 
+ *  Indexable (`woql:Indexable`)
+ *  (`woql:IndexableRestriction`)
+ *  Variable (`woql:Variable`)
+ *  (`woql:VariableNameRestriction`)
+
 
 
 
@@ -278,7 +353,10 @@ An element of a list by position
 
 A binary operator, with left and right
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  left (`woql:left`)
@@ -302,7 +380,11 @@ The right of a Binary Operator
 
 Defines unification between two things
 
-### Super classes:   Document Class (`system:Document`) ,  Binary Operator (`woql:BinaryOperator`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Binary Operator (`woql:BinaryOperator`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -310,7 +392,15 @@ Defines unification between two things
 
 A triple with graph filter
 
-### Super classes:   Document Class (`system:Document`) ,  Object (`woql:HasObject`) ,  Predicate (`woql:HasPredicate`) ,  Subject (`woql:HasSubject`) ,  Query (`woql:Query`) ,  Query with graph filter (`woql:QueryWithGraphFilter`) ,  Triple (`woql:Triple`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Object (`woql:HasObject`)
+ *  Predicate (`woql:HasPredicate`)
+ *  Subject (`woql:HasSubject`)
+ *  Query (`woql:Query`)
+ *  Query with graph filter (`woql:QueryWithGraphFilter`)
+ *  Triple (`woql:Triple`)
+
 
 
 
@@ -318,7 +408,11 @@ A triple with graph filter
 
 Find substrings of a given string
 
-### Super classes:   Document Class (`system:Document`) ,  HasLength (`woql:HasLength`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  HasLength (`woql:HasLength`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  after (`woql:after`)
@@ -358,7 +452,10 @@ The substring of a substring search
 
 Subsumption of one class by another
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  child (`woql:child`)
@@ -382,7 +479,13 @@ The parent of a subsumption
 
 A edge in the graph specified by subject, predicate, object
 
-### Super classes:   Document Class (`system:Document`) ,  Object (`woql:HasObject`) ,  Predicate (`woql:HasPredicate`) ,  Subject (`woql:HasSubject`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Object (`woql:HasObject`)
+ *  Predicate (`woql:HasPredicate`)
+ *  Subject (`woql:HasSubject`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -390,7 +493,10 @@ A edge in the graph specified by subject, predicate, object
 
 A query which references a document
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -398,7 +504,11 @@ A query which references a document
 
 Read an object as JSON
 
-### Super classes:   Document Class (`system:Document`) ,  Document Query (`woql:DocumentQuery`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Document Query (`woql:DocumentQuery`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -406,7 +516,15 @@ Read an object as JSON
 
 Add a quad
 
-### Super classes:   Document Class (`system:Document`) ,  Object (`woql:HasObject`) ,  Predicate (`woql:HasPredicate`) ,  Subject (`woql:HasSubject`) ,  Query (`woql:Query`) ,  Query with graph (`woql:QueryWithGraph`) ,  Triple (`woql:Triple`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Object (`woql:HasObject`)
+ *  Predicate (`woql:HasPredicate`)
+ *  Subject (`woql:HasSubject`)
+ *  Query (`woql:Query`)
+ *  Query with graph (`woql:QueryWithGraph`)
+ *  Triple (`woql:Triple`)
+
 
 
 
@@ -414,7 +532,14 @@ Add a quad
 
 Add a triple
 
-### Super classes:   Document Class (`system:Document`) ,  Object (`woql:HasObject`) ,  Predicate (`woql:HasPredicate`) ,  Subject (`woql:HasSubject`) ,  Query (`woql:Query`) ,  Triple (`woql:Triple`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Object (`woql:HasObject`)
+ *  Predicate (`woql:HasPredicate`)
+ *  Subject (`woql:HasSubject`)
+ *  Query (`woql:Query`)
+ *  Triple (`woql:Triple`)
+
 
 
 
@@ -422,7 +547,9 @@ Add a triple
 
 An arithmetic value - float, int, bignum, etc.
 
-### Super classes:   (`woql:Value`)
+### Super classes 
+ *  (`woql:Value`)
+
 
 
 
@@ -430,7 +557,10 @@ An arithmetic value - float, int, bignum, etc.
 
 As Var
 
-### Super classes:   Variable (`woql:Variable`) ,  (`woql:VariableNameRestriction`)
+### Super classes 
+ *  Variable (`woql:Variable`)
+ *  (`woql:VariableNameRestriction`)
+
 
 
 ### Property:  var type (`woql:var_type`)
@@ -446,7 +576,9 @@ An AsVar casting type
 
 Binary Arithmetic Operator
 
-### Super classes:   Arithmetic Expression (`woql:ArithmeticExpression`)
+### Super classes 
+ *  Arithmetic Expression (`woql:ArithmeticExpression`)
+
 
 
 ### Property:  first (`woql:first`)
@@ -470,7 +602,10 @@ The second argument of a binary operator
 
 Concatenate a list of strings
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  list (`woql:concat_list`)
@@ -494,7 +629,11 @@ The string which has been concatenated
 
 Delete an object as JSON
 
-### Super classes:   Document Class (`system:Document`) ,  Document Query (`woql:DocumentQuery`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Document Query (`woql:DocumentQuery`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -502,7 +641,15 @@ Delete an object as JSON
 
 Delete a quad
 
-### Super classes:   Document Class (`system:Document`) ,  Object (`woql:HasObject`) ,  Predicate (`woql:HasPredicate`) ,  Subject (`woql:HasSubject`) ,  Query (`woql:Query`) ,  Query with graph (`woql:QueryWithGraph`) ,  Triple (`woql:Triple`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Object (`woql:HasObject`)
+ *  Predicate (`woql:HasPredicate`)
+ *  Subject (`woql:HasSubject`)
+ *  Query (`woql:Query`)
+ *  Query with graph (`woql:QueryWithGraph`)
+ *  Triple (`woql:Triple`)
+
 
 
 
@@ -510,7 +657,14 @@ Delete a quad
 
 Delete a triple
 
-### Super classes:   Document Class (`system:Document`) ,  Object (`woql:HasObject`) ,  Predicate (`woql:HasPredicate`) ,  Subject (`woql:HasSubject`) ,  Query (`woql:Query`) ,  Triple (`woql:Triple`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Object (`woql:HasObject`)
+ *  Predicate (`woql:HasPredicate`)
+ *  Subject (`woql:HasSubject`)
+ *  Query (`woql:Query`)
+ *  Triple (`woql:Triple`)
+
 
 
 
@@ -518,7 +672,10 @@ Delete a triple
 
 Integer division
 
-### Super classes:   Arithmetic Expression (`woql:ArithmeticExpression`) ,  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+### Super classes 
+ *  Arithmetic Expression (`woql:ArithmeticExpression`)
+ *  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+
 
 
 
@@ -526,7 +683,10 @@ Integer division
 
 Arithmetic division
 
-### Super classes:   Arithmetic Expression (`woql:ArithmeticExpression`) ,  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+### Super classes 
+ *  Arithmetic Expression (`woql:ArithmeticExpression`)
+ *  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+
 
 
 
@@ -534,7 +694,10 @@ Arithmetic division
 
 Eval an arithmetic expression
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  expression (`woql:expression`)
@@ -558,7 +721,10 @@ The arithmetic expression under evaluation
 
 Arithmetic exponentiation
 
-### Super classes:   Arithmetic Expression (`woql:ArithmeticExpression`) ,  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+### Super classes 
+ *  Arithmetic Expression (`woql:ArithmeticExpression`)
+ *  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+
 
 
 
@@ -566,7 +732,9 @@ Arithmetic exponentiation
 
 A File Query Resource
 
-### Super classes:   Query Resource (`woql:QueryResource`)
+### Super classes 
+ *  Query Resource (`woql:QueryResource`)
+
 
 
 ### Property:  file (`woql:file`)
@@ -582,7 +750,10 @@ File associated with a query resource
 
 The floor of a floating point number
 
-### Super classes:   Arithmetic Expression (`woql:ArithmeticExpression`) ,  Binary Arithmetic Operator (`woql:UnaryArithmeticOperator`)
+### Super classes 
+ *  Arithmetic Expression (`woql:ArithmeticExpression`)
+ *  Binary Arithmetic Operator (`woql:UnaryArithmeticOperator`)
+
 
 
 
@@ -590,7 +761,11 @@ The floor of a floating point number
 
 Get variable bindings from a resource
 
-### Super classes:   Document Class (`system:Document`) ,  Get or Put (`woql:GetOrPut`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Get or Put (`woql:GetOrPut`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -598,7 +773,10 @@ Get variable bindings from a resource
 
 Abstract class for Get or Put
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  as vars (`woql:as_vars`)
@@ -622,7 +800,11 @@ A resource for woql:Get
 
 One value greater than another
 
-### Super classes:   Document Class (`system:Document`) ,  Binary Operator (`woql:BinaryOperator`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Binary Operator (`woql:BinaryOperator`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -630,7 +812,12 @@ One value greater than another
 
 Group a query by a spec
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 ### Property:  grouped (`woql:group_by`)
@@ -662,7 +849,11 @@ Variable which to group
 
 A reversible unique identifier generated from a Base and a Key
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  URI Generator (`woql:URIGenerator`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  URI Generator (`woql:URIGenerator`)
+
 
 
 
@@ -670,7 +861,10 @@ A reversible unique identifier generated from a Base and a Key
 
 Check that Object 'is a' Type
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  element (`woql:element`)
@@ -694,7 +888,10 @@ Element is 'of type'
 
 Join a list of strings
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  join (`woql:join`)
@@ -726,7 +923,11 @@ The separator in a join list
 
 Find the length of a collection
 
-### Super classes:   Document Class (`system:Document`) ,  HasLength (`woql:HasLength`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  HasLength (`woql:HasLength`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  list (`woql:length_list`)
@@ -742,7 +943,11 @@ The thing of which we want a length
 
 One value less than another
 
-### Super classes:   Document Class (`system:Document`) ,  Binary Operator (`woql:BinaryOperator`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Binary Operator (`woql:BinaryOperator`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -750,7 +955,11 @@ One value less than another
 
 An element is like another element
 
-### Super classes:   Document Class (`system:Document`) ,  Binary Operator (`woql:BinaryOperator`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Binary Operator (`woql:BinaryOperator`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  similarity (`woql:like_similarity`)
@@ -766,7 +975,12 @@ The similarity value (between 0 and 1)
 
 A query limited by number of results
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 ### Property:  limit (`woql:limit`)
@@ -782,7 +996,11 @@ The limit of results to obtain
 
 Lowercase string left to string right
 
-### Super classes:   Document Class (`system:Document`) ,  Binary Operator (`woql:BinaryOperator`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Binary Operator (`woql:BinaryOperator`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -790,7 +1008,10 @@ Lowercase string left to string right
 
 Arithmetic subtraction
 
-### Super classes:   Arithmetic Expression (`woql:ArithmeticExpression`) ,  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+### Super classes 
+ *  Arithmetic Expression (`woql:ArithmeticExpression`)
+ *  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+
 
 
 
@@ -798,7 +1019,11 @@ Arithmetic subtraction
 
 A var by column or header name
 
-### Super classes:   As Var (`woql:AsVar`) ,  Variable (`woql:Variable`) ,  (`woql:VariableNameRestriction`)
+### Super classes 
+ *  As Var (`woql:AsVar`)
+ *  Variable (`woql:Variable`)
+ *  (`woql:VariableNameRestriction`)
+
 
 
 ### Property:  identifier (`woql:identifier`)
@@ -814,7 +1039,12 @@ Identifier for a column name
 
 Not the query
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 
@@ -822,7 +1052,12 @@ Not the query
 
 Query which is optional
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 
@@ -830,7 +1065,12 @@ Query which is optional
 
 Order a queries results by the given list
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 ### Property:  Variable Array (`woql:variable_ordering`)
@@ -846,7 +1086,10 @@ An array of variables
 
 Pad a string with character C, N times, to get a result
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  pad char (`woql:pad_char`)
@@ -886,7 +1129,10 @@ Number of times to pad woql:pad_char
 
 Arithmetic addition
 
-### Super classes:   Arithmetic Expression (`woql:ArithmeticExpression`) ,  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+### Super classes 
+ *  Arithmetic Expression (`woql:ArithmeticExpression`)
+ *  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+
 
 
 
@@ -894,7 +1140,10 @@ Arithmetic addition
 
 An HTTP POST Query Resource
 
-### Super classes:   File Query Resource (`woql:FileResource`) ,  Query Resource (`woql:QueryResource`)
+### Super classes 
+ *  File Query Resource (`woql:FileResource`)
+ *  Query Resource (`woql:QueryResource`)
+
 
 
 
@@ -902,7 +1151,11 @@ An HTTP POST Query Resource
 
 Put some variables bindings in a defined resource
 
-### Super classes:   Document Class (`system:Document`) ,  Get or Put (`woql:GetOrPut`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Get or Put (`woql:GetOrPut`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -910,7 +1163,10 @@ Put some variables bindings in a defined resource
 
 A regular expression and its results
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  pattern (`woql:pattern`)
@@ -942,7 +1198,9 @@ The string to match against pattern
 
 A Query Resource
 
-### Super classes:   Query Resource (`woql:QueryResource`)
+### Super classes 
+ *  Query Resource (`woql:QueryResource`)
+
 
 
 ### Property:  remote uri (`woql:remote_uri`)
@@ -958,7 +1216,10 @@ Remote URI associated with a query resource
 
 split string on pattern result
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  split list (`woql:split_list`)
@@ -990,7 +1251,12 @@ String to split
 
 The starting point in result set
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 
@@ -998,7 +1264,10 @@ The starting point in result set
 
 Sum of a list of numbers
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  start (`woql:start`)
@@ -1030,7 +1299,10 @@ The list of things to be summed
 
 Arithmetic multiplication
 
-### Super classes:   Arithmetic Expression (`woql:ArithmeticExpression`) ,  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+### Super classes 
+ *  Arithmetic Expression (`woql:ArithmeticExpression`)
+ *  Binary Arithmetic Operator (`woql:BinaryArithmeticOperator`)
+
 
 
 
@@ -1038,7 +1310,10 @@ Arithmetic multiplication
 
 Always true
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -1046,7 +1321,10 @@ Always true
 
 A typecast of a variable to a new type
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  typecast result (`woql:typecast_result`)
@@ -1078,7 +1356,10 @@ The thing of which we want a typecast
 
 A Generator for IDs
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  base (`woql:base`)
@@ -1110,7 +1391,9 @@ The document base of a URI
 
 Binary Arithmetic Operator
 
-### Super classes:   Arithmetic Expression (`woql:ArithmeticExpression`)
+### Super classes 
+ *  Arithmetic Expression (`woql:ArithmeticExpression`)
+
 
 
 ### Property:  argument (`woql:argument`)
@@ -1126,7 +1409,11 @@ The argument of a unary operator
 
 An irreversible unique identifier generated from a Base and a Key
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  URI Generator (`woql:URIGenerator`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  URI Generator (`woql:URIGenerator`)
+
 
 
 
@@ -1134,7 +1421,11 @@ An irreversible unique identifier generated from a Base and a Key
 
 Update an object as JSON
 
-### Super classes:   Document Class (`system:Document`) ,  Document Query (`woql:DocumentQuery`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Document Query (`woql:DocumentQuery`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -1142,7 +1433,11 @@ Update an object as JSON
 
 Uppercase string left to string right
 
-### Super classes:   Document Class (`system:Document`) ,  Binary Operator (`woql:BinaryOperator`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Binary Operator (`woql:BinaryOperator`)
+ *  Query (`woql:Query`)
+
 
 
 
@@ -1150,7 +1445,11 @@ Uppercase string left to string right
 
 A Value List Element
 
-### Super classes:   Indexable (`woql:Indexable`) ,  (`woql:IndexableRestriction`) ,  (`woql:Value`)
+### Super classes 
+ *  Indexable (`woql:Indexable`)
+ *  (`woql:IndexableRestriction`)
+ *  (`woql:Value`)
+
 
 
 
@@ -1158,7 +1457,13 @@ A Value List Element
 
 A specific variable to de used in ordering
 
-### Super classes:   Indexable (`woql:Indexable`) ,  (`woql:IndexableRestriction`) ,  Variable (`woql:Variable`) ,  Variable List Element (`woql:VariableListElement`) ,  (`woql:VariableNameRestriction`)
+### Super classes 
+ *  Indexable (`woql:Indexable`)
+ *  (`woql:IndexableRestriction`)
+ *  Variable (`woql:Variable`)
+ *  Variable List Element (`woql:VariableListElement`)
+ *  (`woql:VariableNameRestriction`)
+
 
 
 ### Property:  Ascending (`woql:ascending`)
@@ -1174,7 +1479,12 @@ Should the ordering be ascending
 
 When A, do B
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`) ,  (`woql:QueryWithSingleSubQuery`) ,  Query With Subquery (`woql:QueryWithSubQuery`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+ *  (`woql:QueryWithSingleSubQuery`)
+ *  Query With Subquery (`woql:QueryWithSubQuery`)
+
 
 
 ### Property:  consequent (`woql:consequent`)
@@ -1190,7 +1500,10 @@ The consequence of a woql:When
 
 Select from a dictionary
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  dictionary (`woql:dictionary`)
@@ -1222,7 +1535,11 @@ Dictionary value of a selection
 
 Follow pattern at least once
 
-### Super classes:   Object (`woql:HasObject`) ,  Predicate (`woql:HasPredicate`) ,  Subject (`woql:HasSubject`)
+### Super classes 
+ *  Object (`woql:HasObject`)
+ *  Predicate (`woql:HasPredicate`)
+ *  Subject (`woql:HasSubject`)
+
 
 
 
@@ -1230,7 +1547,10 @@ Follow pattern at least once
 
 Has a graph or collection resource descriptor
 
-### Super classes:   Document Class (`system:Document`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  resource (`woql:resource`)
@@ -1246,7 +1566,13 @@ A graph or collection resource descriptor
 
 A path query
 
-### Super classes:   Document Class (`system:Document`) ,  Object (`woql:HasObject`) ,  Has Pattern (`woql:HasPathPattern`) ,  Subject (`woql:HasSubject`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Object (`woql:HasObject`)
+ *  Has Pattern (`woql:HasPathPattern`)
+ *  Subject (`woql:HasSubject`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  path (`woql:path`)
@@ -1262,7 +1588,9 @@ The path taken by a pattern
 
 path_first followed by path_second
 
-### Super classes:   Path Pattern (`woql:PathPattern`)
+### Super classes 
+ *  Path Pattern (`woql:PathPattern`)
+
 
 
 ### Property:  left (`woql:path_left`)
@@ -1286,7 +1614,10 @@ The right branch pattern in a fork
 
 Follow pattern at least once
 
-### Super classes:   Has Pattern (`woql:HasPathPattern`) ,  Path Pattern (`woql:PathPattern`)
+### Super classes 
+ *  Has Pattern (`woql:HasPathPattern`)
+ *  Path Pattern (`woql:PathPattern`)
+
 
 
 
@@ -1294,7 +1625,9 @@ Follow pattern at least once
 
 Contains a predicate to follow in a pattern
 
-### Super classes:   Path Pattern (`woql:PathPattern`)
+### Super classes 
+ *  Path Pattern (`woql:PathPattern`)
+
 
 
 ### Property:  first (`woql:path_predicate`)
@@ -1310,7 +1643,9 @@ Pattern to deploy first in a sequence
 
 path_first followed by path_second
 
-### Super classes:   Path Pattern (`woql:PathPattern`)
+### Super classes 
+ *  Path Pattern (`woql:PathPattern`)
+
 
 
 ### Property:  first (`woql:path_first`)
@@ -1334,7 +1669,10 @@ Pattern to deploy second in a sequence
 
 Follow pattern any number of times (including the empty transition)
 
-### Super classes:   Has Pattern (`woql:HasPathPattern`) ,  Path Pattern (`woql:PathPattern`)
+### Super classes 
+ *  Has Pattern (`woql:HasPathPattern`)
+ *  Path Pattern (`woql:PathPattern`)
+
 
 
 
@@ -1342,7 +1680,10 @@ Follow pattern any number of times (including the empty transition)
 
 Follow pattern at least once
 
-### Super classes:   Has Pattern (`woql:HasPathPattern`) ,  Path Pattern (`woql:PathPattern`)
+### Super classes 
+ *  Has Pattern (`woql:HasPathPattern`)
+ *  Path Pattern (`woql:PathPattern`)
+
 
 
 ### Property:  maximum (`woql:path_maximum`)
@@ -1366,7 +1707,11 @@ Minumum applications of pattern.
 
 Size of a resource
 
-### Super classes:   Document Class (`system:Document`) ,  Has a resource (`woql:HasResource`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Has a resource (`woql:HasResource`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  size (`woql:size`)
@@ -1382,10 +1727,15 @@ Calculated size of a graph or collection resource
 
 Size of a resource
 
-### Super classes:   Document Class (`system:Document`) ,  Has a resource (`woql:HasResource`) ,  Query (`woql:Query`)
+### Super classes 
+ *  Document Class (`system:Document`)
+ *  Has a resource (`woql:HasResource`)
+ *  Query (`woql:Query`)
+
 
 
 ### Property:  triple count (`woql:triple_count`)
 #### Range:  (`woql:Value`)
 
 Triple count of a graph or collection resource
+

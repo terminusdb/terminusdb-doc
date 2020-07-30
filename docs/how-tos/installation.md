@@ -107,10 +107,9 @@ USAGE:
   stop        stop container
   console     launch console in web browser
   attach      attach to prolog shell
-  stats       show container stats
-  rm-config   remove config volume
-  rm-storage  remove storage volume
+  exec        execeute a command inside the container
   rm          remove volumes
+
 ```
 
 That's it! You're ready to go!

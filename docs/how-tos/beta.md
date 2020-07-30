@@ -7,11 +7,15 @@ nav_order: 9
 
 # Participating in the private beta
 
+## Requirements
+
 Requirements: Git, Bash and Docker
 
 Windows users: Git Bash and Docker
 
-1. Clone terminusdb-quickstart and enter the directory:
+## Installing
+
+Clone terminusdb-quickstart and enter the directory:
 
 ```bash
 
@@ -19,7 +23,8 @@ git clone https://github.com/terminusdb/terminusdb-quickstart.git
 cd terminusdb-quickstart
 git checkout rc
 ```
-2. Run the following command to change the default options, to be part of our beta
+
+Run the following command to change the default options, to be part of our beta
 
 ```bash
 echo "
@@ -70,7 +75,10 @@ TERMINUSDB_HTTPS_ENABLED=true
 # vim:ft=sh
 " > ENV
 ```
-3. Run `./terminusdb-container run`
-4. You should be able to access terminusdb on https://127.0.0.1:6363/ . Unfortunately, the browser
-   will give you a certificate warning. Do not worry, since the server is running on your own machine, nobody
-   is intercepting your traffic.
+
+Run `./terminusdb-container run`
+
+
+You should be able to access terminusdb on https://127.0.0.1:6363/ . Unfortunately, the browser
+will give you a certificate warning. Do not worry, since the server is running on your own machine, nobody
+is intercepting your traffic.

@@ -78,7 +78,7 @@ You may need to move or remove previous volumes or you may encounter bugs or the
 ```
  ./terminusdb-container rm
 
-removing will delete storage and config volumes
+removing will delete storage volume
 Are you sure? [y/N] y
 ```
 

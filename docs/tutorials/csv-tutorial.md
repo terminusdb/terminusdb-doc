@@ -5,10 +5,10 @@ parent: Tutorials
 nav_order: 6
 ---
 
-# Importing and Cleaning Data From CSVs
+# Importing and Cleaning Data from CSVs
 {: .no_toc }
 
-In this tutorial, we will learn how to load data from a CSV file then clean it up with some data wrangling, like changing the type of the data, combining strings and generate ids for objects.
+In this tutorial, we will learn how to load data from a CSV file then clean it up with some data wrangling, like changing the type of the data, combining strings and generating ids for objects.
 
 ## Jump to
 {: .no_toc .text-delta }
@@ -24,11 +24,11 @@ In our example, we will try to load data from this CSV: <https://terminusdb.com/
 
 This can be done by making woql queries. In this tutorial, we will be making queries in the TerminusDB console. However, you can also do it with TerminusDB clients.
 
-To make a query in the console. Go to the query tab by clicking on `query` at the top.
+To make a query in the console, go to the query tab by clicking on `query` at the top.
 
 ![console query page](/docs/assets/images/tutorials/console-query-page.png)
 
-Now it's time for the query. Our first step, is to load in each columns as a woql variable. This can be done with the following script:
+Now it's time for the query. Our first step is to load in each column as a woql variable. This can be done with the following script:
 
 ```js
 WOQL.get(
@@ -44,7 +44,7 @@ WOQL.get(
 ).remote("https://terminusdb.com/t/data/bike_tutorial.csv")
 ```
 
-This script involved `get`, `as` and `remote` method. For more explanation about those methods, please see their reference in woql.
+This script involves `get`, `as` and `remote` method. For more explanation about these methods, please see their reference in woql.
 
 This is loading a remote CSV from the link. For loading a local file, please see the reference of `file` method.
 
@@ -72,9 +72,9 @@ const csv = WOQL.get(
 
 ## Step 2 - data wrangling
 
-In the next step, we are going to prepare the data for step 3. The data that we have got in step 1 is not ready to be put in the graph. We will have to generate id for doctype objects, convert data into their correct data types and create strings for labels and descriptions.
+In the next step, we are going to prepare the data for step 3. The data that we got in step 1 is not ready to be put in the graph. We will have to generate id for doctype objects, convert data to their correct data types and create strings for labels and descriptions.
 
-To do that, we will expand our previous script as the following:
+To do that, we will expand our previous script as follows:
 
 ```js
 const csv = WOQL.get(
@@ -108,7 +108,7 @@ WOQL.and(csv, ...wrangles)
 
 For explanations about the `idgen`, `typecast` and `concat` methods that are used in the data wrangling, please see their reference in woql.
 
-If you click `run query` now, you will see that we have got new variables that are created with the data wrangling. However, the data is not loaded in the graph yet.
+If you click `run query` now, you will see that we have got new variables that have been created with the data wrangling. However, the data is not loaded in the graph yet.
 
 ![data wrangling](/docs/assets/images/tutorials/data-wrangling.png)
 
@@ -176,6 +176,6 @@ After clicking `run query`, you will now see the message in the green box saying
 
 ![update success](/docs/assets/images/tutorials/update-success.png)
 
-Now you can check the data is added by clicking at the `Documents` on the top.
+Now you can check the data is added by clicking on `Documents` at the top.
 
 ![documents](/docs/assets/images/tutorials/documents.png)

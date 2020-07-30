@@ -42,7 +42,7 @@ Script:
 
 ## WOQLClient Class
 
-The core functionality of the terminusdb javascript client are defined in the WOQLClient class - in the woqlClient.js file. This class provides methods which allow you to directly get and set all of the configuration and api endpoints of the client. The other parts of the WOQL core - connectionConfig.js and connectionCapabilities.js - are used by the client to store internal state - they should never have to be accessed directly.  For situations where you want to communicate with a TerminusDB server API, the WOQLClient class is all you will need.  
+The core functionality of the TerminusDB javascript client is defined in the WOQLClient class - in the woqlClient.js file. This class provides methods which allow you to directly get and set all of the configuration and API endpoints of the client. The other parts of the WOQL core - connectionConfig.js and connectionCapabilities.js - are used by the client to store internal state - they should never have to be accessed directly. For situations where you want to communicate with a TerminusDB server API, the WOQLClient class is all you will need.  
 
 Basic Usage:
 
@@ -347,7 +347,7 @@ Returns Promise: HTTP 200 status on success, HTTP error code on failure
 
 ## Accessing and Changing Client Context
 
-The client's has internal context which defines which allows the user to invoke the API actions against any valid resource in the database. For example, by specifying a particular commit id as the source of a query operation, all queries will be made against the state of the database as it was immediately after that specific commit was completed.  All of these methods are both getters and setters with 0 or 1 arguments - if no argument is supplied, they get the current value, if an argument is supplied they set the current value for that part of context 
+The client's has an internal context which defines which allows the user to invoke the API actions against any valid resource in the database. For example, by specifying a particular commit id as the source of a query operation, all queries will be made against the state of the database as it was immediately after that specific commit was completed.  All of these methods are both getters and setters with 0 or 1 arguments - if no argument is supplied, they get the current value, if an argument is supplied they set the current value for that part of context 
 
 Methods
 

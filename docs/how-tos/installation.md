@@ -80,8 +80,6 @@ You may need to move or remove previous volumes or you may encounter bugs or the
 
 removing will delete storage and config volumes
 Are you sure? [y/N] y
-terminus_storage
-terminusdb-config
 ```
 
 ---
@@ -92,7 +90,7 @@ Ready to terminate? Open the TerminusDB Console in your web browser.
 ```
 ./terminusdb-container console
 ```
-Or go here: [http://localhost:6363/console](http://localhost:6363/console)
+Or go here: [http://localhost:6363/](http://localhost:6363/)
 
 ---
 

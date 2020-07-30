@@ -167,7 +167,7 @@ transaction.
 So far we have a very flat structure. Let's add a subclass for
 `scm:Person` called `scm:Doctor`.
 
-```
+```javascript
 WOQL.doctype("Doctor")
   .parent("Person")
   .label("Doctor")
@@ -178,7 +178,7 @@ WOQL.doctype("Doctor")
 A doctor shares all of the properties available to a Person, but it
 also has a patient. Let us add a Doctor.
 
-```
+```javascript
 WOQL.and(
   WOQL.add_triple("doc:sigmund_freud", "type", "scm:Doctor"),
   WOQL.add_triple("doc:sigmund_freud", "forename", "Freud"),

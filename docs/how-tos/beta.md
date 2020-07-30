@@ -12,6 +12,7 @@ Requirements: Git, Bash and Docker
 Windows users: Git Bash and Docker
 
 1. Clone terminusdb-quickstart and enter the directory:
+
 ```bash
 
 git clone https://github.com/terminusdb/terminusdb-quickstart.git

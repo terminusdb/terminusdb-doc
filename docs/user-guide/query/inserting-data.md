@@ -29,7 +29,7 @@ Though using the WOQLjs or WOQLpy programatically to insert data is also possibl
 
 ### loading data from csv
 
-Loading data form csv involve in getting the data from the csv and wrangling the data. First, read in the data form the csv and assign variables corresponding to each column.
+Loading data from csv involves getting the data from the csv and wrangling the data. First, read in the data from the csv and assign variables corresponding to each column.
 
 ```js
 csv = WOQL.get(
@@ -78,7 +78,7 @@ inputs = WOQL.and(csv, ...wrangles);
 
 ### loading data from RDF
 
-Instead of data wrangling, data form RDF can be loaded directly to a temporary graph:
+Instead of data wrangling, data from RDF can be loaded directly to a temporary graph:
 
 ```js
 WOQL.with("graph://temp",
@@ -122,7 +122,7 @@ inserts = WOQL.and(
 
 `WOQL.insert()` takes two arguments: 1. the id for the object, could be the variables from data wrangles or a string generated form your program; 2. the type of the object, it should be the doctype form the schema. `label`, `description` and `property` can be added to the object in a similar manor as creating schema.
 
-Example of using WOQLjs and WOQLpy to load the insert data form csvs can be found in [this GitHub repo](https://github.com/terminusdb/terminusdb-tutorials/tree/master/bike-tutorial). Example of programatically creating schema and inserting data directly from WOQLpy can be found in [this GitHub repo](https://github.com/terminusdb/terminusdb-tutorials/tree/master/schema.org).
+An example of using WOQLjs and WOQLpy to load the insert data from csvs can be found in [this GitHub repo](https://github.com/terminusdb/terminusdb-tutorials/tree/master/bike-tutorial). Example of programatically creating schema and inserting data directly from WOQLpy can be found in [this GitHub repo](https://github.com/terminusdb/terminusdb-tutorials/tree/master/schema.org).
 
 To complete loading in the data, the previous steps need to be join together with `inserts` using a `WOQL.and()`. For example loading data from csv:
 

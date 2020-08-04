@@ -47,21 +47,21 @@ TerminusDB is structured as a hierarchy of graphs. Each level of the
 hierarchy is itself a graph which can be queried and which stores
 information about the graphs below it.
 
-At the heighest level is the TerminusCore graph. This stores the
+At the highest level is the TerminusCore graph. This stores the
 records concerning all users and databases in the system.
 
 For each database there is corresponding "_meta" graph which
 stores information about which repositories are present for a
-datbase. This includes *at least* the "local" repository.  However it
+database. This includes *at least* the "local" repository.  However it
 may also contain any number of remote repositories as well. These
 remotes represent other TerminuDB installations, and can be used to
 push or pull changes and collaborate with others.
 
-Each of these repositories consists of a "_commit" graph which stores
+Each of these repositories consist of a "_commit" graph which stores
 information about the branchs that we have, commit chains, and the
 graphs associated with each commit.
 
-Finally commits point to the instance and schema graphs associated
+Finally, commits point to the instance and schema graphs associated
 with a commit. This is important since schema and instance graphs
 have to move in lock-step to maintain consistency.
 

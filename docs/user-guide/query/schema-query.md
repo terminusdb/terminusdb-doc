@@ -18,7 +18,7 @@ nav_order: 3
 
 # Creating Schema
 
-Schema can be constructed by creating `doctype` follow by its `property` (if any), each of them can have its own `label` and `discription`. for example in WOQLjs:
+Schema can be constructed by creating `doctype` followed by its `property` (if any). Each of them can have its own `label` and `discription`. For example in WOQLjs:
 
 ```js
 WOQL.and(
@@ -46,7 +46,7 @@ WOQL.and(
 
 ### Document objects
 
-The executable queries can be constructed with the help of the WOQL query objects. Usually there document objects with labels and descriptions can be easily constructed with a chain of call like:
+The executable queries can be constructed with the help of the WOQL query objects. Usually the document objects with labels and descriptions can be easily constructed with a chain of call like:
 
 ``` js
 WOQL.doctype("Station")
@@ -54,7 +54,7 @@ WOQL.doctype("Station")
     .description("A station where bicycles are deposited")
 ```
 
-However, labels and descriptions are optional. The minimum way of creating a document object would be `WOQL.doctype("idOfObj")`
+However, labels and descriptions are optional. The minimum way of creating a document object would be `WOQL.doctype("idOfObj")`.
 
 ### Properties
 
@@ -67,7 +67,7 @@ WOQL.doctype("Journey")
         .label("Start Station")
 ```
 
-Properties will take an extra argument for the range of the property - it could be a datatype e.g. dateTime, string, integer, double, etc; or an other document object. label and descriptions can also be added to properties in similar manner as doctype objects.
+Properties will take an extra argument for the range of the property - it could be a datatype e.g. dateTime, string, integer, double, etc; or an other document object. A label and descriptions can also be added to properties in similar manner as doctype objects.
 
 ### Subclases
 
@@ -77,6 +77,6 @@ To created a subclass structure in TerminusDB graph,`add_quad` can be used. For 
 WOQL.add_quad("child", "subClassOf", "parent", "schema")
 ```
 
-For details regarding WOQL query objects in API clients, please refer to [API Reference](/docs/api-reference/)
+For details regarding WOQL query objects in API clients, please refer to [API Reference](/docs/api-reference/).
 
 ---

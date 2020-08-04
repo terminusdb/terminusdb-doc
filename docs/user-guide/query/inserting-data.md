@@ -45,7 +45,7 @@ csv = WOQL.get(
     ).remote(url);
 ```
 
-The above will read a csv form a remote destination `url` (e.g. a file hosted online) and assigning variable to each column. The variables will be is used in the data wrangling:
+The above will read a csv from a remote destination `url` (e.g. a file hosted online) and assigning variable to each column. The variables will be is used in the data wrangling:
 
 ```js
 wrangles = [
@@ -90,7 +90,7 @@ WOQL.with("graph://temp",
                     "graph://temp")
 )
 ```
-from the temporary graph, we can insert the data according to the schema of the designated graph database. See [this blog post](https://terminusdb.com/blog/2020/01/30/loading-data-in-turtle-rdf-format-to-terminusdb/) for more details/
+from the temporary graph, we can insert the data according to the schema of the designated graph database. See [this blog post](https://terminusdb.com/blog/2020/01/30/loading-data-in-turtle-rdf-format-to-terminusdb/) for more details.
 
 ### loading data from local file
 
@@ -120,7 +120,7 @@ inserts = WOQL.and(
 );
 ```
 
-`WOQL.insert()` takes two arguments: 1. the id for the object, could be the variables from data wrangles or a string generated form your program; 2. the type of the object, it should be the doctype form the schema. `label`, `description` and `property` can be added to the object in a similar manor as creating schema.
+`WOQL.insert()` takes two arguments: 1. the id for the object, could be the variables from data wrangles or a string generated from your program; 2. the type of the object, it should be the doctype from the schema. `label`, `description` and `property` can be added to the object in a similar manor as creating schema.
 
 An example of using WOQLjs and WOQLpy to load the insert data from csvs can be found in [this GitHub repo](https://github.com/terminusdb/terminusdb-tutorials/tree/master/bike-tutorial). Example of programatically creating schema and inserting data directly from WOQLpy can be found in [this GitHub repo](https://github.com/terminusdb/terminusdb-tutorials/tree/master/schema.org).
 

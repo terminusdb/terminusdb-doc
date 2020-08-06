@@ -12,13 +12,13 @@ nav_order: 6
 
 # Introduction -
 
-While WOQL is a very powerful and sophisticated query language which allows you to concisely express very complex patterns over arbitrary data structures. However, what makes it so expressive and easy to use is the radical simplicity of the core underlying concepts.
+While WOQL is a very powerful and sophisticated query language which allows you to concisely express very complex patterns over arbitrary data structures, what really makes it so expressive and easy to use is the radical simplicity of the core underlying concepts.
 
 To unleash the power of WOQL, you just need to understand two very simple things.
 
 ## [](https://terminusdb.com/docs/user-guide/query/simple-query/#rule-1-triples-all-the-way-down) Rule 1. Triples all the way down
 
-In Terminus DB every single fragment of information is always and universally stored and accessible as triples. Triples are the universal and fundamental atom of information in TerminusDB - objects and documents and everything else is stored as collections of triples and it is always possible to break any object down in a reliable and deterministic way into a precise set of triples. Not only that, but TerminusDB adheres to the RDF standard, which means all triples have a regular structure and interpretation and strong norms. From a query writer point of view, this regularity is very helpful - you don’t have to care about the low-level structure of the data (what table it is stored in, how many columns there, etc), you just have to care about the patterns of meaning you are interested in.
+In TerminusDB every single fragment of information is always and universally stored and accessible as triples. Triples are the universal and fundamental atom of information in TerminusDB - objects and documents and everything else is stored as collections of triples and it is always possible to break any object down in a reliable and deterministic way into a precise set of triples. Not only that, TerminusDB also adheres to the RDF standard, which means all triples have a regular structure and interpretation and strong norms. From a query writer point of view, this regularity is very helpful - you don’t have to care about the low-level structure of the data (what table it is stored in, how many columns there are, etc.), you just have to care about the patterns of meaning you are interested in.
 
 A triple is just a data structure with three slots in which we can put values. Each row in the table below shows a different view of what each of the three slots means
 
@@ -50,7 +50,7 @@ If we use a variable in a triple query, TerminusDB will show us every possible v
 
 #### [](https://terminusdb.com/docs/user-guide/query/simple-query/#single-variable-triple-pattern-examples) Single Variable Triple Pattern Examples
 
-Putting a variable in the first slot of the triple, will find the IDs of all the Objects that have a specific property set to the specified value
+Putting a variable in the first slot of the triple will find the IDs of all the Objects that have a specific property set to the specified value
 
 ```
 WOQL.triple('v:Person ID', 'date_born', '1/2/34')
@@ -70,7 +70,7 @@ WOQL.triple('joe', 'parent', "v:Joes Parents")
 
 #### [](https://terminusdb.com/docs/user-guide/query/simple-query/#two-variable-triple-pattern-examples) Two Variable Triple Pattern Examples
 
-Putting a variable in the first two slots of the triple, will find all object IDs and properties in the database that have the specified value
+Putting a variable in the first two slots of the triple will find all object IDs and properties in the database that have the specified value
 
 ```
  WOQL.triple('v:Object ID', 'v:Properties', 10) //list of all objects and property names that have the value 10
@@ -96,13 +96,13 @@ WOQL.star() //generates a triple query with variables in all 3 spots - returns a
 
 ### [](https://terminusdb.com/docs/user-guide/query/simple-query/#logical-operators) Logical Operators
 
-Single triple pattern matching like the above, is certainly neat, but there’s a limited number of things that can be expressed as a single pattern of triples, even with all our variables turned on. However, WOQL also provides logical operators, AND, OR which allow you to combine as many basic patterns as you like into incredibly expressive queries in very simple forms.
+Single triple pattern matching like the above is certainly neat, but there’s a limited number of things that can be expressed as a single pattern of triples, even with all our variables turned on. However, WOQL also provides logical operators, AND, OR which allow you to combine as many basic patterns as you like into incredibly expressive queries in very simple forms.
 
 The most useful operator is logical AND - `WOQL.and()` which behaves as we would logically expect - if all of the patterns defined within a `WOQL.and()` can be filled by the database, all of the results will be returned, otherwise, no results will be returned.
 
-The other basic logical operators: OR - `WOQL.or()` and NOT - `WOQL.not()` are also very useful - they are interpreted also as expected, - in the first case, the query will return the first result that it matches in a list of possibilities, in the second case, the query will only return true if the pattern specified is not found in the database.
+The other basic logical operators: OR - `WOQL.or()` and NOT - `WOQL.not()` are also very useful - they are interpreted also as expected - in the first case, the query will return the first result that it matches in a list of possibilities, in the second case, the query will only return true if the pattern specified is not found in the database.
 
-Below are some simple examples of using these logical operators in practice. It is amazing how many things you can readily express simply by combining these patterns in different ways. Extreme simplicity and absolutely regularity in the little things allows extreme elegance of description in the big things.
+Below are some simple examples of using these logical operators in practice. It is amazing how many things you can readily express simply by combining these patterns in different ways. Extreme simplicity and absolute regularity in the little things allows extreme elegance of description in the big things.
 
 ## [](https://terminusdb.com/docs/user-guide/query/simple-query/#thats-not-all-folks) That’s not all folks
 

@@ -93,13 +93,18 @@ In WOQL.js, there are 3 distinct wasy of expressing variables within queries, al
 
 3   triple({'@type': 'woql:Variable', 'woql:variable_name': {"@type": 'xsd:string', '@value': 'a'}} ....)
 
+WOQL uses the formal logical approach to variables known as unification - this allows most WOQL functions to serve as both pattern matchers and pattern generators, depending on whether a variable or constant is provided as an argument. If a variable is provided, WOQL will generate all possible valid solutions which fill the variable value. If a constant is provided, WOQL will match only those solutions with exactly that value. With the exception of resource identifiers, WOQL functions accept either variables or constants in virtually all of their arguments.    
+
 ## Prefixes in WOQL.js
 
-* all identifiers and properties are represented by IRIs
-* can use prefixed form as shorthand to address them where a standard prefix is defined
-* default prefixes are applied 
+Internally, TerminusDB uses strict RDF rules to represent all data. This means that all identifiers and properties are represented by IRIs (which are a superset of URLs). However, IRIs are often long difficult to remember and tedious to type. RDF in general gets around this problem by allowing prefixed forms as shorthand - so for example, we can use "rdf:type" rather than "http://annoyingly.long.url/with/dates#type". TerminusDB defines a set of standard prefixes which are availabe to use and also allows users to extend this by adding their own prefix designations to the system. The set of standard prefixes includes the basic language elements (rdf, rdfs, owl), datatype elements (xsd, xdd) and internal namespaces (ref, repo, system, vio). It also pre-defines two prefixes for user-use - the 'doc' prefix for instance data IRIs and the 'scm' prefix to schema IRIs. So we can write "doc:X" or "scm:X" and this will always resolve to a valid IRI. 
+
+WOQL goes further than this and automatically applies prefixes wherever possible allowing users to specify prefixes only when necessary.
+
+The default prefixes are applied in the following way
     - "doc" applies to positions where instance data IRIs are required
     - "scm" applies to positions where schema elements are required
+    - when standard built-in predicates are used (label, type, comment, subClassOf, domain, range) the standard correct prefixes are applied
     - otherwise if no prefix is applied a string is assumed
 
 ## WOQL Primitives
@@ -107,7 +112,6 @@ In WOQL.js, there are 3 distinct wasy of expressing variables within queries, al
 WOQL primitives are WOQL.js functions which directly map onto words in the underlying JSON-LD language. All other WOQL.js functions are compound functions which translate into multiple WOQL primitives, or are helper functions which reduce the need to write verbose JSON-LD directly. 
 
 ### Basics
-
 
 #### triple 
 
@@ -476,7 +480,7 @@ Arguments:
     GroupVars ([string] or string*) - Either a single variable or an array of variables
     PatternVars ([string] or string*) Either a single variable or an array of variables 
     GroupedVar (string*) A variable
-    Subq (WOQLQuery*) - The query whose results will be ordered 
+    Subq (WOQLQuery*) - The query whose results will be grouped 
 
 Returns: 
     A WOQLQuery which contains the grouping expression
@@ -584,6 +588,7 @@ Returns:
 Example: 
     let [trimmed] = ['trimmed']
     trim("hello   ", trimmed)
+    //trimmed contains "hello"
 
 #### substr 
 
@@ -623,6 +628,7 @@ Returns:
 Example: 
     let [allcaps] = var("caps")
     upper("aBCe", allcaps)
+    //upper contains "ABCE"
 
 #### lower 
 
@@ -642,6 +648,7 @@ Returns:
 Example: 
     let [lower] = var("l")
     lower("aBCe", lower)
+    //lower contains "abce"
 
 #### pad 
 
@@ -656,6 +663,7 @@ Arguments:
     Pad (string*) - The characters to use to pad the string or a variable representing them
     Len (string or integer*) - The variable or integer value representing the length of the output string
     Output (string*) - The variable or string representing the padded version of the input string
+
 Returns: 
     A WOQLQuery which contains the Pad pattern matching expression
 
@@ -699,7 +707,7 @@ Arguments:
     Output (string*) - A variable or string containing the output string
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the Join pattern matching expression
 
 Example: 
     let [sentence] = vars("sentence")
@@ -720,7 +728,7 @@ Arguments:
     Matches (string / [string]) - variable representing the list of matches or a list of strings or variables
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the Regular Expression pattern matching expression
 
 Example: 
     let [e, llo] = vars('e', 'ello')
@@ -733,28 +741,22 @@ like(StringA, StringB, Distance)
 
 Status: Stable
 
-Description:   
+Description: Generates a string Leverstein distance measure between StringA and StringB
 
 Arguments: 
+    StringA (string*) - string literal or variable representing a string to be compared 
+    StringA (string*) - string literal or variable representing the other string to be compared 
+    Distance (string / [float]*) - variable representing the distance between the variables
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the Like pattern matching expression
 
 Example: 
+    let [dist] = vars('dist')
+    like("hello", "hallo", dist)
+    //dist contains 0.7265420560747664
 
-/**
- * Matches if a is similar to b (with distance dist)
- * @param {string} a - string a
- * @param {string} b - string b
- * @param {float} dist - distance 0-1.0
- * @return {boolean} WOQLQuery
- */
-WOQL.like = function(a, b, dist) {
-    return new WOQLQuery().like(a, b, dist)
-}
-
-
-## Updates / Transactions
+### Updates / Transactions
 
 #### add_triple 
 
@@ -762,25 +764,18 @@ add_triple(Subject, Predicate, Object)
 
 Status: Stable
 
-Description:   
+Description: Adds a single triple to the database
 
 Arguments: 
+    Subject (string*) - The IRI of a triple's subject or a variable 
+    Predicate (string*) - The IRI of a property or a variable 
+    Object (string*) - The IRI of a node or a variable, or a literal 
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the add_triple insert statement
 
 Example: 
-
-/**
- * Adds triples according to the the pattern [S,P,O]
- * @param {string} S - Subject
- * @param {string} P - Predicate
- * @param {string} O - Object
- * @return {object} WOQLQuery
- */
-WOQL.add_triple = function(S, P, O) {
-    return new WOQLQuery().add_triple(S, P, O)
-}
+    add_triple("john", "age", 42)
 
 #### add_quad 
 
@@ -788,55 +783,38 @@ add_quad(Subject, Predicate, Object, Graph)
 
 Status: Stable
 
-Description:   
+Description: Adds a single triple to the specified graph in the database
 
 Arguments: 
+    Subject (string*) - The IRI of a triple's subject or a variable 
+    Predicate (string*) - The IRI of a property or a variable 
+    Object (string*) - The IRI of a node or a variable, or a literal 
+    Graph (string*) - The resource identifier of a graph  
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the add_quad insert statement
 
 Example: 
-
-/**
- * Adds quads according to the pattern [S,P,O,G]
- * @param {string} S - Subject
- * @param {string} P - Predicate
- * @param {string} O - Object
- * @param {string} G - Graph
- * @return {object} WOQLQuery
- */
-WOQL.add_quad = function(S, P, O, G) {
-    return new WOQLQuery().add_quad(S, P, O, G)
-}
+    add_quad("Person", "type", "owl:Class", "schema/main")
 
 #### delete_triple 
 
-add_quad(Subject, Predicate, Object, Graph) 
+delete_triple(Subject, Predicate, Object) 
 
 Status: Stable
 
-Description:   
+Description: Deletes a single triple from the default graph of the database
 
 Arguments: 
+    Subject (string*) - The IRI of a triple's subject or a variable 
+    Predicate (string*) - The IRI of a property or a variable 
+    Object (string*) - The IRI of a node or a variable, or a literal 
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the Triple Deletion statement
 
 Example: 
-
-
-
-/**
- * Deletes any triples that match the rule [S,P,O]
- * @param {string} S - Subject
- * @param {string} P - Predicate
- * @param {string} O - Object
- * @return {object} WOQLQuery
- */
-WOQL.delete_triple = function(S, P, O) {
-    return new WOQLQuery().delete_triple(S, P, O)
-}
-
+    delete_triple("john", "age", 42)
 
 #### delete_quad 
 
@@ -844,27 +822,19 @@ delete_quad(Subject, Predicate, Object, Graph)
 
 Status: Stable
 
-Description:   
+Description: Deletes a single triple from the default graph of the database  
 
 Arguments: 
+    Subject (string*) - The IRI of a triple's subject or a variable 
+    Predicate (string*) - The IRI of a property or a variable 
+    Object (string*) - The IRI of a node or a variable, or a literal 
+    Graph (string*) - The resource identifier of a graph  
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the Delete Quad Statement
 
 Example: 
-
-/**
- * Deletes any quads that match the rule [S, P, O, G] (Subject, Predicate, Object, Graph)
- * @param {string} S - Subject
- * @param {string} P - Predicate
- * @param {string} O - Object
- * @param {string} G - Graph
- * @return {object} WOQLQuery
- */
-WOQL.delete_quad = function(S, P, O, G) {
-    return new WOQLQuery().delete_quad(S, P, O, G)
-}
-
+    delete_quad("Person", "type", "owl:Class", "schema/main")
 
 #### when 
 
@@ -872,53 +842,41 @@ when(Condition, Consequent)
 
 Status: Stable
 
-Description:   
+Description: Generates a transaction which encompasses all situations in which the Condition is true, the Consequent will be executed - the when block encapsulates a single transaction and allows a single query to express multiple transactions (by including multiple when blocks)  
 
 Arguments: 
+    Condition (WOQLQuery*) - The query which, for each match, will cause the associated consequent to execute
+    Consequent (WOQLQuery*) - The query which, for each match of the Condition, will be executed
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the conditional transactional statement
 
 Example: 
+    when(true).add_triple("doc:john", "type", "scm:Person")
 
-/**
- * When the sub-query in Condition is met, the Update query is executed
- * @param {object or boolean} Query - WOQL Query object or bool
- * @param {object} Update - WOQL Query object, optional
- * @return {object} WOQLQuery
- *
- * Functions which take a query as an argument advance the cursor to make the chaining of queries fall into the corrent place in the encompassing json.
- */
-WOQL.when = function(Query, Update) {
-    return new WOQLQuery().when(Query, Update)
-}
+### Arithmetic Operators
 
-## Arithmetic Operators
+Arithmetic Operators can be arbitrarily composed through the construction of Arithmetic Expressions and passed to the eval function which returns a variable containing the calculated result. This provides a general, stand-alone scientific calculator function, into which variables and constants from larger queries can be injected into mathematical functions. Used in isolation it is a calculator.   
 
-#### eval 
+#### evaluate
 
-eval(ArithmeticExpression, Value) 
+evaluate(ArithmeticExpression, Result)  ~ eval(ArithmeticExpression, Result) (note eval does not work without a preceding WOQL. - you must use evaluate to avoid clashing with javascripts eval() function)
 
 Status: Stable
 
-Description:   
+Description: Evaluates the passed arithmetic expression and generates or matches the result value
 
 Arguments: 
+    ArithmeticExpression (WOQLQuery*) - A WOQL query containing a valid WOQL Arithmetic Expression, which is evaluated by the function
+    Result (string or decimal or integer*) - Either a variable, in which the result of the expression will be stored, or a numeric literal which will be used as a test of result of the evaluated expression
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the Arithmetic function
 
-Example: 
-
-/**
- * Evaluates the Arithmetic Expression Arith and copies the output to variable V
- * @param {object} arith - query or JSON-LD representing the query
- * @param {string} v - output variable
- * @return {object} WOQLQuery
- */
-WOQL.eval = function(arith, v) {
-    return new WOQLQuery().eval(arith, v)
-}
+Example:
+    let [result] = vars("result")
+    evaluate(plus(2, minus(3, 1)), result)
+    //result contains 4
 
 #### sum 
 
@@ -926,197 +884,158 @@ sum(List, Total)
 
 Status: Stable
 
-Description:   
+Description: computes the sum of the List of values passed. In contrast to other arithmetic functions, sum self-evaluates - it does not have to be passed to evaluate()
 
 Arguments: 
+    List ([string or numeric*]) - a list variable, or a list of variables or numeric literals
+    Total - a variable or numeric containing the sum of the values in List
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the Sum expression
 
 Example: 
-
-/**
- * Adds a list of numbers together
- * @param input - input list variable
- * @param output - output numeric
- * @return {object} WOQLQuery
- */
-WOQL.sum = function(input, output) {
-    return new WOQLQuery().sum(input, output)
-}
-
+    let [result] = vars("result")
+    sum([2, 3, 4, 5], result)
+    //result contains 14
 
 #### plus 
 
-sum(Number1, Number2, Total) 
+plus(Number1, Number2) 
 
 Status: Stable
 
-Description:   
+Description: adds two numbers together 
 
 Arguments: 
+    Number1 (string or numeric*) - a variable or numeric containing the first value to add
+    Number2 (string or numeric*) - a variable or numeric containing the second value to add
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the addition expression
 
 Example: 
-
-/**
- * Adds numbers N1...Nn together
- * @param args - numbers to add together
- * @return {object} WOQLQuery
- */
-WOQL.plus = function(...args) {
-    return new WOQLQuery().plus(...args)
-}
+    let [result] = vars("result")
+    evaluate(plus(2, plus(3, 1)), result)
+    //result contains 6
 
 #### minus 
 
-sum(Number1, Number2, Difference) 
+minus(Number1, Number2) 
 
 Status: Stable
 
-Description:   
+Description: subtracts Number2 from Number1  
 
 Arguments: 
+    Number1 (string or numeric*) - a variable or numeric containing the value that will be subtracted from
+    Number2 (string or numeric*) - a variable or numeric containing the value to be subtracted
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the subtraction expression
 
 Example: 
-
-
-/**
- * Subtracts Numbers N1..Nn
- * @param args - numbers to be subtracted
- * @return {object} WOQLQuery
- */
-WOQL.minus = function(...args) {
-    return new WOQLQuery().minus(...args)
-}
+    let [result] = vars("result")
+    evaluate(minus(2.1, plus(0.2, 1)), result)
+    //result contains 0.9000000000000001 - note floating point inaccuracy
 
 #### times 
 
-times(Number1, Number2, Total) 
+times(Number1, Number2) 
 
 Status: Stable
 
-Description:   
+Description: multiples Number1 and Number2
 
 Arguments: 
+    Number1 (string or numeric*) - a variable or numeric containing the first value to multiply
+    Number2 (string or numeric*) - a variable or numeric containing the second value to multiply
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the multiplication expression
 
 Example: 
-
-/**
- * Multiplies numbers N1...Nn together
- * @param args - numbers to be multiplied
- * @return {object} WOQLQuery
- */
-WOQL.times = function(...args) {
-    return new WOQLQuery().times(...args)
-}
+    let [result] = vars("result")
+    evaluate(times(10, minus(2.1, plus(0.2, 1))), result)
+    //result contains 9.000000000000002
 
 #### divide
 
-divide(Number1, Number2, Ratio) 
+divide(Number1, Number2) 
 
 Status: Stable
 
-Description:   
+Description: divides Number1 by Number2
 
 Arguments: 
+    Number1 (string or numeric*) - a variable or numeric containing the number to be divided
+    Number2 (string or numeric*) - a variable or numeric containing the divisor
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the division expression
 
 Example: 
-
-
-/**
- * Divides numbers N1...Nn by each other left, to right precedence
- * @param args - numbers to tbe divided
- * @return {object} WOQLQuery
- */
-WOQL.divide = function(...args) {
-    return new WOQLQuery().divide(...args)
-}
-
-#### div 
-
-div(Number1, Number2, RatioFloor) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-/**
- * Division - integer division - args are divided left to right
- * @param args - numbers for division
- * @return {object} WOQLQuery
- */
-WOQL.div = function(...args) {
-    return new WOQLQuery().div(...args)
-}
-
-#### exp 
-
-exp(Number1, Number2, Total) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-
-/**
- * Raises A to the power of B
- * @param {integer or double} a - base number
- * @param {integer or double} b - power of
- * @return {object} WOQLQuery
- */
-WOQL.exp = function(a, b) {
-    return new WOQLQuery().exp(a, b)
-}
+    let [result] = vars("result")
+    evaluate(divide(times(10, minus(2.1, plus(0.2, 1))), 10), result)
+    //result contains 0.9000000000000001
 
 #### floor
 
-floor(Number1, IntegerFloor) 
+floor(Number1) 
 
 Status: Stable
 
-Description:   
+Description: generates the nearest lower integer to the passed number
 
 Arguments: 
+    Number1 (string or numeric*) - a variable or numeric containing the number to be floored
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the floor expression
 
 Example: 
+    let [result] = vars("result")
+    evaluate(divide(floor(times(10, minus(2.1, plus(0.2, 1)))), 10), result)
+    //result contains 0.9 - floating point error removed
 
-/**
- * Floor (closest lower integer)
- * @param {integer or double} a
- * @return {object} WOQLQuery
- */
-WOQL.floor = function(a) {
-    return new WOQLQuery().floor(a)
-}
+#### div 
+
+div(Number1, Number2) 
+
+Status: Stable
+
+Description: integer division: divides Number1 by Number2 to return an integer value
+
+Arguments: 
+    Number1 (string or numeric*) - a variable or numeric containing the number to be divided
+    Number2 (string or numeric*) - a variable or numeric containing the divisor
+
+Returns: 
+    A WOQLQuery which contains the integer division expression
+
+Example: 
+    let [result] = vars("result")
+    evaluate(div(10, 3), result)
+    //result contains 3
+
+#### exp 
+
+exp(Number1, Number2) 
+
+Status: Stable
+
+Description: exponent - raises Number1 to the power of Number2
+
+Arguments: 
+    Number1 (string or numeric*) - a variable or numeric containing the number to be raised to the power of the second number
+    Number2 (string or numeric*) - a variable or numeric containing the exponent
+
+Returns: 
+    A WOQLQuery which contains the exponent expression
+
+Example: 
+    let [result] = vars("result")
+    evaluate(exp(3, 2), result)
+    //result contains 9
 
 #### less 
 
@@ -1124,25 +1043,20 @@ less(Val1, Val2)
 
 Status: Stable
 
-Description:   
+Description: Matches when Val1 is less than Val2
 
 Arguments: 
+    Val1 (string or numeric*) - a variable or numeric containing the number to be compared
+    Val2 (string or numeric*) - a variable or numeric containing the second comporator
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the comparison expression
 
 Example: 
+    let [result] = vars("result")
+    less(1, 1.1).eq(result, literal(true, "boolean"))
+    //result contains true
 
-
-/**
- * Compares the value of v1 against v2 and returns true if v1 is less than v2
- * @param {string} v1 - first variable to compare
- * @param {string} v2 - second variable to compare
- * @return {object} WOQLQuery
- */
-WOQL.less = function(v1, v2) {
-    return new WOQLQuery().less(v1, v2)
-}
 
 #### greater 
 
@@ -1150,41 +1064,42 @@ greater(Val1, Val2)
 
 Status: Stable
 
-Description:   
+Description: Matches when Val1 is greater than Val2
 
 Arguments: 
+    Val1 (string or numeric*) - a variable or numeric containing the number to be compared
+    Val2 (string or numeric*) - a variable or numeric containing the second comporator
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the comparison expression
 
 Example: 
+    let [result] = vars("result")
+    greater(1.2, 1.1).eq(result, literal(true, "boolean"))
+    //result contains true
 
-/**
- * Compares the value of v1 against v2 and returns true if v1 is greater than v2
- * @param {string} v1 - first variable to compare
- * @param {string} v2 - second variable to compare
- * @return {object} WOQLQuery
- */
-WOQL.greater = function(v1, v2) {
-    return new WOQLQuery().greater(v1, v2)
-}
 
-### Importing Data
+### Importing & Exporting 
 
 #### get 
 
-greater(Val1, Val2) 
+get(AsVArs, QueryResource) 
 
 Status: Stable
 
-Description:   
+Description: retrieves the exernal resource defined by QueryResource and copies values from it into variables defined in AsVars
 
 Arguments: 
+    AsVArs ([string]*) an array of AsVar variable mappings (see as for format below)
+    QueryResource (string*) an external resource (remote, file, post) to query 
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the get expression
 
 Example: 
+    let [a, b] = vars("a", "b")
+    get(as("a", a).as("b", b)).remote("http://my.url.com/x.csv")
+    //copies the values from column headed "a" into a variable a and from column "b" into a variable b from remote CSV  
 
 /**
  * Imports the Target Resource to the variables defined in vars
@@ -1211,7 +1126,6 @@ Returns:
 
 Example: 
 
-
 /**
  * Exports the Target Resource to the file file, with the variables defined in as
  * @param {object} asvars - An AS query (or json representation)
@@ -1225,13 +1139,16 @@ WOQL.put = function(asvars, query, query_resource) {
 
 #### as 
 
-as(Val1, Val2) 
+as(SourceLocator, VarName, Type) 
 
 Status: Stable
 
-Description:   
+Description:  Maps data from an imported source to a WOQL variable and optionally sets its type 
 
 Arguments: 
+    SourceLocator (string) 
+    VarName (string*)
+    Type (string)
 
 Returns: 
     A WOQLQuery which contains the Lower Case pattern matching expression
@@ -1329,120 +1246,101 @@ WOQL.post = function(url, opts) {
 
 #### using 
 
-using(Val1, Val2) 
+using(GraphResource, Subq) 
 
 Status: Stable
 
-Description:   
+Description: specifies the resource to use as default in the contained query 
 
 Arguments: 
+    GraphResource (string*) - A valid graph resource identifier string 
+    Subq (WOQLQuery*) - The query which will be executed against the resource identified above 
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which is defined to run against the resource
 
 Example: 
-
-/**
- * allow you to do a query against a specific commit point
- *
- * example WOQL.using("userName/dbName/local/commit|branch/commitID").triple("v:A", "v:B", "v:C")..
- *
- * @param {string}   		 - refPath  path to specific refId
- * @param {WOQLQuery object} - subquery for the specific commit point
- * @return WOQLQuery
- */
-
-WOQL.using = function(refPath, Query) {
-    return new WOQLQuery().using(refPath, Query)
-}
+    using("admin/minecraft").all()
+    //retrieves all triples in the minecraft db of the admin organization
 
 #### into 
 
-into(Val1, Val2) 
+into(GraphResource, Subq) 
 
 Status: Stable
 
-Description:   
+Description: specifies the graph resource to write the contained query into
 
 Arguments: 
+    GraphResource (string*) - A valid graph resource identifier string 
+    Subq (WOQLQuery*) - The query which will be written into the graph 
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which will be written into the graph in question
 
 Example: 
-
-/**
- * Sets the current output graph for writing output to.
- * @param {string} graph_descriptor - a id of a specific graph (e.g. instance/main) that will be written to
- * @param {object} query - WOQL Query object, optional
- * @return {object} WOQLQuery
- */
-WOQL.into = function(graph_descriptor, query) {
-    return new WOQLQuery().into(graph_descriptor, query)
-}
+    using("admin/minecraft").into("instance/main").add_triple("a", "type", "scm:X")
+    //writes a single tripe (doc:a, rdf:type, scm:X) into the main instance graph
 
 ### Database Size 
 
 #### size 
 
-size(Val1, Val2) 
+size(ResourceID, Size) 
 
 Status: Stable
 
-Description:   
+Description: calculates the size in bytes of the contents of the resource identified in ResourceID
 
 Arguments: 
+    ResourceID (string*) - A valid resource identifier string (can refer to any graph / branch / commit / db)
+    Size (string or integer*) - An integer literal with the size in bytes or a variable containing that integer  
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the size expression
 
 Example: 
-
-
-/**
- * Returns the size of the passed graph filter
- */
-WOQL.size = function(Graph, Size) {
-    return new WOQLQuery().size(Graph, Size)
-}
+    let [sz] = vars("s")
+    size("admin/minecraft/local/branch/main/instance/main", sz)
+    //returns the number of bytes in the main instance graph on the main branch
 
 #### triple_count 
 
-triple_count(Val1, Val2) 
+triple_count(ResourceID, Count) 
 
 Status: Stable
 
-Description:   
+Description: calculates the size in bytes of the contents of the resource identified in ResourceID
 
 Arguments: 
+    ResourceID (string*) - A valid resource identifier string (can refer to any graph / branch / commit / db)
+    Count (string or integer*) - An integer literal with the size in bytes or a variable containing that integer  
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the size expression
 
 Example: 
-
-/**
- * Returns the count of triples in the passed graph filter
- */
-WOQL.triple_count = function(Graph, TripleCount) {
-    return new WOQLQuery().triple_count(Graph, TripleCount)
-}
-
+    let [tc] = vars("s")
+    triple_count("admin/minecraft/local/_commits", tc)
+    //returns the number of bytes in the local commit graph
 
 ### Document Queries (Experimental / Unstable)
 
+Document queries take or return entire JSON-LD document as arguments. This relies upon the internal frame-generation capabilities of the database and requires the user to have defined discrete document classes to dictate at what points the graph traversal is truncated - a document is considered to contain all objects within it, with the exception of predicates and classes that belong to other documents. This takes some care - improperly defined it can lead to very slow queries which contain the whole database unrolled into a single document - not normally what we require.   
+
 #### update_object 
 
-update_object(Val1, Val2) 
+update_object(JSONLD) 
 
-Status: Stable
+Status: Experimental / Unstable
 
-Description:   
+Description: Updates a document (or any object) in the db with the passed json-ld - replaces the current version
 
 Arguments: 
+    JSONLD (string*) the document's JSON-LD form which will be written to the DB
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the update object expression
 
 Example: 
 
@@ -1455,49 +1353,40 @@ WOQL.update_object = function(JSON) {
     return new WOQLQuery().update_object(JSON)
 }
 
-
 #### delete_object 
 
-delete_object(Val1, Val2) 
+delete_object(JSON_or_IRI) 
 
 Status: Stable
 
-Description:   
+Description: Deletes the entire refered document and all references to it
 
 Arguments: 
+    JSON_or_IRI (string*) either a full JSON-LD document, an IRI literal or a variable containing either 
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which object deletion expression
 
 Example: 
-
-/**
- * Deletes a node identified by an IRI or a JSON-LD document
- * @param {string} JSON_or_IRI - IRI or a JSON-LD document
- * @return {object} WOQLQuery
- */
-WOQL.delete_object = function(JSON_or_IRI) {
-    return new WOQLQuery().delete_object(JSON_or_IRI)
-}
+    delete_object("doc:mydoc")
 
 #### read_object 
 
-read_object(Val1, Val2) 
+read_object = function(DocumentIRI, JSONLD)
 
-Status: Stable
-
-Description:   
+Description: saves the entire document with IRI DocumentIRI into the JSONLD variable 
 
 Arguments: 
+    DocumentIRI (string*) either an IRI literal or a variable containing an IRI  
+    JSONLD (string*) a varialbe into which the document's JSON-LD form will be saved
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the document retrieval expression
 
 Example: 
-
-WOQL.read_object = function(IRI, Output, Format) {
-    return new WOQLQuery().read_object(IRI, Output, Format)
-}
+    let [mydoc] = vars("mydoc")
+    read_object("doc:a", mydoc)
+    //mydoc will have the json-ld document with ID doc:x stored in it
 
 ## Non Primitive Functions
 
@@ -1505,109 +1394,97 @@ WOQL.read_object = function(IRI, Output, Format) {
 
 #### string 
 
-string(Val1, Val2) 
+string(Val1) 
 
 Status: Stable
 
-Description:   
+Description: Generates explicitly a JSON-LD string literal from the input    
 
 Arguments: 
+    Val1 (literal*) - any literal type
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A JSON-LD string literal
 
 Example: 
+    string(1)
+    //returns { "@type": "xsd:string", "@value": "1" }
 
 #### literal 
 
-literal(Val1, Val2) 
+literal(Val, Type) 
 
 Status: Stable
 
-Description:   
+Description: Generates explicitly a JSON-LD string literal from the input    
 
 Arguments: 
+    Val (literal*) - any literal type
+    Type (string*) - an xsd or xdd type
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A JSON-LD literal 
 
 Example: 
-
-WOQL.literal = function(s, t) {
-    return new new WOQLQuery().literal(s, t)
-}
+    literal(1, "nonNegativeInteger")
+    //returns { "@type": "xsd:nonNegativeInteger", "@value": 1 }
 
 #### iri 
 
-iri(Val1, Val2) 
+iri(Val1) 
 
 Status: Stable
 
-Description:   
+Description: Explicitly sets a value to be an IRI - avoiding automatic type marshalling   
 
 Arguments: 
+    Val1 (string*) - string which will be treated as an IRI
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A JSON-LD IRI value
 
-Example: 
-
-WOQL.iri = function(s) {
-    return new new WOQLQuery().iri(s)
-}
+Example:
+    iri("dc:title")
+    //returns { "@type": "woql:Node", "woql:node": "dc:title" }
 
 ### Basic Helper Functions
 
 #### query 
 
-literal(Val1, Val2) 
+query() 
 
 Status: Stable
 
-Description:   
+Description: Generates an empty WOQLQuery object 
 
-Arguments: 
+Arguments: None
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    An empty WOQLQuery object
 
 Example: 
-
-/**
- * Creates a new Empty Query object
- * @return {object} WOQLQuery
- */
-WOQL.query = function() {
-    return new WOQLQuery()
-}
-
+    let q = query()
+    //then q.triple(1, 1) ...
+    
 #### json 
 
-literal(Val1, Val2) 
+json(JSONLD) 
 
 Status: Stable
 
-Description:   
+Description: translates between the JSON-LD and object version of a query - if an argument is passed, the query object is created from it, if none is passed, the current state is returned as a JSON-LD
 
 Arguments: 
+    JSONLD (json) - optional JSON-LD woql document encoding a query
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    either a JSON-LD or a WOQLQuery object
 
 Example: 
-
-//loads query from json
-
-/**
- * Generates a WOQLQuery object from the passed WOQL JSON
- * @param {object} json - JSON-LD object, optional
- * @return {object} WOQLQuery
- *
- * json version of query for passing to api
- */
-WOQL.json = function(json) {
-    return new WOQLQuery().json(json)
-}
+    let q = triple("a", "b", "c")
+    let qjson = q.json()
+    let p = json(qjson)
+    //q an p both contain: {"@type": "woql:Triple", "woql:subject": { "@type": "woql:Node", "woql:node": "doc:a"}, "woql:predicate": ....
 
 #### vars 
 
@@ -1615,58 +1492,168 @@ vars(...Varnames)
 
 Status: Stable
 
-Description:   
+Description: generates javascript variables for use as WOQL variables within a query
 
 Arguments: 
+    ([string*]) an array of strings, each of which will server as a variable
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    an array of javascript variables which can be dereferenced using the array destructuring operation
 
 Example: 
-
-
-WOQL.vars = function(...varray) {
-    return varray.map((item) => 'v:' + item)
-}
+    const [a, b, c] = vars("a", "b", "c")
+    //a, b, c are javascript variables which can be used as WOQL variables in subsequent queries
 
 ## Compound Functions
 
+### Shorthand Compound Functions
+Shorthand compound functions provide shorthand forms for commonly used functions to avoid having to write the same basic patterns repeatedly
+
 #### star 
 
-literal(Val1, Val2) 
+star(Graph, Subject, Object, Predciate) 
 
 Status: Stable
 
-Description:   
+Description: generates a query that by default matches all triples in a graph  
 
 Arguments: 
+    Graph (string) - Option Resource String identifying the graph to be searched for the pattern 
+    Subject (string) - Optional IRI of triple's subject or a variable 
+    Predicate (string) - Optional IRI of a property or a variable 
+    Object (string) - Optional IRI of a node or a variable, or a literal 
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the pattern matching expression
 
 Example: 
-
-
-/**
- * By default selects everything as triples ("v:Subject", "v:Predicate", "v:Object") in the graph identified by GraphIRI or in all the current terminusDB's graph
- *
- * example WOQL.star("schema/main") will give all triples in the main schema graph
- *
- * @param {string} graphRef 	- optional target graph 	false is the default value and get all the database's graphs, possible value are  | false | schema/{main - myschema - *} | instance/{main - myschema - *}  | inference/{main - myschema - *}
- * @param {string} Subj 		- optional target subject   default value "v:Subject"
- * @param {string} Pred 		- optional target predicate default value "v:Predicate"
- * @param {string} Obj 			- optional target object    default value "v:Object"
- * @return {object} WOQLQuery
- */
-WOQL.star = function(graphRef, Subj, Pred, Obj) {
-    return new WOQLQuery().star(graphRef, Subj, Pred, Obj)
-}
+    star("schema/main")
+    //will return every triple in schema/main graph
 
 #### all 
 
-all(Val1, Val2) 
+all(Subject, Object, Predciate, Graph) 
 
 Status: Stable
+
+Description: generates a query that by default matches all triples in a graph - identical to star() except for order of arguments
+
+Arguments: 
+    Subject (string) - Optional IRI of triple's subject or a variable 
+    Predicate (string) - Optional IRI of a property or a variable 
+    Object (string) - Optional IRI of a node or a variable, or a literal 
+    Graph (string) - Optional Resource String identifying the graph to be searched for the pattern 
+
+Returns: 
+    A WOQLQuery which contains the pattern matching expression
+
+Example: 
+    all("mydoc")
+    //will return every triple in the instance/main graph that has "doc:mydoc" as its subject
+
+#### nuke 
+
+nuke(Graph) 
+
+Status: Stable
+
+Description: Deletes all triples in the graph 
+
+Arguments: 
+    Graph (string) - Optional Resource String identifying the graph from which all triples will be removed 
+
+Returns: 
+    A WOQLQuery which contains the deletion expression
+
+Example: 
+    nuke("schema/main")
+    //will delete everything from the schema/main graph
+
+
+### Compound Schema Functions
+Compound schema functions are compound functions specifically designed to make generating schemas easier. They generate multiple inserts for each function
+
+#### add_class 
+
+add_class(ClassIRI, Graph) 
+
+Status: Stable
+
+Description: adds a new class definition to the schema
+
+Arguments: 
+    ClassIRI (string*) - IRI or variable containing IRI of the new class to be added (prefix default to scm)
+    Graph (string) - Optional Resource String identifying the schema graph into which the class definition will be written 
+
+Returns: 
+    A WOQLQuery which contains the add class expression
+
+Example: 
+    add_class("MyClass")
+    //equivalent to add_quad("MyClass", "type", "owl:Class", "schema/main")
+
+#### add_property 
+
+add_property(PropIRI, RangeType, Graph) 
+
+Status: Stable
+
+Description: adds a new property definition to the schema
+
+Arguments: 
+    PropIRI (string*) - IRI or variable containing IRI of the new property to be added (prefix default to scm)
+    RangeType (string) - optional IRI or variable containing IRI of the range type of the new property (defaults to xsd:string)
+    Graph (string) - Optional Resource String identifying the schema graph into which the property definition will be written 
+
+Returns: 
+    A WOQLQuery which contains the add property expression
+
+Example: 
+    add_property("myprop")
+    //equivalent to add_quad("myprop", "type", "owl:DatatypeProperty", "schema/main").add_quad("myprop", "range", "xsd:string", "schema/main")
+
+#### doctype 
+
+doctype(ClassIRI, Graph) 
+
+Status: Stable
+
+Description: Adds a new document class to the schema
+
+Arguments: 
+    ClassIRI (string*) - IRI or variable containing IRI of the new document class to be added (prefix default to scm)
+    Graph (string) - Optional Resource String identifying the schema graph into which the class definition will be written 
+
+Returns: 
+    A WOQLQuery which contains the add document class expression
+
+Example: 
+    doctype("MyClass")
+    //equivalent to add_quad("MyClass", "type", "owl:Class", "schema/main").add_quad("MyClass", "subClassOf", "system:Document", "schema/main")
+
+#### delete_class 
+
+delete_class(ClassIRI, Graph) 
+
+Status: Experimental / Unstable
+
+Description: Deletes a class - including all properties and incoming links - from the schema 
+
+Arguments: 
+    ClassIRI (string*) - IRI or variable containing IRI of the class to be deleted (prefix default to scm)
+    Graph (string) - Optional Resource String identifying the schema graph from which the class definition will be deleted 
+
+Returns: 
+    A WOQLQuery which contains the class deletion expression
+
+Example: 
+    delete_class("MyClass")
+
+#### delete_property 
+
+delete_property(Val1, Val2) 
+
+Status: Experimental / Unstable
 
 Description:   
 
@@ -1677,167 +1664,259 @@ Returns:
 
 Example: 
 
-
-WOQL.all = function(Subj, Pred, Obj, graphRef) {
-    return new WOQLQuery().star(graphRef, Subj, Pred, Obj)
+/**
+ * Deletes the property with the passed ID from the schema (and all references to it)
+ * @param {string} propid - property id to be added
+ * @param {string} graph - target graph, optional
+ * @return {object} WOQLQuery
+ */
+WOQL.delete_property = function(propid, graph) {
+    return new WOQLSchema().delete_property(propid, graph)
 }
 
-### Builder Functions
+#### schema 
+
+schema(Graph) 
+
+Status: Deprecated
+
+Description: Generates an empty query object - identical to query - included for backwards compatibility as before v3.0, the schema functions were in their own namespace. 
+
+Arguments: 
+    Graph (string) - Optional Resource String identifying the graph which will be used for subsequent chained schema calls 
+
+Returns: 
+    An empty WOQLQuery with the internal schema graph pointes set to Graph 
+
+Example: 
+    schema("schema/dev").add_class("X")
+    //equivalent to add_class("X", "schema/dev") - non-deprecated version
+
+
+### Builder / Partial Functions
+
+Builder functions are different from other WOQL functions in that they cannot be used in isolation - they produce partial functions in isolation and need to be chained onto other functions in order to form complete functions in their own right. Builder functions must be chained after a function that provides at least a subject (triple, add_triple, add_quad, delete_triple). Multiple builder functions can be chained together.
 
 #### node 
 
-literal(Val1, Val2) 
+node(NodeID, ChainType) 
 
 Status: Stable
 
-Description:   
+Description: Specifies the identity of a node that can then be used in subsequent builder functions. Note that node() requires subsequent chained functions to complete the triples / quads that it produces - by itself it only generates the subject. 
 
 Arguments: 
-
+    NodeID (string*) The IRI of a node or a variable containing an IRI which will be the subject of the builder functions 
+    ChainType (string) Optional type of builder function to build (can be Triple, Quad, AddTriple, AddQuad, DeleteTriple, DeleteQuad) - defaults to Triple  
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the partial Node pattern matching expression
 
 Example: 
-
-/**
- * Selects nodes with the ID NodeID as the subject of subsequent sub-queries. The second argument PatternType specifies what type of sub-queries are being constructed, options are: triple, quad, update_triple, update_quad, delete_triple, delete_quad
- * @param {string} nodeid - node to be selected
- * @param {string} type - pattern type, optional (default is triple)
- * @return {object} WOQLQuery
- */
-WOQL.node = function(nodeid, type) {
-    return new WOQLQuery().node(nodeid, type)
-}
-WOQLQuery.prototype.node = function(node, type) {
-    type = type || false
-    if (type == 'add_quad') type = 'AddQuad'
-    else if (type == 'delete_quad') type = 'DeleteQuad'
-    else if (type == 'add_triple') type = 'AddTriple'
-    else if (type == 'delete_triple') type = 'DeleteTriple'
-    else if (type == 'quad') type = 'Quad'
-    else if (type == 'triple') type = 'Triple'
-    if (type && type.indexOf(':') == -1) type = 'woql:' + type
-    let ctxt = {subject: node}
-    if (type) ctxt.action = type
-    this._set_context(ctxt)
-    return this
-}
+    node("mydoc").label("my label")
+    //equivalent to triple("mydoc", "label", "my label")
 
 #### insert 
 
-literal(Val1, Val2) 
+insert(Node, Type, Graph) 
 
 Status: Stable
 
-Description:   
+Description: Inserts a single triple into the database declaring the Node to have type Type, optionally into the specified graph  
 
 Arguments: 
+    Node (string*) - IRI string or variable containing the IRI of the node to be inserted
+    Type (string*) - IRI string or variable containing the IRI of the type of the node 
+    Graph (string) - Optional Graph resource identifier
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the insert expression
 
 Example: 
+    insert("mydoc", "MyType")
+    //equivalent to add_triple("mydoc", "type", "MyType")
 
+#### graph 
 
-/**
- * Insert a node with a specific type in a graph // statement is used to insert new records in a table.
- * document type
- * @param {string} Node 		- node to be insert
- * @param {string} Type 		- type of the node (class/document name)
- * @param {string} graphRef 	- optional target graph if not setted it get all the database's graphs, possible value are  | schema/{main - myschema - *} | instance/{main - myschema - *}  | inference/{main - myschema - *}
- * @return {object} WOQLQuery
- */
-WOQL.insert = function(Node, Type, graphRef) {
-    return new WOQLQuery().insert(Node, Type, graphRef)
-}
+graph(Graph) 
+
+Status: Stable
+
+Description: sets the graph resource ID that will be used for subsequent chained function calls  
+
+Arguments: 
+    Graph (string*) Graph Resource String literal 
+
+Returns: 
+    A WOQLQuery which contains the partial Graph pattern matching expression
+
+Example: 
+    node("MyClass", "AddQuad").graph("schema/main").label("My Class Label")
+    //equivalent to add_quad("MyClass", "label", "My Class Label", "schema/main")
 
 #### abstract 
 
-abstract(Val1, Val2) 
+abstract(Graph, Subject) 
 
 Status: Stable
 
-Description:   
+Description: adds an abstract designation to a class
 
 Arguments: 
+    Graph (string) optional Graph Resource String literal - defaults to "schema/main"
+    Subject (string) optional IRI or variable containing IRI of the subject
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the Abstract tag expression
 
 Example: 
-
-
-WOQLQuery.prototype.abstract = function(graph, subj) {
-    this._add_partial(subj, 'system:tag', 'system:abstract', graph)
-    return this
-}
+    node("MyClass", "AddQuad").abstract()
+    //equivalent to add_quad("MyClass", "system:tag", "system:abstract","schema/main")
 
 #### property 
 
-literal(Val1, Val2) 
+property(PropIRI, Type_or_Value) 
 
 Status: Stable
 
-Description:   
+Description: Creates a property in the schema or adds a property to the instance data, or creates a property matching rule, depending on context  
 
 Arguments: 
+    PropIRI (string*) - the IRI of the property or a variable containing the property 
+    Type_or_Value (string or literal*) - the value of the property (instance) or the type of the property (schema)
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the property matching / insert expression
 
 Example: 
+    doctype("X").property("Y", "string")
+    //creates a document type X with a property Y of type string
 
-/**
- * Add a property at the current class/document
- *
- * @param {string} proId - property ID
- * @param {string} type  - property type (range) (on class inserts) property value on data inserts
- * @returns WOQLQuery object
- *
- * A range could be another class/document or an "xsd":"http://www.w3.org/2001/XMLSchema#" type
- * like string|integer|datatime|nonNegativeInteger|positiveInteger etc ..
- * (you don't need the prefix xsd for specific a type)
- */
+#### domain 
 
-WOQLQuery.prototype.property = function(proId, type_or_value) {
-    if (this._adding_class()) {
-        let part = this.findLastSubject(this.cursor)
-        let g = false
-        let gpart
-        if (part) gpart = part['woql:graph_filter'] || part['woql:graph']
-        if (gpart) g = gpart['@value']
-        let nprop = new WOQLSchema()
-            .add_property(proId, type_or_value, g)
-            .domain(this._adding_class())
-        this.and(nprop)
-    } else {
-        this._add_partial(false, proId, type_or_value)
-    }
-    return this
-}
-
-#### insert 
-
-literal(Val1, Val2) 
+domain(ClassIRI) 
 
 Status: Stable
 
-Description:   
+Description: Specifies the domain of a property in a property chain
 
 Arguments: 
+    ClassIRI (string *) IRI of class or variable containing IRI
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the domain expression
 
 Example: 
+    add_property("MyProp").domain("MyClass")
 
-WOQLQuery.prototype.insert = function(id, type, refGraph) {
-    type = this.cleanType(type, true)
-    if (refGraph) {
-        return this.add_quad(id, 'type', type, refGraph)
-    }
-    return this.add_triple(id, 'type', type)
-}
+#### label 
+
+label(Label, Lang) 
+
+Status: Stable
+
+Description: adds a label to an element in a chain using the rdfs:label predicate
+
+Arguments: 
+    Label (string *) string literal containing label or variable containing string
+    Lang (string) optional language tag (e.g. "en")
+
+Returns: 
+    A WOQLQuery which contains the label in the rdfs:label predicate
+
+Example: 
+    add_class("MyClass").label("My Class Label")
+    //creates the class and gives it a label
+
+#### description 
+
+description(Comment, Lang) 
+
+Description: adds a description to an element in a chain using the rdfs:comment predicate
+
+Arguments: 
+    Comment (string *) string literal containing label or variable containing string
+    Lang (string) optional language tag (e.g. "en")
+
+Returns: 
+    A WOQLQuery which contains the description in the rdfs:comment predicate
+
+Example: 
+    let [doc] = vars("doc")
+    node(doc).description("My Class Description")
+    //matches any document with the given description
+
+#### parent 
+
+parent(...ParentIRIs) 
+
+Status: Stable
+
+Description: Adds parent class clause(s) to a chain using the rdfs:subClassOf predicate
+
+Arguments: 
+    ParentIRI ([string*]) - list of class IRIs or variables containing class IRIs representing parent classes of the current class
+
+Returns: 
+    A WOQLQuery which contains the parent expression
+
+Example: 
+    add_class("Y").parent("X")
+    //creates class Y as a subClass of class X
+
+#### max 
+
+max(Count) 
+
+Status: Stable
+
+Description: adds a maximum cardinality constraint to an add_property chain   
+
+Arguments: 
+    Count (integer or string*) - a non negative integer or a variable containing a non-negative integer
+
+Returns: 
+    A WOQLQuery which contains the maximum cardinality expression
+
+Example: 
+    add_property("MyProp").domain("X").max(1)
+    //creates a string property in class X with a maximum cardinality of 1
+
+#### min 
+
+min(Count) 
+
+Status: Stable
+
+Description: adds a minimum cardinality constraint to an add_property chain   
+
+Arguments: 
+    Count (integer or string*) - a non negative integer or a variable containing a non-negative integer
+
+Returns: 
+    A WOQLQuery which contains the minimum cardinality expression
+
+Example: 
+    add_property("MyProp").domain("X").min(1)
+    //creates a string property in class X with a minimum cardinality of 1
+
+#### cardinality 
+
+cardinality(Count) 
+
+Status: Stable
+
+Description: adds an exact cardinality constraint to an add_property chain   
+
+Arguments: 
+    Count (integer or string*) - a non negative integer or a variable containing a non-negative integer
+
+Returns: 
+    A WOQLQuery which contains the cardinality expression
+
+Example: 
+    add_property("MyProp").domain("X").cardinality(1)
+    //creates a string property in class X with an exact cardinality of 1
+
 
 #### insert data
 
@@ -1874,333 +1953,6 @@ WOQLQuery.prototype.insert_data = function(data, refGraph) {
     return this
 }
 
-#### graph 
-
-literal(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-
-WOQLQuery.prototype.graph = function(g) {
-    return this._set_context({graph: g})
-}
-
-#### domain 
-
-domain(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-WOQLQuery.prototype.domain = function(d) {
-    d = this.cleanClass(d)
-    return this._add_partial(false, 'rdfs:domain', d)
-}
-
-#### label 
-
-label(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-WOQLQuery.prototype.label = function(l, lang) {
-    lang = lang ? lang : 'en'
-    if (l.substring(0, 2) == 'v:') {
-        var d = l
-    } else {
-        var d = {'@value': l, '@type': 'xsd:string', '@language': lang}
-    }
-    return this._add_partial(false, 'rdfs:label', d)
-}
-
-#### description 
-
-description(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-
-WOQLQuery.prototype.description = function(c, lang) {
-    lang = lang ? lang : 'en'
-    if (c.substring(0, 2) == 'v:') {
-        var d = c
-    } else {
-        var d = {'@value': c, '@type': 'xsd:string', '@language': lang}
-    }
-    return this._add_partial(false, 'rdfs:comment', d)
-}
-
-
-#### parent 
-
-parent(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-/**
- * Specifies that a new class should have parents class
- * @param {array} parentList the list of parent class []
- *
- */
-WOQLQuery.prototype.parent = function(...parentList) {
-    for (var i = 0; i < parentList.length; i++) {
-        var pn = this.cleanClass(parentList[i])
-        this._add_partial(false, 'rdfs:subClassOf', pn)
-    }
-    return this
-}
-
-#### max 
-
-max(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-WOQLQuery.prototype.max = function(m) {
-    this._card(m, 'max')
-    return this
-}
-
-#### min 
-
-min(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-WOQLQuery.prototype.min = function(m) {
-    this._card(m, 'min')
-    return this
-}
-
-#### cardinality 
-
-cardinality(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-WOQLQuery.prototype.cardinality = function(m) {
-    this._card(m, 'cardinality')
-    return this
-}
-
-### Schema Functions
-
-#### schema 
-
-cardinality(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-WOQL.schema = function(G) {
-    return new WOQLSchema(G)
-}
-
-#### add_class 
-
-add_class(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-/**
- * Generates a new Class with the given ClassID and writes it to the DB schema
- * @param {string} classid - class to be added
- * @param {string} graph - target graph
- * @return {object} WOQLQuery
- */
-WOQL.add_class = function(classid, graph) {
-    return new WOQLSchema().add_class(classid, graph)
-}
-
-#### add_property 
-
-add_property(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-/**
- * Generates a new Property with the given PropertyID and a range of type and writes it to the DB schema
- * @param {string} propid - property id to be added
- * @param {string} type - type of the proerty
- * @param {string} graph - target graph, optional
- * @return {object} WOQLQuery
- */
-WOQL.add_property = function(propid, type, graph) {
-    return new WOQLSchema().add_property(propid, type, graph)
-}
-
-#### doctype 
-
-add_property(Val1, Val2) 
-
-Status: Stable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-/**
- * Creates a new document class in the schema - equivalent to: add_quad(type, "rdf:type", "owl:Class", graph), add_quad(type, subclassof, tcs:Document, graph)
- * @param {string} Type - type of the document
- * @param {string} Graph - target graph, optional
- * @return {object} WOQLQuery
- */
-WOQL.doctype = function(Type, Graph) {
-    return WOQL.add_class(Type, Graph).parent('Document')
-}
-
-
-#### delete_class 
-
-delete_class(Val1, Val2) 
-
-Status: Experimental / Unstable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-/**
- * Deletes the Class with the passed ID form the schema (and all references to it)
- * @param {string} classid - class to be added
- * @param {string} graph - target graph
- * @return {object} WOQLQuery
- */
-WOQL.delete_class = function(classid, graph) {
-    return new WOQLSchema().delete_class(classid, graph)
-}
-
-#### delete_property 
-
-delete_property(Val1, Val2) 
-
-Status: Experimental / Unstable
-
-Description:   
-
-Arguments: 
-
-Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
-
-Example: 
-
-/**
- * Deletes the property with the passed ID from the schema (and all references to it)
- * @param {string} propid - property id to be added
- * @param {string} graph - target graph, optional
- * @return {object} WOQLQuery
- */
-WOQL.delete_property = function(propid, graph) {
-    return new WOQLSchema().delete_property(propid, graph)
-}
 
 #### insert_class_data 
 
@@ -2275,6 +2027,7 @@ Example:
 WOQL.insert_property_data = function(data, refGraph) {
     return new WOQLSchema().insert_property_data(data, refGraph)
 }
+
 
 ### Library Functions
 

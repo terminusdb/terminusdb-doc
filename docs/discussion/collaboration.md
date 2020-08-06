@@ -8,7 +8,7 @@ nav_order: 2
 
 {: .no_toc }
 
-TerminusDB contains a powerful query engine and API, but what makes it most unique, is its revision control capabilities which were built into the very core of how TerminusDB works. In the most technical terms, TerminusDB uses an immutable append only layered storage model where only state differences are stored, using a succinct delta-encoding mechanism. In simple terms, TerminusDB never changes anything - whenever you update the database, new values are created which shadow the old ones but you can always look behind the shadow and see what everything looked like before each and every update. The entire history of everything that has ever been in the database is retained and readily accessible.
+TerminusDB contains a powerful query engine and API, but what makes it most unique, is its revision control capabilities which were built into the very core of how TerminusDB works. In the most technical terms, TerminusDB uses an immutable append-only layered storage model where only state differences are stored, using a succinct delta-encoding mechanism. In simple terms, TerminusDB never changes anything - whenever you update the database, new values are created which shadow the old ones but you can always look behind the shadow and see what everything looked like before each and every update. The entire history of everything that has ever been in the database is retained and readily accessible.
 
 Once you have a database engine that works like this, it becomes relatively easy and lightweight to provide the core revision control operations - branch, merge, push and pull (or some variation thereof) that practical revision control systems must provide.
 

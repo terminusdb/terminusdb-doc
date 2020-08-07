@@ -1101,41 +1101,25 @@ Example:
     get(as("a", a).as("b", b)).remote("http://my.url.com/x.csv")
     //copies the values from column headed "a" into a variable a and from column "b" into a variable b from remote CSV  
 
-/**
- * Imports the Target Resource to the variables defined in vars
- * @param {object} asvars - An AS query (or json representation)
- * @param {object} query_resource - description of where the resource is to be got from (WOQL.file, WOQL.remote, WOQL.post)
- * @return {object} WOQLQuery
- */
-WOQL.get = function(asvars, query_resource) {
-    return new WOQLQuery().get(asvars, query_resource)
-}
-
 #### put 
 
-put(Val1, Val2) 
+put(AsVArs, Subq, FileResource) 
 
 Status: Stable
 
-Description:   
+Description: outputs the results of a query to a file
 
 Arguments: 
+    AsVArs ([string]*) an array of AsVar variable mappings (see as for format below)
+    Subq (WOQLQuery*) - The query which will be executed to produce the results 
+    FileResource (string*) an file resource local to the server 
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the put expression
 
 Example: 
-
-/**
- * Exports the Target Resource to the file file, with the variables defined in as
- * @param {object} asvars - An AS query (or json representation)
- * @param {object} query - A sub-query to be dumpted out
- * @param {object} query_resource - description of where the resource is to be put
- * @return {object} WOQLQuery
- */
-WOQL.put = function(asvars, query, query_resource) {
-    return new WOQLQuery().put(asvars, query, query_resource)
-}
+    let [s, p, o] = vars("Subject", "Predicate", "Object")
+    put(as("s", s).as("p", p).as("o", o), all()).file("/app/local_files/dump.csv")
 
 #### as 
 
@@ -1143,104 +1127,76 @@ as(SourceLocator, VarName, Type)
 
 Status: Stable
 
-Description:  Maps data from an imported source to a WOQL variable and optionally sets its type 
+Description:  Maps data from an imported source to a WOQL variable and optionally sets its type
 
 Arguments: 
-    SourceLocator (string) 
-    VarName (string*)
-    Type (string)
+    SourceLocator (string) - an optional string containing the CSV column header, or a variable containing the string (if it is omitted when extracting data from a CSV, the CSV will be indexed by column number) 
+    VarName (string*) - the name of the variable into which the data from the external resource will be copied
+    Type (string) - an optional type to which the data will be automatically mapped on import
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the variable mapping expression
 
-Example: 
-
-
-/**
- * Imports the value identified by Source to a Target variable
- * @param {string or integer} map - Source
- * @param {string} vari - Target
- * @param {string} [ty] - optional type to cast value to
- * @return {object} WOQLQuery
- */
-WOQL.as = function(map, vari, ty) {
-    return new WOQLQuery().as(map, vari, ty)
-}
+Example:
+    let [date] = vars("Date")
+    get(as("Date.From", date)).remote("http://seshatdatabank.info/wp-content/uploads/2020/01/Iron-Updated.csv")
 
 #### remote 
 
-as(Val1, Val2) 
+remote(URL, Opts)
 
 Status: Stable
 
-Description:   
+Description: identifies a remote resource by URL and specifies the format of the resource through the options   
 
 Arguments: 
+    URL (string*) The URL at which the remote resource can be accessed
+    Opts (object) A option json which can have the following keys: 
+        type: csv|turtle
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the remote resource identifier
 
 Example: 
-
-/**
- * Provides details of a remote data source in a JSON format that includes a URL property
- * @param {object} url - remote data source in a JSON format
- * @param {object} opts - imput options, optional
- * @return {object} WOQLQuery
- */
-WOQL.remote = function(url, opts) {
-    return new WOQLQuery().remote(url, opts)
-}
+    remote("http://url.of.resource", {type: "csv"})
 
 #### file 
 
-as(Val1, Val2) 
+file(Path, Opts)
 
 Status: Stable
 
-Description:   
+Description: identifies a file resource as a path on the server and specifies the format through the options   
 
 Arguments: 
+    Path (string*) The Path on the server at which the file resource can be accessed
+    Opts (object) A option json which can have the following keys: 
+        type: csv|turtle
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the file resource identifier
 
 Example: 
-
-/**
- * Provides details of a file source in a JSON format that includes a URL property
- * @param {object} url - file data source in a JSON format
- * @param {object} opts - imput options, optional
- * @return {object} WOQLQuery
- */
-WOQL.file = function(url, opts) {
-    return new WOQLQuery().file(url, opts)
-}
+    file("/path/to/file", {type: 'turtle'} )
 
 #### post 
 
-post(Val1, Val2) 
+post(Path, opts) 
 
 Status: Stable
 
-Description:   
+Description: identifies a resource as a local path on the client, to be sent to the server through a HTTP POST request, with the format defined through the options  
 
 Arguments: 
+    Path (string*) The Path on the server at which the file resource can be accessed
+    Opts (object) A option json which can have the following keys: 
+        type: csv|turtle
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the Post resource identifier
 
 Example: 
-
-/**
- * Provides details of a file source in a JSON format that includes a URL property
- * @param {object} url - file data source in a JSON format
- * @param {object} opts - imput options, optional
- * @return {object} WOQLQuery
- */
-WOQL.post = function(url, opts) {
-    return new WOQLQuery().post(url, opts)
-}
+    post("/.../.../", {})
 
 ### Resource Specification
 
@@ -1343,15 +1299,7 @@ Returns:
     A WOQLQuery which contains the update object expression
 
 Example: 
-
-/**
- * Updates a document (or any object) in the db with the passed copy
- * @param {string} JSON - JSON-LD document
- * @return {object} WOQLQuery
- */
-WOQL.update_object = function(JSON) {
-    return new WOQLQuery().update_object(JSON)
-}
+    update_object({"@id": "doc:joe", "@type": "scm:Person", "rdfs:label": {"@type": "xsd:string", "@value": "Joe"}})
 
 #### delete_object 
 
@@ -1651,28 +1599,21 @@ Example:
 
 #### delete_property 
 
-delete_property(Val1, Val2) 
+delete_property(PropIRI, Graph) 
 
 Status: Experimental / Unstable
 
-Description:   
+Description: Deletes a property from the schema and all its references incoming and outgoing   
 
 Arguments: 
+    PropIRI (string*) - IRI or a variable containing IRI of the property to be deleted (prefix defaults to scm)
+    Graph (string) - Optional Resource String identifying the schema graph from which the property definition will be deleted 
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the property deletion expression
 
 Example: 
-
-/**
- * Deletes the property with the passed ID from the schema (and all references to it)
- * @param {string} propid - property id to be added
- * @param {string} graph - target graph, optional
- * @return {object} WOQLQuery
- */
-WOQL.delete_property = function(propid, graph) {
-    return new WOQLSchema().delete_property(propid, graph)
-}
+    delete_property("MyProp")
 
 #### schema 
 
@@ -1917,126 +1858,336 @@ Example:
     add_property("MyProp").domain("X").cardinality(1)
     //creates a string property in class X with an exact cardinality of 1
 
-
 #### insert data
 
-literal(Val1, Val2) 
+insert_data(Data, Graph) 
 
 Status: Stable
 
-Description:   
+Description: Inserts data as an object - enabling multiple property values to be inserted in one go   
 
 Arguments: 
+    Data (object*) a json object containing 
+        id (string*) IRI or variable containing IRI of the entity to be inserted
+        *key* (string*) keys representing properties that the entity has (label, description, type and any other valid property for the object)
+    Graph (string) an optional graph resource identifier (defaults to "instance/main" if no using or into is specified)
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the insertion expression
 
 Example: 
-
-
-WOQLQuery.prototype.insert_data = function(data, refGraph) {
-    if (data.type && data.id) {
-        type = this.cleanType(data.type, true)
-        this.insert(data.id, type, refGraph)
-        if (data.label) {
-            this.label(data.label)
-        }
-        if (data.description) {
-            this.description(data.description)
-        }
-        for (var k in data) {
-            if (['id', 'label', 'type', 'description'].indexOf(k) == -1) {
-                this.property(k, data[k])
-            }
-        }
-    }
-    return this
-}
-
+    let data = {id: "doc:joe", type: "Person", label: "Joe", description: "My friend Joe", age: 42}
+    insert_data(data)
 
 #### insert_class_data 
 
-insert_class_data(Val1, Val2) 
+insert_class_data(Data, Graph) 
 
-Status: Experimental / Unstable
+Status: Stable
 
-Description:   
+Description: Inserts data about a class as a json object - enabling a class and all its properties to be specified in a single function
 
 Arguments: 
+    Data (object*) a json object containing 
+        id (string*) IRI or variable containing IRI of the class to be inserted
+        *key* (string*) keys representing properties that the class has (label, description, parent and any properties that the class has)
+    Graph (string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the insertion expression
 
 Example: 
-
-/**
- * @param {object} data - json object which contains fields:
- * mandatory: id
- * optional: label, description, parent, [property] (valid property ids)
- * @param {string} refGraph - Graph Identifier
- */
-WOQL.insert_class_data = function(data, refGraph) {
-    return new WOQLSchema().insert_class_data(data, refGraph)
-}
+    let data = {id: "Robot", label: "Robot", parent: ["X", "MyClass"]}
+    insert_class_data(data)
 
 #### doctype_data 
 
-doctype_data(Val1, Val2) 
+insert_doctype_data(Data, Graph) 
 
-Status: Experimental / Unstable
+Status: Stable
 
-Description:   
+Description: Inserts data about a document class as a json object - enabling a document class and all its properties to be specified in a single function
 
 Arguments: 
+    Data (object*) a json object containing 
+        id (string*) IRI or variable containing IRI of the document class to be inserted
+        *key* (string*) keys representing properties that the document class has (label, description, parent and any properties that the class has)
+    Graph (string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the insertion expression
 
 Example: 
-
-/**
- * @param {object} data - json object which contains fields:
- * mandatory: id
- * optional: label, description, parent, [property] (valid property ids)
- * @param {string} refGraph - Graph Identifier
- */
-WOQL.doctype_data = function(data, refGraph) {
-    return new WOQLSchema().doctype_data(data, refGraph)
-}
+    let data = { id: "Person", label: "Person",  age: { label: "Age", range: "xsd:integer", max: 1}}
+    insert_doctype_data(data)
 
 #### insert_property_data 
 
-doctype_data(Val1, Val2) 
+insert_property_data(Data, Graph) 
 
-Status: Experimental / Unstable
+Status: Stable
 
-Description:   
+Description: Inserts data about a document class as a json object - enabling a document class and all its properties to be specified in a single function
 
 Arguments: 
+    Data (object*) a json object containing 
+        id (string*) IRI or variable containing IRI of the property to be inserted
+        *key* (string*) keys representing attributes that the property has (label, description, domain, range, max, min, cardinality)
+    Graph (string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)
 
 Returns: 
-    A WOQLQuery which contains the Lower Case pattern matching expression
+    A WOQLQuery which contains the insertion expression
 
 Example: 
-
-/**
- * @param {object} data - json object which contains fields:
- * mandatory: id, range, domain
- * optional: label, description, min, max, cardinality
- */
-WOQL.insert_property_data = function(data, refGraph) {
-    return new WOQLSchema().insert_property_data(data, refGraph)
-}
-
+    let data = {id: "prop", label: "Property", description: "prop desc", range: "X", domain: "X", max: 2, min: 1}
+    insert_property_data(data)
 
 ### Library Functions
+
+WOQL.js includes a standard library of pattern matching functions which provide a convenient and flexible way of extracting records about the system's internal records without having to remember the predicates that are used under the hood.  
 
 WOQL.lib = function(mode) {
     return new new WOQLQuery().lib(mode)
 }
 
 
+WOQLLibrary.prototype.classes = function(values, variables, schema_resource) {
+    let g = schema_resource || this.default_schema_resource
+    this.default_variables = [
+        'Class ID',
+        'Class Name',
+        'Description',
+        'Parents',
+        'Children',
+        'Abstract',
+        'Parent',
+        'Child',
+    ]
+
+WOQLLibrary.prototype.properties = function(values, variables, schema_resource) {
+    let g = schema_resource || this.default_schema_resource
+    this.default_variables = [
+        'Property ID',
+        'Property Name',
+        'Property Domain',
+        'Property Type',
+        'Property Range',
+        'Property Description',
+        'OWL Type',
+    ]
+
+WOQLLibrary.prototype.graphs = function(values, variables, cresource) {
+    cresource = cresource || this.default_commit_resource
+    this.default_variables = [
+        'Graph ID',
+        'Graph Type',
+        'Branch ID',
+        'Commit ID',
+        'Graph IRI',
+        'Branch IRI',
+        'Commit IRI'
+    ]
+
+WOQLLibrary.prototype.branches = function(values, variables, cresource) {
+    cresource = cresource || this.default_commit_resource
+    this.default_variables = [
+        'Branch ID',
+        'Time',
+        'Commit ID',
+        'Branch IRI',
+        'Commit IRI'
+    ]
+
+WOQLLibrary.prototype.property_values = function(values, variables) {
+    this.default_variables = [
+        'Object ID',
+        'Property ID',
+        'Property Value',
+        'Value ID',
+        'Value Class',
+        'Any Class',
+    ]
+
+WOQLLibrary.prototype.object_metadata = function(values, variables, schema_resource) {
+    let g = schema_resource || this.default_schema_resource
+    this.default_variables = [
+        'Object ID',
+        'Name',
+        'Description',
+        'Type ID',
+        'Type Name',
+        'Type Description',
+    ]
+
+WOQLLibrary.prototype.property_metadata = function(values, variables, schema_resource) {
+    let g = schema_resource || this.default_schema_resource
+    this.default_variables = [
+        'Object ID',
+        'Property ID',
+        'Property Name',
+        'Property Value',
+        'Property Description',
+    ]
+
+WOQLLibrary.prototype.commits = function(values, variables, cresource) {
+    cresource = cresource || this.default_commit_resource
+    this.default_variables = [
+        'Commit ID',
+        'Commit IRI',
+        'Time',
+        'Author',
+        'Message',
+        'Parent ID',
+        'Parent IRI',
+        'Children',
+        'Child ID',
+        'Child IRI',
+        'Branch IRI',
+        'Branch ID',
+    ]
+
+
+WOQLLibrary.prototype.commit_chain = function(values, variables, cresource) {
+    cresource = cresource || this.default_commit_resource
+    this.default_variables = [
+        'Head IRI',
+        'Tail IRI',
+        'Path'
+    ]
+
+WOQLLibrary.prototype.repos = function(values, variables, cresource) {
+    cresource = cresource || this.default_meta_resource
+    this.default_variables = [
+        'Repository IRI',
+        'Repository Name',
+        'Repository Type',
+        'Remote URL',
+        'Repository Head IRI',
+    ]
+
+WOQLLibrary.prototype.dbs = function(values, variables) {
+     this.default_variables = [
+        'DB Name',
+        'DB ID',
+        'Organization',
+        'Resource Name',
+        'Description',
+        'Allow Origin',
+        'DB IRI'
+    ]
+
+WOQLLibrary.prototype.users = function(values, variables) {
+    this.default_variables = [
+       'User ID',
+       'Display Name',
+       'Commit Log ID',
+       'User Notes',
+       'Roles',
+       'User IRI',
+       'Role IRI',
+   ]
+
+WOQLLibrary.prototype.organizations = function(values, variables) {
+    this.default_variables = [
+       'Organization ID',
+       'Display Name',
+       'Notes',
+       'Databases',
+       'Children',
+       'Organization IRI',
+       'Database IRI',
+       'Child IRI',
+   ]
+
+WOQLLibrary.prototype.roles = function(values, variables) {
+    this.default_variables = [
+       'Role Name',
+       'Description',
+       'Role IRI',
+       'Capability IRI',
+       'Permissions',
+       'Resources',
+       'Permission ID',
+       'Resource ID'
+    ]
+
+
+WOQLLibrary.prototype.prefixes = function(values, variables, cresource) {
+    cresource = cresource || this.default_commit_resource
+    this.default_variables = ['Prefix', 'URI', 'Prefix Pair IRI']
+    if (variables) this._set_user_variables(variables)
+    let q = new WOQLQuery()
+        .triple('ref:default_prefixes', 'ref:prefix_pair', this._varn('Prefix Pair IRI'))
+        .triple(this._varn('Prefix Pair IRI'), 'ref:prefix_uri', this._varn('URI'))
+        .triple(this._varn('Prefix Pair IRI'), 'ref:prefix',  this._varn('Prefix'))
+    let woql = this._add_constraints(q, values)
+    return new WOQLQuery().using(cresource, woql)
+}
+
+WOQLLibrary.prototype.insert_prefix = function(values, variables, cresource) {
+    cresource = cresource || this.default_commit_resource
+    this.default_variables = ['Prefix Pair IRI']
+
+WOQLLibrary.prototype.document_classes = function(values, variables, graph_resource) {
+    let pattern = this.classes(values, variables, graph_resource)
+    return this._add_doctype_constraint(pattern, this._varn('Class ID'))
+}
 
 
 
+WOQLLibrary.prototype.commit_chain_full = function(values, graph_resource) {
+    cresource = graph_resource || this.default_commit_resource
+    let woql = new WOQLQuery().or(
+        new WOQLQuery().and(
+            new WOQLQuery().lib().commit_chain(undefined, ['Commit IRI']),
+            new WOQLQuery().lib().commits()
+        ),
+        new WOQLQuery().and(
+            new WOQLQuery().lib().commit_chain(undefined, ['Head IRI', 'Commit IRI']),
+            new WOQLQuery().lib().commits()
+        )
+    )
+    let compiled = this._add_constraints(woql, values)
+    return new WOQLQuery().using(cresource, compiled)
+}
 
+OQLLibrary.prototype.concrete_document_classes = function(values, variables, graph_resource) {
+    let pattern = this.document_classes(values, variables, graph_resource)
+    let g = graph_resource || this.default_schema_resource
+
+
+WOQLLibrary.prototype.document_metadata = function(values, variables, graph_resource) {
+    if (!variables) variables = []
+    variables[0] = 'Document ID'
+    let pattern = this.object_metadata(values, variables, graph_resource)
+    return this._add_doctype_constraint(pattern, this._varn('Type ID'))
+}
+
+
+
+WOQLLibrary.prototype.documents = function(values, variables) {
+    if (!variables) variables = ['Document Type', 'Document ID']
+    let pattern = this.objects(values, variables)
+    return this._add_constraints(pattern, values)
+}
+
+WOQLLibrary.prototype.first_commit = function() {
+    let pattern = this.commits()
+    let noparent = new WOQLQuery().using("_commits").and(
+        new WOQLQuery().triple(this._varn( 'Any Commit IRI' ), "ref:commit_id", this._varn( 'Commit ID' )),
+        new WOQLQuery().not().triple(this._varn( 'Any Commit IRI' ), "ref:commit_parent", this._varn( 'Parent IRI' )),
+    )
+    return this._add_constraint(pattern, noparent)
+}
+
+
+WOQLLibrary.prototype.getNextCommitOnBranch = function(commit_id, branch) {
+    let constraint = new WOQLQuery().eq('v:Branch ID', branch).eq('v:Parent ID', commit_id)
+    return new WOQLQuery().lib().commits(constraint)
+}
+
+/**
+ * Returns the ID of the commit that was active on a given branch at a particular unix timestamp
+ */
+WOQLLibrary.prototype.getActiveCommitAtTime = function(branch, ts) {
+    let constraint = new WOQLQuery().eq('v:Branch ID', branch)

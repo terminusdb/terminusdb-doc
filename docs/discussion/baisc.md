@@ -8,13 +8,13 @@ nav_order: 1
 
 {: .no_toc }
 
-TerminusDB is an open source model driven RDF graph database for knowledge graph representation designed specifically for the web-age.
+TerminusDB is an open-source model driven RDF graph database for knowledge graph representation designed specifically for the web-age.
 
-TerminusDB Server provides TerminusDB with a RESTful API for interacting with knowledge graphs via the JSON-LD exchange format. This means you can easily compose applications within your own tool chain which utilize the powerful features of graph search and graph storage.
+TerminusDB Server provides TerminusDB with a RESTful API for interacting with knowledge graphs via the JSON-LD exchange format. This means you can easily compose applications within your own toolchain which utilize the powerful features of graph search and graph storage.
 
 We use an advanced git-like model, storing append only changes to graphs represented in succinct data structures. You can read a description of the architecture in our [Succinct Data Structures and Delta Encoding for Modern Databases](https://github.com/terminusdb/terminusdb-server/blob/master/docs/whitepaper/terminusdb.pdf) whitepaper.
 
-TerminusDB's *delta-encoding* approach makes possible branch, merge, push, pull, clone, time-travel and other git-like operations on a fully featured graph database.
+TerminusDB's *delta-encoding* approach makes possible branch, merge, push, pull, clone, time-travel and other git-like operations on a fully-featured graph database.
 
 
 

@@ -97,13 +97,18 @@ WOQL uses the formal logical approach to variables known as unification - this a
 
 ## Prefixes in WOQL.js
 
-Internally, TerminusDB uses strict RDF rules to represent all data. This means that all identifiers and properties are represented by IRIs (which are a superset of URLs). However, IRIs are often long difficult to remember and tedious to type. RDF in general gets around this problem by allowing prefixed forms as shorthand - so for example, we can use "rdf:type" rather than "http://annoyingly.long.url/with/dates#type". TerminusDB defines a set of standard prefixes which are availabe to use and also allows users to extend this by adding their own prefix designations to the system. The set of standard prefixes includes the basic language elements (rdf, rdfs, owl), datatype elements (xsd, xdd) and internal namespaces (ref, repo, system, vio). It also pre-defines two prefixes for user-use - the 'doc' prefix for instance data IRIs and the 'scm' prefix to schema IRIs. So we can write "doc:X" or "scm:X" and this will always resolve to a valid IRI. 
+Internally, TerminusDB uses strict RDF rules to represent all data. This means that all identifiers and properties are represented by IRIs (which are a superset of URLs). However, IRIs are difficult to remember and tedious to type. RDF in general gets around this problem by allowing prefixed forms as shorthand - so for example, we can use "rdf:type" rather than "http://obscure.w3c.url/with/embedded/dates#type". TerminusDB defines a set of standard prefixes which are availabe to use and also allows users to extend this by adding their own prefix designations to the system. The set of standard prefixes includes the basic language elements (rdf, rdfs, owl), datatype elements (xsd, xdd) and internal namespaces (ref, repo, system, vio). It also pre-defines two prefixes for user-use - the 'doc' prefix for instance data IRIs and the 'scm' prefix for schema IRIs. So we can write "doc:X" or "scm:X" and this will always resolve to a valid IRI in all databases. 
 
-WOQL goes further than this and automatically applies prefixes wherever possible allowing users to specify prefixes only when necessary.
+WOQL goes a step beyond supporting prefixes and automatically applies prefixes wherever possible allowing users to specify prefixes only when necessary.
 
 The default prefixes are applied in the following way
-    - "doc" applies to positions where instance data IRIs are required
-    - "scm" applies to positions where schema elements are required
-    - when standard built-in predicates are used (label, type, comment, subClassOf, domain, range) the standard correct prefixes are applied
+    - "doc" applies to woql:subject (first argument to triple) where instance data IRIs are normally what is required
+    - "scm" applies to woql:predicate and other arguments (sub, type) where schema elements are normally required
+    - when standard predicates are used with no prefix (label, type, comment, subClassOf, domain, range) the standard correct prefixes are applied
     - otherwise if no prefix is applied a string is assumed
+
+## WOQL Functions
+
+The JSON-LD form of WOQL supports a well-defined set of functions (woql:Triple, woql:Regexp...) - in WOQL.js these functions are known as primitives. WOQL.js supports all of these primite functions and adds several extensions on top - functions that compose multiple primitives, functions that compose partial primitives and can be chained together and simple helper functions to make it easier to format the arguments correctly. The table below shows the full range of functions supported by WOQL.js and groups them together into categories to make it easier to find the required function for specific problems.
+
 

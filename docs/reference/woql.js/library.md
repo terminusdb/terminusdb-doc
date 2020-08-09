@@ -437,9 +437,26 @@ Returns
 Example
     lib().first_commit()
 
-### getNextCommitOnBranch
+### active_commit
 
-getNextCommitOnBranch(CommitID, BranchID)
+active_commit(BranchID, Timestamp)
+
+Description: Retreives the details of thes commit that was active at the given timestamp on the given branch  
+
+Arguments: 
+    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
+    Timestamp (string or decimal *) - the timestamp (or variable containing the timestamp) of interest
+
+Returns
+    WOQLQuery containing the pattern matching expression returns the same variables as the lib().commits() function
+
+Example
+    lib().active_commit('main', Date.now() - 10000000)
+
+
+### next_commit
+
+next_commit(CommitID, BranchID)
 
 Description: Retreives information about the next commit on a branch after (i.e. the child) the passed commit  
 Arguments: 
@@ -450,22 +467,21 @@ Returns
     WOQLQuery containing the pattern matching expression - Variable names are as per commits() function above
 
 Example
-    lib().getNextCommitOnBranch("n8war8n8rlz54ho37w54krbdim5ky6f", "main")
+    lib().next_commit("n8war8n8rlz54ho37w54krbdim5ky6f", "main")
 
+### active_commit
 
-### getActiveCommitAtTime
+active_commit(BranchID, Timestamp)
 
-getActiveCommitAtTime(BranchID, Timestamp)
-
-Description: Retreives the ID of the commit that was active at the given timestamp on the given branch  
+Description: Retreives the details of the commit that was active at the given timestamp on the given branch  
 
 Arguments: 
     BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
     Timestamp (string or decimal *) - the timestamp (or variable containing the timestamp) of interest
 
 Returns
-    WOQLQuery containing the pattern matching expression - returns a single variable name - Commit ID 
+    WOQLQuery containing the pattern matching expression returns the same variables as the lib().commits() call
 
 Example
-    lib().getActiveCommitAtTime('main', Date.now() - 10000000)
+    lib().active_commit('main', Date.now() - 10000000)
 

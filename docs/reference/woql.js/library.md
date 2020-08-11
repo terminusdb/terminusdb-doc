@@ -403,9 +403,9 @@ Returns
 Example
     lib().documents()
 
-## Library Functions with Non-Standard Arguments
+## Commit Graph Navigation
 
-The WOQL.js library also provides a small selection of functions that take non-standard arguments
+The WOQL.js library also provides a set of functions for navigation of the commit graph by branch, time and commit id. These functions do not take the same arguments as the standard functions above.  There are two flavours of all graph navigation functions - one that returns all the meta-data for each commit, the other that returns only the commit ids - to allow these functions to be conveniently joined with other queries and filters.  
 
 ### commit_chain_full
 
@@ -432,7 +432,7 @@ Description: Retreives information about the first commit in the database
 Arguments: None - variable names are as per commits() function above
 
 Returns
-    WOQLQuery containing the first commit pattern matching expression
+    WOQLQuery containing the first commit pattern matching expression: returns the same variables as the lib().commits() function
 
 Example
     lib().first_commit()
@@ -441,47 +441,180 @@ Example
 
 active_commit(BranchID, Timestamp)
 
-Description: Retreives the details of thes commit that was active at the given timestamp on the given branch  
+Description: Retrieves the details of the commit that was active at the given timestamp on the given branch  
 
 Arguments: 
     BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
-    Timestamp (string or decimal *) - the timestamp (or variable containing the timestamp) of interest
+    Timestamp (string or decimal) - the timestamp (or variable containing the timestamp) of interest - defaults to now
 
 Returns
-    WOQLQuery containing the pattern matching expression returns the same variables as the lib().commits() function
+    WOQLQuery containing the active commit pattern matching expression: returns the same variables as the lib().commits() function
 
 Example
-    lib().active_commit('main', Date.now() - 10000000)
+    lib().active_commit('main')
 
+### commit_history
 
-### next_commit
+commit_history(CommitID, Count)
 
-next_commit(CommitID, BranchID)
-
-Description: Retreives information about the next commit on a branch after (i.e. the child) the passed commit  
-Arguments: 
-    CommitID (string*) - the commit ID to start from 
-    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
-
-Returns
-    WOQLQuery containing the pattern matching expression - Variable names are as per commits() function above
-
-Example
-    lib().next_commit("n8war8n8rlz54ho37w54krbdim5ky6f", "main")
-
-### active_commit
-
-active_commit(BranchID, Timestamp)
-
-Description: Retreives the details of the commit that was active at the given timestamp on the given branch  
+Description: Retreives the metadata for the passed CommitID and its parent commits - up to a total of Count steps (including the passed CommitID)
 
 Arguments: 
-    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
-    Timestamp (string or decimal *) - the timestamp (or variable containing the timestamp) of interest
+    CommitID (string*) - the id of the commit to retrieve the history starting from (included in results)
+    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10 
 
 Returns
-    WOQLQuery containing the pattern matching expression returns the same variables as the lib().commits() call
+    WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
 
 Example
-    lib().active_commit('main', Date.now() - 10000000)
+    and(
+        lib().active_commit_id('main', false, "Current Head ID"),
+        lib().commit_history("v:Current Head ID", 5)
+    )
 
+### previous_commits
+
+previous_commits(CommitID, Count)
+
+Description: Retreives the metadata for the parent commits of the passed CommitID - up to a total of Count steps (not including the passed CommitID)
+
+Arguments: 
+    CommitID (string*) - the id of the commit to retrieve the previous commits starting from (not included in results)
+    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 1 
+
+Returns
+    WOQLQuery containing the previous commits pattern matching expression: returns the same variables as the lib().commits() function for each entry
+
+Example
+    and(
+        lib().active_commit_id('main', false, "Current Head ID"),
+        lib().previous_commits("v:Current Head ID", 5)
+    )
+
+### commit_future
+
+commit_future(CommitID, BranchID, Count)
+
+Description: Retreives the metadata for the passed CommitID and its future commits on branch BranchID - up to a total of Count steps (including the passed CommitID)
+
+Arguments: 
+    CommitID (string*) - the id of the commit to retrieve the future starting from (included in results)
+    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
+    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit future - defaults to 10 
+
+Returns
+    WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
+
+Example
+    lib().commit_future('bi1qqga9sxlzgvv061b3zpe48mmjtbb', "main", 5)
+
+### next_commits
+
+next_commits(CommitID, BranchID, Count)
+
+Description: Retreives the metadata for child commits of the passed CommitID on branch BranchID - up to a total of Count steps (not including the passed CommitID)
+
+Arguments: 
+    CommitID (string*) - the id of the commit to retrieve the next commits starting from (not included in results)
+    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
+    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit future - defaults to 1 
+
+Returns
+    WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
+
+Example
+    lib().next_commits('bi1qqga9sxlzgvv061b3zpe48mmjtbb', "main", 4)
+
+### active_commit_id
+
+active_commit_id(CommitID, Timestamp, CommitIDVar)
+
+Description: Retrieves the ID of the commit that was active at the given timestamp on the given branch - result is stored in CommitIDVar  
+
+Arguments: 
+    CommitID (string*) - the id of the commit to retrieve the history for
+    Timestamp (string or decimal) - the Unix timestamp (or variable containing the timestamp) of interest - defaults to now
+    CommitIDVar (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")
+
+Returns
+    WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value 
+
+Example
+    lib().active_commit_id('main')
+
+
+### history_ids
+
+history_ids(CommitID, Count, CommitIDVar)
+
+Description: Retrieves the ids of the passed CommitID and the ids of its parents - up to a total of count ids (including the passed CommitID), the results are stored in CommitIDVar  
+
+Arguments: 
+    CommitID (string*) - the id of the commit to retrieve the history for
+    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10 
+    CommitIDVar (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")
+
+Returns
+    WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value 
+
+Example
+    and(
+        lib().active_commit_id('main', false, "Current Head ID"),
+        lib().history_ids("v:Current Head ID", 5)
+    )
+
+### previous_commit_ids
+
+previous_commit_ids(CommitID, Count, CommitIDVar)
+
+Description: Retrieves the ids of the parent commits of the passed CommitID - up to a total of count ids (not including the passed CommitID), the results are stored in CommitIDVar  
+
+Arguments: 
+    CommitID (string*) - the id of the commit to retrieve the previous commits starting from
+    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10 
+    CommitIDVar (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")
+
+Returns
+    WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value 
+
+Example
+    and(
+        lib().active_commit_id('main', false, "Current Head ID"),
+        lib().previous_commit_ids("v:Current Head ID", 5)
+    )
+
+### future_ids
+
+future_ids(CommitID, BranchID, Count, CommitIDVar)
+
+Description: Retrieves the ids of the passed CommitID and the ids of its parents - up to a total of count ids (including the passed CommitID), the results are stored in CommitIDVar  
+
+Arguments: 
+    CommitID (string*) - the id of the commit to retrieve the history for
+    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
+    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10 
+    CommitIDVar (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")
+
+Returns
+    WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value 
+
+Example
+   lib().future_ids("bi1qqga9sxlzgvv061b3zpe48mmjtbb", "main", 4)
+
+### next_commit_ids
+
+next_commit_ids(CommitID, BranchID, Count, CommitIDVar)
+
+Description: Retrieves the ids of the child commits of the passed CommitID - up to a total of count ids (not including the passed CommitID), the results are stored in CommitIDVar  
+
+Arguments: 
+    CommitID (string*) - the id of the commit to retrieve the next commits starting from
+    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
+    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit chain - defaults to 1 
+    CommitIDVar (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")
+
+Returns
+    WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value 
+
+Example
+   lib().next_commit_ids("bi1qqga9sxlzgvv061b3zpe48mmjtbb", "main", 4)

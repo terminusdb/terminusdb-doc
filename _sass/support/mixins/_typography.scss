@@ -20,12 +20,12 @@
   font-size: 12px !important;
 
   @include mq(sm) {
-    font-size: 14px !important;
+    font-size: 18px !important;
   }
 }
 
 @mixin fs-4 {
-  font-size: 14px !important;
+  font-size: 18px !important;
 
   @include mq(sm) {
     font-size: 16px !important;
@@ -57,10 +57,10 @@
 }
 
 @mixin fs-8 {
-  font-size: 32px !important;
+  font-size: 70px !important;
 
   @include mq(sm) {
-    font-size: 36px !important;
+    font-size: 54px !important;
   }
 }
 

@@ -65,6 +65,8 @@
 .navigation-list-item {
   @include fs-4;
   margin: 0;
+  margin-bottom: $navigation-list-item;
+  min-width: $navigation-list-width;
 
   @include mq(md) {
     @include fs-3;
@@ -85,9 +87,11 @@
   display: block;
   padding-top: $sp-1;
   padding-bottom: $sp-1;
+  font-size: $link-font-size;
 
   &.active {
     font-weight: 600;
+    font-size: $link-font-size;
     color: $yellow-200;
     text-decoration: none;
   }

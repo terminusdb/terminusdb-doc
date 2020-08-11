@@ -1,13 +1,11 @@
 ---
-title: WOQL.js - the Definitive Guide
 layout: default
-parent: Reference
-nav_order: 6
-has_children: true
-permalink: /reference/woql
+title: WOQL Primitives
+parent: WOQL.js - the Definitive Guide
+grand_parent: Reference
+nav_order: 5
+permalink: /reference/woql/primitives
 ---
-
-
 
 # WOQL.js - the Definitive Guide
 
@@ -72,6 +70,7 @@ let data = {
     label: "Robot",
     parent: ["X", "MyClass"]
 }
+
 
 insert_class_data(data)
 ```

@@ -6,6 +6,127 @@ grand_parent: Reference
 nav_order: 5
 permalink: /reference/woql/primitives
 ---
+## WOQL Primitives
+
+WOQL primitives are WOQL.js functions which directly map onto words in the underlying JSON-LD language. All other WOQL.js functions are compound functions which translate into multiple WOQL primitives, or are helper functions which reduce the need to write verbose JSON-LD directly.
+
+### Basics
+
+<!-- triple -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">triple</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Generates a triple pattern matching rule to match any triples that meet the constraints
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+
+triple(Subject, Predicate, Object)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Subject  </span>         | (string*) - The IRI of a triple's subject or a variable              | Mandatory                  |
+| <span class="param-type">Predicate </span>        | (string*) - The IRI of a property or a variable                      | Mandatory                  |
+| <span class="param-type">Object </span>           | (string*) - The IRI of a node or a variable, or a literal            | Mandatory                  |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery object containing the triple pattern matching rule
+
+<div class="anchor-sub-parts">Example</div>
+
+
+<div class="code-example" markdown="1">
+```js
+
+let [subj, obj] = vars("subj", "obj")
+
+triple(s, "type", o)
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!-- quad -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">quad</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Generates a quad pattern matching rule to match any triples that meet the constraints in the specified Graph
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+
+quad(Subject, Predicate, Object, Graph)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Subject  </span>         | (string*) - The IRI of a triple's subject or a variable              | Mandatory                  |
+| <span class="param-type">Predicate </span>        | (string*) - The IRI of a property or a variable                      | Mandatory                  |
+| <span class="param-type">Object </span>           | (string*) - The IRI of a node or a variable, or a literal            | Mandatory                  |
+| <span class="param-type">Graph </span>            | (string*) - The Resource String identifying the graph to be searched for the pattern| Mandatory   |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery object containing the quad pattern matching rule
+
+
+<div class="anchor-sub-parts">Example</div>
+
+
+<div class="code-example" markdown="1">
+```js
+let [class, prop] = vars("class", "prop")
+
+quad(class, "domain", prop, "schema/main")
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- quad -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # WOQL.js - the Definitive Guide
 

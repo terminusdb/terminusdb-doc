@@ -6,6 +6,23 @@ grand_parent: Reference
 nav_order: 5
 permalink: /reference/woql/primitives
 ---
+<i class=" js-toggle-dark-mode fa fa-toggle-on"/> 
+
+<script>
+const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
+
+jtd.addEvent(toggleDarkMode, 'click', function(){
+  if (jtd.getTheme() === 'dark-mode-preview') {
+    jtd.setTheme('just-the-docs');
+    toggleDarkMode.textContent = 'Default';
+  } else {
+    jtd.setTheme('dark-mode-preview');
+    toggleDarkMode.textContent = 'Dark Mode';
+  }
+});
+</script>
+
+
 ## WOQL Primitives
 
 WOQL primitives are WOQL.js functions which directly map onto words in the underlying JSON-LD language. All other WOQL.js functions are compound functions which translate into multiple WOQL primitives, or are helper functions which reduce the need to write verbose JSON-LD directly.
@@ -874,234 +891,273 @@ cast("22/3/98", "xsd:dateTime", time)
 
 
 
+### List Processing
 
+<!--member-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# WOQL.js - the Definitive Guide
-
-## WOQL.js and JSON-LD
-
-WOQL uses JSON-LD and a formally specified ontology to define the language and to transmit queries over the wire.  WOQL.js is designed primarily to be as easy as possible for programmers to write because JSON-LD is itself tedious for humans to read and write. All WOQL.js queries are translated into the equivalent JSON-LD format for transmission over the wire.  The WOQL.js json() function can be used to translate any WOQL query from its JSON-LD format to and from it's WOQL.js equivalent (a WOQLQuery() object). If passed a JSON-LD argument, it will generate the equivalent WOQLQuery() object, if passed no argument, it will return the JSON-LD equivalent of the WOQLQuery(), in general the following semantic identity should always hold:
-
-let wjs = new WOQLQuery().json(json_ld)
-json_ld == wjs.json()
-
-<hr class="section-separator"/>
-
-<!--insert_class_data-->
 <div class="anchor-sub-headings-style">
-    <span class="anchor-sub-headings">insert class data</span>
+    <span class="anchor-sub-headings">member</span>
     <span class="anchor-status anchor-status-stable"> Status: Stable </span>
 </div>
 
 <i class="fa fa-check status-stable"/>
 
-Inserts data about a class as a json object - enabling a class and all its properties to be specified in a single function
+Matches if List includes Element
 
 <div class="anchor-sub-parts">Syntax</div>
 <div class="code-example" markdown="1">
 ```js
+member(Element, List)
+```
+</div>
 
-insert_class_data(Data, Graph)
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Element  </span>    | (string or literal*) - Either a variable, IRI or any simple datatype | Mandatory       |
+| <span class="param-type">List  </span>       | List ([string, literal] or string*) Either a variable representing a list or a list of variables or literals | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the List inclusion pattern matching expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [name] = vars("name")
+
+member(name, ["john", "joe", "frank"])
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+<!-- length -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">length</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Matches or generates the length of a list  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+length(List, Len)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">List  </span>       |([string, literal] or string*) Either a variable representing a list or a list of variables or literals | Mandatory       |
+| <span class="param-type">Len  </span>       |(string or integer) A variable in which the length of the list is stored or the length of the list as a non-negative integer | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Length pattern matching expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [count] = vars("count")
+
+length(["john", "joe", "frank"], count)  
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+### String Processing
+
+<!-- concat -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">concat</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Concatenates the List into a string and matches / stores the result in Concatenated
+
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+concat(List, Concatenated)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">List  </span>       |([string] string*) - a variable representing a list or a list of variables or strings - variables can be embedded in the string if they do not contain spaces| Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Concatenation pattern matching expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [first_name, last_name, full_name] = vars("first", "last", "full")
+
+concat([first_name, " ", last_name], full_name)  
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+<!-- trim -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">trim</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+A trimmed version of Untrimmed (with leading and trailing whitespace removed) is stored in Trimmed   
+
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+trim(Untrimmed, Trimmed)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Untrimmed  </span>  |(string*) - A string or variable containing the untrimmed version of the string| Mandatory       |
+| <span class="param-type">Trimmed  </span>    |(string*) - A string or variable containing the trimmed version of the string| Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Trim pattern matching expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [trimmed] = vars['trimmed']
+
+trim("hello   ", trimmed)
+//trimmed contains "hello"
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->     
+<!-- substr -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">substr</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Generates a Substring From String, starting from Begin offset, of length Length, with After Number of characters after the substring
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+substr(String, Before, Length, After, SubString) ~ substring(String, Before, Length, After, SubString) (Alias)
 ```
 </div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
-<table cellspacing="0" cellpadding="0">
-  <tr><th>Arguments</th><th>Types</th><th>Requirement</th></tr><tr>
-    <td class="param-type">Data</td>
-    <td>
-        (object*) a json object containing - an id and keys <br/>
-        <span class="param-object">id (string*),</span> IRI or variable containing IRI of the class to be inserted <br/>
-        <span class="param-object">*key* (string*), </span> keys representing properties that the class has (label, description, parent and any properties that the class has)
-    </td>
-    <td>Mandatory</td>
-  </tr>
-  <tr>
-    <td class="param-type">Graph</td>
-    <td>(string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)</td>
-    <td>Optional</td>
-  </tr>
-</table>
-
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">String  </span>     |(string*) - String or variable representing the full string           | Mandatory       |
+| <span class="param-type">Before  </span>     |(string or integer*) Integer or variable representing the number of characters from the start to start the substring from| Mandatory       |
+| <span class="param-type">Length  </span>     |(string or integer*) Integer or variable representing the number of characters in the substring| Mandatory       |
+| <span class="param-type">After  </span>      |(string or integer*) Integer or variable representing the number of characters from the end to end the substring from| Mandatory       |
+| <span class="param-type">SubString  </span>  |(string*) - The substring matched according to the values specified in the other arguments| Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
-A WOQLQuery which contains the insertion expression
+A WOQLQuery which contains the Substring pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-
 <div class="code-example" markdown="1">
 ```js
+let [trimmed] = ['trimmed']
 
-let data = {
-    id: "Robot",
-    label: "Robot",
-    parent: ["X", "MyClass"]
-}
+substr("helloIAmTerminusDb", 8, 8, 2, )
+//trimmed contains "hello"
 
-
-insert_class_data(data)
 ```
 </div>
 
 <hr class="section-separator"/>
-<!--insert_doctype_data-->
+
+<!----------------------------------------------------------------------------------------->     
+
+#### upper
+<!-- upper -->
 
 <div class="anchor-sub-headings-style">
-    <span class="anchor-sub-headings">insert doctype data</span>
-    <span class="anchor-status anchor-status-stable"> Status: Stable</span>
+    <span class="anchor-sub-headings">upper</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
 </div>
 
 <i class="fa fa-check status-stable"/>
 
-Inserts data about a document class as a json object - enabling a document class and all its properties to be specified in a single function
-
+Generates or matches an upper-case version of String in Capitalized
 
 <div class="anchor-sub-parts">Syntax</div>
 <div class="code-example" markdown="1">
 ```js
-
-insert_doctype_data(Data, Graph)
+upper(String, Capitalized)
 ```
 </div>
 
-<div class="anchor-sub-parts">Arguments</div>
+<div class="anchor-sub-parts">Arguments</div>  
 
-
-<table cellspacing="0" cellpadding="0">
-  <tr><th>Arguments</th><th>Types</th><th>Requirement</th></tr>
-  <tr>
-    <td class="param-type">Data</td>
-    <td>
-        (object*) a json object containing - an id and keys <br/>
-        <span class="param-object">id (string*),</span> IRI or variable containing IRI of the class to be inserted <br/>
-        <span class="param-object">*key* (string*), </span> keys representing properties that the class has (label, description, parent and any properties that the class has)
-    </td>
-    <td>Mandatory</td>
-  </tr>
-  <tr>
-    <td class="param-type">Graph</td>
-    <td>(string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)</td>
-    <td>Optional</td>
-  </tr>
-</table>
-
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">String  </span>     |((string*) - string or variable representing the uncapitalized string         | Mandatory       |
+| <span class="param-type">Capitalized  </span>     |(string*) - string or variable representing the capitalized string| Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
-A WOQLQuery which contains the insertion expression
+A WOQLQuery which contains the Upper case pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
 <div class="code-example" markdown="1">
 ```js
+let [allcaps] = vars("caps")
 
-let data = {
-    id: "Person",
-    label: "Person",  
-    age: {
-        label: "Age",
-        range: "xsd:integer",
-        max: 1
-    }
-}
-insert_doctype_data(data)
+upper("aBCe", allcaps)
+//upper contains "ABCE"
 ```
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Document Queries (Experimental / Unstable)
-
-Document queries take or return entire JSON-LD document as arguments. This relies upon the internal frame-generation capabilities of the database and requires the user to have defined discrete document classes to dictate at what points the graph traversal is truncated - a document is considered to contain all objects within it, with the exception of predicates and classes that belong to other documents. This takes some care - improperly defined it can lead to very slow queries which contain the whole database unrolled into a single document - not normally what we require.   
 
 <hr class="section-separator"/>
-<!--update_object-->
 
-<div class="anchor-sub-headings-style">
-    <span class="anchor-sub-headings">update object</span>
-    <span class="anchor-status anchor-status-experimental"> Status: Experimental / Unstable </span>
-</div>
-
-<i class="fa fa-flask status-experimental"/>
-
-Updates a document (or any object) in the db with the passed json-ld - replaces the current version
-
-<div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
-```js
-
-update_object(JSONLD)
-```
-</div>
-
-
-<div class="anchor-sub-parts">Arguments</div>
-<table cellspacing="0" cellpadding="0">
-  <tr><th>Arguments</th><th>Types</th><th>Requirement</th></tr>
-  <tr>
-    <td class="param-type">JSONLD</td>
-    <td>
-        (string*) the document's JSON-LD form which will be written to the DB
-    </td>
-    <td>Mandatory</td>
-  </tr>
-</table>
-
-<div class="anchor-sub-parts">Returns</div>
-A WOQLQuery which contains the update object expression
-
-<div class="anchor-sub-parts">Example</div>
-
-<div class="code-example" markdown="1">
-```js
-
-let data = {
-    "@id": "doc:joe",
-    "@type": "scm:Person",
-    "rdfs:label": {
-        "@type": "xsd:string",
-        "@value": "Joe"
-    }
-}
-
-update_object(data)
-```
-</div>
+<!----------------------------------------------------------------------------------------->     

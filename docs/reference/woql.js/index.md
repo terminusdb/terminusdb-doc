@@ -103,7 +103,93 @@ quad(class, "domain", prop, "schema/main")
 
 <!----------------------------------------------------------------------------------------->
 
-<!-- quad -->
+<!-- comment -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">comment</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Inserts a textual comment into a query and optionally 'comments' out the contained subquery
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+
+comment(Comment, Subq)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Comment  </span>         | (string*) - The textual comment                                      | Mandatory                  |
+| <span class="param-type">Subq </span>             | (string*) - (WOQLQuery) - An optional enclosed sub-query that is commented out | Mandatory                  |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery object containing the comment
+
+
+<div class="anchor-sub-parts">Example</div>
+
+
+<div class="code-example" markdown="1">
+```js
+comment("This has a bug").triple(a, b, c)
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->    
+
+<!--select-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">select</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Selects (filters) a list of variables from the enclosed sub-query and removes the rest
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+
+select(...Vars, Subq)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">...Vars  </span>         | (string*) - A list of one or more variables to select                | Mandatory                  |
+| <span class="param-type">Subq </span>             | (string*) - (WOQLQuery) - A query from which the variables will be filtered out | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery object containing the filtered variables and subquery
+
+<div class="anchor-sub-parts">Example</div>
+
+
+<div class="code-example" markdown="1">
+```js
+let [grouped, subject, class] = vars("grouped", "subject", "class")
+
+select(grouped).group_by(subject, class, grouped).triple(subject, "type", class)   
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->    
+
+ 
+
 
 
 

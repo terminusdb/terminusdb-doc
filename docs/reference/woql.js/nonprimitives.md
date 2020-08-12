@@ -1,606 +1,1270 @@
+---
+layout: default
+title: WOQL Non Primitives
+parent: WOQL.js - the Definitive Guide
+grand_parent: Reference
+nav_order: 5
+permalink: /reference/woql/nonprimitives
+---
 ## Non Primitive Functions
 
 ### WOQL Literals, Prefixes & IRI Constants
 
-#### string 
+<!-- string -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">string</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-string(Val1) 
+<i class="fa fa-check status-stable"/>
 
-Status: Stable
+Generates explicitly a JSON-LD string literal from the input    
 
-Description: Generates explicitly a JSON-LD string literal from the input    
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+string(Val1)
+```
+</div>
 
-Arguments: 
-    Val1 (literal*) - any literal type
+<div class="anchor-sub-parts">Arguments</div>  
 
-Returns: 
-    A JSON-LD string literal
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Val1  </span>            | (literal*) - any literal type                                        | Mandatory                  |
 
-Example: 
-    string(1)
-    //returns { "@type": "xsd:string", "@value": "1" }
+<div class="anchor-sub-parts">Returns</div>
+A JSON-LD string literal
 
-#### literal 
+<div class="anchor-sub-parts">Example</div>
 
-literal(Val, Type) 
 
-Status: Stable
+<div class="code-example" markdown="1">
+```js
+string(1)
+//returns { "@type": "xsd:string", "@value": "1" }
+```
+</div>
 
-Description: Generates explicitly a JSON-LD string literal from the input    
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
-Arguments: 
-    Val (literal*) - any literal type
-    Type (string*) - an xsd or xdd type
+<!-- literal  -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">literal</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Returns: 
-    A JSON-LD literal 
+<i class="fa fa-check status-stable"/>
 
-Example: 
-    literal(1, "nonNegativeInteger")
-    //returns { "@type": "xsd:nonNegativeInteger", "@value": 1 }
+Generates explicitly a JSON-LD string literal from the input
 
-#### iri 
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+literal(Val, Type)
+```
+</div>
 
-iri(Val1) 
+<div class="anchor-sub-parts">Arguments</div>  
 
-Status: Stable
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Val  </span>             |  (literal*) - any literal type                                       | Mandatory                  |
+| <span class="param-type">Type  </span>            |  (string*) - an xsd or xdd type                                       | Mandatory                  |
 
-Description: Explicitly sets a value to be an IRI - avoiding automatic type marshalling   
+<div class="anchor-sub-parts">Returns</div>
+A JSON-LD literal
 
-Arguments: 
-    Val1 (string*) - string which will be treated as an IRI
+<div class="anchor-sub-parts">Example</div>
 
-Returns: 
-    A JSON-LD IRI value
 
-Example:
-    iri("dc:title")
-    //returns { "@type": "woql:Node", "woql:node": "dc:title" }
+<div class="code-example" markdown="1">
+```js
+literal(1, "nonNegativeInteger")
+//returns { "@type": "xsd:nonNegativeInteger", "@value": 1 }
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->     
+<!-- iri  -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">iri</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Explicitly sets a value to be an IRI - avoiding automatic type marshalling
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+iri(Val1)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Val1  </span>            |  (string*) - string which will be treated as an IRI                                      | Mandatory                  |
+
+<div class="anchor-sub-parts">Returns</div>
+A JSON-LD IRI value
+
+<div class="anchor-sub-parts">Example</div>
+
+
+<div class="code-example" markdown="1">
+```js
+iri("dc:title")
+//returns { "@type": "woql:Node", "woql:node": "dc:title" }
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->  
 
 ### Basic Helper Functions
 
-#### query 
+<!-- query  -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">query</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-query() 
+<i class="fa fa-check status-stable"/>
 
-Status: Stable
+Generates an empty WOQLQuery object
 
-Description: Generates an empty WOQLQuery object 
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+query()
+```
+</div>
 
-Arguments: None
+<div class="anchor-sub-parts">Arguments</div>  
+None
 
-Returns: 
-    An empty WOQLQuery object
+<div class="anchor-sub-parts">Returns</div>
+An empty WOQLQuery object
 
-Example: 
-    let q = query()
-    //then q.triple(1, 1) ...
-    
-#### json 
+<div class="anchor-sub-parts">Example</div>
 
-json(JSONLD) 
+<div class="code-example" markdown="1">
+```js
+let q = query()
+//then q.triple(1, 1) ...
+```
+</div>
 
-Status: Stable
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->  
+<!-- json -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">json</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Description: translates between the JSON-LD and object version of a query - if an argument is passed, the query object is created from it, if none is passed, the current state is returned as a JSON-LD
+<i class="fa fa-check status-stable"/>
 
-Arguments: 
-    JSONLD (json) - optional JSON-LD woql document encoding a query
+Translates between the JSON-LD and object version of a query - if an argument is passed, the query object is created from it, if none is passed, the current state is returned as a JSON-LD
 
-Returns: 
-    either a JSON-LD or a WOQLQuery object
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+json(JSONLD)
+```
+</div>
 
-Example: 
-    let q = triple("a", "b", "c")
-    let qjson = q.json()
-    let p = json(qjson)
-    //q an p both contain: {"@type": "woql:Triple", "woql:subject": { "@type": "woql:Node", "woql:node": "doc:a"}, "woql:predicate": ....
+<div class="anchor-sub-parts">Arguments</div>  
 
-#### vars 
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">JSONLD  </span>          |   (json) - optional JSON-LD woql document encoding a query           | Mandatory                  |
 
-vars(...Varnames) 
+<div class="anchor-sub-parts">Returns</div>
+either a JSON-LD or a WOQLQuery object
 
-Status: Stable
+<div class="anchor-sub-parts">Example</div>
 
-Description: generates javascript variables for use as WOQL variables within a query
+<div class="code-example" markdown="1">
+```js
+let q = triple("a", "b", "c")
 
-Arguments: 
-    ([string*]) an array of strings, each of which will server as a variable
+let qjson = q.json()
 
-Returns: 
-    an array of javascript variables which can be dereferenced using the array destructuring operation
+let p = json(qjson)
+/*q  and p both contain: {"@type": "woql:Triple",
+    "woql:subject": {
+        "@type": "woql:Node",
+        "woql:node": "doc:a"},
+        "woql:predicate": ....
+    }
+}*/
+```
+</div>
 
-Example: 
-    const [a, b, c] = vars("a", "b", "c")
-    //a, b, c are javascript variables which can be used as WOQL variables in subsequent queries
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->  
+
+<!--vars -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">vars</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Generates javascript variables for use as WOQL variables within a query
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+vars(...Varnames)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Vars  </span>            |   ([string*]) an array of strings, each of which will server as a variable          | Mandatory                  |
+
+<div class="anchor-sub-parts">Returns</div>
+an array of javascript variables which can be dereferenced using the array destructuring operation
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+const [a, b, c] = vars("a", "b", "c")
+//a, b, c are javascript variables which can be used as WOQL variables in subsequent queries
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
 ## Compound Functions
 
 ### Shorthand Compound Functions
 Shorthand compound functions provide shorthand forms for commonly used functions to avoid having to write the same basic patterns repeatedly
 
-#### star 
+<!--star -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">star</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-star(Graph, Subject, Object, Predciate) 
+<i class="fa fa-check status-stable"/>
 
-Status: Stable
+Generates a query that by default matches all triples in a graph  
 
-Description: generates a query that by default matches all triples in a graph  
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+star(Graph, Subject, Object, Predciate)
+```
+</div>
 
-Arguments: 
-    Graph (string) - Option Resource String identifying the graph to be searched for the pattern 
-    Subject (string) - Optional IRI of triple's subject or a variable 
-    Predicate (string) - Optional IRI of a property or a variable 
-    Object (string) - Optional IRI of a node or a variable, or a literal 
+<div class="anchor-sub-parts">Arguments</div>  
 
-Returns: 
-    A WOQLQuery which contains the pattern matching expression
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Graph  </span>           |   (string) - Option Resource String identifying the graph to be searched for the pattern      | Optional                  |
+| <span class="param-type">Subject  </span>           | (string) - Optional IRI of triple's subject or a variable      | Optional                  |
+| <span class="param-type">Predicate  </span>         | (string) - Optional IRI of a property or a variable      | Optional                  |
+| <span class="param-type">Object  </span>         |  (string) - Optional IRI of a node or a variable, or a literal       | Optional                  |
 
-Example: 
-    star("schema/main")
-    //will return every triple in schema/main graph
 
-#### all 
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the pattern matching expression
 
-all(Subject, Object, Predciate, Graph) 
+<div class="anchor-sub-parts">Example</div>
 
-Status: Stable
+<div class="code-example" markdown="1">
+```js
+star("schema/main")
+//will return every triple in schema/main graph
+```
+</div>
 
-Description: generates a query that by default matches all triples in a graph - identical to star() except for order of arguments
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--all -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">all</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Arguments: 
-    Subject (string) - Optional IRI of triple's subject or a variable 
-    Predicate (string) - Optional IRI of a property or a variable 
-    Object (string) - Optional IRI of a node or a variable, or a literal 
-    Graph (string) - Optional Resource String identifying the graph to be searched for the pattern 
+<i class="fa fa-check status-stable"/>
+Generates a query that by default matches all triples in a graph - identical to star() except for order of arguments
 
-Returns: 
-    A WOQLQuery which contains the pattern matching expression
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+all(Subject, Object, Predciate, Graph)
+```
+</div>
+<div class="anchor-sub-parts">Arguments</div>  
 
-Example: 
-    all("mydoc")
-    //will return every triple in the instance/main graph that has "doc:mydoc" as its subject
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Subject  </span>         |  (string) -  Optional IRI of triple's subject or a variable          | Optional                  |
+| <span class="param-type">Predicate  </span>       | (string) - Optional IRI of a property or a variable                  | Optional                  |
+| <span class="param-type">Object  </span>          |(string) - Optional IRI of a node or a variable, or a literal         | Optional                  |
+| <span class="param-type">Graph  </span>           |  (string) - Optional Resource String identifying the graph to be searched for the pattern       | Optional                  |
 
-#### nuke 
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the pattern matching expression
 
-nuke(Graph) 
+<div class="anchor-sub-parts">Example</div>
 
-Status: Stable
+<div class="code-example" markdown="1">
+```js
+all("mydoc")
+//will return every triple in the instance/main graph that has "doc:mydoc" as its subject
 
-Description: Deletes all triples in the graph 
+```
+</div>
 
-Arguments: 
-    Graph (string) - Optional Resource String identifying the graph from which all triples will be removed 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
-Returns: 
-    A WOQLQuery which contains the deletion expression
+<!--nuke -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">all</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Example: 
-    nuke("schema/main")
-    //will delete everything from the schema/main graph
+<i class="fa fa-check status-stable"/>
 
+Deletes all triples in the graph
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+nuke(Graph)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Graph  </span>         |  (string) - Optional Resource String identifying the graph from which all triples will be removed           | Optional                  |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the deletion expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+nuke("schema/main")
+//will delete everything from the schema/main graph
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
 ### Compound Schema Functions
 Compound schema functions are compound functions specifically designed to make generating schemas easier. They generate multiple inserts for each function
 
-#### add_class 
+<!-- add_class -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">add class</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-add_class(ClassIRI, Graph) 
+<i class="fa fa-check status-stable"/>
 
-Status: Stable
+Adds a new class definition to the schema
 
-Description: adds a new class definition to the schema
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+add_class(ClassIRI, Graph)
+```
+</div>
 
-Arguments: 
-    ClassIRI (string*) - IRI or variable containing IRI of the new class to be added (prefix default to scm)
-    Graph (string) - Optional Resource String identifying the schema graph into which the class definition will be written 
+<div class="anchor-sub-parts">Arguments</div>  
 
-Returns: 
-    A WOQLQuery which contains the add class expression
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">ClassIRI  </span>         |  (string*) - IRI or variable containing IRI of the new class to be added (prefix default to scm)       | Mandatory                  |
+| <span class="param-type">Graph  </span>         | (string) - Optional Resource String identifying the schema graph into which the class definition will be written     | Optional                  |
 
-Example: 
-    add_class("MyClass")
-    //equivalent to add_quad("MyClass", "type", "owl:Class", "schema/main")
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the add class expression
 
-#### add_property 
+<div class="anchor-sub-parts">Example</div>
 
-add_property(PropIRI, RangeType, Graph) 
+<div class="code-example" markdown="1">
+```js
+add_class("MyClass")
+//equivalent to add_quad("MyClass", "type", "owl:Class", "schema/main")
+```
+</div>
 
-Status: Stable
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
-Description: adds a new property definition to the schema
+<!--add_property -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">add property</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Arguments: 
-    PropIRI (string*) - IRI or variable containing IRI of the new property to be added (prefix default to scm)
-    RangeType (string) - optional IRI or variable containing IRI of the range type of the new property (defaults to xsd:string)
-    Graph (string) - Optional Resource String identifying the schema graph into which the property definition will be written 
+<i class="fa fa-check status-stable"/>
 
-Returns: 
-    A WOQLQuery which contains the add property expression
+Adds a new property definition to the schema
 
-Example: 
-    add_property("myprop")
-    //equivalent to add_quad("myprop", "type", "owl:DatatypeProperty", "schema/main").add_quad("myprop", "range", "xsd:string", "schema/main")
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+add_property(PropIRI, RangeType, Graph)
+```
+</div>
 
-#### doctype 
+<div class="anchor-sub-parts">Arguments</div>  
 
-doctype(ClassIRI, Graph) 
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">PropIRI  </span>         |  (string*) - IRI or variable containing IRI of the new property to be added (prefix default to scm)     | Mandatory
+| <span class="param-type">RangeType  </span>         | (string) - optional IRI or variable containing IRI of the range type of the new property (defaults to xsd:string)   | Optional                   |
+| <span class="param-type">Graph  </span>         | (string) - Optional Resource String identifying the schema graph into which the property definition will be written      | Optional  
 
-Status: Stable
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the add property expression
 
-Description: Adds a new document class to the schema
+<div class="anchor-sub-parts">Example</div>
 
-Arguments: 
-    ClassIRI (string*) - IRI or variable containing IRI of the new document class to be added (prefix default to scm)
-    Graph (string) - Optional Resource String identifying the schema graph into which the class definition will be written 
+<div class="code-example" markdown="1">
+```js
+add_property("myprop")
+/*equivalent to add_quad("myprop", "type", "owl:DatatypeProperty", "schema/main")
+    .add_quad("myprop", "range", "xsd:string", "schema/main")*/
+```
+</div>
 
-Returns: 
-    A WOQLQuery which contains the add document class expression
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
-Example: 
-    doctype("MyClass")
-    //equivalent to add_quad("MyClass", "type", "owl:Class", "schema/main").add_quad("MyClass", "subClassOf", "system:Document", "schema/main")
+<!--doctype -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">doctype</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-#### delete_class 
+<i class="fa fa-check status-stable"/>
 
-delete_class(ClassIRI, Graph) 
+Adds a new document class to the schema
 
-Status: Experimental / Unstable
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+doctype(ClassIRI, Graph)
+```
+</div>
 
-Description: Deletes a class - including all properties and incoming links - from the schema 
+<div class="anchor-sub-parts">Arguments</div>  
 
-Arguments: 
-    ClassIRI (string*) - IRI or variable containing IRI of the class to be deleted (prefix default to scm)
-    Graph (string) - Optional Resource String identifying the schema graph from which the class definition will be deleted 
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">ClassIRI  </span>         |  (string*) - IRI or variable containing IRI of the new document class to be added (prefix default to scm)   | Mandatory
+| <span class="param-type">Graph  </span>         | (string) - Optional Resource String identifying the schema graph into which the class definition will be written      | Optional  
 
-Returns: 
-    A WOQLQuery which contains the class deletion expression
 
-Example: 
-    delete_class("MyClass")
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the add document class expression
 
-#### delete_property 
+<div class="anchor-sub-parts">Example</div>
 
-delete_property(PropIRI, Graph) 
+<div class="code-example" markdown="1">
+```js
+doctype("MyClass")
+/*equivalent to add_quad("MyClass", "type", "owl:Class", "schema/main")
+    .add_quad("MyClass", "subClassOf", "system:Document", "schema/main") */
+```
+</div>
 
-Status: Experimental / Unstable
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--delete_class -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">delete class</span>
+    <span class="anchor-status anchor-status-stable"> Status: Experimental / Unstable </span>
+</div>
 
-Description: Deletes a property from the schema and all its references incoming and outgoing   
+<i class="fa fa-flask status-experimental"/>
 
-Arguments: 
-    PropIRI (string*) - IRI or a variable containing IRI of the property to be deleted (prefix defaults to scm)
-    Graph (string) - Optional Resource String identifying the schema graph from which the property definition will be deleted 
+Deletes a class - including all properties and incoming links - from the schema
 
-Returns: 
-    A WOQLQuery which contains the property deletion expression
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+delete_class(ClassIRI, Graph)
+```
+</div>
 
-Example: 
-    delete_property("MyProp")
+<div class="anchor-sub-parts">Arguments</div>  
 
-#### schema 
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">ClassIRI  </span>         | IRI or variable containing IRI of the class to be deleted (prefix default to scm)| Mandatory
+| <span class="param-type">Graph  </span>         | (string) - Optional Resource String identifying the schema graph from which the class definition will be deleted    | Optional  
 
-schema(Graph) 
 
-Status: Deprecated
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the class deletion expression
 
-Description: Generates an empty query object - identical to query - included for backwards compatibility as before v3.0, the schema functions were in their own namespace. 
+<div class="anchor-sub-parts">Example</div>
 
-Arguments: 
-    Graph (string) - Optional Resource String identifying the graph which will be used for subsequent chained schema calls 
+<div class="code-example" markdown="1">
+```js
+delete_class("MyClass")
+```
+</div>
 
-Returns: 
-    An empty WOQLQuery with the internal schema graph pointes set to Graph 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
-Example: 
-    schema("schema/dev").add_class("X")
-    //equivalent to add_class("X", "schema/dev") - non-deprecated version
+<!-- delete_property -->
 
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">delete property</span>
+    <span class="anchor-status anchor-status-stable"> Status: Experimental / Unstable </span>
+</div>
+
+<i class="fa fa-flask status-experimental"/>
+
+Deletes a property from the schema and all its references incoming and outgoing   
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+delete_property(PropIRI, Graph)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">PropIRI  </span>         | (string*) - IRI or a variable containing IRI of the property to be deleted (prefix defaults to scm)| Mandatory
+| <span class="param-type">Graph  </span>         | (string) - Optional Resource String identifying the schema graph from which the property definition will be deleted  | Optional  
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the property deletion expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+delete_property("MyProp")   
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!-- schema -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">schema</span>
+    <span class="anchor-status anchor-status-stable"> Status: Deprecated </span>
+</div>
+
+<i class="fa fa-circle status-depreciated"/>
+
+Generates an empty query object - identical to query - included for backwards compatibility as before v3.0, the schema functions were in their own namespace.
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+schema(Graph)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Graph  </span>         | (string) - Optional Resource String identifying the graph which will be used for subsequent chained schema calls | Optional  
+
+<div class="anchor-sub-parts">Returns</div>
+An empty WOQLQuery with the internal schema graph pointes set to Graph
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+schema("schema/dev").add_class("X")
+//equivalent to add_class("X", "schema/dev") - non-deprecated version  
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
 ### Builder / Partial Functions
 
 Builder functions are different from other WOQL functions in that they cannot be used in isolation - they produce partial functions in isolation and need to be chained onto other functions in order to form complete functions in their own right. Builder functions must be chained after a function that provides at least a subject (triple, add_triple, add_quad, delete_triple). Multiple builder functions can be chained together.
 
-#### node 
+<!--node -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">schema</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-node(NodeID, ChainType) 
+<i class="fa fa-check status-stable"/>
 
-Status: Stable
+Specifies the identity of a node that can then be used in subsequent builder functions. Note that node() requires subsequent chained functions to complete the triples / quads that it produces - by itself it only generates the subject.
 
-Description: Specifies the identity of a node that can then be used in subsequent builder functions. Note that node() requires subsequent chained functions to complete the triples / quads that it produces - by itself it only generates the subject. 
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+node(NodeID, ChainType)
+```
+</div>
 
-Arguments: 
-    NodeID (string*) The IRI of a node or a variable containing an IRI which will be the subject of the builder functions 
-    ChainType (string) Optional type of builder function to build (can be Triple, Quad, AddTriple, AddQuad, DeleteTriple, DeleteQuad) - defaults to Triple  
-Returns: 
-    A WOQLQuery which contains the partial Node pattern matching expression
+<div class="anchor-sub-parts">Arguments</div>  
 
-Example: 
-    node("mydoc").label("my label")
-    //equivalent to triple("mydoc", "label", "my label")
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">NodeID  </span>         | (string*) The IRI of a node or a variable containing an IRI which will be the subject of the builder functions | Mandatory
+| <span class="param-type">ChainType  </span>         | (string) Optional type of builder function to build (can be Triple, Quad, AddTriple, AddQuad, DeleteTriple, DeleteQuad) - defaults to Triple   | Optional
 
-#### insert 
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the partial Node pattern matching expression
 
-insert(Node, Type, Graph) 
 
-Status: Stable
+<div class="anchor-sub-parts">Example</div>
 
-Description: Inserts a single triple into the database declaring the Node to have type Type, optionally into the specified graph  
+<div class="code-example" markdown="1">
+```js
+node("mydoc").label("my label")
+//equivalent to triple("mydoc", "label", "my label")
+```
+</div>
 
-Arguments: 
-    Node (string*) - IRI string or variable containing the IRI of the node to be inserted
-    Type (string*) - IRI string or variable containing the IRI of the type of the node 
-    Graph (string) - Optional Graph resource identifier
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
-Returns: 
-    A WOQLQuery which contains the insert expression
+<!--insert -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">insert</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Example: 
-    insert("mydoc", "MyType")
-    //equivalent to add_triple("mydoc", "type", "MyType")
+<i class="fa fa-check status-stable"/>
 
-#### graph 
+Inserts a single triple into the database declaring the Node to have type Type, optionally into the specified graph  
 
-graph(Graph) 
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+insert(Node, Type, Graph)
+```
+</div>
 
-Status: Stable
+<div class="anchor-sub-parts">Arguments</div>  
 
-Description: sets the graph resource ID that will be used for subsequent chained function calls  
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Node  </span>            | (string*) - IRI string or variable containing the IRI of the node to be inserted| Mandatory
+| <span class="param-type">Type  </span>            | (string*) - IRI string or variable containing the IRI of the type of the node    | Mandatory
+| <span class="param-type">Graph  </span>           | (string) - Optional Graph resource identifier   | Optional
 
-Arguments: 
-    Graph (string*) Graph Resource String literal 
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the insert expression
 
-Returns: 
-    A WOQLQuery which contains the partial Graph pattern matching expression
 
-Example: 
-    node("MyClass", "AddQuad").graph("schema/main").label("My Class Label")
-    //equivalent to add_quad("MyClass", "label", "My Class Label", "schema/main")
+<div class="anchor-sub-parts">Example</div>
 
-#### abstract 
+<div class="code-example" markdown="1">
+```js
+insert("mydoc", "MyType")
+//equivalent to add_triple("mydoc", "type", "MyType")
+```
+</div>
 
-abstract(Graph, Subject) 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--graph -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">insert</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Status: Stable
+<i class="fa fa-check status-stable"/>
 
-Description: adds an abstract designation to a class
+Sets the graph resource ID that will be used for subsequent chained function calls  
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+graph(Graph)
+```
+</div>
 
-Arguments: 
-    Graph (string) optional Graph Resource String literal - defaults to "schema/main"
-    Subject (string) optional IRI or variable containing IRI of the subject
+<div class="anchor-sub-parts">Arguments</div>  
 
-Returns: 
-    A WOQLQuery which contains the Abstract tag expression
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Graph  </span>           | Graph Resource String literal                                        | Mandatory
 
-Example: 
-    node("MyClass", "AddQuad").abstract()
-    //equivalent to add_quad("MyClass", "system:tag", "system:abstract","schema/main")
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the partial Graph pattern matching expression
 
-#### property 
 
-property(PropIRI, Type_or_Value) 
+<div class="anchor-sub-parts">Example</div>
 
-Status: Stable
+<div class="code-example" markdown="1">
+```js
+node("MyClass", "AddQuad").graph("schema/main").label("My Class Label")
+//equivalent to add_quad("MyClass", "label", "My Class Label", "schema/main")
+```
+</div>
 
-Description: Creates a property in the schema or adds a property to the instance data, or creates a property matching rule, depending on context  
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- abstract  -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">abstract</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Arguments: 
-    PropIRI (string*) - the IRI of the property or a variable containing the property 
-    Type_or_Value (string or literal*) - the value of the property (instance) or the type of the property (schema)
+<i class="fa fa-check status-stable"/>
 
-Returns: 
-    A WOQLQuery which contains the property matching / insert expression
+Adds an abstract designation to a class
 
-Example: 
-    doctype("X").property("Y", "string")
-    //creates a document type X with a property Y of type string
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+abstract(Graph, Subject)
+```
+</div>
 
-#### domain 
+<div class="anchor-sub-parts">Arguments</div>  
 
-domain(ClassIRI) 
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Graph  </span>           | (string) optional Graph Resource String literal - defaults to "schema/main"    | Optional
+| <span class="param-type">Subject  </span>         | (string) optional IRI or variable containing IRI of the subject                | Optional
 
-Status: Stable
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Abstract tag expression
 
-Description: Specifies the domain of a property in a property chain
 
-Arguments: 
-    ClassIRI (string *) IRI of class or variable containing IRI
+<div class="anchor-sub-parts">Example</div>
 
-Returns: 
-    A WOQLQuery which contains the domain expression
+<div class="code-example" markdown="1">
+```js
+node("MyClass", "AddQuad").abstract()
+//equivalent to add_quad("MyClass", "system:tag", "system:abstract","schema/main")
+```
+</div>
 
-Example: 
-    add_property("MyProp").domain("MyClass")
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- property -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">property</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-#### label 
+<i class="fa fa-check status-stable"/>
 
-label(Label, Lang) 
+Creates a property in the schema or adds a property to the instance data, or creates a property matching rule, depending on context  
 
-Status: Stable
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+property(PropIRI, Type_or_Value)
+```
+</div>
 
-Description: adds a label to an element in a chain using the rdfs:label predicate
+<div class="anchor-sub-parts">Arguments</div>  
 
-Arguments: 
-    Label (string *) string literal containing label or variable containing string
-    Lang (string) optional language tag (e.g. "en")
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">PropIRI  </span>         | (string*) - the IRI of the property or a variable containing the property   | Mandatory
+| <span class="param-type">Type_or_Value  </span>   | (string or literal*) - the value of the property (instance) or the type of the property (schema) | Mandatory
 
-Returns: 
-    A WOQLQuery which contains the label in the rdfs:label predicate
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the property matching / insert expression
 
-Example: 
-    add_class("MyClass").label("My Class Label")
-    //creates the class and gives it a label
+<div class="anchor-sub-parts">Example</div>
 
-#### description 
+<div class="code-example" markdown="1">
+```js
+doctype("X").property("Y", "string")
+//creates a document type X with a property Y of type string
+```
+</div>
 
-description(Comment, Lang) 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
-Description: adds a description to an element in a chain using the rdfs:comment predicate
+<!--domain -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">domain</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Arguments: 
-    Comment (string *) string literal containing label or variable containing string
-    Lang (string) optional language tag (e.g. "en")
+<i class="fa fa-check status-stable"/>
 
-Returns: 
-    A WOQLQuery which contains the description in the rdfs:comment predicate
+Specifies the domain of a property in a property chain
 
-Example: 
-    let [doc] = vars("doc")
-    node(doc).description("My Class Description")
-    //matches any document with the given description
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+domain(ClassIRI)
+```
+</div>
 
-#### parent 
 
-parent(...ParentIRIs) 
+<div class="anchor-sub-parts">Arguments</div>  
 
-Status: Stable
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">ClassIRI  </span>        | (string *) IRI of class or variable containing IRI                   | Mandatory
 
-Description: Adds parent class clause(s) to a chain using the rdfs:subClassOf predicate
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the domain expression
 
-Arguments: 
-    ParentIRI ([string*]) - list of class IRIs or variables containing class IRIs representing parent classes of the current class
+<div class="anchor-sub-parts">Example</div>
 
-Returns: 
-    A WOQLQuery which contains the parent expression
+<div class="code-example" markdown="1">
+```js
+add_property("MyProp").domain("MyClass")
+```
+</div>
 
-Example: 
-    add_class("Y").parent("X")
-    //creates class Y as a subClass of class X
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--label -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">label</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-#### max 
+<i class="fa fa-check status-stable"/>
 
-max(Count) 
+Adds a label to an element in a chain using the rdfs:label predicate
 
-Status: Stable
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+label(Label, Lang)
+```
+</div>
 
-Description: adds a maximum cardinality constraint to an add_property chain   
+<div class="anchor-sub-parts">Arguments</div>  
 
-Arguments: 
-    Count (integer or string*) - a non negative integer or a variable containing a non-negative integer
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Label  </span>           | (string *) string literal containing label or variable containing string   | Mandatory
+| <span class="param-type">Lang  </span>            | (string) optional language tag (e.g. "en")                                 | Optional
 
-Returns: 
-    A WOQLQuery which contains the maximum cardinality expression
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the label in the rdfs:label predicate
 
-Example: 
-    add_property("MyProp").domain("X").max(1)
-    //creates a string property in class X with a maximum cardinality of 1
+<div class="anchor-sub-parts">Example</div>
 
-#### min 
+<div class="code-example" markdown="1">
+```js
+add_class("MyClass").label("My Class Label")
+//creates the class and gives it a label
+```
+</div>
 
-min(Count) 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--description -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">description</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Status: Stable
+<i class="fa fa-check status-stable"/>
 
-Description: adds a minimum cardinality constraint to an add_property chain   
+Adds a description to an element in a chain using the rdfs:comment predicate
 
-Arguments: 
-    Count (integer or string*) - a non negative integer or a variable containing a non-negative integer
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+description(Comment, Lang)
+```
+</div>
 
-Returns: 
-    A WOQLQuery which contains the minimum cardinality expression
+<div class="anchor-sub-parts">Arguments</div>  
 
-Example: 
-    add_property("MyProp").domain("X").min(1)
-    //creates a string property in class X with a minimum cardinality of 1
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Comment  </span>         | (string *) string literal containing label or variable containing string  | Mandatory
+| <span class="param-type">Lang  </span>            | (string) optional language tag (e.g. "en")                                | Optional
 
-#### cardinality 
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the description in the rdfs:comment predicate
 
-cardinality(Count) 
+<div class="anchor-sub-parts">Example</div>
 
-Status: Stable
+<div class="code-example" markdown="1">
+```js
+let [doc] = vars("doc")
+node(doc).description("My Class Description")
+//matches any document with the given description    
 
-Description: adds an exact cardinality constraint to an add_property chain   
+```
+</div>
 
-Arguments: 
-    Count (integer or string*) - a non negative integer or a variable containing a non-negative integer
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--parent  -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">description</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Returns: 
-    A WOQLQuery which contains the cardinality expression
+<i class="fa fa-check status-stable"/>
 
-Example: 
-    add_property("MyProp").domain("X").cardinality(1)
-    //creates a string property in class X with an exact cardinality of 1
+Adds parent class clause(s) to a chain using the rdfs:subClassOf predicate
 
-#### insert data
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+parent(...ParentIRIs)
+```
+</div>
 
-insert_data(Data, Graph) 
+<div class="anchor-sub-parts">Arguments</div>  
 
-Status: Stable
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">ParentIRI  </span>         | ([string*]) - list of class IRIs or variables containing class IRIs representing parent classes of the current class  | Mandatory
 
-Description: Inserts data as an object - enabling multiple property values to be inserted in one go   
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the parent expression
 
-Arguments: 
-    Data (object*) a json object containing 
-        id (string*) IRI or variable containing IRI of the entity to be inserted
-        *key* (string*) keys representing properties that the entity has (label, description, type and any other valid property for the object)
-    Graph (string) an optional graph resource identifier (defaults to "instance/main" if no using or into is specified)
+<div class="anchor-sub-parts">Example</div>
 
-Returns: 
-    A WOQLQuery which contains the insertion expression
+<div class="code-example" markdown="1">
+```js
+let [doc] = vars("doc")
+add_class("Y").parent("X")
+//creates class Y as a subClass of class X  
 
-Example: 
-    let data = {id: "doc:joe", type: "Person", label: "Joe", description: "My friend Joe", age: 42}
-    insert_data(data)
+```
+</div>
 
-#### insert_class_data 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
-insert_class_data(Data, Graph) 
+<!--max -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">max</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Status: Stable
+<i class="fa fa-check status-stable"/>
 
-Description: Inserts data about a class as a json object - enabling a class and all its properties to be specified in a single function
+Adds a maximum cardinality constraint to an add_property chain  
 
-Arguments: 
-    Data (object*) a json object containing 
-        id (string*) IRI or variable containing IRI of the class to be inserted
-        *key* (string*) keys representing properties that the class has (label, description, parent and any properties that the class has)
-    Graph (string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+max(Count)
+```
+</div>
 
-Returns: 
-    A WOQLQuery which contains the insertion expression
+<div class="anchor-sub-parts">Arguments</div>  
 
-Example: 
-    let data = {id: "Robot", label: "Robot", parent: ["X", "MyClass"]}
-    insert_class_data(data)
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Count  </span>         |(integer or string*) - a non negative integer or a variable containing a non-negative integer | Mandatory
 
-#### doctype_data 
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the maximum cardinality expression
 
-insert_doctype_data(Data, Graph) 
+<div class="anchor-sub-parts">Example</div>
 
-Status: Stable
+<div class="code-example" markdown="1">
+```js
+add_property("MyProp").domain("X").max(1)
+//creates a string property in class X with a maximum cardinality of 1
 
-Description: Inserts data about a document class as a json object - enabling a document class and all its properties to be specified in a single function
+```
+</div>
 
-Arguments: 
-    Data (object*) a json object containing 
-        id (string*) IRI or variable containing IRI of the document class to be inserted
-        *key* (string*) keys representing properties that the document class has (label, description, parent and any properties that the class has)
-    Graph (string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--min -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">min</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
 
-Returns: 
-    A WOQLQuery which contains the insertion expression
+<i class="fa fa-check status-stable"/>
+Adds a minimum cardinality constraint to an add_property chain   
 
-Example: 
-    let data = { id: "Person", label: "Person",  age: { label: "Age", range: "xsd:integer", max: 1}}
-    insert_doctype_data(data)
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+min(Count)
+```
+</div>
 
-#### insert_property_data 
+<div class="anchor-sub-parts">Arguments</div>  
 
-insert_property_data(Data, Graph) 
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Count  </span>           |(integer or string*) - a non negative integer or a variable containing a non-negative integer | Mandatory
 
-Status: Stable
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the minimum cardinality expression
 
-Description: Inserts data about a document class as a json object - enabling a document class and all its properties to be specified in a single function
+<div class="anchor-sub-parts">Example</div>
 
-Arguments: 
-    Data (object*) a json object containing 
-        id (string*) IRI or variable containing IRI of the property to be inserted
-        *key* (string*) keys representing attributes that the property has (label, description, domain, range, max, min, cardinality)
-    Graph (string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)
+<div class="code-example" markdown="1">
+```js
+add_property("MyProp").domain("X").min(1)
+//creates a string property in class X with a minimum cardinality of 1  
 
-Returns: 
-    A WOQLQuery which contains the insertion expression
+```
+</div>
 
-Example: 
-    let data = {id: "prop", label: "Property", description: "prop desc", range: "X", domain: "X", max: 2, min: 1}
-    insert_property_data(data)
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
+<!--cardinality -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">cardinality</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Adds an exact cardinality constraint to an add_property chain   
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+cardinality(Count)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Count  </span>           |(integer or string*) - a non negative integer or a variable containing a non-negative integer | Mandatory
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the cardinality expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+add_property("MyProp").domain("X").cardinality(1)
+//creates a string property in class X with an exact cardinality of 1
+
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--insert data-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">insert data</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Inserts data as an object - enabling multiple property values to be inserted in one go   
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+insert_data(Data, Graph)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Data  </span>            |(object*) a json object containing  <br/> <span class="param-object"> id (string*) IRI or variable containing IRI of the entity to be inserted</span> <br/> <span class="param-object"> *key* (string*) keys representing properties that the entity has (label, description, type and any other valid property for the object) </span>| Mandatory
+| <span class="param-type">Graph  </span>            |(string) an optional graph resource identifier (defaults to "instance/main" if no using or into is specified)| Optional
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the insertion expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let data = {id: "doc:joe",
+    type: "Person",
+    label: "Joe",
+    description: "My friend Joe",
+    age: 42
+}
+insert_data(data)
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- insert_class_data  -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">insert class data</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Inserts data about a class as a json object - enabling a class and all its properties to be specified in a single function
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+insert_class_data(Data, Graph)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Data  </span>            |(object*) a json object containing  <br/> <span class="param-object"> id (string*) IRI or variable containing IRI of the class to be inserted</span> <br/> <span class="param-object"> *key* (string*) keys representing properties that the class has (label, description, type and any other valid property for the object) </span>| Mandatory
+| <span class="param-type">Graph  </span>            |(string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)| Optional
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the insertion expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let data = {
+    id: "Robot",
+    label: "Robot",
+    parent: ["X", "MyClass"]
+}
+insert_class_data(data)
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--insert_doctype_data -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">insert doctype data</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Inserts data about a document class as a json object - enabling a document class and all its properties to be specified in a single function
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+insert_doctype_data(Data, Graph)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Data  </span>            |(object*) a json object containing  <br/> <span class="param-object"> id (string*) IRI or variable containing IRI of the class to be inserted</span> <br/> <span class="param-object"> *key* (string*) keys representing properties that the document class has (label, description, type and any other valid property for the object) </span>| Mandatory
+| <span class="param-type">Graph  </span>            |(string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)| Optional
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the insertion expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let data = {
+    id: "Person",
+    label: "Person",  
+    age: {
+        label: "Age",
+        range: "xsd:integer",
+        max: 1
+    }
+}
+insert_doctype_data(data)
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!-- insert_property_data  -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">insert property data</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Inserts data about a document class as a json object - enabling a document class and all its properties to be specified in a single function
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+insert_property_data(Data, Graph)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Data  </span>            |(object*) a json object containing  <br/> <span class="param-object"> id (string*) IRI or variable containing IRI of the property to be inserted</span> <br/> <span class="param-object"> *key* (string*) keys representing properties that the property has (label, description, type and any other valid property for the object) </span>| Mandatory
+| <span class="param-type">Graph  </span>            |(string) an optional graph resource identifier (defaults to "schema/main" if no using or into is specified)| Optional
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the insertion expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let data = {
+    id: "prop",
+    label: "Property",
+    description: "prop desc",
+    range: "X",
+    domain: "X",
+    max: 2,
+    min: 1
+}
+insert_property_data(data)
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->

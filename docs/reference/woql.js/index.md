@@ -6,7 +6,7 @@ grand_parent: Reference
 nav_order: 5
 permalink: /reference/woql/primitives
 ---
-<i class=" js-toggle-dark-mode fa fa-toggle-on"/> 
+<i class=" js-toggle-dark-mode fa fa-toggle-on"/>
 
 <script>
 const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
@@ -1118,7 +1118,7 @@ substr("helloIAmTerminusDb", 8, 8, 2, )
 
 <!----------------------------------------------------------------------------------------->     
 
-#### upper
+
 <!-- upper -->
 
 <div class="anchor-sub-headings-style">
@@ -1161,3 +1161,437 @@ upper("aBCe", allcaps)
 <hr class="section-separator"/>
 
 <!----------------------------------------------------------------------------------------->     
+
+<!--lower-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">lower</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Generates or matches a lower-case version of String in LowerCased
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+lower(String, LowerCased)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">String  </span>     |(string*) - string or variable representing the non-lowercased string | Mandatory       |
+| <span class="param-type">LowerCased  </span> |(string*) - string or variable representing the lowercased string     | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Lower Case pattern matching expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [lower] = var("l")
+
+lower("aBCe", lower)
+//lower contains "abce"
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->     
+
+<!-- pad -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">pad</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Pads out the string Input to be exactly Len long by appending the Pad character the necessary number of times to form Output
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+pad(Input, Pad, Len, Output)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Input  </span>     |(string*) - The input string or variable in unpadded state | Mandatory       |
+| <span class="param-type">Pad  </span>       |(string*) - The characters to use to pad the string or a variable representing them     | Mandatory       |
+| <span class="param-type">Len  </span>       |(string or integer*) - The variable or integer value representing the length of the output string | Mandatory       |
+| <span class="param-type">Output  </span>    |(string*) - The variable or string representing the padded version of the input string | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Pad pattern matching expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [fixed] = vars("fixed length")
+
+pad("joe", " ", 8, fixed)
+//fixed contains "joe     "
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->    
+
+<!-- split -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">split</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Splits a string (Input) into a list strings (Output) by removing separator  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+split(Input, Separator, Output)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Input  </span>     |(string*) - A string or variable representing the unsplit string | Mandatory       |
+| <span class="param-type">Separator  </span> | (string*) - A string or variable containing a sequence of charatcters to use as a separator | Mandatory       |
+| <span class="param-type">Output  </span>    |(string, [string]) - A variable representing a list, or a list of variables and / or strings | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Split pattern matching expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [words] = vars("words")
+
+split("joe has a hat", " ", words)
+//words contains ["joe", "has", "a", "hat"]
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->    
+<!--- join -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">join</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Joins a list variable together (Input) into a string variable (Output) by glueing the strings together with Glue
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+join(Input, Glue, Output)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Input  </span>     | (string / [string]*) - a variable representing a list or a list of strings and / or variables | Mandatory       |
+| <span class="param-type">Glue  </span> | (string*) - A variable or string representing the characters to put in between the joined strings in input | Mandatory       |
+| <span class="param-type">Output  </span>    |(string*) - A variable or string containing the output string | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Join pattern matching expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [sentence] = vars("sentence")
+
+join(["joe", "has", "a", "hat", " ", sentence)
+//sentence contains ["joe has a hat"]
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->   
+
+<!-- re -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">re</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Matches the regular expression defined in Patern against the Test string, to produce the matched patterns in Matches
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+re(Pattern, Test, Matches) ~ regexp(Pattern, Test, Matches) (Alias)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Pattern  </span>     | (string*) - string or variable using normal PCRE regular expression syntax with the exception that special characters have to be escaped twice (to enable transport in JSONLD) | Mandatory       |
+| <span class="param-type">Test  </span> |(string*) - string or variable containing the string to be tested for patterns with the regex | Mandatory       |
+| <span class="param-type">Matches  </span>    |(string / [string]) - variable representing the list of matches or a list of strings or variables
+| Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Regular Expression pattern matching expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [e, llo] = vars('e', 'ello')
+
+WOQL.re("h(.).*", "hello", [e, llo])
+//e contains 'e', llo contains 'llo'
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->   
+
+<!-- like -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">like</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Generates a string Leverstein distance measure between StringA and StringB
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+like(StringA, StringB, Distance)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">StringA  </span>     | (string*) - string literal or variable representing a string to be compared | Mandatory       |
+| <span class="param-type">StringA  </span> |(string*) - string literal or variable representing the other string to be compared | Mandatory       |
+| <span class="param-type">Distance  </span>    |(string / [float]*) - variable representing the distance between the variables
+| Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Like pattern matching expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [dist] = vars('dist')
+
+like("hello", "hallo", dist)
+//dist contains 0.7265420560747664
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->   
+
+
+### Updates / Transactions
+
+<!-- add_triple -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">add triple</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Adds a single triple to the database
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+add_triple(Subject, Predicate, Object)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Subject  </span>     | (string*) - The IRI of a triple's subject or a variable             | Mandatory       |
+| <span class="param-type">Predicate  </span>   |(string*) - The IRI of a property or a variable                      | Mandatory       |
+| <span class="param-type">Object  </span>      |(string*) - The IRI of a node or a variable, or a literal            | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the add_triple insert statement
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+add_triple("john", "age", 42)
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->   
+
+<!-- add_quad -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">add quad</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Adds a single triple to the specified graph in the database
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+add_quad(Subject, Predicate, Object, Graph)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Subject  </span>     | (string*) - The IRI of a triple's subject or a variable             | Mandatory       |
+| <span class="param-type">Predicate  </span>   |(string*) - The IRI of a property or a variable                      | Mandatory       |
+| <span class="param-type">Object  </span>      |(string*) - The IRI of a node or a variable, or a literal            | Mandatory       |
+| <span class="param-type">Graph  </span>       |(string*) - The resource identifier of a graph                       | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the add_quad insert statement
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+add_quad("Person", "type", "owl:Class", "schema/main")
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->   
+
+<!-- delete_triple -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">delete triple</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Deletes a single triple from the default graph of the database
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+delete_triple(Subject, Predicate, Object)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Subject  </span>     | (string*) - The IRI of a triple's subject or a variable             | Mandatory       |
+| <span class="param-type">Predicate  </span>   |(string*) - The IRI of a property or a variable                      | Mandatory       |
+| <span class="param-type">Object  </span>      |(string*) - The IRI of a node or a variable, or a literal            | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Triple Deletion statement
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+delete_triple("john", "age", 42)
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->   
+<!--  delete_quad -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">delete quad</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Deletes a single triple from the default graph of the database  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+delete_quad(Subject, Predicate, Object, Graph)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Subject  </span>     | (string*) - The IRI of a triple's subject or a variable             | Mandatory       |
+| <span class="param-type">Predicate  </span>   |(string*) - The IRI of a property or a variable                      | Mandatory       |
+| <span class="param-type">Object  </span>      |(string*) - The IRI of a node or a variable, or a literal            | Mandatory       |
+| <span class="param-type">Graph  </span>       |(string*) - The resource identifier of a graph                       | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Delete Quad Statement
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+delete_quad("Person", "type", "owl:Class", "schema/main")
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->  
+    

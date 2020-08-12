@@ -1593,5 +1593,1164 @@ delete_quad("Person", "type", "owl:Class", "schema/main")
 
 <hr class="section-separator"/>
 
+<!----------------------------------------------------------------------------------------->
+
+<!-- when -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">when</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Generates a transaction which encompasses all situations in which the Condition is true, the Consequent will be executed - the when block encapsulates a single transaction and allows a single query to express multiple transactions (by including multiple when blocks)  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
+when(Condition, Consequent)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Condition  </span>     | (WOQLQuery*) - The query which, for each match, will cause the associated consequent to execute           | Mandatory       |
+| <span class="param-type">Consequent  </span>   |(WOQLQuery*) - The query which, for each match of the Condition, will be executed                    | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the conditional transactional statement
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+when(true).add_triple("doc:john", "type", "scm:Person")  
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->     
+
+### Arithmetic Operators
+
+Arithmetic Operators can be arbitrarily composed through the construction of Arithmetic Expressions and passed to the eval function which returns a variable containing the calculated result. This provides a general, stand-alone scientific calculator function, into which variables and constants from larger queries can be injected into mathematical functions. Used in isolation it is a calculator.  
+
+<!-- evaluate -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">evaluate</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Evaluates the passed arithmetic expression and generates or matches the result value
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+evaluate(ArithmeticExpression, Result)  ~ eval(ArithmeticExpression, Result)
+```
+(note eval does not work without a preceding WOQL.
+you must use evaluate to avoid clashing with javascripts eval() function)
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">ArithmeticExpression  </span> | (WOQLQuery*) - A WOQL query containing a valid WOQL Arithmetic Expression, which is evaluated by the function           | Mandatory       |
+| <span class="param-type">Result  </span>   |(string or decimal or integer*) - Either a variable, in which the result of the expression will be stored, or a numeric literal which will be used as a test of result of the evaluated expression                   | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Arithmetic function
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+evaluate(plus(2, minus(3, 1)), result)
+```
+</div>
+
+<hr class="section-separator"/>
+
 <!----------------------------------------------------------------------------------------->  
-    
+
+<!-- sum -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">sum</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+computes the sum of the List of values passed. In contrast to other arithmetic functions, sum self-evaluates - it does not have to be passed to evaluate()
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+sum(List, Total)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">List  </span> | (WOQLQuery*) - ([string or numeric*]) - a list variable, or a list of variables or numeric literals          | Mandatory       |
+| <span class="param-type">Total  </span>   |a variable or numeric containing the sum of the values in List        | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Sum expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+sum([2, 3, 4, 5], result)
+//result contains 14
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->  
+
+<!-- plus -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">plus</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+adds two numbers together
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+
+plus(Number1, Number2)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Number1  </span> | (string or numeric*) - a variable or numeric containing the first value to add                 | Mandatory       |
+| <span class="param-type">Number2  </span>   |(string or numeric*) - a variable or numeric containing the second value to add        | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the addition expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+evaluate(plus(2, plus(3, 1)), result)
+//result contains 6
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->  
+
+<!-- minus -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">minus</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Subtracts Number2 from Number1  
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+minus(Number1, Number2)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Number1  </span> | (string or numeric*) - a variable or numeric containing the  value that will be subtracted from              | Mandatory       |
+| <span class="param-type">Number2  </span>   |(string or numeric*) - a variable or numeric containing  the value to be subtracted       | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the subtraction expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+evaluate(minus(2.1, plus(0.2, 1)), result)
+//result contains 0.9000000000000001 - note floating point inaccuracy
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- times -->
+
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">times</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Multiples Number1 and Number2
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+times(Number1, Number2)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Number1  </span> | (string or numeric*) - a variable or numeric containing the first value to multiply             | Mandatory       |
+| <span class="param-type">Number2  </span>   |(string or numeric*) - a variable or numeric containing the second value to multiply       | Mandatory       |
+
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the multiplication expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+evaluate(times(10, minus(2.1, plus(0.2, 1))), result)
+//result contains 9.000000000000002y
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- divide -->
+
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">divide</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Dvides Number1 by Number2
+
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+divide(Number1, Number2)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Number1  </span> | (string or numeric*) - a variable or numeric containing the number to be divided         | Mandatory       |
+| <span class="param-type">Number2  </span>   |(string or numeric*) - a variable or numeric containing the divisor    | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the division expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+evaluate(divide(times(10, minus(2.1, plus(0.2, 1))), 10), result)
+//result contains 0.9000000000000001
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- floor -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">floor</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Generates the nearest lower integer to the passed number
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+floor(Number1)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Number1  </span>    | (string or numeric*) - a variable or numeric containing the number to be floored       | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the floor expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+evaluate(divide(floor(times(10, minus(2.1, plus(0.2, 1)))), 10), result)
+//result contains 0.9 - floating point error removed
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- div -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">div</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Integer division: divides Number1 by Number2 to return an integer value
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+div(Number1, Number2)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Number1  </span>    | (string or numeric*) - a variable or numeric containing the number to be divided       | Mandatory       |
+| <span class="param-type">Number2  </span>    | (string or numeric*) - a variable or numeric containing the divisor      | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the integer division expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+evaluate(div(10, 3), result)
+//result contains 3
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+
+<!-- exp -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">exp</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Exponent - raises Number1 to the power of Number2
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+exp(Number1, Number2)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Number1  </span>    | (string or numeric*) - a variable or numeric containing the number to be raised to the power of the second number       | Mandatory       |
+| <span class="param-type">Number2  </span>    | (string or numeric*) - a variable or numeric containing the exponent      | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the exponent expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+evaluate(exp(3, 2), result)
+//result contains 9
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- less -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">less</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Matches when Val1 is less than Val2
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+less(Val1, Val2)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Number1  </span>    | (string or numeric*) - a variable or numeric containing the number to be compared       | Mandatory       |
+| <span class="param-type">Number2  </span>    | (string or numeric*) - a variable or numeric containing the second comporator     | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the comparison expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+less(1, 1.1).eq(result, literal(true, "boolean"))
+//result contains true
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!--  greater -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">greater</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Matches when Val1 is greater than Val2
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+greater(Val1, Val2)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Val1  </span>    | (string or numeric*) - a variable or numeric containing the number to be compared       | Mandatory       |
+| <span class="param-type">Val2  </span>    | (string or numeric*) - a variable or numeric containing the second comporator     | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the comparison expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [result] = vars("result")
+
+greater(1.2, 1.1).eq(result, literal(true, "boolean"))
+//result contains true
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+### Importing & Exporting
+
+<!-- get -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">get</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Retrieves the exernal resource defined by QueryResource and copies values from it into variables defined in AsVars
+
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+get(AsVArs, QueryResource)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">AsVArs  </span>    |([string]*) an array of AsVar variable mappings (see as for format below)    | Mandatory       |
+| <span class="param-type">QueryResource  </span>    | (string*) an external resource (remote, file, post) to query    | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the get expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [a, b] = vars("a", "b")
+
+get(as("a", a).as("b", b)).remote("http://my.url.com/x.csv")
+//copies the values from column headed "a" into a variable a and from column "b" into a variable b from remote CSV
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- put -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">put</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Outputs the results of a query to a file
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+put(AsVArs, Subq, FileResource)
+
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">AsVArs  </span>    |([string]*) an array of AsVar variable mappings (see as for format below)  | Mandatory       |
+| <span class="param-type">Subq  </span>    | (WOQLQuery*) - The query which will be executed to produce the results  <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query   | Mandatory       |
+| <span class="param-type">FileResource  </span>    | (string*) an file resource local to the server    | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the put expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [s, p, o] = vars("Subject", "Predicate", "Object")
+
+put(as("s", s).as("p", p).as("o", o), all())
+    .file("/app/local_files/dump.csv")
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- as -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">as</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Maps data from an imported source to a WOQL variable and optionally sets its type
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+as(SourceLocator, VarName, Type)
+
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">SourceLocator  </span>    |(string) - an optional string containing the CSV column header, or a variable containing the string (if it is omitted when extracting data from a CSV, the CSV will be indexed by column number)  | Mandatory       |
+| <span class="param-type">VarName  </span>    |  (string*) - the name of the variable into which the data from the external resource will be copied| Mandatory       |
+| <span class="param-type">Type  </span>    | (string) - an optional type to which the data will be automatically mapped on import   | Optional       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the variable mapping expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [date] = vars("Date")
+
+get(as("Date.From", date))
+    .remote("http://seshatdatabank.info/wp-content/uploads/2020/01/Iron-Updated.csv")
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+<!-- remote -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">remote</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Identifies a remote resource by URL and specifies the format of the resource through the options   
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+remote(URL, Opts)
+
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">URL  </span>    |(string*) The URL at which the remote resource can be accessed  | Mandatory       |
+| <span class="param-type">Opts  </span>    |(object) A option json which can have the following keys: <br/> <span class="param-object"> type: csv/turtle </span> | Optional       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the remote resource identifier
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+remote("http://url.of.resource", {type: "csv"})
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- file -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">file</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Identifies a file resource as a path on the server and specifies the format through the options   
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+file(Path, Opts)
+
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Path  </span>    |(string*) The Path on the server at which the file resource can be accessed | Mandatory       |
+| <span class="param-type">Opts  </span>    |(object) A option json which can have the following keys: <br/> <span class="param-object"> type: csv/turtle </span> | Optional       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the file resource identifier
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+file("/path/to/file", {type: 'turtle'} )
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- post -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">post</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Identifies a resource as a local path on the client, to be sent to the server through a HTTP POST request, with the format defined through the options  
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+post(Path, opts)
+
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Path  </span>    |(string*) The Path on the server at which the file resource can be accessed | Mandatory       |
+| <span class="param-type">Opts  </span>    |(object) A option json which can have the following keys: <br/> <span class="param-object"> type: csv/turtle </span> | Optional       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the Post resource identifier
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+post("/.../.../", {})
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+### Resource Specification
+
+<!-- using -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">using</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Specifies the resource to use as default in the contained query
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+using(GraphResource, Subq)
+
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">GraphResource  </span>    |(string*) - A valid graph resource identifier string | Mandatory       |
+| <span class="param-type">Subq  </span>    |The query which will be executed against the resource identified above <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query| Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which is defined to run against the resource
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+using("admin/minecraft").all()
+//retrieves all triples in the minecraft db of the admin organization
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+<!-- into -->
+
+<!-- using -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">into</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Specifies the graph resource to write the contained query into
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+into(GraphResource, Subq)
+
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">GraphResource  </span>    |(string*) - A valid graph resource identifier string | Mandatory       |
+| <span class="param-type">Subq  </span>    |The query which will be written into the graph <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query| Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which will be written into the graph in question
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+using("admin/minecraft").into("instance/main").add_triple("a", "type", "scm:X")
+//writes a single tripe (doc:a, rdf:type, scm:X) into the main instance graph
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+### Database Size
+
+<!-- size -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">size</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Calculates the size in bytes of the contents of the resource identified in ResourceID
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+size(ResourceID, Size)
+
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">ResourceID  </span>    |(string*) - A valid resource identifier string (can refer to any graph / branch / commit / db)| Mandatory       |
+| <span class="param-type">Size  </span>    |(string or integer*) - An integer literal with the size in bytes or a variable containing that integer  | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the size expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [sz] = vars("s")
+size("admin/minecraft/local/branch/main/instance/main", sz)
+//returns the number of bytes in the main instance graph on the main branch
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!--  triple_count -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">triple count</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Calculates the size in bytes of the contents of the resource identified in ResourceID
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+triple_count(ResourceID, Count)
+
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">ResourceID  </span>    |(string*) - A valid resource identifier string (can refer to any graph / branch / commit / db)| Mandatory       |
+| <span class="param-type">Count  </span>    |(string or integer*) - An integer literal with the size in bytes or a variable containing that integer    | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the size expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [tc] = vars("s")
+
+triple_count("admin/minecraft/local/_commits", tc)
+//returns the number of bytes in the local commit graph
+
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+### Document Queries (Experimental / Unstable)
+
+Document queries take or return entire JSON-LD document as arguments. This relies upon the internal frame-generation capabilities of the database and requires the user to have defined discrete document classes to dictate at what points the graph traversal is truncated - a document is considered to contain all objects within it, with the exception of predicates and classes that belong to other documents. This takes some care - improperly defined it can lead to very slow queries which contain the whole database unrolled into a single document - not normally what we require.   
+
+<!-- update_object -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">update object</span>
+    <span class="anchor-status anchor-status-experimental"> Status: Experimental / Unstable </span>
+</div>
+
+<i class="fa fa-flask status-experimental"/>
+
+Updates a document (or any object) in the db with the passed json-ld - replaces the current version
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+update_object(JSONLD)
+```
+</div>
+
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">JSONLD  </span>     |(string*) the document's JSON-LD form which will be written to the DB | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the update object expression
+
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+update_object({
+    "@id": "doc:joe",
+    "@type": "scm:Person",
+    "rdfs:label": {
+        "@type": "xsd:string",
+        "@value": "Joe"
+    }
+})
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- delete_object -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">delete object</span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
+</div>
+
+<i class="fa fa-check status-stable"/>
+
+Deletes the entire refered document and all references to it
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+delete_object(JSON_or_IRI)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">JSON_or_IRI  </span> |(string*) either a full JSON-LD document, an IRI literal or a variable containing either | Mandatory       |
+
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which object deletion expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+delete_object("doc:mydoc")
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->
+
+<!-- read_object -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">read object</span>
+    <span class="anchor-status anchor-status-experimental"> Status: Experimental / Unstable </span>
+</div>
+
+<i class="fa fa-flask status-experimental"/>
+
+Saves the entire document with IRI DocumentIRI into the JSONLD variable
+
+<div class="anchor-sub-parts">Syntax</div>
+
+<div class="code-example" markdown="1">
+```js
+read_object(DocumentIRI, JSONLD)
+```
+</div>
+
+<div class="anchor-sub-parts">Arguments</div>  
+
+| Arguments                                    | Types                                                                | Requirement                |
+|----------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">DocumentIRI  </span> |(string*) either an IRI literal or a variable containing an IRI      | Mandatory       |
+| <span class="param-type">JSONLD  </span> |(string*) a variable into which the document's JSON-LD form will be saved      | Mandatory       |
+
+<div class="anchor-sub-parts">Returns</div>
+A WOQLQuery which contains the document retrieval expression
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+let [mydoc] = vars("mydoc")
+
+read_object("doc:a", mydoc)
+//mydoc will have the json-ld document with ID doc:x stored in it
+```
+</div>
+
+<hr class="section-separator"/>
+
+<!----------------------------------------------------------------------------------------->

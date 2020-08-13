@@ -206,6 +206,11 @@
   color: #3d7e9a;
 }
 
+.param-type-headings {
+    @extend .param-type;
+    font-size: 22px;
+}
+
 .anchor-status {
   float: right;
   margin-right: 36px;

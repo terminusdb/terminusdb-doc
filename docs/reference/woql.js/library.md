@@ -1,620 +1,1241 @@
+---
+layout: default
+title:  Library Functions
+parent: WOQL.js - the Definitive Guide
+grand_parent: Reference
+nav_order: 5
+permalink: /reference/woql/library
+---
+
 # Library Functions
 
-WOQL.js includes a standard library of pattern matching functions which provide a flexible way of extracting records about the system's internal records without having to remember the predicates that are used under the hood. 
+WOQL.js includes a standard library of pattern matching functions which provide a flexible way of extracting records about the system's internal records without having to remember the predicates that are used under the hood.
 
-Unlike other WOQL.js functions, library functions are not part of the WOQLQuery object - they are accessed through the lib() call. Library functions have a standard signature which makes them all accessible in the same way. 
+Unlike other WOQL.js functions, library functions are not part of the WOQLQuery object - they are accessed through the lib() call. Library functions have a standard signature which makes them all accessible in the same way.
 
 ## Standard Arguments
 
-All Library functions take the same three optional arguments. 
+All Library functions take the same three optional arguments.
 
-* Values
-* Variables
-* ResourceIdentifier
+* <span class="param-type">Values</span>
+* <span class="param-type">Variables</span>
+* <span class="param-type">ResourceIdentifier</span>
 
-### Values
 
-The values argument allows values to be passed for any of the internal variables which serve to constrain the query to a subset of the complete set. The Values argument comes in three forms: 
+<span class="param-type-headings">Values</span>
 
-* [...Value] - a list of specific values, where each entry sets the corresonpding entry in the Variables list for the function. Any values that are not to be set can be omitted or set to null or false explicitly in which case no constraints will be applied. 
+The values argument allows values to be passed for any of the internal variables which serve to constrain the query to a subset of the complete set. The Values argument comes in three forms:
 
-    example: lib().classes("scm:Person") - specifies that only the class with ID scm:Person will be matched
+* [...Value]  - a list of specific values, where each entry sets the corresonpding entry in the Variables list for the function. Any values that are not to be set can be omitted or set to null or false explicitly in which case no constraints will be applied.
+	<div class="anchor-sub-parts">Example</div>
 
-* object - a json key-value object where the keys are the names of the variables to be set and the value is the value for that variable. 
+	<div class="code-example" markdown="1">
+	```js
+	lib().classes("scm:Person")
+	```
+	</div>
+    specifies that only the class with ID scm:Person will be matched
 
-    example: lib().classes({'Class ID': "scm:Person"}) - specifies that only the class with ID scm:Person will be matched
+* object - a json key-value object where the keys are the names of the variables to be set and the value is the value for that variable.
+
+	<div class="anchor-sub-parts">Example</div>
+
+	<div class="code-example" markdown="1">
+	```js
+	lib().classes({'Class ID': "scm:Person"})
+	```
+	</div>
+	specifies that only the class with ID scm:Person will be matched
+
 
 * WOQLQuery - a woql query which serves as a constraint on any variable mentioned in the query
 
-    example: 
-    let [clist] = vars("Class List")
-    lib().classes(member(clist, ['scm:Person', 'scm:Animal'])) - specifies that only the class with ID scm:Person and scm:Animal will be matched
+	<div class="anchor-sub-parts">Example</div>
 
-### Variables
+	<div class="code-example" markdown="1">
+	```js
+	let [clist] = vars("Class List")
+    lib().classes(member(clist, ['scm:Person', 'scm:Animal']))
+	```
+	</div>
+	specifies that only the class with ID scm:Person and scm:Animal will be matched
+
+
+<!-- Variables -->
+
+<span class="param-type-headings">Variables</span>
 
 Each library function defines an internal list of variable names which are used by default to represent the results of the library query - the variables names can be overriden by passing in an alternative list of variable names. As with values, a null or false or an omitted variable means that the default will be used for that position
 
-    example:
-     let [cid, cname] = vars("Class", "Class Label")
-     lib().classes(false, [cid, cname])
+<div class="anchor-sub-parts">Example</div>
 
-### ResourceIdentifier
+<div class="code-example" markdown="1">
+```js
+let [cid, cname] = vars("Class", "Class Label")
 
-Each library query is associated with a specific graph - by default the graph resource identifier is set to the appropriate graph of the current default database. This can be changed by setting the ResourceIdentifier argument to the desired graph. 
+lib().classes(false, [cid, cname])
+```
+</div>
 
-    example: 
-      lib().classes(false, false, 'schema/extra')
 
+<!-- ResourceIdentifier -->
+<span class="param-type-headings">ResourceIdentifier</span>
+
+
+Each library query is associated with a specific graph - by default the graph resource identifier is set to the appropriate graph of the current default database. This can be changed by setting the ResourceIdentifier argument to the desired graph.
+
+<div class="anchor-sub-parts">Example</div>
+
+<div class="code-example" markdown="1">
+```js
+lib().classes(false, false, 'schema/extra')
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 ## Library Functions with Standard Arguments
 
-### classes
+<!-- classes -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">classes</span>
+</div>
 
+Retreives a list of classes from the schema. For each class matched, the following properties are returned
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 classes(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives a list of classes from the schema. For each class matched, the following properties are returned 
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Class ID - IRI of the class
-    Class Name - Label of the Class (rdfs:label)
-    Description - Description (rdfs:comment)
-    Parents - Parent classes (rdfs:subClassOf)
-    Children - Child classes (rdfs:subClassOf)
-    Abstract - Abstract class designation (system:tag system:abstract) 
+| Variables                                         | Description                             | Prefix                |
+|---------------------------------------------------|-----------------------------------------|-----------------------|
+| <span class="param-type">Class ID  </span>        | IRI of the class                        | 		  |
+| <span class="param-type">Class Name  </span>      | Label of the Class                      | (rdfs:label)          |
+| <span class="param-type">Description  </span>     | Description of the Class                | (rdfs:comment)        |
+| <span class="param-type">Parents  </span>         | Parent classes                          | (rdfs:subClassOf)     |
+| <span class="param-type">Children  </span>        | Child classes                           | (rdfs:subClassOf)     |
+| <span class="param-type">Abstract  </span>        | Abstract class designation              | (system:tag system:abstract)|
 
-Returns
-    WOQLQuery containing the classes pattern matching expression
 
-Example
-    let [cls] = vars("Class ID")
-    lib().classes(eq(cls, 'scm:X'))
-    //retrieves the class with IRI scm:X
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the classes pattern matching expression
 
-### properties
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+let [cls] = vars("Class ID")
 
+lib().classes(eq (cls, 'scm:X'))
+//retrieves the class with IRI scm:X
+
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!-- properties -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">properties</span>
+</div>
+
+Retreives the list of properties from the schema. For each property matched, the following properties are returned
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 properties(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the list of properties from the schema. For each property matched, the following properties are returned 
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Property ID - IRI of the property
-    Property Name - Label of the property (rdfs:label)
-    Property Domain - Domain of the property (rdfs:domain)
-    Property Type - Object | Data
-    Property Range - Range of the property (rdfs:range)
-    Property Description - Description (rdfs:comment)
+| Variables                                         | Description                             | Prefix                |
+|---------------------------------------------------|-----------------------------------------|-----------------------|
+| <span class="param-type">Property ID  </span>     | IRI of the property                     | |
+| <span class="param-type">Property Name  </span>   | Label of the property                   |  (rdfs:label)         |
+| <span class="param-type">Property Domain  </span> | Domain of the property                  | (rdfs:domain)         |
+| <span class="param-type">Property Type  </span>   | Object Property or Data Property        | (rdfs:subClassOf)     |
+| <span class="param-type">Property Range  </span>  | Range of the property                   | (rdfs:range)          |
+| <span class="param-type">Property Description  </span>| Description                         | (rdfs:comment)        |
 
-Returns
-    WOQLQuery containing the properties pattern matching expression
 
-Example
-    let [prop] = vars("Property Type")
-    lib().classes(eq(prop, 'Object'))
-    //retrieves all object properties
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the properties pattern matching expressionn
 
-### graphs
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+let [prop] = vars("Property Type")
 
+lib().classes(eq(prop, 'Object'))
+//retrieves all object properties
+
+
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--graphs-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">graphs</span>
+</div>
+
+Retreives the list of graphs for the current database for each commit
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 graphs(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the list of graphs for the current database for each commit 
 
-Default Variables:
-    Graph ID - resource id of the graph (ref:graph_name)
-    Graph Type - schema | instance | inference
-    Branch ID - id of the branch (if the commit is branch head - ref:branch_name)
-    Commit ID - id of the commit that points to the graph (ref:commit_id) 
-    Graph IRI - Graph IRI
-    Branch IRI - Branch IRI
-    Commit IRI - Commit IRI
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Returns
-    WOQLQuery containing the graphs pattern matching expression
+| Variables                                         | Description                             | Prefix                |
+|---------------------------------------------------|-----------------------------------------|-----------------------|
+| <span class="param-type">Graph ID  </span>        |resource id of the graph                 | 		  |
+| <span class="param-type">Graph Type  </span>      |schema or instance or inference          |         				  |
+| <span class="param-type">Branch ID  </span>       | id of the branch (if the commit is branch head | ref:branch_name)   |
+| <span class="param-type">Commit ID  </span>       | id of the commit that points to the graph      | (ref:commit_id)    |
+| <span class="param-type">Graph IRI   </span>      | Graph IRI           							 |                    |
+| <span class="param-type">Branch IRI   </span>		| Branch IRI                  					 |  			      |
+| <span class="param-type">Commit IRI   </span>		| Commit IRI                  					 |			          |
 
-Example
-    let [br] = vars("Branch ID")
-    lib().graphs().not().eq(br, '')
-    //retrieves all graphs on current branch heads
 
-### branches
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the graphs pattern matching expression
 
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+let [br] = vars("Branch ID")
+
+lib().graphs().not().eq(br, '')
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!-- branches -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">branches</span>
+</div>
+
+Retreives the list of branches for the current database  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 branches(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the list of branches for the current database  
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Branch ID - resource id of the branch (ref:branch)
-    Time - Time of last commit (ref:commit_timestamp)
-    Commit ID - id of the commit that points to the graph (ref:ref_commit) 
-    Branch IRI - Branch IRI
-    Commit IRI - Commit IRI
+| Variables                                         | Description                             | Prefix                |
+|---------------------------------------------------|-----------------------------------------|-----------------------|
+| <span class="param-type">Branch ID  </span>       |resource id of the branch                 | (ref:branch)		  |
+| <span class="param-type">Time  </span>            |Time of last commit          			   | (ref:commit_timestamp)|
+| <span class="param-type">Commit ID  </span>       | id of the commit that points to the graph| (ref:ref_commit)    |
+| <span class="param-type">Branch IRI   </span>		| Branch IRI                  			   |  			      |
+| <span class="param-type">Commit IRI   </span>		| Commit IRI                  			   |			          |
 
-Returns
-    WOQLQuery containing the branches pattern matching expression
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the branches pattern matching expression
 
-Example
-    let [ci] = vars("Branch ID")
-    lib().branches(eq(ci, 'main'))
-    //retrieves branch with id main
 
-### objects
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+let [ci] = vars("Branch ID")
 
+lib().branches(eq(ci, 'main'))
+//retrieves branch with id main
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!--objects-->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">objects</span>
+</div>
+
+Retreives the list of object ids and their types  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 objects(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the list of object ids and their types  
 
-Default Variables:
-    Object Type - type of the object
-    Object ID - IRI of the object
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Returns
-    WOQLQuery containing the objects pattern matching expression
+| Variables                                         | Description                             |
+|---------------------------------------------------|-----------------------------------------|
+| <span class="param-type">Object Type  </span>     |type of the object                |
+| <span class="param-type">Object ID  </span>       |IRI of the object        	     |
 
-Example
-    let [ot] = vars("Object Type")
-    lib().objects(member(ot, ['scm:Y', 'scm:Z']))
-    //retrieves all objects of type scm:Z and scm:Y
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the objects pattern matching expression
 
-### property_values
 
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+let [ot] = vars("Object Type")
+
+lib().objects(member(ot, ['scm:Y', 'scm:Z']))
+//retrieves all objects of type scm:Z and scm:Y
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!-- property_values -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">property values</span>
+</div>
+
+Retreives the list of property values for objects in the database  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 property_values(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the list of property values for objects in the database  
 
-Default Variables:
-    Object ID - IRI of the object
-    Property ID - IRI of the property
-    Property Value - The value of the property (literal or JSON-LD document)
-    Value ID - IRI of the value (object properties) 
-    Value Class - Class of the value (object properties)
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Returns
-    WOQLQuery containing the property values pattern matching expression
+| Variables                                         | Description                             |
+|---------------------------------------------------|-----------------------------------------|
+| <span class="param-type">Object ID </span>        |IRI of the object              		  |
+| <span class="param-type">Property ID  </span>     |IRI of the property        	     	  |
+| <span class="param-type">Property Value  </span>  |The value of the property (literal or JSON-LD document)|
+| <span class="param-type"Value ID   </span>        |IRI of the value (object properties)     |
+| <span class="param-type">Value Class </span>      |Class of the value (object properties)   |
 
-Example
-    let [p] = vars("Property ID")
-    lib().property_values(eq(p, 'rdf:type'))
-    //retrieves all type properties from the DB
 
-### object_metadata
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the property values pattern matching expression
 
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+let [p] = vars("Property ID")
+
+lib().property_values(eq(p, 'rdf:type'))
+//retrieves all type properties from the DB
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- object_metadata -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">object metadata</span>
+</div>
+
+Retreives the list of objects with metadata about their types  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 object_metadata(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the list of objects with metadata about their types  
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Object ID - IRI of the object
-    Name - Object label (rdfs:label)
-    Description - Object description (rdfs:comment)
-    Type ID - IRI of the type of the object (rdf:type)
-    Type Name - Label of the type (rdfs:label from schema)
-    Type Description - Description of the type (rdfs:comment from schema)
+| Variables                                         | Description                             | Prefix                |
+|---------------------------------------------------|-----------------------------------------|-----------------------|
+| <span class="param-type">Object ID   </span>      |IRI of the object                         | (rdfs:label)	  		  |
+| <span class="param-type">Description  </span>     |Object description          			   | (rdfs:comment)			  |
+| <span class="param-type">Type ID  </span>         | IRI of the type of the object            | (rdf:type)  			  |
+| <span class="param-type">Type Name   </span>		| Label of the type                  	   | (rdfs:label from schema) |
+| <span class="param-type">Type Description   </span>| Description of the type                 |(rdfs:comment from schema)|
 
-Returns
-    WOQLQuery containing the object metadata pattern matching expression
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the object metadata pattern matching expression
 
-Example
-    let [t] = vars("Type ID")
-    lib().object_metadata(eq(t, 'scm:Z'))
-    //retrieves all objects of type scm:Z with their metadata
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+let [t] = vars("Type ID")
 
-### property_metadata
+lib().object_metadata(eq(t, 'scm:Z'))
+//retrieves all objects of type scm:Z with their metadata
+```
+</div>
 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+
+<!-- property_metadata-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">property metadata</span>
+</div>
+
+Retreives the list of properties with metadata about their types
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 property_metadata(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the list of properties with metadata about their types  
 
-Default Variables:
-    Object ID - IRI of the object
-    Property ID - IRI of the property
-    Property Name - Property label (rdfs:label)
-    Property Value - Property Value 
-    Property Description - Property description (rdfs:comment)
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Returns
-    WOQLQuery containing the property metadata pattern matching expression
+| Variables                                         | Description                             | Prefix                |
+|---------------------------------------------------|-----------------------------------------|-----------------------|
+| <span class="param-type">Object ID   </span>      |IRI of the object                        | (rdfs:label)	  	  |
+| <span class="param-type">Property ID </span>      |IRI of the property       			      | 		  			  |
+| <span class="param-type">Property Name   </span>  | Property label            			  | (rdfs:label)		  |
+| <span class="param-type">Property Value   </span>	| Property Value                  	   	  |    					  |
+| <span class="param-type">Property Description </span>| Property description                 |(rdfs:comment )		  |
 
-Example
-    lib().property_metadata()
-    //retrieves all objects of type scm:Z with their metadata
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the property metadata pattern matching expression
 
-### commits
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().property_metadata()
 
+//retrieves all objects of type scm:Z with their metadata    
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- commits -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">commits</span>
+</div>
+
+Retreives the list of commits  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 commits(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the list of commits  
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Commit ID - ID of the commit
-    Commit IRI - IRI of the commit
-    Time - timestamp of commit
-    Author - Author of commit
-    Message - commit message
-    Parent ID - Commit ID of parent commit
-    Parent IRI - IRI of parent commit
-    Children - Array of child commits 
+| Variables                                         | Description                             |
+|---------------------------------------------------|-----------------------------------------|
+| <span class="param-type">Commit ID    </span>     |ID of the commit						  |	  
+| <span class="param-type">Commit IRI </span>       |IRI of the commit 			      		  | 		  			
+| <span class="param-type">Time   </span>  			|  timestamp of commit            		  |
+| <span class="param-type">Author   </span>			| Author of commit       	   	  		  |    		
+| <span class="param-type">Message </span>			| commit message                		  |		 
+| <span class="param-type">Parent ID  </span>		| Commit ID of parent commit              |		 
+| <span class="param-type">Parent IRI  </span>		| IRI of parent commit           		  |		 
+| <span class="param-type">Children  </span>		| Array of child commits       			  |		 
 
-Returns
-    WOQLQuery containing the commits pattern matching expression
 
-Example
-    lib().commits()
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the commits pattern matching expression
 
-### commit_chain
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().commits()
+```
+</div>
 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!-- commit_chain -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">commit chain</span>
+</div>
+
+Retrieves chains of commits from one commit to another   
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 commit_chain(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retrieves chains of commits from one commit to another   
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Head IRI - IRI of commit as chain starting point
-    Tail IRI - IRI of commit as chain ending point
-    Path - Path traversed from head to tail
+| Variables                                         | Description                             |
+|---------------------------------------------------|-----------------------------------------|
+| <span class="param-type">Head IRI    </span>      |IRI of commit as chain starting point	  |	  
+| <span class="param-type">Tail IRI </span>         | IRI of commit as chain ending point 	  | 		  			
+| <span class="param-type">Path   </span>  			| Path traversed from head to tail        |
 
-Returns
-    WOQLQuery containing the commit chain pattern matching expression
 
-Example
-    lib().commit_chain()
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the commit chain pattern matching expression
 
-### repos
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().commit_chain()
+```
+</div>
 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!--repos-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">repos</span>
+</div>
+
+Retrieves information about remotes and their repositories in the repository graph
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 repos(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retrieves information about remotes and their repositories in the repository graph   
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Repository IRI - IRI of commit as chain starting point
-    Repository Name - name of the repositoriy (ref:repository_name)
-    Path - Path traversed from head to tail
+| Variables                                         | Description                             |
+|---------------------------------------------------|-----------------------------------------|
+| <span class="param-type">Repository IRI    </span>|IRI of commit as chain starting point	  |	  
+| <span class="param-type">Repository Name </span>  | name of the repositoriy (ref:repository_name)	  | 		  			
+| <span class="param-type">Path   </span>  			| Path traversed from head to tail        |
 
-Returns
-    WOQLQuery containing the repository pattern matching expression
 
-Example
-    lib().repos(false, false, "admin/MyTestDB/_meta")
-    //note: the resource id for repository graphs must be specified explicitly for the db
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the repository pattern matching expression
 
-### dbs
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().repos(false, false, "admin/MyTestDB/_meta")
+//note: the resource id for repository graphs must be specified explicitly for the db
+```
+</div>
 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- dbs-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">dbs</span>
+</div>
+
+Retrieves information about the databases on the server   
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 dbs(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retrieves information about the databases on the server   
 
-Default Variables:
-    DB Name - Name of the database (system:database_name)
-    DB ID - IRI of the database document 
-    Organization - ID of the organization that owns the DB
-    Description - Description of the DB
-    DB IRI - IRI of the database document in the system graph
-    Organization IRI - IRI of the organization document in the system graph
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Returns
-    WOQLQuery containing the database pattern matching expression
+| Variables                                         | Description                             |
+|---------------------------------------------------|-----------------------------------------|
+| <span class="param-type">DB Name    </span>       | Name of the database  (system:database_name)|	  
+| <span class="param-type">DB ID  </span> 		    | IRI of the database document	  			  | 		  			
+| <span class="param-type">Organization   </span> 	| ID of the organization that owns the DB     |
+| <span class="param-type">Description   </span> 	|  Description of the DB     				  |
+| <span class="param-type">DB IRI   </span> 	    | IRI of the database document in the system graph |
+| <span class="param-type">Organization IRI   </span> | IRI of the organization document in the system graph |
 
-Example
-    lib().dbs()
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the database pattern matching expression
 
-### prefixes
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().dbs()
+```
+</div>
 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!-- prefixes -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">prefixes</span>
+</div>
+
+Retrieves the list of IRI prefixes in use in the DB   
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 prefixes(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retrieves the list of IRI prefixes in use in the DB   
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Prefix - The prefix string (eg. doc)
-    URI - The full URI/IRI that the prefix refers to 
-    Prefix Pair IRI - the IRI of the document that contains the prefix / URL
+| Variables                                         | Description                             |
+|---------------------------------------------------|-----------------------------------------|
+| <span class="param-type">Prefix    </span>        | The prefix string (eg. doc)  			  |	  
+| <span class="param-type">URI  </span> 		    | The full URI/IRI that the prefix refers to | 		  			
+| <span class="param-type">Prefix Pair IRI   </span> 	| the IRI of the document that contains the prefix / URL  |
 
-Returns
-    WOQLQuery containing the prefix pattern matching expression
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the prefix pattern matching expression
 
-Example
-    lib().prefixes()
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().prefixes()
+```
+</div>
 
-### insert_prefix
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- insert_prefix -->
 
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">insert prefix</span>
+</div>
+
+Inserts a new prefix pair into the database  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 insert_prefix(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Inserts a new prefix pair into the database  
+<div class="anchor-sub-parts">Arguments:</div>
 
-Arguments: 
-    Values - must contain [prefix, IRI] as either variables or string literals
-    Variables - single variable, default is:
-        Prefix Pair IRI - variable which will contain the generated IRI of the prefix pair
- 
-Returns
-    WOQLQuery containing the prefix insertion expression 
+| Arguments                                         | Types                                                                | Requirement                |
+|---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
+| <span class="param-type">Values  </span>          | must contain [prefix, IRI] as either variables or string literals    | Mandatory                  |
+| <span class="param-type">Variables  </span>       | single variable, default is: <br/>Prefix Pair IRI - variable which will contain the generated IRI of the prefix pair    | Mandatory                  |
 
-Example
-    lib().insert_prefix(['foaf', "http://xmlns.com/foaf/0.1/"])
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the prefix insertion expression
 
-### document_classes
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().insert_prefix(['foaf', "http://xmlns.com/foaf/0.1/"])
+```
+</div>
 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- document_classes -->
+
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">document classes</span>
+</div>
+
+Retrieves the list of document classes from the DB   
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 document_classes(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retrieves the list of document classes from the DB   
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Class ID - IRI of the class
-    Class Name - Label of the Class (rdfs:label)
-    Description - Description (rdfs:comment)
-    Parents - Parent classes (rdfs:subClassOf)
-    Children - Child classes (rdfs:subClassOf)
-    Abstract - Abstract class designation (system:tag system:abstract) 
+| Variables                                         | Description                             | Prefix                |
+|---------------------------------------------------|-----------------------------------------|-----------------------|
+| <span class="param-type">Class ID   </span>       |IRI of the class                         | 	 				  |
+| <span class="param-type">Class Name  </span>      |Label of the Class       			      | 	(rdfs:label)	  |
+| <span class="param-type">Description   </span>    | Description            			  	  | (rdfs:comment)		  |
+| <span class="param-type">Parents   </span>	    |  Parents classes  						  |   (rdfs:subClassOf)|
+| <span class="param-type">Child   </span>	        |  Child classes  						  |   (rdfs:subClassOf)|
+| <span class="param-type">Abstract</span>          |Abstract class designation               |(system:tag system:abstract)|
 
-Returns
-    WOQLQuery containing the classes pattern matching expression
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the classes pattern matching expression
 
-Example
-    lib().document_classes()
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().document_classes()
+```
+</div>
 
-### concrete_document_classes
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- concrete_document_classes -->
 
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">concrete document classes</span>
+</div>
+
+Retrieves the list of non-abstract document classes from the DB   
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 concrete_document_classes(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retrieves the list of non-abstract document classes from the DB   
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Class ID - IRI of the class
-    Class Name - Label of the Class (rdfs:label)
-    Description - Description (rdfs:comment)
-    Parents - Parent classes (rdfs:subClassOf)
-    Children - Child classes (rdfs:subClassOf)
-    Abstract - Abstract class designation (system:tag system:abstract) 
+| Variables                                         | Description                             | Prefix                |
+|---------------------------------------------------|-----------------------------------------|-----------------------|
+| <span class="param-type">Class ID   </span>       |IRI of the class                         | 	 				  |
+| <span class="param-type">Class Name  </span>      |Label of the Class       			      | 	(rdfs:label)	  |
+| <span class="param-type">Description   </span>    | Description            			  	  | (rdfs:comment)		  |
+| <span class="param-type">Parents   </span>	    |  Parents classes  						  |   (rdfs:subClassOf)|
+| <span class="param-type">Child   </span>	        |  Child classes  						  |   (rdfs:subClassOf)|
+| <span class="param-type">Abstract</span>          |Abstract class designation               |(system:tag system:abstract)|
 
-Returns
-    WOQLQuery containing the classes pattern matching expression
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the classes pattern matching expression
 
-Example
-    lib().concrete_document_classes()
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().concrete_document_classes()
+```
+</div>
 
-### document_metadata 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- document_metadata -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">document metadata</span>
+</div>
 
+Retreives the list of documents with metadata about their types  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 document_metadata (Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the list of documents with metadata about their types  
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Document ID - IRI of the document
-    Name - document label (rdfs:label)
-    Description - document description (rdfs:comment)
-    Type ID - IRI of the type of the document (rdf:type)
-    Type Name - Label of the type (rdfs:label from schema)
-    Type Description - Description of the type (rdfs:comment from schema)
+| Variables                                         | Description                             | Prefix                |
+|---------------------------------------------------|-----------------------------------------|-----------------------|
+| <span class="param-type">Document ID    </span>   |IRI of the document                         | 	 				  |
+| <span class="param-type">Name  </span>   		    |document label     			      | 	(rdfs:label)	  |
+| <span class="param-type">Description   </span>    | Description            			  	  | (rdfs:comment)		  |
+| <span class="param-type">Type ID    </span>	    |  IRI of the type of the document  	  |   (rdf:type)|
+| <span class="param-type">Type Name   </span>	    |  Label of the type  						  |   (rdfs:label from schema)|
+| <span class="param-type">Type Description</span>  |Description of the type               | (rdfs:comment from schema)|
 
-Returns
-    WOQLQuery containing the object metadata pattern matching expression
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the object metadata pattern matching expression
 
-Example
-    lib().document_metadata()
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().document_metadata()    
+```
+</div>
 
-### documents
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- documents-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">documents</span>
+</div>
 
+Retreives the list of document ids and their types  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 documents(Values, Variables, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the list of document ids and their types  
+<div class="anchor-sub-parts">Default Variables:</div>
 
-Default Variables:
-    Document Type - type of the document
-    Document ID - IRI of the document
+| Variables                                         | Description                             |
+|---------------------------------------------------|-----------------------------------------|
+| <span class="param-type">Document Type    </span> |type of the document                     | 	 				  
+| <span class="param-type">Document ID  </span>   		    | IRI of the document  		      | 	
 
-Returns
-    WOQLQuery containing the objects pattern matching expression
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the objects pattern matching expression
 
-Example
-    lib().documents()
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().documents()
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
 ## Commit Graph Navigation
 
 The WOQL.js library also provides a set of functions for navigation of the commit graph by branch, time and commit id. These functions do not take the same arguments as the standard functions above.  There are two flavours of all graph navigation functions - one that returns all the meta-data for each commit, the other that returns only the commit ids - to allow these functions to be conveniently joined with other queries and filters.  
 
-### commit_chain_full
+<!--commit_chain_full -->
 
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">commit chain full</span>
+</div>
+
+Retreives the a commit chain with full details of all commits (combines commits() and commit_chain())  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 commit_chain_full(Values, ResourceIdentifier)
+```
+</div>
 
-Description: Retreives the a commit chain with full details of all commits (combines commits() and commit_chain())  
+<div class="anchor-sub-parts">Arguments:</div>
 
-Arguments:
-    Values - values array as per standard arguments 
-    ResourceIdentifier - graph identifier (defaults to _commits)
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">Values  </span>          | values array as per standard arguments   			  | Mandatory                  |
+| <span class="param-type">ResourceIdentifier  </span>       | graph identifier (defaults to _commits)   | Mandatory                  |
 
-Returns
-    WOQLQuery containing the full commit chain pattern matching expression
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the full commit chain pattern matching expression
 
-Example
-    lib().commit_chain_full()
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().commit_chain_full()   
+```
+</div>
 
-### first_commit
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
 
+<!-- first_commit -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">first commit</span>
+</div>
+
+Retreives information about the first commit in the database  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 first_commit()
+```
+</div>
 
-Description: Retreives information about the first commit in the database  
+<div class="anchor-sub-parts">Arguments:</div>
+None - variable names are as per commits() function above
 
-Arguments: None - variable names are as per commits() function above
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the first commit pattern matching expression: returns the same variables as the lib().commits() function
 
-Returns
-    WOQLQuery containing the first commit pattern matching expression: returns the same variables as the lib().commits() function
 
-Example
-    lib().first_commit()
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().first_commit()  
+```
+</div>
 
-### active_commit
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- active_commit -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">active commit</span>
+</div>
 
+Retrieves the details of the commit that was active at the given timestamp on the given branch  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 active_commit(BranchID, Timestamp)
+```
+</div>
 
-Description: Retrieves the details of the commit that was active at the given timestamp on the given branch  
+<div class="anchor-sub-parts">Arguments:</div>
 
-Arguments: 
-    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
-    Timestamp (string or decimal) - the timestamp (or variable containing the timestamp) of interest - defaults to now
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">BranchID  </span>          | (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)			  | Mandatory                  |
+| <span class="param-type">Timestamp  </span>       | (string or decimal) - the timestamp (or variable containing the timestamp) of interest - defaults to now | Mandatory                  |
 
-Returns
-    WOQLQuery containing the active commit pattern matching expression: returns the same variables as the lib().commits() function
+<div class="anchor-sub-parts">Arguments:</div>
+None - variable names are as per commits() function above
 
-Example
-    lib().active_commit('main')
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the active commit pattern matching expression: returns the same variables as the lib().commits() function
 
-### commit_history
 
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().active_commit('main')    
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!--commit_history-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">commit history</span>
+</div>
+
+Retreives the metadata for the passed CommitID and its parent commits - up to a total of Count steps (including the passed CommitID)
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 commit_history(CommitID, Count)
+```
+</div>
 
-Description: Retreives the metadata for the passed CommitID and its parent commits - up to a total of Count steps (including the passed CommitID)
+<div class="anchor-sub-parts">Arguments:</div>
 
-Arguments: 
-    CommitID (string*) - the id of the commit to retrieve the history starting from (included in results)
-    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10 
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">CommitID  </span>          | (string*) - the id of the commit to retrieve the history starting from (included in results)		  | Mandatory                  |
+| <span class="param-type">Count  </span>       | (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10 | Optional                  |
 
-Returns
-    WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
 
-Example
-    and(
-        lib().active_commit_id('main', false, "Current Head ID"),
-        lib().commit_history("v:Current Head ID", 5)
-    )
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+and(
+	lib().active_commit_id('main', false, "Current Head ID"),
+	lib().commit_history("v:Current Head ID", 5)
+)
 
-### previous_commits
+```
+</div>
 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!-- previous_commits -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">commit history</span>
+</div>
+
+Retreives the metadata for the parent commits of the passed CommitID - up to a total of Count steps (not including the passed CommitID)
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 previous_commits(CommitID, Count)
+```
+</div>
 
-Description: Retreives the metadata for the parent commits of the passed CommitID - up to a total of Count steps (not including the passed CommitID)
+<div class="anchor-sub-parts">Arguments:</div>
 
-Arguments: 
-    CommitID (string*) - the id of the commit to retrieve the previous commits starting from (not included in results)
-    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 1 
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">CommitID  </span>          | (string*) - the id of the commit to retrieve the previous commits starting from (not included in results)	  | Mandatory                  |
+| <span class="param-type">Count  </span>       | (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 1 | Optional                  |
 
-Returns
-    WOQLQuery containing the previous commits pattern matching expression: returns the same variables as the lib().commits() function for each entry
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the previous commits pattern matching expression: returns the same variables as the lib().commits() function for each entry
 
-Example
-    and(
-        lib().active_commit_id('main', false, "Current Head ID"),
-        lib().previous_commits("v:Current Head ID", 5)
-    )
 
-### commit_future
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+and(
+	lib().active_commit_id('main', false, "Current Head ID"),
+	lib().previous_commits("v:Current Head ID", 5)
+)
 
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+<!-- commit_future -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">commit future</span>
+</div>
+
+Retreives the metadata for the passed CommitID and its future commits on branch BranchID - up to a total of Count steps (including the passed CommitID)
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 commit_future(CommitID, BranchID, Count)
+```
+</div>
 
-Description: Retreives the metadata for the passed CommitID and its future commits on branch BranchID - up to a total of Count steps (including the passed CommitID)
 
-Arguments: 
-    CommitID (string*) - the id of the commit to retrieve the future starting from (included in results)
-    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
-    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit future - defaults to 10 
+<div class="anchor-sub-parts">Arguments:</div>
 
-Returns
-    WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">CommitID  </span>          |(string*) - the id of the commit to retrieve the future starting from (included in results)| Mandatory                  |
+| <span class="param-type">BranchID  </span>       | (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)| Mandatory                  |
+| <span class="param-type">Count  </span>       | (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit future - defaults to 10| Optional                  |
 
-Example
-    lib().commit_future('bi1qqga9sxlzgvv061b3zpe48mmjtbb', "main", 5)
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
 
-### next_commits
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().commit_future('bi1qqga9sxlzgvv061b3zpe48mmjtbb', "main", 5)
 
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+<!-- next_commits -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">next commits</span>
+</div>
+
+Retreives the metadata for child commits of the passed CommitID on branch BranchID - up to a total of Count steps (not including the passed CommitID)
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 next_commits(CommitID, BranchID, Count)
+```
+</div>
 
-Description: Retreives the metadata for child commits of the passed CommitID on branch BranchID - up to a total of Count steps (not including the passed CommitID)
+<div class="anchor-sub-parts">Arguments:</div>
 
-Arguments: 
-    CommitID (string*) - the id of the commit to retrieve the next commits starting from (not included in results)
-    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
-    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit future - defaults to 1 
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">CommitID  </span>          | (string*) -the id of the commit to retrieve the next commits starting from (not included in results)| Mandatory                  |
+| <span class="param-type">BranchID  </span>       |the id of the branch to aim for (for disambiguation when there are multiple child commits)| Mandatory                  |
+| <span class="param-type">Count  </span>       | (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit future - defaults to 1| Optional                  |
 
-Returns
-    WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
 
-Example
-    lib().next_commits('bi1qqga9sxlzgvv061b3zpe48mmjtbb', "main", 4)
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().next_commits('bi1qqga9sxlzgvv061b3zpe48mmjtbb', "main", 4)
 
-### active_commit_id
+```
+</div>
 
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->
+
+
+<!-- active_commit_id -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">active commit id</span>
+</div>
+
+Retrieves the ID of the commit that was active at the given timestamp on the given branch - result is stored in CommitIDVar  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 active_commit_id(CommitID, Timestamp, CommitIDVar)
+```
+</div>
 
-Description: Retrieves the ID of the commit that was active at the given timestamp on the given branch - result is stored in CommitIDVar  
+<div class="anchor-sub-parts">Arguments:</div>
 
-Arguments: 
-    CommitID (string*) - the id of the commit to retrieve the history for
-    Timestamp (string or decimal) - the Unix timestamp (or variable containing the timestamp) of interest - defaults to now
-    CommitIDVar (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">CommitID  </span>          |(string*) - the id of the commit to retrieve the history for| Mandatory                  |
+| <span class="param-type">Timestamp  </span>       |(string or decimal) - the Unix timestamp (or variable containing the timestamp) of interest - defaults to now| Optional                  |
+| <span class="param-type">CommitIDVar  </span>       | (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")| Optional                  |
 
-Returns
-    WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value 
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value
 
-Example
-    lib().active_commit_id('main')
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().active_commit_id('main')
 
+```
+</div>
 
-### history_ids
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->     
 
+<!--history_ids-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">history ids</span>
+</div>
+
+Retrieves the ids of the passed CommitID and the ids of its parents - up to a total of count ids (including the passed CommitID), the results are stored in CommitIDVar  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 history_ids(CommitID, Count, CommitIDVar)
+```
+</div>
 
-Description: Retrieves the ids of the passed CommitID and the ids of its parents - up to a total of count ids (including the passed CommitID), the results are stored in CommitIDVar  
 
-Arguments: 
-    CommitID (string*) - the id of the commit to retrieve the history for
-    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10 
-    CommitIDVar (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")
+<div class="anchor-sub-parts">Arguments:</div>
 
-Returns
-    WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value 
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">CommitID  </span>          | (string*) - the id of the commit to retrieve the history for| Mandatory                  |
+| <span class="param-type">Count  </span>       |(string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10| Optional                  |
+| <span class="param-type">CommitIDVar  </span>       | (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")| Optional                  |
 
-Example
-    and(
-        lib().active_commit_id('main', false, "Current Head ID"),
-        lib().history_ids("v:Current Head ID", 5)
-    )
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value
 
-### previous_commit_ids
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+and(
+	lib().active_commit_id('main', false, "Current Head ID"),
+	lib().history_ids("v:Current Head ID", 5)
+)
 
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->     
+
+<!-- previous_commit_ids -->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings">previous commit ids</span>
+</div>
+
+Retrieves the ids of the parent commits of the passed CommitID - up to a total of count ids (not including the passed CommitID), the results are stored in CommitIDVar  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 previous_commit_ids(CommitID, Count, CommitIDVar)
+```
+</div>
 
-Description: Retrieves the ids of the parent commits of the passed CommitID - up to a total of count ids (not including the passed CommitID), the results are stored in CommitIDVar  
+<div class="anchor-sub-parts">Arguments:</div>
 
-Arguments: 
-    CommitID (string*) - the id of the commit to retrieve the previous commits starting from
-    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10 
-    CommitIDVar (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">CommitID  </span>          | (string*) - the id of the commit to retrieve the previous commits starting fromthe id of the commit to retrieve the history for| Mandatory                  |
+| <span class="param-type">Count  </span>       |(string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10| Optional                  |
+| <span class="param-type">CommitIDVar  </span>       | (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")| Optional                  |
 
-Returns
-    WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value 
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value
 
-Example
-    and(
-        lib().active_commit_id('main', false, "Current Head ID"),
-        lib().previous_commit_ids("v:Current Head ID", 5)
-    )
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+and(
+	lib().active_commit_id('main', false, "Current Head ID"),
+	lib().previous_commit_ids("v:Current Head ID", 5)
+)
+```
+</div>
 
-### future_ids
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->  
+<!-- future_ids-->
 
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings"> future ids</span>
+</div>
+
+Retrieves the ids of the passed CommitID and the ids of its parents - up to a total of count ids (including the passed CommitID), the results are stored in CommitIDVar  
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 future_ids(CommitID, BranchID, Count, CommitIDVar)
+```
+</div>
 
-Description: Retrieves the ids of the passed CommitID and the ids of its parents - up to a total of count ids (including the passed CommitID), the results are stored in CommitIDVar  
+<div class="anchor-sub-parts">Arguments:</div>
 
-Arguments: 
-    CommitID (string*) - the id of the commit to retrieve the history for
-    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
-    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10 
-    CommitIDVar (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">CommitID  </span>          | (string*) - the id of the commit to retrieve the history for| Mandatory                  |
+| <span class="param-type">BranchID  </span>       |(string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)| Mandatory                  |
+| <span class="param-type">Count  </span>       | (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit history - defaults to 10| Optional                  |
+| <span class="param-type">CommitIDVar  </span>       | (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")| Mandatory                  |
 
-Returns
-    WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value 
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value
 
-Example
-   lib().future_ids("bi1qqga9sxlzgvv061b3zpe48mmjtbb", "main", 4)
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().future_ids("bi1qqga9sxlzgvv061b3zpe48mmjtbb", "main", 4)
+```
+</div>
 
-### next_commit_ids
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->  
 
+<!--next_commit_ids-->
+<div class="anchor-sub-headings-style">
+    <span class="anchor-sub-headings"> next commit ids</span>
+</div>
+Retrieves the ids of the child commits of the passed CommitID - up to a total of count ids (not including the passed CommitID), the results are stored in CommitIDVar
+
+
+<div class="anchor-sub-parts">Syntax</div>
+<div class="code-example" markdown="1">
+```js
 next_commit_ids(CommitID, BranchID, Count, CommitIDVar)
+```
+</div>
 
-Description: Retrieves the ids of the child commits of the passed CommitID - up to a total of count ids (not including the passed CommitID), the results are stored in CommitIDVar  
 
-Arguments: 
-    CommitID (string*) - the id of the commit to retrieve the next commits starting from
-    BranchID (string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)
-    Count (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit chain - defaults to 1 
-    CommitIDVar (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")
+<div class="anchor-sub-parts">Arguments:</div>
 
-Returns
-    WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value 
+| Arguments                                         | Types                                               | Requirement                |
+|---------------------------------------------------|-----------------------------------------------------|----------------------------|
+| <span class="param-type">CommitID  </span>          | (string*) - the id of the commit to retrieve the history for| Mandatory                  |
+| <span class="param-type">BranchID  </span>       |(string*) - the id of the branch to aim for (for disambiguation when there are multiple child commits)| Mandatory                  |
+| <span class="param-type">Count  </span>       | (string or integer) - an integer or variable containing an integer representing the number of steps to include in the commit chain - defaults to 1| Optional                  |
+| <span class="param-type">CommitIDVar  </span>       | (string) - the name of the variable in which to store the matched IDs (defaults to "Commit ID")| Mandatory                  |
 
-Example
-   lib().next_commit_ids("bi1qqga9sxlzgvv061b3zpe48mmjtbb", "main", 4)
+
+<div class="anchor-sub-parts">Returns</div>
+WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value
+
+<div class="anchor-sub-parts">Example</div>
+<div class="code-example" markdown="1">
+```js
+lib().next_commit_ids("bi1qqga9sxlzgvv061b3zpe48mmjtbb", "main", 4)
+```
+</div>
+
+<hr class="section-separator"/>
+<!----------------------------------------------------------------------------------------->  

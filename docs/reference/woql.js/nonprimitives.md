@@ -6,7 +6,7 @@ grand_parent: Reference
 nav_order: 5
 permalink: /reference/woql/nonprimitives
 ---
-## Non Primitive Functions
+# Non Primitive Functions
 
 ### WOQL Literals, Prefixes & IRI Constants
 

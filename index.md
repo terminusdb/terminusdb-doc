@@ -60,7 +60,7 @@ For details, go to [Quickstart](/docs/quickstart/)
 
 ### License
 
-TerminusDB is Distributed by an <a href=\"https://github.com/terminusdb/terminusdb-server/blob/master/LICENSE\">GPL-3.0 license.</a>.
+TerminusDB is Distributed by an [GPL-3.0 license](https://github.com/terminusdb/terminusdb-server/blob/master/LICENSE)
 
 ### Contributing
 

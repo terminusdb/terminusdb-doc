@@ -28,7 +28,7 @@ jtd.addEvent(toggleDarkMode, 'click', function(){
 WOQL primitives are WOQL.js functions which directly map onto words in the underlying JSON-LD language. All other WOQL.js functions are compound functions which translate into multiple WOQL primitives, or are helper functions which reduce the need to write verbose JSON-LD directly.
 
 
-### Basics
+## Basics
 
 <!-- triple -->
 <div class="anchor-sub-headings-style">
@@ -40,15 +40,14 @@ WOQL primitives are WOQL.js functions which directly map onto words in the under
 
 Generates a triple pattern matching rule to match any triples that meet the constraints
 
-<div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+### Syntax
+
 ```js
 
 triple(Subject, Predicate, Object)
 ```
-</div>
 
-<div class="anchor-sub-parts">Arguments</div>  
+### Arguments  
 
 | Arguments                                         | Types                                                                | Requirement                |
 |---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
@@ -57,22 +56,23 @@ triple(Subject, Predicate, Object)
 | <span class="param-type">Object </span>           | (string*) - The IRI of a node or a variable, or a literal            | Mandatory                  |
 
 
-<div class="anchor-sub-parts">Returns</div>
-A WOQLQuery object containing the triple pattern matching rule
+## Returns 
+
+ A WOQLQuery object containing the triple pattern matching rule
 
 <div class="anchor-sub-parts">Example</div>
 
 
-<div class="code-example" markdown="1">
+
 ```js
 
 let [subj, obj] = vars("subj", "obj")
 
 triple(s, "type", o)
 ```
-</div>
 
 <hr class="section-separator"/>
+
 <!----------------------------------------------------------------------------------------->
 
 <!-- quad -->
@@ -86,12 +86,11 @@ triple(s, "type", o)
 Generates a quad pattern matching rule to match any triples that meet the constraints in the specified Graph
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 
 quad(Subject, Predicate, Object, Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -109,13 +108,12 @@ A WOQLQuery object containing the quad pattern matching rule
 <div class="anchor-sub-parts">Example</div>
 
 
-<div class="code-example" markdown="1">
+
 ```js
 let [class, prop] = vars("class", "prop")
 
 quad(class, "domain", prop, "schema/main")
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -132,12 +130,11 @@ quad(class, "domain", prop, "schema/main")
 Inserts a textual comment into a query and optionally 'comments' out the contained subquery
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 
 comment(Comment, Subq)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -153,11 +150,10 @@ A WOQLQuery object containing the comment
 <div class="anchor-sub-parts">Example</div>
 
 
-<div class="code-example" markdown="1">
+
 ```js
 comment("This has a bug").triple(a, b, c)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -174,12 +170,11 @@ comment("This has a bug").triple(a, b, c)
 Selects (filters) a list of variables from the enclosed sub-query and removes the rest
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 
 select(...Vars, Subq)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -194,13 +189,12 @@ A WOQLQuery object containing the filtered variables and subquery
 <div class="anchor-sub-parts">Example</div>
 
 
-<div class="code-example" markdown="1">
+
 ```js
 let [grouped, subject, class] = vars("grouped", "subject", "class")
 
 select(grouped).group_by(subject, class, grouped).triple(subject, "type", class)   
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -217,12 +211,11 @@ select(grouped).group_by(subject, class, grouped).triple(subject, "type", class)
 Logical conjunction of the contained queries - all queries must match or the entire clause fails
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 
 and(...Subqueries)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -235,7 +228,7 @@ A WOQLQuery object containing the conjunction of queries
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [subject, class, label] = vars("subject", "class", "label")
 
@@ -244,7 +237,6 @@ and(
     triple(subject, "label", label)
 )
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -260,12 +252,11 @@ and(
 Logical Or of the contained queries - the first subquery to match will cause subsequent subqueries to not be evaluated
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 
 or(...Subqueries)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -279,7 +270,7 @@ A WOQLQuery object containing the logical Or of the subqueries
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [subject] = vars("subject")
 
@@ -289,7 +280,6 @@ or(
 )
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -305,11 +295,10 @@ or(
 Specifies that the Subquery is optional - if it does not match the query will not fail
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 opt(Subquery) ~ optional(Subquery) (alias))
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -322,13 +311,12 @@ A WOQLQuery object containing the optional sub Query
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [subject] = vars("subject")
 
 opt().triple(subject, 'label', "A")
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -346,11 +334,10 @@ opt().triple(subject, 'label', "A")
 Logical negation of the contained subquery - if the subquery matches, the query will fail to match
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 not(Subquery)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -363,13 +350,12 @@ A WOQLQuery object containing the negated sub Query
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [subject, label] = vars("subject", "label")
 
 not().triple(subject, 'label', label)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -386,11 +372,10 @@ not().triple(subject, 'label', label)
 Tests whether a given instance IRI has type Class
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 isa(IRI, Class)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -406,13 +391,12 @@ A WOQLQuery object containing the type test
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [subject] = vars("subject")
 
 isa(subject, "Person")
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -428,11 +412,10 @@ isa(subject, "Person")
 Tests whether a given Class subsumes another class
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 sub(ClassA, ClassB) ~ subsumption(ClassA, ClassB) (Alias)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -447,13 +430,12 @@ A WOQLQuery object containing the subsumption test
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [class] = vars("class")
 
 sub("Vegetable", class)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -470,11 +452,10 @@ sub("Vegetable", class)
 Generate a new IRI from the prefix and a hash of the variables which will be unique for any given combination of variables
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 unique(Prefix, Vars, NewIRI)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -489,13 +470,12 @@ A WOQLQuery object containing the unique ID generating function
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [newid] = vars("newid")
 
 unique("doc:Person", ["John", "Smith"], newid)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -512,11 +492,10 @@ unique("doc:Person", ["John", "Smith"], newid)
 Generate a new IRI from the prefix and concatention of the variables
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 idgen(Prefix, Vars, NewIRI) ~ idgenerator(Prefix, Vars, NewIRI) (Alias)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -532,13 +511,12 @@ A WOQLQuery object containing the ID generating function
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [newid] = vars("newid")
 
 idgen("doc:Person", ["John", "Smith"], newid)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -555,11 +533,10 @@ idgen("doc:Person", ["John", "Smith"], newid)
 A function that always matches, always returns true
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 true()
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 None
@@ -569,11 +546,10 @@ A WOQLQuery object containing the true value that will match any pattern
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 when(true()).triple("a", "b", "c")
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -590,11 +566,10 @@ when(true()).triple("a", "b", "c")
 Tests whether the two arguments are equal
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 eq(A, B) ~ equal(A, B) (Alias)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -609,12 +584,11 @@ A WOQLQuery object containing the ID that matches
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [nid] = vars("mike")
 idgen("doc:mike", nid)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -631,11 +605,10 @@ idgen("doc:mike", nid)
 Specifies an offset position in the results to start listing results from
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 start(Start, Subq)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -653,13 +626,12 @@ A WOQLQuery whose results will be returned starting from the specified offset
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [a, b, c] = vars("a", "b", "c")
 
 start(100).triple(a, b, c)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -676,11 +648,10 @@ start(100).triple(a, b, c)
 Specifies a maximum number of results that will be returned from the subquery
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 limit(Limit, Subq)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -694,13 +665,12 @@ A WOQLQuery whose results will be returned starting from the specified offset
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [a, b, c] = vars("a", "b", "c")
 
 limit(100).triple(a, b, c)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -717,11 +687,10 @@ limit(100).triple(a, b, c)
 Performs a path regular expression match on the graph  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 path(Subject, Pattern, Object, Path)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -738,13 +707,12 @@ A WOQLQuery which contains the path regular expression matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [person, grand_uncle, lineage] = vars("person", "grand uncle", "lineage")
 
 path(person, ((father|mother) {2,2}), brother), grand_uncle, lineage)  
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -761,11 +729,10 @@ path(person, ((father|mother) {2,2}), brother), grand_uncle, lineage)
 Orders the results of the contained subquery by a precedence list of variables
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 order_by(...Ordervars, Subq)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -781,7 +748,7 @@ A WOQLQuery which contains the ordering expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [person, last_name, first_name] = vars("person", "last name", "first name")
 
@@ -789,7 +756,6 @@ order_by(last_name, "asc", first_name, "desc")
     .triple(person, "first_name", first_name)
     .triple(person, "last_name", last_name)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -806,11 +772,10 @@ order_by(last_name, "asc", first_name, "desc")
 Groups the results of the contained subquery on the basis of identical values for Groupvars, extracts the patterns defined in PatternVars and stores the results in GroupedVar
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 group_by(GroupVars, PatternVars, GroupedVar, Subq)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -828,7 +793,7 @@ A WOQLQuery which contains the grouping expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [age, last_name, first_name, age_group, person] = vars("age", "last name", "first name", "age group", "person")
 
@@ -838,7 +803,6 @@ group_by(age, [last_name, first_name], age_group)
     .triple(person, "age", age)
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -856,11 +820,10 @@ group_by(age, [last_name, first_name], age_group)
 Casts the value of Input to a new value of type Type and stores the result in CastVar
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 cast(Input, Type, CastVar) ~ typecast(InputVar, Type, CastVar) (Alias)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -876,14 +839,13 @@ cast(Input, Type, CastVar) ~ typecast(InputVar, Type, CastVar) (Alias)
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [time] = vars("time")
 
 cast("22/3/98", "xsd:dateTime", time)
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -905,11 +867,10 @@ cast("22/3/98", "xsd:dateTime", time)
 Matches if List includes Element
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 member(Element, List)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -924,14 +885,13 @@ A WOQLQuery which contains the List inclusion pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [name] = vars("name")
 
 member(name, ["john", "joe", "frank"])
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -948,11 +908,10 @@ member(name, ["john", "joe", "frank"])
 Matches or generates the length of a list  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 length(List, Len)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -967,14 +926,13 @@ A WOQLQuery which contains the Length pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [count] = vars("count")
 
 length(["john", "joe", "frank"], count)  
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -994,11 +952,10 @@ Concatenates the List into a string and matches / stores the result in Concatena
 
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 concat(List, Concatenated)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -1013,14 +970,13 @@ A WOQLQuery which contains the Concatenation pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [first_name, last_name, full_name] = vars("first", "last", "full")
 
 concat([first_name, " ", last_name], full_name)  
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1038,11 +994,10 @@ A trimmed version of Untrimmed (with leading and trailing whitespace removed) is
 
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 trim(Untrimmed, Trimmed)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -1058,7 +1013,7 @@ A WOQLQuery which contains the Trim pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [trimmed] = vars['trimmed']
 
@@ -1066,7 +1021,6 @@ trim("hello   ", trimmed)
 //trimmed contains "hello"
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1083,11 +1037,10 @@ trim("hello   ", trimmed)
 Generates a Substring From String, starting from Begin offset, of length Length, with After Number of characters after the substring
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 substr(String, Before, Length, After, SubString) ~ substring(String, Before, Length, After, SubString) (Alias)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1104,7 +1057,7 @@ A WOQLQuery which contains the Substring pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [trimmed] = ['trimmed']
 
@@ -1112,7 +1065,6 @@ substr("helloIAmTerminusDb", 8, 8, 2, )
 //trimmed contains "hello"
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1131,11 +1083,10 @@ substr("helloIAmTerminusDb", 8, 8, 2, )
 Generates or matches an upper-case version of String in Capitalized
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 upper(String, Capitalized)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1149,14 +1100,13 @@ A WOQLQuery which contains the Upper case pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [allcaps] = vars("caps")
 
 upper("aBCe", allcaps)
 //upper contains "ABCE"
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1173,11 +1123,10 @@ upper("aBCe", allcaps)
 Generates or matches a lower-case version of String in LowerCased
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 lower(String, LowerCased)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1191,14 +1140,13 @@ A WOQLQuery which contains the Lower Case pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [lower] = var("l")
 
 lower("aBCe", lower)
 //lower contains "abce"
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1216,11 +1164,10 @@ lower("aBCe", lower)
 Pads out the string Input to be exactly Len long by appending the Pad character the necessary number of times to form Output
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 pad(Input, Pad, Len, Output)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1236,14 +1183,13 @@ A WOQLQuery which contains the Pad pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [fixed] = vars("fixed length")
 
 pad("joe", " ", 8, fixed)
 //fixed contains "joe     "
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1260,11 +1206,10 @@ pad("joe", " ", 8, fixed)
 Splits a string (Input) into a list strings (Output) by removing separator  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 split(Input, Separator, Output)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1280,14 +1225,13 @@ A WOQLQuery which contains the Split pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [words] = vars("words")
 
 split("joe has a hat", " ", words)
 //words contains ["joe", "has", "a", "hat"]
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1303,11 +1247,10 @@ split("joe has a hat", " ", words)
 Joins a list variable together (Input) into a string variable (Output) by glueing the strings together with Glue
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 join(Input, Glue, Output)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1323,14 +1266,13 @@ A WOQLQuery which contains the Join pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [sentence] = vars("sentence")
 
 join(["joe", "has", "a", "hat", " ", sentence)
 //sentence contains ["joe has a hat"]
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1347,11 +1289,10 @@ join(["joe", "has", "a", "hat", " ", sentence)
 Matches the regular expression defined in Patern against the Test string, to produce the matched patterns in Matches
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 re(Pattern, Test, Matches) ~ regexp(Pattern, Test, Matches) (Alias)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1367,14 +1308,13 @@ A WOQLQuery which contains the Regular Expression pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [e, llo] = vars('e', 'ello')
 
 WOQL.re("h(.).*", "hello", [e, llo])
 //e contains 'e', llo contains 'llo'
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1391,11 +1331,10 @@ WOQL.re("h(.).*", "hello", [e, llo])
 Generates a string Leverstein distance measure between StringA and StringB
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 like(StringA, StringB, Distance)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -1412,14 +1351,13 @@ A WOQLQuery which contains the Like pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [dist] = vars('dist')
 
 like("hello", "hallo", dist)
 //dist contains 0.7265420560747664
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1440,11 +1378,10 @@ like("hello", "hallo", dist)
 Adds a single triple to the database
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 add_triple(Subject, Predicate, Object)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1459,11 +1396,10 @@ A WOQLQuery which contains the add_triple insert statement
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 add_triple("john", "age", 42)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1481,11 +1417,10 @@ add_triple("john", "age", 42)
 Adds a single triple to the specified graph in the database
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 add_quad(Subject, Predicate, Object, Graph)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -1502,11 +1437,10 @@ A WOQLQuery which contains the add_quad insert statement
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 add_quad("Person", "type", "owl:Class", "schema/main")
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1523,11 +1457,10 @@ add_quad("Person", "type", "owl:Class", "schema/main")
 Deletes a single triple from the default graph of the database
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 delete_triple(Subject, Predicate, Object)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1543,11 +1476,10 @@ A WOQLQuery which contains the Triple Deletion statement
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 delete_triple("john", "age", 42)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1564,11 +1496,10 @@ delete_triple("john", "age", 42)
 Deletes a single triple from the default graph of the database  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 delete_quad(Subject, Predicate, Object, Graph)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -1585,11 +1516,10 @@ A WOQLQuery which contains the Delete Quad Statement
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 delete_quad("Person", "type", "owl:Class", "schema/main")
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1607,11 +1537,10 @@ delete_quad("Person", "type", "owl:Class", "schema/main")
 Generates a transaction which encompasses all situations in which the Condition is true, the Consequent will be executed - the when block encapsulates a single transaction and allows a single query to express multiple transactions (by including multiple when blocks)  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 when(Condition, Consequent)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -1626,11 +1555,10 @@ A WOQLQuery which contains the conditional transactional statement
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 when(true).add_triple("doc:john", "type", "scm:Person")  
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1653,7 +1581,7 @@ Evaluates the passed arithmetic expression and generates or matches the result v
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 evaluate(ArithmeticExpression, Result)  ~ eval(ArithmeticExpression, Result)
 ```
@@ -1675,13 +1603,12 @@ A WOQLQuery which contains the Arithmetic function
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
 evaluate(plus(2, minus(3, 1)), result)
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1700,11 +1627,10 @@ computes the sum of the List of values passed. In contrast to other arithmetic f
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 sum(List, Total)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1719,14 +1645,13 @@ A WOQLQuery which contains the Sum expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
 sum([2, 3, 4, 5], result)
 //result contains 14
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1744,12 +1669,11 @@ adds two numbers together
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 
 plus(Number1, Number2)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1763,14 +1687,13 @@ A WOQLQuery which contains the addition expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
 evaluate(plus(2, plus(3, 1)), result)
 //result contains 6
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1789,11 +1712,10 @@ Subtracts Number2 from Number1
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 minus(Number1, Number2)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1807,14 +1729,13 @@ A WOQLQuery which contains the subtraction expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
 evaluate(minus(2.1, plus(0.2, 1)), result)
 //result contains 0.9000000000000001 - note floating point inaccuracy
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1834,11 +1755,10 @@ Multiples Number1 and Number2
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 times(Number1, Number2)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -1856,14 +1776,13 @@ A WOQLQuery which contains the multiplication expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
 evaluate(times(10, minus(2.1, plus(0.2, 1))), result)
 //result contains 9.000000000000002y
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1884,11 +1803,10 @@ Dvides Number1 by Number2
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 divide(Number1, Number2)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -1905,14 +1823,13 @@ A WOQLQuery which contains the division expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
 evaluate(divide(times(10, minus(2.1, plus(0.2, 1))), 10), result)
 //result contains 0.9000000000000001
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1931,11 +1848,10 @@ Generates the nearest lower integer to the passed number
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 floor(Number1)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1950,7 +1866,7 @@ A WOQLQuery which contains the floor expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
@@ -1958,7 +1874,6 @@ evaluate(divide(floor(times(10, minus(2.1, plus(0.2, 1)))), 10), result)
 //result contains 0.9 - floating point error removed
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -1977,11 +1892,10 @@ Integer division: divides Number1 by Number2 to return an integer value
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 div(Number1, Number2)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1997,7 +1911,7 @@ A WOQLQuery which contains the integer division expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
@@ -2005,7 +1919,6 @@ evaluate(div(10, 3), result)
 //result contains 3
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2025,11 +1938,10 @@ Exponent - raises Number1 to the power of Number2
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 exp(Number1, Number2)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -2046,7 +1958,7 @@ A WOQLQuery which contains the exponent expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
@@ -2054,7 +1966,6 @@ evaluate(exp(3, 2), result)
 //result contains 9
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2073,11 +1984,10 @@ Matches when Val1 is less than Val2
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 less(Val1, Val2)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -2094,7 +2004,7 @@ A WOQLQuery which contains the comparison expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
@@ -2102,7 +2012,6 @@ less(1, 1.1).eq(result, literal(true, "boolean"))
 //result contains true
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2121,11 +2030,10 @@ Matches when Val1 is greater than Val2
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 greater(Val1, Val2)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -2142,7 +2050,7 @@ A WOQLQuery which contains the comparison expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [result] = vars("result")
 
@@ -2150,7 +2058,6 @@ greater(1.2, 1.1).eq(result, literal(true, "boolean"))
 //result contains true
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2172,11 +2079,10 @@ Retrieves the exernal resource defined by QueryResource and copies values from i
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 get(AsVArs, QueryResource)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -2193,7 +2099,7 @@ A WOQLQuery which contains the get expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [a, b] = vars("a", "b")
 
@@ -2201,7 +2107,6 @@ get(as("a", a).as("b", b)).remote("http://my.url.com/x.csv")
 //copies the values from column headed "a" into a variable a and from column "b" into a variable b from remote CSV
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2220,12 +2125,11 @@ Outputs the results of a query to a file
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 put(AsVArs, Subq, FileResource)
 
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2241,7 +2145,7 @@ A WOQLQuery which contains the put expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [s, p, o] = vars("Subject", "Predicate", "Object")
 
@@ -2249,7 +2153,6 @@ put(as("s", s).as("p", p).as("o", o), all())
     .file("/app/local_files/dump.csv")
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2268,12 +2171,11 @@ Maps data from an imported source to a WOQL variable and optionally sets its typ
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 as(SourceLocator, VarName, Type)
 
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2289,7 +2191,7 @@ A WOQLQuery which contains the variable mapping expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [date] = vars("Date")
 
@@ -2297,7 +2199,6 @@ get(as("Date.From", date))
     .remote("http://seshatdatabank.info/wp-content/uploads/2020/01/Iron-Updated.csv")
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2315,12 +2216,11 @@ Identifies a remote resource by URL and specifies the format of the resource thr
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 remote(URL, Opts)
 
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2335,12 +2235,11 @@ A WOQLQuery which contains the remote resource identifier
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 remote("http://url.of.resource", {type: "csv"})
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2358,12 +2257,11 @@ Identifies a file resource as a path on the server and specifies the format thro
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 file(Path, Opts)
 
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2378,12 +2276,11 @@ A WOQLQuery which contains the file resource identifier
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 file("/path/to/file", {type: 'turtle'} )
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2402,12 +2299,11 @@ Identifies a resource as a local path on the client, to be sent to the server th
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 post(Path, opts)
 
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2422,11 +2318,10 @@ A WOQLQuery which contains the Post resource identifier
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 post("/.../.../", {})
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2445,12 +2340,11 @@ Specifies the resource to use as default in the contained query
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 using(GraphResource, Subq)
 
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2466,13 +2360,12 @@ A WOQLQuery which is defined to run against the resource
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 using("admin/minecraft").all()
 //retrieves all triples in the minecraft db of the admin organization
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2491,12 +2384,11 @@ Specifies the graph resource to write the contained query into
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 into(GraphResource, Subq)
 
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2512,13 +2404,12 @@ A WOQLQuery which will be written into the graph in question
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 using("admin/minecraft").into("instance/main").add_triple("a", "type", "scm:X")
 //writes a single tripe (doc:a, rdf:type, scm:X) into the main instance graph
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2538,12 +2429,11 @@ Calculates the size in bytes of the contents of the resource identified in Resou
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 size(ResourceID, Size)
 
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2558,14 +2448,13 @@ A WOQLQuery which contains the size expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [sz] = vars("s")
 size("admin/minecraft/local/branch/main/instance/main", sz)
 //returns the number of bytes in the main instance graph on the main branch
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2583,12 +2472,11 @@ Calculates the size in bytes of the contents of the resource identified in Resou
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 triple_count(ResourceID, Count)
 
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2603,7 +2491,7 @@ A WOQLQuery which contains the size expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [tc] = vars("s")
 
@@ -2611,7 +2499,6 @@ triple_count("admin/minecraft/local/_commits", tc)
 //returns the number of bytes in the local commit graph
 
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2634,11 +2521,10 @@ Updates a document (or any object) in the db with the passed json-ld - replaces 
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 update_object(JSONLD)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -2653,7 +2539,7 @@ A WOQLQuery which contains the update object expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 update_object({
     "@id": "doc:joe",
@@ -2664,7 +2550,6 @@ update_object({
     }
 })
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2683,11 +2568,10 @@ Deletes the entire refered document and all references to it
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 delete_object(JSON_or_IRI)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2701,11 +2585,10 @@ A WOQLQuery which object deletion expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 delete_object("doc:mydoc")
 ```
-</div>
 
 <hr class="section-separator"/>
 
@@ -2724,11 +2607,10 @@ Saves the entire document with IRI DocumentIRI into the JSONLD variable
 
 <div class="anchor-sub-parts">Syntax</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 read_object(DocumentIRI, JSONLD)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -2742,14 +2624,13 @@ A WOQLQuery which contains the document retrieval expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [mydoc] = vars("mydoc")
 
 read_object("doc:a", mydoc)
 //mydoc will have the json-ld document with ID doc:x stored in it
 ```
-</div>
 
 <hr class="section-separator"/>
 

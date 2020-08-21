@@ -21,11 +21,11 @@ permalink: /reference/woql/nonprimitives
 Generates explicitly a JSON-LD string literal from the input    
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
+
 ```js
 string(Val1)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -39,12 +39,11 @@ A JSON-LD string literal
 <div class="anchor-sub-parts">Example</div>
 
 
-<div class="code-example" markdown="1">
+
 ```js
 string(1)
 //returns { "@type": "xsd:string", "@value": "1" }
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -60,11 +59,10 @@ string(1)
 Generates explicitly a JSON-LD string literal from the input
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 literal(Val, Type)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -79,12 +77,11 @@ A JSON-LD literal
 <div class="anchor-sub-parts">Example</div>
 
 
-<div class="code-example" markdown="1">
+
 ```js
 literal(1, "nonNegativeInteger")
 //returns { "@type": "xsd:nonNegativeInteger", "@value": 1 }
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->     
@@ -99,11 +96,10 @@ literal(1, "nonNegativeInteger")
 Explicitly sets a value to be an IRI - avoiding automatic type marshalling
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 iri(Val1)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -117,12 +113,11 @@ A JSON-LD IRI value
 <div class="anchor-sub-parts">Example</div>
 
 
-<div class="code-example" markdown="1">
+
 ```js
 iri("dc:title")
 //returns { "@type": "woql:Node", "woql:node": "dc:title" }
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->  
@@ -140,11 +135,10 @@ iri("dc:title")
 Generates an empty WOQLQuery object
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 query()
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 None
@@ -154,12 +148,11 @@ An empty WOQLQuery object
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let q = query()
 //then q.triple(1, 1) ...
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->  
@@ -174,11 +167,10 @@ let q = query()
 Translates between the JSON-LD and object version of a query - if an argument is passed, the query object is created from it, if none is passed, the current state is returned as a JSON-LD
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 json(JSONLD)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -191,7 +183,7 @@ either a JSON-LD or a WOQLQuery object
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let q = triple("a", "b", "c")
 
@@ -206,7 +198,6 @@ let p = json(qjson)
     }
 }*/
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->  
@@ -222,11 +213,10 @@ let p = json(qjson)
 Generates javascript variables for use as WOQL variables within a query
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 vars(...Varnames)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -239,12 +229,11 @@ an array of javascript variables which can be dereferenced using the array destr
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 const [a, b, c] = vars("a", "b", "c")
 //a, b, c are javascript variables which can be used as WOQL variables in subsequent queries
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -265,11 +254,10 @@ Shorthand compound functions provide shorthand forms for commonly used functions
 Generates a query that by default matches all triples in a graph  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 star(Graph, Subject, Object, Predciate)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -286,12 +274,11 @@ A WOQLQuery which contains the pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 star("schema/main")
 //will return every triple in schema/main graph
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -305,11 +292,10 @@ star("schema/main")
 Generates a query that by default matches all triples in a graph - identical to star() except for order of arguments
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 all(Subject, Object, Predciate, Graph)
 ```
-</div>
 <div class="anchor-sub-parts">Arguments</div>  
 
 | Arguments                                         | Types                                                                | Requirement                |
@@ -324,13 +310,12 @@ A WOQLQuery which contains the pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 all("mydoc")
 //will return every triple in the instance/main graph that has "doc:mydoc" as its subject
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -346,11 +331,10 @@ all("mydoc")
 Deletes all triples in the graph
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 nuke(Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -363,12 +347,11 @@ A WOQLQuery which contains the deletion expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 nuke("schema/main")
 //will delete everything from the schema/main graph
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -387,11 +370,10 @@ Compound schema functions are compound functions specifically designed to make g
 Adds a new class definition to the schema
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 add_class(ClassIRI, Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -405,12 +387,11 @@ A WOQLQuery which contains the add class expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 add_class("MyClass")
 //equivalent to add_quad("MyClass", "type", "owl:Class", "schema/main")
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -426,11 +407,10 @@ add_class("MyClass")
 Adds a new property definition to the schema
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 add_property(PropIRI, RangeType, Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -445,13 +425,12 @@ A WOQLQuery which contains the add property expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 add_property("myprop")
 /*equivalent to add_quad("myprop", "type", "owl:DatatypeProperty", "schema/main")
     .add_quad("myprop", "range", "xsd:string", "schema/main")*/
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -467,11 +446,10 @@ add_property("myprop")
 Adds a new document class to the schema
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 doctype(ClassIRI, Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -486,13 +464,12 @@ A WOQLQuery which contains the add document class expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 doctype("MyClass")
 /*equivalent to add_quad("MyClass", "type", "owl:Class", "schema/main")
     .add_quad("MyClass", "subClassOf", "system:Document", "schema/main") */
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -507,11 +484,10 @@ doctype("MyClass")
 Deletes a class - including all properties and incoming links - from the schema
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 delete_class(ClassIRI, Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -526,11 +502,10 @@ A WOQLQuery which contains the class deletion expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 delete_class("MyClass")
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -547,11 +522,10 @@ delete_class("MyClass")
 Deletes a property from the schema and all its references incoming and outgoing   
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 delete_property(PropIRI, Graph)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -566,11 +540,10 @@ A WOQLQuery which contains the property deletion expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 delete_property("MyProp")   
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -586,11 +559,10 @@ delete_property("MyProp")
 Generates an empty query object - identical to query - included for backwards compatibility as before v3.0, the schema functions were in their own namespace.
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 schema(Graph)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -605,12 +577,11 @@ An empty WOQLQuery with the internal schema graph pointes set to Graph
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 schema("schema/dev").add_class("X")
 //equivalent to add_class("X", "schema/dev") - non-deprecated version  
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -630,11 +601,10 @@ Builder functions are different from other WOQL functions in that they cannot be
 Specifies the identity of a node that can then be used in subsequent builder functions. Note that node() requires subsequent chained functions to complete the triples / quads that it produces - by itself it only generates the subject.
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 node(NodeID, ChainType)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -649,12 +619,11 @@ A WOQLQuery which contains the partial Node pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 node("mydoc").label("my label")
 //equivalent to triple("mydoc", "label", "my label")
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -670,11 +639,10 @@ node("mydoc").label("my label")
 Inserts a single triple into the database declaring the Node to have type Type, optionally into the specified graph  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 insert(Node, Type, Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -690,12 +658,11 @@ A WOQLQuery which contains the insert expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 insert("mydoc", "MyType")
 //equivalent to add_triple("mydoc", "type", "MyType")
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -709,11 +676,10 @@ insert("mydoc", "MyType")
 
 Sets the graph resource ID that will be used for subsequent chained function calls  
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 graph(Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -727,12 +693,11 @@ A WOQLQuery which contains the partial Graph pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 node("MyClass", "AddQuad").graph("schema/main").label("My Class Label")
 //equivalent to add_quad("MyClass", "label", "My Class Label", "schema/main")
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -747,11 +712,10 @@ node("MyClass", "AddQuad").graph("schema/main").label("My Class Label")
 Adds an abstract designation to a class
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 abstract(Graph, Subject)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -766,12 +730,11 @@ A WOQLQuery which contains the Abstract tag expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 node("MyClass", "AddQuad").abstract()
 //equivalent to add_quad("MyClass", "system:tag", "system:abstract","schema/main")
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -786,11 +749,10 @@ node("MyClass", "AddQuad").abstract()
 Creates a property in the schema or adds a property to the instance data, or creates a property matching rule, depending on context  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 property(PropIRI, Type_or_Value)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -804,12 +766,11 @@ A WOQLQuery which contains the property matching / insert expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 doctype("X").property("Y", "string")
 //creates a document type X with a property Y of type string
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -825,11 +786,10 @@ doctype("X").property("Y", "string")
 Specifies the domain of a property in a property chain
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 domain(ClassIRI)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -843,11 +803,10 @@ A WOQLQuery which contains the domain expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 add_property("MyProp").domain("MyClass")
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -862,11 +821,10 @@ add_property("MyProp").domain("MyClass")
 Adds a label to an element in a chain using the rdfs:label predicate
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 label(Label, Lang)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -880,12 +838,11 @@ A WOQLQuery which contains the label in the rdfs:label predicate
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 add_class("MyClass").label("My Class Label")
 //creates the class and gives it a label
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -900,11 +857,10 @@ add_class("MyClass").label("My Class Label")
 Adds a description to an element in a chain using the rdfs:comment predicate
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 description(Comment, Lang)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -918,14 +874,13 @@ A WOQLQuery which contains the description in the rdfs:comment predicate
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [doc] = vars("doc")
 node(doc).description("My Class Description")
 //matches any document with the given description    
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -940,11 +895,10 @@ node(doc).description("My Class Description")
 Adds parent class clause(s) to a chain using the rdfs:subClassOf predicate
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 parent(...ParentIRIs)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -957,14 +911,13 @@ A WOQLQuery which contains the parent expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [doc] = vars("doc")
 add_class("Y").parent("X")
 //creates class Y as a subClass of class X  
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -980,11 +933,10 @@ add_class("Y").parent("X")
 Adds a maximum cardinality constraint to an add_property chain  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 max(Count)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -997,13 +949,12 @@ A WOQLQuery which contains the maximum cardinality expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 add_property("MyProp").domain("X").max(1)
 //creates a string property in class X with a maximum cardinality of 1
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -1017,11 +968,10 @@ add_property("MyProp").domain("X").max(1)
 Adds a minimum cardinality constraint to an add_property chain   
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 min(Count)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1034,13 +984,12 @@ A WOQLQuery which contains the minimum cardinality expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 add_property("MyProp").domain("X").min(1)
 //creates a string property in class X with a minimum cardinality of 1  
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -1056,11 +1005,10 @@ add_property("MyProp").domain("X").min(1)
 Adds an exact cardinality constraint to an add_property chain   
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 cardinality(Count)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1073,13 +1021,12 @@ A WOQLQuery which contains the cardinality expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 add_property("MyProp").domain("X").cardinality(1)
 //creates a string property in class X with an exact cardinality of 1
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -1094,11 +1041,10 @@ add_property("MyProp").domain("X").cardinality(1)
 Inserts data as an object - enabling multiple property values to be inserted in one go   
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 insert_data(Data, Graph)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments</div>  
@@ -1113,7 +1059,7 @@ A WOQLQuery which contains the insertion expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let data = {id: "doc:joe",
     type: "Person",
@@ -1123,7 +1069,6 @@ let data = {id: "doc:joe",
 }
 insert_data(data)
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -1137,11 +1082,10 @@ insert_data(data)
 
 Inserts data about a class as a json object - enabling a class and all its properties to be specified in a single function
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 insert_class_data(Data, Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1157,7 +1101,7 @@ A WOQLQuery which contains the insertion expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let data = {
     id: "Robot",
@@ -1166,7 +1110,6 @@ let data = {
 }
 insert_class_data(data)
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -1182,11 +1125,10 @@ insert_class_data(data)
 Inserts data about a document class as a json object - enabling a document class and all its properties to be specified in a single function
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 insert_doctype_data(Data, Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1202,7 +1144,7 @@ A WOQLQuery which contains the insertion expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let data = {
     id: "Person",
@@ -1215,7 +1157,6 @@ let data = {
 }
 insert_doctype_data(data)
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -1231,11 +1172,10 @@ insert_doctype_data(data)
 Inserts data about a document class as a json object - enabling a document class and all its properties to be specified in a single function
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 insert_property_data(Data, Graph)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments</div>  
 
@@ -1251,7 +1191,7 @@ A WOQLQuery which contains the insertion expression
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let data = {
     id: "prop",
@@ -1264,7 +1204,6 @@ let data = {
 }
 insert_property_data(data)
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->

@@ -25,19 +25,11 @@ Utility Functions
 ---
 ## Import Script
 
-NPM: 
 
-```javascript
+NPM:
 
-import TerminusClient from '@terminusdb/terminusdb-client'
-
-```
-
-Script: 
-
-```javascript
-<script .../>
-
+```js
+    import TerminusClient from '@terminusdb/terminusdb-client'
 ```
 
 ## WOQLClient Class
@@ -46,13 +38,14 @@ The core functionality of the TerminusDB javascript client is defined in the WOQ
 
 Basic Usage:
 
-```javascript
+<div class="anchor-sub-parts">Example</div>
 
-let client = new TerminusClient.Client(SERVER_URL, opts)
-await client.connect(server, opts)
-client.db("test")
-client.checkout("dev")
-let turtle = await client.getTriples("schema", "main")
+```js
+    let client = new TerminusClient.Client(SERVER_URL, opts)
+    await client.connect(server, opts)
+    client.db("test")
+    client.checkout("dev")
+    let turtle = await client.getTriples("schema", "main")
 ```
 
 The client has an internal state which defines what organization / database / repository / branch / ref it is currently attached to 

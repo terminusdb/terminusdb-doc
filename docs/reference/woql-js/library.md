@@ -29,7 +29,7 @@ The values argument allows values to be passed for any of the internal variables
 * [...Value]  - a list of specific values, where each entry sets the corresonpding entry in the Variables list for the function. Any values that are not to be set can be omitted or set to null or false explicitly in which case no constraints will be applied.
 	<div class="anchor-sub-parts">Example</div>
 
-	<div class="code-example" markdown="1">
+	
 	```js
 	lib().classes("scm:Person")
 	```
@@ -40,7 +40,7 @@ The values argument allows values to be passed for any of the internal variables
 
 	<div class="anchor-sub-parts">Example</div>
 
-	<div class="code-example" markdown="1">
+	
 	```js
 	lib().classes({'Class ID': "scm:Person"})
 	```
@@ -52,7 +52,7 @@ The values argument allows values to be passed for any of the internal variables
 
 	<div class="anchor-sub-parts">Example</div>
 
-	<div class="code-example" markdown="1">
+	
 	```js
 	let [clist] = vars("Class List")
     lib().classes(member(clist, ['scm:Person', 'scm:Animal']))
@@ -69,13 +69,12 @@ Each library function defines an internal list of variable names which are used 
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 let [cid, cname] = vars("Class", "Class Label")
 
 lib().classes(false, [cid, cname])
 ```
-</div>
 
 
 <!-- ResourceIdentifier -->
@@ -86,11 +85,10 @@ Each library query is associated with a specific graph - by default the graph re
 
 <div class="anchor-sub-parts">Example</div>
 
-<div class="code-example" markdown="1">
+
 ```js
 lib().classes(false, false, 'schema/extra')
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -104,11 +102,10 @@ lib().classes(false, false, 'schema/extra')
 Retreives a list of classes from the schema. For each class matched, the following properties are returned
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 classes(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -126,7 +123,7 @@ classes(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the classes pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 let [cls] = vars("Class ID")
 
@@ -134,7 +131,6 @@ lib().classes(eq (cls, 'scm:X'))
 //retrieves the class with IRI scm:X
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -147,11 +143,10 @@ lib().classes(eq (cls, 'scm:X'))
 Retreives the list of properties from the schema. For each property matched, the following properties are returned
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 properties(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -169,7 +164,7 @@ properties(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the properties pattern matching expressionn
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 let [prop] = vars("Property Type")
 
@@ -178,7 +173,6 @@ lib().classes(eq(prop, 'Object'))
 
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -190,11 +184,10 @@ lib().classes(eq(prop, 'Object'))
 Retreives the list of graphs for the current database for each commit
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 graphs(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Default Variables:</div>
@@ -214,13 +207,12 @@ graphs(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the graphs pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 let [br] = vars("Branch ID")
 
 lib().graphs().not().eq(br, '')
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -233,11 +225,10 @@ lib().graphs().not().eq(br, '')
 Retreives the list of branches for the current database  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 branches(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -254,14 +245,13 @@ WOQLQuery containing the branches pattern matching expression
 
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 let [ci] = vars("Branch ID")
 
 lib().branches(eq(ci, 'main'))
 //retrieves branch with id main
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -275,11 +265,10 @@ lib().branches(eq(ci, 'main'))
 Retreives the list of object ids and their types  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 objects(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Default Variables:</div>
@@ -294,14 +283,13 @@ WOQLQuery containing the objects pattern matching expression
 
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 let [ot] = vars("Object Type")
 
 lib().objects(member(ot, ['scm:Y', 'scm:Z']))
 //retrieves all objects of type scm:Z and scm:Y
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -315,11 +303,10 @@ lib().objects(member(ot, ['scm:Y', 'scm:Z']))
 Retreives the list of property values for objects in the database  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 property_values(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Default Variables:</div>
@@ -337,14 +324,13 @@ property_values(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the property values pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 let [p] = vars("Property ID")
 
 lib().property_values(eq(p, 'rdf:type'))
 //retrieves all type properties from the DB
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -356,11 +342,10 @@ lib().property_values(eq(p, 'rdf:type'))
 Retreives the list of objects with metadata about their types  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 object_metadata(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -376,14 +361,13 @@ object_metadata(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the object metadata pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 let [t] = vars("Type ID")
 
 lib().object_metadata(eq(t, 'scm:Z'))
 //retrieves all objects of type scm:Z with their metadata
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -397,11 +381,10 @@ lib().object_metadata(eq(t, 'scm:Z'))
 Retreives the list of properties with metadata about their types
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 property_metadata(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Default Variables:</div>
@@ -418,13 +401,12 @@ property_metadata(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the property metadata pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().property_metadata()
 
 //retrieves all objects of type scm:Z with their metadata    
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -437,11 +419,10 @@ lib().property_metadata()
 Retreives the list of commits  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 commits(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -461,11 +442,10 @@ commits(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the commits pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().commits()
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -478,11 +458,10 @@ lib().commits()
 Retrieves chains of commits from one commit to another   
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 commit_chain(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -497,11 +476,10 @@ commit_chain(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the commit chain pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().commit_chain()
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -513,11 +491,10 @@ lib().commit_chain()
 Retrieves information about remotes and their repositories in the repository graph
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 repos(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -532,12 +509,11 @@ repos(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the repository pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().repos(false, false, "admin/MyTestDB/_meta")
 //note: the resource id for repository graphs must be specified explicitly for the db
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -549,11 +525,10 @@ lib().repos(false, false, "admin/MyTestDB/_meta")
 Retrieves information about the databases on the server   
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 dbs(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Default Variables:</div>
@@ -571,11 +546,10 @@ dbs(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the database pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().dbs()
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -588,11 +562,10 @@ lib().dbs()
 Retrieves the list of IRI prefixes in use in the DB   
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 prefixes(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -606,11 +579,10 @@ prefixes(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the prefix pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().prefixes()
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -623,11 +595,10 @@ lib().prefixes()
 Inserts a new prefix pair into the database  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 insert_prefix(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments:</div>
 
@@ -640,11 +611,10 @@ insert_prefix(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the prefix insertion expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().insert_prefix(['foaf', "http://xmlns.com/foaf/0.1/"])
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -657,11 +627,10 @@ lib().insert_prefix(['foaf', "http://xmlns.com/foaf/0.1/"])
 Retrieves the list of document classes from the DB   
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 document_classes(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -678,11 +647,10 @@ document_classes(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the classes pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().document_classes()
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -695,11 +663,10 @@ lib().document_classes()
 Retrieves the list of non-abstract document classes from the DB   
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 concrete_document_classes(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -716,11 +683,10 @@ concrete_document_classes(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the classes pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().concrete_document_classes()
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -732,11 +698,10 @@ lib().concrete_document_classes()
 Retreives the list of documents with metadata about their types  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 document_metadata (Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -753,11 +718,10 @@ document_metadata (Values, Variables, ResourceIdentifier)
 WOQLQuery containing the object metadata pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().document_metadata()    
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -769,11 +733,10 @@ lib().document_metadata()
 Retreives the list of document ids and their types  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 documents(Values, Variables, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Default Variables:</div>
 
@@ -786,11 +749,10 @@ documents(Values, Variables, ResourceIdentifier)
 WOQLQuery containing the objects pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().documents()
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -808,11 +770,10 @@ The WOQL.js library also provides a set of functions for navigation of the commi
 Retreives the a commit chain with full details of all commits (combines commits() and commit_chain())  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 commit_chain_full(Values, ResourceIdentifier)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments:</div>
 
@@ -825,11 +786,10 @@ commit_chain_full(Values, ResourceIdentifier)
 WOQLQuery containing the full commit chain pattern matching expression
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().commit_chain_full()   
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -842,11 +802,10 @@ lib().commit_chain_full()
 Retreives information about the first commit in the database  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 first_commit()
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments:</div>
 None - variable names are as per commits() function above
@@ -856,11 +815,10 @@ WOQLQuery containing the first commit pattern matching expression: returns the s
 
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().first_commit()  
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -872,11 +830,10 @@ lib().first_commit()
 Retrieves the details of the commit that was active at the given timestamp on the given branch  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 active_commit(BranchID, Timestamp)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments:</div>
 
@@ -893,11 +850,10 @@ WOQLQuery containing the active commit pattern matching expression: returns the 
 
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().active_commit('main')    
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -910,11 +866,10 @@ lib().active_commit('main')
 Retreives the metadata for the passed CommitID and its parent commits - up to a total of Count steps (including the passed CommitID)
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 commit_history(CommitID, Count)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments:</div>
 
@@ -927,7 +882,7 @@ commit_history(CommitID, Count)
 WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 and(
 	lib().active_commit_id('main', false, "Current Head ID"),
@@ -935,7 +890,6 @@ and(
 )
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -948,11 +902,10 @@ and(
 Retreives the metadata for the parent commits of the passed CommitID - up to a total of Count steps (not including the passed CommitID)
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 previous_commits(CommitID, Count)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments:</div>
 
@@ -966,7 +919,7 @@ WOQLQuery containing the previous commits pattern matching expression: returns t
 
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 and(
 	lib().active_commit_id('main', false, "Current Head ID"),
@@ -974,7 +927,6 @@ and(
 )
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -986,11 +938,10 @@ and(
 Retreives the metadata for the passed CommitID and its future commits on branch BranchID - up to a total of Count steps (including the passed CommitID)
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 commit_future(CommitID, BranchID, Count)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments:</div>
@@ -1005,12 +956,11 @@ commit_future(CommitID, BranchID, Count)
 WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().commit_future('bi1qqga9sxlzgvv061b3zpe48mmjtbb', "main", 5)
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -1023,11 +973,10 @@ lib().commit_future('bi1qqga9sxlzgvv061b3zpe48mmjtbb', "main", 5)
 Retreives the metadata for child commits of the passed CommitID on branch BranchID - up to a total of Count steps (not including the passed CommitID)
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 next_commits(CommitID, BranchID, Count)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments:</div>
 
@@ -1041,12 +990,11 @@ next_commits(CommitID, BranchID, Count)
 WOQLQuery containing the commit history pattern matching expression: returns the same variables as the lib().commits() function for each entry
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().next_commits('bi1qqga9sxlzgvv061b3zpe48mmjtbb', "main", 4)
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
@@ -1060,11 +1008,10 @@ lib().next_commits('bi1qqga9sxlzgvv061b3zpe48mmjtbb', "main", 4)
 Retrieves the ID of the commit that was active at the given timestamp on the given branch - result is stored in CommitIDVar  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 active_commit_id(CommitID, Timestamp, CommitIDVar)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments:</div>
 
@@ -1078,12 +1025,11 @@ active_commit_id(CommitID, Timestamp, CommitIDVar)
 WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().active_commit_id('main')
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->     
@@ -1096,11 +1042,10 @@ lib().active_commit_id('main')
 Retrieves the ids of the passed CommitID and the ids of its parents - up to a total of count ids (including the passed CommitID), the results are stored in CommitIDVar  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 history_ids(CommitID, Count, CommitIDVar)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments:</div>
@@ -1115,7 +1060,7 @@ history_ids(CommitID, Count, CommitIDVar)
 WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 and(
 	lib().active_commit_id('main', false, "Current Head ID"),
@@ -1123,7 +1068,6 @@ and(
 )
 
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->     
@@ -1136,11 +1080,10 @@ and(
 Retrieves the ids of the parent commits of the passed CommitID - up to a total of count ids (not including the passed CommitID), the results are stored in CommitIDVar  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 previous_commit_ids(CommitID, Count, CommitIDVar)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments:</div>
 
@@ -1154,14 +1097,13 @@ previous_commit_ids(CommitID, Count, CommitIDVar)
 WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 and(
 	lib().active_commit_id('main', false, "Current Head ID"),
 	lib().previous_commit_ids("v:Current Head ID", 5)
 )
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->  
@@ -1174,11 +1116,10 @@ and(
 Retrieves the ids of the passed CommitID and the ids of its parents - up to a total of count ids (including the passed CommitID), the results are stored in CommitIDVar  
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 future_ids(CommitID, BranchID, Count, CommitIDVar)
 ```
-</div>
 
 <div class="anchor-sub-parts">Arguments:</div>
 
@@ -1193,11 +1134,10 @@ future_ids(CommitID, BranchID, Count, CommitIDVar)
 WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().future_ids("bi1qqga9sxlzgvv061b3zpe48mmjtbb", "main", 4)
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->  
@@ -1210,11 +1150,10 @@ Retrieves the ids of the child commits of the passed CommitID - up to a total of
 
 
 <div class="anchor-sub-parts">Syntax</div>
-<div class="code-example" markdown="1">
+
 ```js
 next_commit_ids(CommitID, BranchID, Count, CommitIDVar)
 ```
-</div>
 
 
 <div class="anchor-sub-parts">Arguments:</div>
@@ -1231,11 +1170,10 @@ next_commit_ids(CommitID, BranchID, Count, CommitIDVar)
 WOQLQuery containing the pattern matching expression: returns one row per CommitIDVar value
 
 <div class="anchor-sub-parts">Example</div>
-<div class="code-example" markdown="1">
+
 ```js
 lib().next_commit_ids("bi1qqga9sxlzgvv061b3zpe48mmjtbb", "main", 4)
 ```
-</div>
 
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->  

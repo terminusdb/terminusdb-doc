@@ -16,11 +16,14 @@ nav_order: 4
 
 ---
 
-## Section 1
+## Pull
 
-content of section 1
+You can pull changes which were made on hub by selecting `pull`.
 
-## Section 2
+First, enter a database. 
+Go to the synchronise tab on your database.
+
+## Push
 
 content of section 2
 

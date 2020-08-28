@@ -81,3 +81,5 @@ You can now click on `result viewer` to see the result of the query and click on
 And that is how eacy it is to clone a complex database and immediatly run a query against the database. 
 
 Enjoy!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PUUei56QB1c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

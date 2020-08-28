@@ -8,14 +8,11 @@ nav_order: 1
 
 {: .no_toc }
 
-This tutorial will quickly show you how to clone a database in the TerminusDB and Hub console.
+This tutorial will show you how to clone a database in the TerminusDB and Hub console. Once you have downloaded TerminusDB and set up your account, cloning a database should take less than a minute. 
 
 ## Jump to
 
 {: .no_toc .text-delta }
-
-1. TOC
-   {:toc}
 
 - - -
 
@@ -23,21 +20,19 @@ This tutorial will quickly show you how to clone a database in the TerminusDB an
 
 Go to the TerminusDB home page and login to TerminusHub by clicking `Connect to Hub`:
 
-![](/docs/assets/uploads/logged-out-1.jpg)
+![](/docs/assets/uploads/logged-out-1-2-.jpg)
 
-You will now be in the logged in environment and should click `clone:`
+You are now be in the logged in environment and should click `clone:`
 
-![](/docs/assets/uploads/logged-in-1.jpg)
+![](/docs/assets/uploads/logged-in-1-2-.jpg)
 
-On the clone screen you should click the cloud beside the bike sharing database to clone the DB
+On the clone screen, click the cloud beside the bike sharing database to clone the DB
 
-![](/docs/assets/uploads/clone-screen-1.jpg)
+![](/docs/assets/uploads/clone-screen-1-2-.jpg)
 
-You can also click on the title of the database to get to the clone screen (you have the option to 'fork' or create your own copy of the database in this screen also. You may want your own copy if you want to make changes to the database.
+You can also click on the title of the database `TerminusDB Bike Tutorial` to get to the clone screen. In this screen you also have the option to 'fork' the database which creates your own copy of the database. You may want your own copy if you want to make changes to the database.
 
 ![](/docs/assets/uploads/clone-or-fork-1.jpg)
-
-
 
 ## Step 2 - Clone and Review
 
@@ -45,11 +40,9 @@ Now you have clicked the `clone` button, you will be taken to the home screen of
 
 ![](/docs/assets/uploads/post-clone-bike-1.jpg)
 
-You can now explore the database by reiveing the committ history or looking at the schema and documents. 
+You can now explore the database by reviewing the commit history or looking at the database's schema and documents. 
 
 ![](/docs/assets/uploads/schema.jpg)
-
-
 
 ## Step 3 - Running a Query
 
@@ -76,9 +69,7 @@ You can now click on `result viewer` to see the result of the query and click on
 
 ![](/docs/assets/uploads/query-3.jpg)
 
-
-
-And that is how eacy it is to clone a complex database and immediatly run a query against the database. 
+And that is how easy it is to clone a complex database and immediately run a query against the database. 
 
 Enjoy!
 

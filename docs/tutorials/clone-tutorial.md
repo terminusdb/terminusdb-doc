@@ -1,33 +1,83 @@
 ---
-layout: default
 title: My First Cloned Database
+layout: default
 parent: Tutorials
 nav_order: 1
 ---
-
 # My First Cloned Database
+
 {: .no_toc }
 
-(brief intro about this tutorial)
+This tutorial will quickly show you how to clone a database in the TerminusDB and Hub console.
 
 ## Jump to
+
 {: .no_toc .text-delta }
 
 1. TOC
-{:toc}
+   {:toc}
 
----
+- - -
 
-## Step 1
+## Step 1 - Login to TerminusDB and Go to Clone Screen
 
-(step 1 text, screen shot and screen cast)
+Go to the TerminusDB home page and login to TerminusHub by clicking `Connect to Hub`:
 
-## Step 2
+![](/docs/assets/uploads/logged-out-1.jpg)
 
-(step 2 text, screen shot and screen cast)
+You will now be in the logged in environment and should click `clone:`
 
-## Step 3
+![](/docs/assets/uploads/logged-in-1.jpg)
 
-(step 3 text, screen shot and screen cast)
+On the clone screen you should click the cloud beside the bike sharing database to clone the DB
 
-etc
+![](/docs/assets/uploads/clone-screen-1.jpg)
+
+You can also click on the title of the database to get to the clone screen (you have the option to 'fork' or create your own copy of the database in this screen also. You may want your own copy if you want to make changes to the database.
+
+![](/docs/assets/uploads/clone-or-fork-1.jpg)
+
+
+
+## Step 2 - Clone and Review
+
+Now you have clicked the `clone` button, you will be taken to the home screen of the bike sharing database:
+
+![](/docs/assets/uploads/post-clone-bike-1.jpg)
+
+You can now explore the database by reiveing the committ history or looking at the schema and documents. 
+
+![](/docs/assets/uploads/schema.jpg)
+
+
+
+## Step 3 - Running a Query
+
+Now click on the `query` button to run a quick query against the database. 
+
+![](/docs/assets/uploads/query-1.jpg)
+
+This query is taken from the [bike data tutorial ](https://medium.com/terminusdb/my-first-terminusdb-2-0-graph-ef7f05038910): 
+
+```
+WOQL.select("v:Start", "v:Start_Label", "v:End", "v:End_Label").and(
+	WOQL.triple("v:Journey", "type", "scm:Journey"),
+	WOQL.triple("v:Journey", "start_station", "v:Start"),
+	WOQL.opt().triple("v:Start", "label", "v:Start_Label"),
+	WOQL.triple("v:Journey", "end_station", "v:End"),
+	WOQL.opt().triple("v:End", "label", "v:End_Label"),
+	WOQL.triple("v:Journey", "journey_bicycle", "v:Bike")
+)
+```
+
+You can now click on `result viewer` to see the result of the query and click on the drop down menu on the right hand side to switch to a graph view.
+
+![](/docs/assets/uploads/query-2.jpg)
+
+![](/docs/assets/uploads/query-3.jpg)
+
+
+
+And that is how eacy it is to clone a complex database and immediatly run a query against the database. 
+
+Enjoy!

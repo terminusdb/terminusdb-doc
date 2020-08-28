@@ -10,8 +10,6 @@ nav_order: 1
 
 This tutorial will show you how to clone a database in the TerminusDB and Hub console. Once you have downloaded TerminusDB and set up your account, cloning a database should take less than a minute. 
 
-## Jump to
-
 {: .no_toc .text-delta }
 
 - - -
@@ -34,6 +32,8 @@ You can also click on the title of the database `TerminusDB Bike Tutorial` to ge
 
 ![](/docs/assets/uploads/clone-or-fork-1.jpg)
 
+- - -
+
 ## Step 2 - Clone and Review
 
 Now you have clicked the `clone` button, you will be taken to the home screen of the bike sharing database:
@@ -43,6 +43,8 @@ Now you have clicked the `clone` button, you will be taken to the home screen of
 You can now explore the database by reviewing the commit history or looking at the database's schema and documents. 
 
 ![](/docs/assets/uploads/schema.jpg)
+
+- - -
 
 ## Step 3 - Running a Query
 

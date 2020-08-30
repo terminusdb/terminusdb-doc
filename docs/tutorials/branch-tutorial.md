@@ -10,11 +10,11 @@ nav_order: 4
 
 TerminusDB is designed to enable collaboration and revision control on data assets. While git is a fantastic piece of software, it is designed for code management, and not data management. We bring that power to the world of data.
 
-In order to get a feel for how these collaboration features work, we can start with a classic database management problem. The bank account balance. 
+In order to get a feel for how these collaboration features work, we can start with a classic database management problem: the bank account balance. 
 
 This tutorial will show you how to use the branch and merge functions in TerminusDB.
 
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YY1usMBuNSU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 - - -
 
@@ -99,8 +99,6 @@ Press "Query" and see the result:
 ![](/docs/assets/uploads/result.jpg)
 
 Now we have a balance of 13 as expected and everything works fine.
-
-
 
 - - -
 

@@ -49,7 +49,7 @@ This query creates a new document type “BankAccount” along with two properti
 
 If you click on the “Bank Balance Example” button on the top of the screen, it will bring you back to the revision overview and you should be able to see what changes you have made.
 
-# Data Entry
+### Data Entry
 
 Ok, so far so good, but we’ve no data. Now it is time to try and put some data in the db.
 
@@ -91,7 +91,7 @@ Now we have a balance of 13 as expected and everything works fine.
 
 ## Section 2 - Branch and Merge
 
-# Branching
+### Branching
 
 Now that we have some data and some updates, we can go ahead and try creating a branch. A branch starts a new database from the a particular commit, allowing us to change the database without affecting the original database.
 
@@ -116,7 +116,7 @@ WOQL.and(
 
 This creates Jim, with all 8 dollars to his name. If we now go to the Documents tab we can see that Jim and Mike’s bank account are both listed now.
 
-# Rebase
+### Rebase
 
 Let’s go back to the original branch (main), by selecting it in the upper right hand corner, and add one more person, jane in the main branch so that we now have two different histories, with one common commit.
 

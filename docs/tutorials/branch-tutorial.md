@@ -29,13 +29,15 @@ Create a new database with the ID `Bank_Balance_Example` and the name “Bank Ba
 
 The first thing we need to do is define a data model. To do this, click on the Query button at the top. And enter the following query, along with a comment “New schema”.
 
-```WOQL.doctype("BankAccount").label("Bank Account")
+```
+WOQL.doctype("BankAccount").label("Bank Account")
     .property("owner","xsd:string")
        .label("owner")
        .cardinality(1)
     .property("balance","xsd:nonNegativeInteger")
        .label("balance")
-       .cardinality(1)```
+       .cardinality(1)
+```
 
 This query creates a new document type “BankAccount” along with two properties, one named “owner” which is a string, and one named balance. Both have a cardinality of 1. This query is in fact a very concise shorthand for an OWL specification which we will see later.
 
@@ -47,11 +49,13 @@ Ok, so far so good, but we’ve no data. Now it is time to try and put some data
 
 Let’s go to the query screen and write the following query:
 
-```WOQL.and(
+```
+WOQL.and(
   WOQL.add_triple("doc:mike", "type", "scm:BankAccount"),
   WOQL.add_triple("doc:mike", "owner", "mike"),
   WOQL.add_triple("doc:mike", "balance", 123)
-  )```
+  )
+```
 
 This adds some data to our database. You can click on the Documents page and you will see, that in fact mike was added.
 
@@ -59,14 +63,16 @@ Now we should try to make some edits to the bank account to see what happens.
 
 First, let’s try and subtract 130 dollars from mikes account.
 
-```vars = function(sl) {return sl.map( s => "v:" + s)}
+```
+vars = function(sl) {return sl.map( s => "v:" + s)}
 let [balance,new_balance] = vars(["Balance", "New Balance"])
 WOQL.and(
   WOQL.triple("doc:mike", "scm:balance", balance),
   WOQL.delete_triple("doc:mike", "scm:balance", balance),
   WOQL.eval(WOQL.minus(balance, 130), new_balance),
   WOQL.add_triple("doc:mike", "scm:balance", new_balance)
-)```
+)
+```
 
 This query fails with the following JSON-LD witness object:
 
@@ -94,11 +100,13 @@ Now go to the query page. If you look up at the top right of the interface, you�
 
 Now we can enter the following query:
 
-```WOQL.and(
+```
+WOQL.and(
   WOQL.add_triple("doc:jim", "type", "scm:BankAccount"),
   WOQL.add_triple("doc:jim", "owner", "jim"),
   WOQL.add_triple("doc:jim", "balance", 8)
-  )```
+  )
+```
 
 This creates Jim, with all 8 dollars to his name. If we now go to the Documents tab we can see that Jim and Mike’s bank account are both listed now.
 
@@ -106,11 +114,13 @@ This creates Jim, with all 8 dollars to his name. If we now go to the Documents 
 
 Let’s go back to the original branch (main), by selecting it in the upper right hand corner, and add one more person, jane in the main branch so that we now have two different histories, with one common commit.
 
-```WOQL.and(
+```
+WOQL.and(
   WOQL.add_triple("doc:jane", "type", "scm:BankAccount"),
   WOQL.add_triple("doc:jane", "owner", "jane"),
   WOQL.add_triple("doc:jane", "balance", 887)
-  )```
+  )
+```
 
 Jane was a bit more frugal and has saved 887 dollars.
 

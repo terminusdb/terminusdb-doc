@@ -49,8 +49,6 @@ This query creates a new document type “BankAccount” along with two properti
 
 If you click on the “Bank Balance Example” button on the top of the screen, it will bring you back to the revision overview and you should be able to see what changes you have made.
 
-
-
 ### Data Entry
 
 Ok, so far so good, but we’ve no data. Now it is time to try and put some data in the db.
@@ -90,11 +88,22 @@ This tells us that our bank balance is invalid as it is negative! TerminusDB doe
 
 However, we can change the balance by subtracting a smaller number:
 
+```
+vars = function(sl) {return sl.map( s => "v:" + s)}
+let [balance,new_balance] = vars(["Balance", "New Balance"])
+WOQL.and(
+  WOQL.triple("doc:mike", "scm:balance", balance),
+  WOQL.delete_triple("doc:mike", "scm:balance", balance),
+  WOQL.eval(WOQL.minus(balance, 13), new_balance),
+  WOQL.add_triple("doc:mike", "scm:balance", new_balance)
+)
+```
+
+Press "Query" and see the result:
+
 ![](/docs/assets/uploads/result.jpg)
 
 Now we have a balance of 13 as expected and everything works fine.
-
-
 
 ## Section 2 - Branch and Merge
 

@@ -14,6 +14,8 @@ This tutorial will show you how to clone a database in the TerminusDB and Hub co
 
 - - -
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PUUei56QB1c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Step 1 - Login to TerminusDB and Go to Clone Screen
 
 Go to the TerminusDB home page and login to TerminusHub by clicking `Connect to Hub`:
@@ -74,5 +76,3 @@ You can now click on `result viewer` to see the result of the query and click on
 And that is how easy it is to clone a complex database and immediately run a query against the database. 
 
 Enjoy!
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/PUUei56QB1c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

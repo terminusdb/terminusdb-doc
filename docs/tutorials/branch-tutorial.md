@@ -14,10 +14,6 @@ In order to get a feel for how these collaboration features work, we can start w
 
 This tutorial will show you how to use the branch and merge functions in TerminusDB.
 
-
-
-
-
 ## Table of contents
 
 {: .no_toc .text-delta }
@@ -30,6 +26,8 @@ This tutorial will show you how to use the branch and merge functions in Terminu
 ## Section 1 - Schema and Data
 
 Create a new database with the ID `banker` and the name “bank”, in the console. Select 'share on TerminusHub'. 
+
+![](/docs/assets/uploads/bank-create.jpg)
 
 Once created you should land in the DB Home page.
 
@@ -49,7 +47,7 @@ This query creates a new document type “BankAccount” along with two properti
 
 If you click on the “Bank Balance Example” button on the top of the screen, it will bring you back to the revision overview and you should be able to see what changes you have made.
 
-### Data Entry
+# Data Entry
 
 Ok, so far so good, but we’ve no data. Now it is time to try and put some data in the db.
 
@@ -82,7 +80,6 @@ WOQL.and(
 
 This query fails with the following JSON-LD witness object:
 
-
 This tells us that our bank balance is invalid as it is negative! TerminusDB doesn’t allow the transaction to go through.
 
 However, we can change the balance by subtracting a smaller number:
@@ -91,16 +88,15 @@ Now we have a balance of 13 as expected and everything works fine.
 
 ## Section 2 - Branch and Merge
 
-### Branching
+# Branching
 
 Now that we have some data and some updates, we can go ahead and try creating a branch. A branch starts a new database from the a particular commit, allowing us to change the database without affecting the original database.
 
 This can be used to make isolated changes and test them, before we merge them back into the original.
 
-Ok, so go click on the “Bank Balance Example” button at the top and then go to the Manage-tab. Click on the “Branch” button.
+Ok, so go click on the “Branch” button.
 
-Under the field “New Branch ID*” enter in “branch_office” and we’ll pretend we have a branch office adding accounts. In the commit message put: “Branch for our new branch office”.
-
+Under the field “New Branch ID*” enter in “branch_office” and we’ll pretend we have a branch office adding accounts.
 
 Now go to the query page. If you look up at the top right of the interface, you’ll see we are still on “branch: main”. Pull the selector down to “branch: branch_office”.
 
@@ -116,7 +112,7 @@ WOQL.and(
 
 This creates Jim, with all 8 dollars to his name. If we now go to the Documents tab we can see that Jim and Mike’s bank account are both listed now.
 
-### Rebase
+# Rebase
 
 Let’s go back to the original branch (main), by selecting it in the upper right hand corner, and add one more person, jane in the main branch so that we now have two different histories, with one common commit.
 
@@ -137,7 +133,5 @@ This is why we have merge. Go to the “Bank balance Example” button and then 
 Click on Merge. Select the “branch_office” branch in the upper right hand corner. Now select the “merge into” branch as “main”. Now you can type: “Merging branch office info” in the commit message.
 
 Now we should go back to the main branch (again in the upper right hand corner), and select the documents view. You’ll see that we have merged the two databases together!
-
-
 
 That's how easy it is to manage complex data with TerminusDB and TerminusHub

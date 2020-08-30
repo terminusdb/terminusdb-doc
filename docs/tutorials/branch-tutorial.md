@@ -43,7 +43,9 @@ WOQL.doctype("BankAccount").label("Bank Account")
        .cardinality(1)
 ```
 
-This query creates a new document type “BankAccount” along with two properties, one named “owner” which is a string, and one named balance. Both have a cardinality of 1. This query is in fact a very concise shorthand for an OWL specification which we will see later.
+This query creates a new document type “BankAccount” along with two properties, one named “owner” which is a string, and one named balance. Both have a cardinality of 1.
+
+![](/docs/assets/uploads/new-schema.jpg)
 
 If you click on the “Bank Balance Example” button on the top of the screen, it will bring you back to the revision overview and you should be able to see what changes you have made.
 
@@ -80,9 +82,13 @@ WOQL.and(
 
 This query fails with the following JSON-LD witness object:
 
+![](/docs/assets/uploads/query-fail.jpg)
+
 This tells us that our bank balance is invalid as it is negative! TerminusDB doesn’t allow the transaction to go through.
 
 However, we can change the balance by subtracting a smaller number:
+
+![](/docs/assets/uploads/result.jpg)
 
 Now we have a balance of 13 as expected and everything works fine.
 
@@ -96,7 +102,9 @@ This can be used to make isolated changes and test them, before we merge them ba
 
 Ok, so go click on the “Branch” button.
 
-Under the field “New Branch ID*” enter in “branch_office” and we’ll pretend we have a branch office adding accounts.
+Under the field “New Branch ID" enter in “branch_office” and we’ll pretend we have a branch office adding accounts.
+
+![](/docs/assets/uploads/create-branches-2.jpg)
 
 Now go to the query page. If you look up at the top right of the interface, you’ll see we are still on “branch: main”. Pull the selector down to “branch: branch_office”.
 
@@ -112,6 +120,8 @@ WOQL.and(
 
 This creates Jim, with all 8 dollars to his name. If we now go to the Documents tab we can see that Jim and Mike’s bank account are both listed now.
 
+![](/docs/assets/uploads/branch-office.jpg)
+
 # Rebase
 
 Let’s go back to the original branch (main), by selecting it in the upper right hand corner, and add one more person, jane in the main branch so that we now have two different histories, with one common commit.
@@ -126,12 +136,20 @@ WOQL.and(
 
 Jane was a bit more frugal and has saved 887 dollars.
 
+![](/docs/assets/uploads/main-branch.jpg)
+
 But we’re still missing the information about jim, as its stuck in the branch office. How do we get the information into our main branch?
 
-This is why we have merge. Go to the “Bank balance Example” button and then click on the manage-tab.
+This is why we have merge. Click the "Branch" button and click on Merge. 
 
-Click on Merge. Select the “branch_office” branch in the upper right hand corner. Now select the “merge into” branch as “main”. Now you can type: “Merging branch office info” in the commit message.
+![](/docs/assets/uploads/create-branches.jpg)
+
+Select the “branch_office” branch in the upper right hand corner. Now select the “merge into” branch as “main”. 
+
+![](/docs/assets/uploads/merge-screen.jpg)
 
 Now we should go back to the main branch (again in the upper right hand corner), and select the documents view. You’ll see that we have merged the two databases together!
+
+![](/docs/assets/uploads/post-merge.jpg)
 
 That's how easy it is to manage complex data with TerminusDB and TerminusHub

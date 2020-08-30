@@ -10,6 +10,8 @@ nav_order: 2
 
 This is a quick tutorial to introduce you to sharing databases with TerminusDB and TerminusHub. This tutorial uses the console and has installed TerminusDB using [quickstart](https://github.com/terminusdb/terminusdb-quickstart). 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pCLgW3bhSCw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 - - -
 
 ## Step 1 - Connect to Hub

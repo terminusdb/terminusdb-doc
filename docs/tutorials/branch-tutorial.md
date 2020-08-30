@@ -20,7 +20,7 @@ This tutorial will show you how to use the branch and merge functions in Terminu
 
 ## Section 1 - Schema and Data
 
-Create a new database with the ID `banker` and the name “bank”, in the console. Select 'share on TerminusHub'. 
+Create a new database with the ID `banker` and the name “bank”, in the console. Select 'Create on TerminusHub'. 
 
 ![](/docs/assets/uploads/bank-create.jpg)
 
@@ -99,6 +99,10 @@ Press "Query" and see the result:
 ![](/docs/assets/uploads/result.jpg)
 
 Now we have a balance of 13 as expected and everything works fine.
+
+
+
+- - -
 
 ## Section 2 - Branch and Merge
 

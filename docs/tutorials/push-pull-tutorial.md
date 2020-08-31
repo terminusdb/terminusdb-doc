@@ -8,7 +8,7 @@ nav_order: 3
 
 {: .no_toc }
 
-Shares databases and updates to databases is easy with TerminusDB and TerminusHub. We call this pulling and pushing changes: you pull updates from TerminusHub to your local version and push changes from you local version to TerminusHub. This makes collaboration and syncronization easy. 
+Sharing databases and updates to databases is easy with TerminusDB and TerminusHub. We call this pulling and pushing changes: you pull updates from TerminusHub to your local version and push changes from you local version to TerminusHub. This makes collaboration and syncronization easy. 
 
 This short tutorial shows you how to push and pull using the TerminusDB console. We have installed using [quickstart](https://github.com/terminusdb/terminusdb-quickstart). 
 

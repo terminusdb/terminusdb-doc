@@ -27,13 +27,13 @@ The following directions should work on Debian or Ubuntu.
 
 #### Rust
 
-Install Rust by following the following instructions on the [official
+Install Rust by following the instructions on the [official
 Rust installation guide](https://www.rust-lang.org/tools/install).
 
 #### SWIPL
 
 To use Terminus Server, you will need the SWIPL installation of
-Prolog. To install this in Debian variants simply use the apt package
+Prolog. To install this in Debian variants, simply use the apt package
 manager:
 
 ```
@@ -74,7 +74,7 @@ configure the server name, as shown in the example.
 utils/db_init -k "my_password_here" -s "my_server_name_here"
 ```
 
-At this point you can enter the terminusDB directory and start the server:
+At this point you can enter the TerminusDB directory and start the server:
 
 ```
 ./start.pl
@@ -84,13 +84,13 @@ Now you are ready to interact with the HTTP server.
 
 ### Fedora or Red Hat
 
-These instructions have been tested on Fedora 30 and might result in different results depending on your
+These instructions have been tested on Fedora 30 and might yield different results depending on your
 Fedora / Red Hat release.
 
 
 #### Rust
 
-Install Rust by following the following instructions on the [official
+Install Rust by following the instructions on the [official
 Rust installation guide](https://www.rust-lang.org/tools/install).
 
 #### SWIPL
@@ -103,8 +103,8 @@ sudo dnf install pl pl-devel
 
 #### SWIPL libraries
 
-Run SWIPL and install the required dependencies, note that you need to have
-rust installed to compile the dependencies:
+Run SWIPL and install the required dependencies. Note that you need to have
+Rust installed to compile the dependencies:
 
 ```
 $ swipl
@@ -138,7 +138,7 @@ configure the server name, as shown in the example.
 utils/db_init -k "my_password_here" -s "my_server_name_here"
 ```
 
-At this point you can enter the terminusDB directory and start the server:
+At this point you can enter the TerminusDB directory and start the server:
 
 ```
 ./start.pl
@@ -152,7 +152,7 @@ Now you are ready to interact with the HTTP server.
 
 #### Rust
 
-Install Rust by following the following instructions on the [official
+Install Rust by following the instructions on the [official
 Rust installation guide](https://www.rust-lang.org/tools/install).
 
 #### Library dependencies
@@ -165,8 +165,8 @@ sudo pacman -S git swi-prolog make automake autoconf libtool zlib pkgconf gcc
 
 #### SWIPL libraries
 
-Run SWIPL and install the required dependencies, note that you need to have
-rust installed to compile the dependencies:
+Run SWIPL and install the required dependencies. Note that you need to have
+Rust installed to compile the dependencies:
 
 ```
 $ swipl
@@ -200,7 +200,7 @@ configure the server name, as shown in the example.
 utils/db_init -k "my_password_here" -s "my_server_name_here"
 ```
 
-At this point you can enter the terminusDB directory and start the server:
+At this point you can enter the TerminusDB directory and start the server:
 
 ```
 ./start.pl

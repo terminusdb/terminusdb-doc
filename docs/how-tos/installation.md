@@ -28,9 +28,9 @@ On Linux, use your distro's package manager, or find [more information here](htt
 
 ### Git
 
-This script is distributed via GitHub, so you will need git to clone and update it, if you don't already have git, you can [download it here](https://git-scm.com/downloads)
+This script is distributed via GitHub, so you will need git to clone and update it. If you don't already have git, you can [download it here](https://git-scm.com/downloads)
 
-Windows users should use the application "Git Bash" for all terminal commands described below, this application comes with Git for Windows.
+Windows users should use the application "Git Bash" for all terminal commands described below. This application comes with Git for Windows.
 
 ### Sudo
 
@@ -71,7 +71,7 @@ d9fa4a1acf93: Pulling fs layer
 
 ## If you've installed before
 
-You may need to move or remove previous volumes or you may encounter bugs or the old console.
+You may need to move or remove previous volumes or you may encounter bugs on the old console.
 
 *Warning: This will lead to losing local data.*
 

@@ -37,7 +37,7 @@ the masters from our default branching.
 + Improved the API for organisation management
 + Improved CORS handling on some calls
 
-(TerminusDB Version 3.0 Release Notes)[https://github.com/terminusdb/terminusdb-server/blob/master/RELEASE_NOTES.md]
+[TerminusDB Version 3.0 Release Notes](https://github.com/terminusdb/terminusdb-server/blob/master/RELEASE_NOTES.md)
 
 ## terminusdb-client-python v0.3.0
 
@@ -57,6 +57,6 @@ the masters from our default branching.
 - fixed bug to make order_by("desc") work
 - Empty selects no longe error
 
-(TerminusDB Python Client v0.3.0 Release Notes)[https://github.com/terminusdb/terminusdb-client-python/blob/master/RELEASE_NOTES.md]
+[TerminusDB Python Client v0.3.0 Release Notes](https://github.com/terminusdb/terminusdb-client-python/blob/master/RELEASE_NOTES.md)
 
 {: .fs-6 .fw-300 }

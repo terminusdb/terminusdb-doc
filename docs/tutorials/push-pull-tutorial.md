@@ -12,13 +12,6 @@ Shares databases and updates to databases is easy with TerminusDB and TerminusHu
 
 This short tutorial shows you how to push and pull using the TerminusDB console. We have installed using [quickstart](https://github.com/terminusdb/terminusdb-quickstart). 
 
-## Jump to
-
-{: .no_toc .text-delta }
-
-1. TOC
-   {:toc}
-
 - - -
 
 ## Step 1 - Create a DB, Build a Schema
@@ -67,6 +60,8 @@ Now we have team members, we can go to the DB Home pane and see the updates (we 
 
 ![](/docs/assets/uploads/db-home-with-revision-history.jpg)
 
+- - -
+
 ## Step 2 - Push the Database to Hub
 
 We now have a database with a schema and some data. Let's share it with another user. Click on the 'Synchronize' tab and under 'Upload' click the 'Push' button to share the database on TerminusHub. Once you have pushed you will see a report letting you know that the action was successful. 
@@ -81,10 +76,22 @@ Go ahead and press 'Add Collaborators'.
 
 That is it - you have pushed the database to Hub and added a collaborator who can now pull updates from TerminusHub. 
 
+
+
+- - -
+
 ## Step 3 - Pull from Hub
 
 We are now in the account we shared with and can see all of the changes that we made:
 
 ![](/docs/assets/uploads/db-home-luke.jpg)
 
-We can add more infromation and the commit history is updated and
+We can now add more information and the commit history is updated with the new person making the commit: 
+
+![](/docs/assets/uploads/add-new-luke.jpg)
+
+These changes can be pushed back to TerminusHub, so collaborators can collectively worked on shared databases. 
+
+![](/docs/assets/uploads/pull-slide.jpg)
+
+Of course, the complexity of collaboration can increase to match your workload! Trying branching first, then pushing the branch and have your collaborator pull that branch.

@@ -1,20 +1,21 @@
 ---
-layout: default
 title: Installation
+layout: default
 parent: How Tos
 nav_order: 1
 ---
-
 # Installation
+
 {: .no_toc }
 
 ## Table of contents
+
 {: .no_toc .text-delta }
 
 1. TOC
-{:toc}
+   {:toc}
 
----
+- - -
 
 ## Prerequisites
 
@@ -36,11 +37,11 @@ Windows users should use the application "Git Bash" for all terminal commands de
 
 Sudo is optional. As letting unprivileged users run docker is insecure, this script uses sudo by default if it is available.
 
-Most users will not need to do anything here, sudo is installed by default on Macs and many populer Linux distros such as Fedora, Red Hat, Debian, Ubuntu and Mint. Linux users who use minmal distros such as Archlinux, are advised to install sudo and confugure their sudoers file accordingly.
+Most users will not need to do anything here, sudo is installed by default on Macs and many popular Linux distros such as Fedora, Red Hat, Debian, Ubuntu and Mint. Linux users who use minimal distros such as Archlinux, are advised to install sudo and configure their sudoers file accordingly.
 
 Windows users do not need to do anything here.
 
----
+- - -
 
 ## Quick Start
 
@@ -67,7 +68,7 @@ d9fa4a1acf93: Pulling fs layer
 [ ... ]
 ```
 
----
+- - -
 
 ## If you've installed before
 
@@ -82,17 +83,19 @@ removing will delete storage volume
 Are you sure? [y/N] y
 ```
 
----
+- - -
 
 ## Using the console
 
 Ready to terminate? Open the TerminusDB Console in your web browser.
+
 ```
 ./terminusdb-container console
 ```
-Or go here: [http://localhost:6363/](http://localhost:6363/)
 
----
+Or go here: <http://localhost:6363/>
+
+- - -
 
 ## To stop, attach, etc, see usage
 
@@ -109,36 +112,46 @@ USAGE:
   attach      attach to prolog shell
   exec        execeute a command inside the container
   rm          remove volumes
-
 ```
 
 That's it! You're ready to go!
 
----
+- - -
 
-## Using the Enviroment
+## Using the Environment
 
 * Mount a local directory inside the container
+
 ```
 TERMINUSDB_LOCAL=/path/to/dir ./terminusdb-container [COMMAND]
 ```
+
 * Using the latest release
+
 ```
 TERMINUSDB_TAG=latest ./terminusdb-container [COMMAND]
 ```
+
 * Using the development release
+
 ```
 TERMINUSDB_TAG=dev ./terminusdb-container [COMMAND]
 ```
-* Using a specific release instead of latest realease
+
+* Using a specific release instead of the latest release
+
 ```
 TERMINUSDB_TAG=v1.1.2 ./terminusdb-container [COMMAND]
 ```
+
 * Not using sudo even when sudo is available
+
 ```
 TERMINUSDB_DOCKER=docker ./terminusdb-container [COMMAND]
 ```
+
 * Using podman instead of docker command
+
 ```
 TERMINUSDB_DOCKER="podman" ./terminusdb-container [COMMAND]
 ```

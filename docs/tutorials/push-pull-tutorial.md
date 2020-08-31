@@ -12,6 +12,10 @@ Sharing databases and updates to databases is easy with TerminusDB and TerminusH
 
 This short tutorial shows you how to push and pull using the TerminusDB console. We have installed using [quickstart](https://github.com/terminusdb/terminusdb-quickstart). 
 
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zKnFnPQY5Vo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 - - -
 
 ## Step 1 - Create a DB, Build a Schema

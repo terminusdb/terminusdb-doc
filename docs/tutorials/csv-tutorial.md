@@ -1,24 +1,25 @@
 ---
-layout: default
 title: Importing and Cleaning Data From CSVs
+layout: default
 parent: Tutorials
 nav_order: 6
 ---
-
 # Importing and Cleaning Data from CSVs
+
 {: .no_toc }
 
 In this tutorial, we will learn how to load data from a CSV file then clean it up with some data wrangling, like changing the type of the data, combining strings and generating ids for objects.
 
 ## Jump to
+
 {: .no_toc .text-delta }
 
 1. TOC
-{:toc}
+   {:toc}
 
----
+- - -
 
-## Step 1 - reading the csv columns
+## Step 1 - reading the CSV columns
 
 In our example, we will try to load data from this CSV: <https://terminusdb.com/t/data/bike_tutorial.csv>
 
@@ -72,7 +73,7 @@ const csv = WOQL.get(
 
 ## Step 2 - data wrangling
 
-In the next step, we are going to prepare the data for step 3. The data that we got in step 1 is not ready to be put in the graph. We will have to generate id for doctype objects, convert data to their correct data types and create strings for labels and descriptions.
+In the next step, we are going to prepare the data for step 3. The data that we got in step 1 is not ready to be put in the graph. We will have to generate an id for doctype objects, convert data to their correct data types and create strings for labels and descriptions.
 
 To do that, we will expand our previous script as follows:
 

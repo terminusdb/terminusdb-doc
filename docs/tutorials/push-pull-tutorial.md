@@ -23,7 +23,7 @@ This short tutorial shows you how to push and pull using the TerminusDB console.
 
 - - -
 
-## Step 1
+## Step 1 - Create a DB, Build a Schema
 
 First things first, login to TerminusHub and click 'create'. 
 
@@ -71,7 +71,7 @@ Now we have team members, we can go to the DB Home pane and see the updates (we 
 
 
 
-## Step 2
+## Step 2 - Push the Database to Hub
 
 We now have a database with a schema and some data. Let's share it with another user. Click on the 'Synchronize' tab and under 'Upload' click the 'Push' button to share the database on TerminusHub. Once you have pushed you will see a report letting you know that the action was successful. 
 
@@ -83,14 +83,12 @@ Once you have pushed to Hub, you should click on the TerminusDB logo to go back 
 
 Go ahead and press 'Add Collaborators'. 
 
-That is it - you have pushed the database to Hub and added a collaborator who can now pull updates from TerminusHub. Here is a view of what it looks like from the other side:
+That is it - you have pushed the database to Hub and added a collaborator who can now pull updates from TerminusHub. 
+
+## Step 3 - Pull from Hub
+
+We are now in the account we shared with and can see all of the changes that we made:
 
 
 
- 
-
-## Step 3
-
-(step 3 text, screen shot and screen cast)
-
-etc
+Here is a view of what it looks like from the other side:

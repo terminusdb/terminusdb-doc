@@ -12,8 +12,6 @@ Shares databases and updates to databases is easy with TerminusDB and TerminusHu
 
 This short tutorial shows you how to push and pull using the TerminusDB console. We have installed using [quickstart](https://github.com/terminusdb/terminusdb-quickstart). 
 
-
-
 ## Jump to
 
 {: .no_toc .text-delta }
@@ -69,8 +67,6 @@ Now we have team members, we can go to the DB Home pane and see the updates (we 
 
 ![](/docs/assets/uploads/db-home-with-revision-history.jpg)
 
-
-
 ## Step 2 - Push the Database to Hub
 
 We now have a database with a schema and some data. Let's share it with another user. Click on the 'Synchronize' tab and under 'Upload' click the 'Push' button to share the database on TerminusHub. Once you have pushed you will see a report letting you know that the action was successful. 
@@ -89,6 +85,6 @@ That is it - you have pushed the database to Hub and added a collaborator who ca
 
 We are now in the account we shared with and can see all of the changes that we made:
 
+![](/docs/assets/uploads/db-home-luke.jpg)
 
-
-Here is a view of what it looks like from the other side:
+We can add more infromation and the commit history is updated and

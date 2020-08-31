@@ -11,7 +11,7 @@ This section is designed to help you understand TerminusDB and TerminusHub. It i
 
 What matters here is context, explanation, examples built into broader text, suggestions of alternative approaches, connections to different topics. This is not the place for instructions or technical descriptions. 
 
-We are always trying to improve, so let us know if the content can improve or if you have a contribution. 
+We are always trying to improve, so let us know if the content can be better or if you have a contribution. 
 
 
 

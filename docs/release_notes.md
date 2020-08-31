@@ -57,5 +57,7 @@ the masters from our default branching.
 - fixed bug to make order_by("desc") work
 - Empty selects no longe error
 
+(TerminusDB Version 3.0 Release Notes)[https://github.com/terminusdb/terminusdb-server/blob/master/RELEASE_NOTES.md]
+
 
 {: .fs-6 .fw-300 }

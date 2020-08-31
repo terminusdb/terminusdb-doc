@@ -9,66 +9,53 @@ nav_order: 7
 
 The various components of TerminusDB have different release notes.
 
-## terminusdb-server
+## TerminusDB Server v3.0.0 Release Notes
 
-### TerminusDB Server Version 2.0 Release Notes
+This is our TerminusDB Server v3 liberation release. We have removed
+the masters from our default branching.
 
-#### New
+### New
 
-TerminusDB Server now implements databases as a tiered structure which
-tracks deltas on collections of graphs. This tiered structure
-includes:
++ Reset API allows reseting branch to arbitrary commit
++ Squash API operation now available
++ Default branch is now called main and not master
++ Added much more extensive coverage of API in the api.owl.ttl ontology
++ Fixed some schema errors in woql.owl.ttl
++ Added boolean flag (`all_witnesses`) for returning all or only the first witness from schema checks.
++ Improvements to schema checking. Most large inserts will be 40% faster
 
-+ Meta data graph: Holds information about the local and all remote
-  repositories assocated with a given database.
-+ Commit Graph: A graph containing information about all commits,
-  their authors, a comment, and associated branches.
-+ Instance and Schema Graphs: These graphs containing the actual data.
+### Backwards-Incompatible Changes
 
-These new structural changes to the underlying store allow users to
-perform a number of git-like operations. This includes:
++ Default branch will be set to main and not master, so that some
+  calls which relied on master being default will fail. This can be
+  fixed in all cases by doing a branch operation from master to main.
++ By default only one witness is now returned in WOQL queries in which
+  the resulting database violates schema constraints.
 
-+ Time-travel on databases: You can run queries, browse documents or
-  view the schema at any previous commit.
-+ Branching: You can branch from any current branch or reference (a
-  previous commit).
+### Bug fixes
 
-Several new querying capabilities have been added:
++ Improved the API for organisation management
++ Improved CORS handling on some calls
 
-+ Regular path queries allowing the user to query recursively using
-  combinations of intermediate predicates resulting in both end-point
-  nodes and the particular path as a list of edge objects.
-+ Database size and triple count can be queried
-+ You can choose a specific resource to query including: the meta-data
-  graph, the commit graph, a collection of instance or schema graphs,
-  or a particular commit.
+(TerminusDB Version 3.0 Release Notes)[https://github.com/terminusdb/terminusdb-server/blob/master/RELEASE_NOTES.md]
 
-#### Backwards-Incompatible Changes
+## terminusdb-client-python v0.3.0
 
-+ The storage approach has changed dramatically and so previous
-  databases can not be read directly by the new TerminusDB. Upgrades
-  require re-ingesting data.
+### New
 
-+ The previous version of TerminusDB used JSON as an interchange for
-  WOQL ASTs. The current version uses JSON-LD, which is a
-  serialisation of RDF. This enables us to store WOQL queries in a
-  database and provides a schema documentation of the WOQL query language.
+- Updated create database to take advantage of default prefixes and schema graph creation happening on server
+- Integrated all Revision Control API operations fully
+- .vars() method - add v: to woql variables
+- Reset allowing you to reset a branch to an arbitrary commit
+- Post method for CSV uploads
+- Triple endpoint for inserting turtle data directly to a graph
+- Count triples functionality added
 
-#### Bug Fixes
+### Bug Fixes / Improvements
 
-+ Transactional logic in TerminusDB 1.0 had surprising outcomes when
-  backtracking over inserts. We currently treat inserts as
-  non-backtracking destructive updates.
-+ WOQL.when is not required in order to perform updates.
+- Added 3 varities of ordering specification as optional arguments to order_by
+- fixed bug to make order_by("desc") work
+- Empty selects no longe error
 
-(TerminusDB Version 2.0 Release Notes)[https://github.com/terminusdb/terminusdb-server/commit/eaaf8d9eb2ddc01f5316c70e6cf66439f8b9797f]
-
-## terminusdb-client
-
-TODO
-
-## terminusdb-client-python
-
-TODO
 
 {: .fs-6 .fw-300 }

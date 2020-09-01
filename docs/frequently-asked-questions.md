@@ -40,7 +40,7 @@ layout: default
 
 [***Why did you write your own database?***](#head16)
 
-[***Why do you use WOQL (web object query language)?***](head#17)
+[***Why do you use WOQL - web object query language?***](head#17)
 
 [***And why not SPARQL or Cypher?***](#head18)
 

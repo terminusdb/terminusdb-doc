@@ -5,13 +5,11 @@ nav_order: 2
 ---
 # Quickstart Academy
 
-
-
 - - -
 
 ## What is TerminusDB and what does it do?
 
-TerminusDB is an open source general purpose graph database that stores data like Git. It is built for data people and allows fierce data integration, versioning out of the box and unparalleled query. No data platform is more productive.
+TerminusDB is an open-source general purpose graph database that stores data like Git. It is built for data people and allows fierce data integration, versioning out of the box and unparalleled query. No data platform is more productive.
 
 TerminusDB allows for the whole suite of revision control features: branch, merge, squash, rollback, blame, and time-travel. 
 
@@ -23,7 +21,7 @@ TerminusDBs are linked through TerminusHub. The hub allows the user to manage ac
 
 You can share and collaborate on curated data sets in a distributed manner using git-like operations (push, pull, fetch, clone, fork)
 
-Collaboration is easy with clone / fork allowing data to be moved to your cloud or servers
+Collaboration is easy with clone/fork allowing data to be moved to your cloud or servers
 
 Merge and branch operations let you mix and match data sources significantly simplifying integration tasks.
 
@@ -49,7 +47,7 @@ link
 
 ## Quickstart How-To
 
-How To Guides are problem driven and are designed to be a source of quick information in ‘doing mode’ when working with TerminusDB and Hub. These will help you to get started on TerminusDB and Hub.
+How To Guides are problem-driven and are designed to be a source of quick information in ‘doing mode’ when working with TerminusDB and Hub. These will help you to get started on TerminusDB and Hub.
 
 Link How To install
 

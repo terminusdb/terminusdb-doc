@@ -5,10 +5,7 @@ nav_order: 2
 ---
 # Quickstart Academy
 
-{: .no_toc }
 
-1. TOC
-   {:toc}
 
 - - -
 

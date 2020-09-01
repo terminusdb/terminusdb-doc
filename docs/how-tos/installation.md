@@ -13,9 +13,9 @@ nav_order: 1
 {: .no_toc .text-delta }
 
 1. TOC
-   {:toc}
+{:toc}
 
-- - -
+---
 
 ## Prerequisites
 

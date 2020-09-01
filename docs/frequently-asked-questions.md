@@ -2,6 +2,14 @@
 title: FAQs
 layout: default
 ---
+## **Frequently Asked Questions**
+
+(Ask a question enough times and it will appear here)
+
+
+
+
+
 ***What is TerminusDB?***
 
 TerminusDB is an open-source general purpose graph database that stores data like Git. It is built for data people and allows fierce data integration, versioning out of the box and unparalleled query. No data platform is more productive.

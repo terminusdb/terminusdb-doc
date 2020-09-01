@@ -12,15 +12,17 @@ TerminusDB is designed to enable collaboration and revision control on data asse
 
 In order to get a feel for how these collaboration features work, we can start with a classic database management problem. The bank account balance.
 
-
+![](/docs/assets/uploads/clone.jpg)
 
 - - -
 
 ## Step 1 - Create, Schema, Data, Branch and Merge
 
-Woah - that's a lot of action. Check it out here:
+Woah - that's a lot of action. Check out the[ first part here](https://terminusdb.com/blog/2020/07/27/taking-terminusdb-to-the-bank/)
 
-https://terminusdb.com/blog/2020/07/27/taking-terminusdb-to-the-bank/
+
+
+- - -
 
 ## Step 2 - Push, Pull and Branch Management
 
@@ -28,6 +30,4 @@ In the first installment we created a branch_office branch where we added some d
 
 Since we are using collaboration features, first you will need to log into hub. It is easy and you can do it from your console by pressing 'Connect to Hub' in the top right corner. 
 
-Check out the details here:
-
-https://terminusdb.com/blog/2020/07/27/taking-terminusdb-to-the-bank-part-ii/
+Check out [part two here](https://terminusdb.com/blog/2020/07/27/taking-terminusdb-to-the-bank-part-ii/)

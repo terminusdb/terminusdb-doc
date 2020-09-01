@@ -8,7 +8,7 @@ nav_order: 1
 
 {: .no_toc }
 
-This tutorial will show you how to clone a database in the TerminusDB and Hub console. Once you have downloaded TerminusDB and set up your account, cloning a database should take less than a minute. 
+This tutorial will show you how to clone a database in TerminusDB and Hub console. Once you have downloaded TerminusDB and set up your account, cloning a database should take less than a minute. 
 
 {: .no_toc .text-delta }
 

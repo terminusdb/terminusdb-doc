@@ -171,7 +171,7 @@ We started off by testing and building on other databases, but constantly faced 
 Some solutions are just a version control layer on a traditional (usually relational) database; however, piecemeal additions without a fundamentally append only, immutable store, this is often going to cause more problems than it solves. We think that a native approach makes the most sense and will ultimately deliver the most value. 
 
 
-### <a name="head17"></a>Why do you use WOQL (web object query language)?
+### <a name="head17"></a>Why do you use WOQL - web object query language?
 
 The user interacts with TerminusDB through our JavaScript and Python SDKs. We hope to extend the number of SDKs over time.
 

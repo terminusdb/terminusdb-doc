@@ -17,8 +17,6 @@ The client library and all of its functions are documented at:
 {: .no_toc .text-delta }
 
 1. TOC
-Introduction
-Client Structure
 {:toc}
 
 ---

@@ -2,7 +2,7 @@
 layout: default
 title: Create Schema
 parent: How Tos
-nav_order: 8
+nav_order: 7
 ---
 
 # Create Schema

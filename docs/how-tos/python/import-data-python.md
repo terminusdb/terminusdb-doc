@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Import and Clean Data in Python
-parent: How Tos
+parent: Python How Tos
+grand_parent: How Tos
 nav_order: 12
 ---
 

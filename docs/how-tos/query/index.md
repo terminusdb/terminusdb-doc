@@ -2,7 +2,7 @@
 layout: default
 title: Query
 parent: How Tos
-nav_order: 9
+nav_order: 7
 has_children: true
 permalink: /how-tos/query
 ---

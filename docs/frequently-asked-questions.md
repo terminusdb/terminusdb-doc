@@ -2,11 +2,12 @@
 title: FAQs
 layout: default
 ---
+![](/docs/assets/uploads/1-1-.png)
+
 # **Frequently Asked Questions**
 
 ## (Ask a question enough times and it will appear here)
 
-![](/docs/assets/uploads/1-1-.png)
 
 **[What is TerminusDB?](#head1)**
 

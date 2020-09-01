@@ -10,30 +10,32 @@ nav_order: 6
 
 <!--StartFragment-->
 
-# Introduction -
+# Introduction
 
 While WOQL is a very powerful and sophisticated query language that allows you to concisely express very complex patterns over arbitrary data structures, what really makes it so expressive and easy to use is the radical simplicity of the core underlying concepts.
 
 To unleash the power of WOQL, you just need to understand two very simple things.
 
-## [](https://terminusdb.com/docs/user-guide/query/simple-query/#rule-1-triples-all-the-way-down) Rule 1. Triples all the way down
+## Rule 1. Triples all the way down
 
 In TerminusDB every single fragment of information is always and universally stored and accessible as triples. Triples are the universal and fundamental atom of information in TerminusDB - objects and documents and everything else are stored as collections of triples and it is always possible to break any object down in a reliable and deterministic way into a precise set of triples. Not only that, TerminusDB also adheres to the RDF standard, which means all triples have a regular structure and interpretation and strong norms. From a query writer point of view, this regularity is very helpful - you don’t have to care about the low-level structure of the data (what table it is stored in, how many columns there are, etc.), you just have to care about the patterns of meaning you are interested in.
 
 A triple is just a data structure with three slots in which we can put values. Each row in the table below shows a different view of what each of the three slots means
 
-### [](https://terminusdb.com/docs/user-guide/query/simple-query/#three-is-the-magic-number---understanding-triples) Three is the Magic Number - Understanding Triples
+### Three is the Magic Number - Understanding Triples
 
-\| Form | Triple Slot 1 | Triple Slot 2 | Triple Slot 3 | |—|—|—|—| |*Terminus DB Terminology* |Object ID | Property | Value |\
-|Triple Example 1 | joe | date_born | 1/2/34 |\
-|Example 1 Interpretation | The record with ID *joe* | has a property called *date_born* | with Value *1/2/34* | |Triple Example 2 | joe | parent | mary |\
-|Example 2 Interpretation | The record with ID *joe* | has a property named *parent* | with Value *mary* |
+| Form                        | Triple Slot 1            | Triple Slot 2                     | Triple Slot 3       |
+| **Terminus DB Terminology** | **Object ID**            | **Property**                      | **Value**           |
+| Triple Example 1            | joe                      | `date_born`                       | `1/2/34`            |
+| Example 1 Interpretation    | The record with ID `joe` | has a property called `date_born` | with Value `1/2/34` |
+| Triple Example 2            | `joe`                    | `parent`                          | `mary`              |
+| Example 2 Interpretation    | The record with ID `joe` | has a property named `parent`     | with Value `mary`   |
 
 Every triple with the same ID is interpreted as being *about the same thing*. So if we add triples with different properties to our database which have the same IDs, they will be interpreted as representing different properties of the same thing. That’s how we build up information about things - just add properties to the appropriate record ID. The magic of triples is that the Value of a triple can be another record ID (as in the joe *mother* mary example) - IDs can appear in either the first or the third slot of the triple.
 
 Writing the above examples into TerminusDB with WOQL
 
-```
+```javascript
 WOQL.add_triple('joe', 'date_born', '1/2/34')
     .add_triple('joe', 'parent', 'mary')
 ```
@@ -52,46 +54,50 @@ If we use a variable in a triple query, TerminusDB will show us every possible v
 
 Putting a variable in the first slot of the triple will find the IDs of all the Objects that have a specific property set to the specified value
 
-```
+```javascript
 WOQL.triple('v:Person ID', 'date_born', '1/2/34')
 ```
 
 Putting a variable in the second slot will find the names of all the properties that the specified object has which have that value
 
-```
-WOQL.triple('joe', 'v:Property List', 10)  // returns list of all the properties of joe that have a value equal to 10  
+```javascript
+// returns list of all the properties of joe that have a value equal to 10
+WOQL.triple('joe', 'v:Property List', 10)
 ```
 
 Putting a variable in the third slot will find the value(s) of the specified property for the specified object ID:
 
-```
-WOQL.triple('joe', 'parent', "v:Joes Parents")  
+```javascript
+WOQL.triple('joe', 'parent', "v:Joes Parents")
 ```
 
 #### [](https://terminusdb.com/docs/user-guide/query/simple-query/#two-variable-triple-pattern-examples) Two-Variable Triple Pattern Examples
 
 Putting a variable in the first two slots of the triple will find all object IDs and properties in the database that have the specified value
 
-```
- WOQL.triple('v:Object ID', 'v:Properties', 10) //list of all objects and property names that have the value 10
+```javascript
+//list of all objects and property names that have the value 10
+ WOQL.triple('v:Object ID', 'v:Properties', 10)
 ```
 
 Putting variables in the first and third slots will find the names of all the properties that the specified object has which have that value
 
-```
-WOQL.triple('v:Object ID', 'date_born', 'v:Date of Births')  // returns list of all object ids and the values of theie date_born properties   
+```javascript
+// returns list of all object ids and the values of theie date_born properties
+WOQL.triple('v:Object ID', 'date_born', 'v:Date of Births')
 ```
 
 Putting variables in the second and third slot find all the properties and their values for the object with the specified ID:
 
-```
+```javascript
 WOQL.triple('joe', 'v:Joes Properties', "v:Property Values")
 ```
 
 The third and final pattern is easiest still - putting variables in all 3 of the slots will match every single triple in the database. In fact, because this is so useful, WOQL provides a special built in shortcut for generating this pattern:
 
-```
-WOQL.star() //generates a triple query with variables in all 3 spots - returns all triples in the database
+```javascript
+//generates a triple query with variables in all 3 spots - returns all triples in the database
+WOQL.star()
 ```
 
 ### [](https://terminusdb.com/docs/user-guide/query/simple-query/#logical-operators) Logical Operators
@@ -114,7 +120,7 @@ I want to ask my database for the full records of all living people whose direct
 
 In WOQL my query would look like this:
 
-```
+```javascript
 WOQL.("v:Living Person Record ID", "status", "alive")
        .path("v:Living Person Record ID", "parent+", "v:Italian Ancestor", "v:Ancestry Line")
        .triple("v:Italian Ancestor", "date_born", "v:Date of Birth")
@@ -124,8 +130,3 @@ WOQL.("v:Living Person Record ID", "status", "alive")
 ```
 
 How would you ask your database this question?
-
-Here are some posts:
-
-1. Blog post 1
-2. Blog post 2

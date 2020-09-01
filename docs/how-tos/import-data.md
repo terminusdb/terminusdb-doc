@@ -21,7 +21,7 @@ nav_order: 7
 In order to load data from CSV you need to map each column of interest
 to a variable, and then insert triples with the data you are
 interested in. If you have a database *without a schema* then you can
-simply import the data on properties which are named appropriatedly.
+simply import the data on properties which are named appropriately.
 
 If we take the following `roster.csv` CSV for instance:
 

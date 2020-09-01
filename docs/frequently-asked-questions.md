@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions
+title: FAQs
 layout: default
 ---
 ***What is TerminusDB?***

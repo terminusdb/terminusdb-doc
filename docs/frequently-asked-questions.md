@@ -2,9 +2,9 @@
 title: FAQs
 layout: default
 ---
-## **Frequently Asked Questions**
+# **Frequently Asked Questions**
 
-### (Ask a question enough times and it will appear here)
+## (Ask a question enough times and it will appear here)
 
 
 

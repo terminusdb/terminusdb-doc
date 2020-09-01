@@ -6,7 +6,6 @@ grand_parent: Reference
 nav_order: 1
 ---
 # Installation
-
 {: .no_toc }
 
 Here we are going to explain how to 
@@ -16,13 +15,13 @@ Here we are going to explain how to
 {: .no_toc .text-delta }
 
 1. TOC
-   {:toc}
+{:toc}
 
-- - -
+---
 
-## Dependencies 
+## Dependencies
 
-The TerminusDB Javascript Client has no external dependencies. It comes bundled with the axios libarary for communicating over HTTP, but otherwise has no third party dependencies.  
+The TerminusDB Javascript Client has no external dependencies. It comes bundled with the axios libarary for communicating over HTTP, but otherwise has no third party dependencies.
 
 ## Install from bintray
 

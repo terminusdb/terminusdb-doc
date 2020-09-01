@@ -11,18 +11,22 @@ permalink: /reference/woql
 {: .no_toc .text-delta }
 
 1. TOC
-   {:toc}
+{:toc}
 
-- - -
+---
 
 ## Fluent Style
 
 The TerminusDB query libraries make extensive use of the fluent style to simplify the expression of complex compound queries. Many WOQL query words accept a sub-query as an argument and, rather than using a functional (Lisp-like) style of capturing containment, a style where sub-queries are appended to the initial function as a new function is preferred.
 
 rather than using a functional style:
+    ```javascript
     select(a, b, triple(c, d, e))
+    ```
 the fluent style would be:
+    ```javascript
     select(a, b).triple(c, d, e)
+    ```
 
 Both styles are legal WOQL and semantically equivalent, however the second 'fluent' style is preferred because it is easier to read and easier to write primarily becaue it greatly reduces the amount of vizual parameter matching that the reader and writer has to perform in order to verify that their query is correct.
 
@@ -30,22 +34,28 @@ Fluent queries are parsed left to right - functions to the right of a given func
 
 the functional style of expresing conjunction using the WOQL and() function is straightforward and is often most useful for clarity:
 
+    ```javascript
     and(triple(a, b, c), triple(d, e, f))
+    ```
 
 the fluent style allows us to use any of the following forumlations with the same semantics:
 
+    ```javascript
     and(triple(a, b, c)).triple(d, e, f)
     triple(a, b, c).and().triple(d, e, f)
     triple(a, b, c).triple(d, e, f)
+    ```
 
 The third concise form is unambiguous in situations where the WOQL functions that are chained together do not take sub-clauses - and because conjunction is so frequently used, this short-hand form, where the and() is implicit, is convenient in many situations. However it should be used with care - the conjunction is always applied to the function immediately to the left of the '.' in the chain and not to any functions further up the chain.  If used improperly, with clauses that do take sub-clauses, it will produce improperly specified queries, in particular with negation (not) and optional functions (opt).
 
 So, for example, the following query:
-
+    ```javascript
     triple(a, b, c).opt().triple(d, e, f).triple(g, h, i)
+    ```
 
 is equivalent to the following query in the functional style:
 
+    ```javascript
     and(
         triple(a, b, c),
         opt(
@@ -55,14 +65,16 @@ is equivalent to the following query in the functional style:
             )
         )
     )
+    ```
 
 It is easy to misinterpret it when you mean to express:
-
+    ```javascript
     and(
         triple(a, b, c),
         opt().triple(d, e, f),
         triple(g, h, i)
     )
+    ```
 
 As a general rule, if in doubt, use the functional style explicitly with and() as this makes it clear and explicit which functions are sub-clauses of other functions
 
@@ -70,14 +82,18 @@ As a general rule, if in doubt, use the functional style explicitly with and() a
 
 WOQL uses JSON-LD and a formally specified ontology to define the language and to transmit queries over the wire.  WOQL.js is designed primarily to be as easy as possible for programmers to write because JSON-LD is itself tedious for humans to read and write. All WOQL.js queries are translated into the equivalent JSON-LD format for transmission over the wire.  The WOQL.js json() function can be used to translate any WOQL query from its JSON-LD format to and from it's WOQL.js equivalent (a WOQLQuery() object). If passed a JSON-LD argument, it will generate the equivalent WOQLQuery() object, if passed no argument, it will return the JSON-LD equivalent of the WOQLQuery(), in general the following semantic identity should always hold:
 
+```javascript
 let wjs = new WOQLQuery().json(json_ld)
 json_ld == wjs.json()
+```
 
 ### Embedding JSON-LD directly in WOQL.js
 
 It is possible to use JSON-LD interchangably within WOQL.js - wherever a WOQL function or argument can be accepted directly in WOQL.js, the JSON-LD equivalent can alo be supplied. So, for example, the following two WOQL statements are identical:
 
+```javascript
 triple(a, b, 1) == triple(a, b, {"@type": "xsd:integer", "@value": 1})
+```
 
 There should never be a situation in which it is necessary to use JSON-LD directly - WOQL.js is sufficiently rich to express all queries that are expressible in the underlying JSON-LD, however it can be convenient to embed JSON-LD in queries in some cases.
 
@@ -87,14 +103,20 @@ With the exception of resource identifiers which are used to specify the graphs 
 
 In WOQL.js, there are 3 distinct wasy of expressing variables within queries, all are semantically equivalent, although the first is generally preferred as it is easier to type and it is easier to distinguish variables from constants at a glance due to the lack of quote marks around the variables
 
-1   let [a, b, c] = vars('a', 'b', 'c')
+1   ```javascript
+    let [a, b, c] = vars('a', 'b', 'c')
     triple(a, b, c)
+    ```
 
-2   triple('v:a', 'v:b', 'v:c')
+2   ```javascript
+    triple('v:a', 'v:b', 'v:c')
+    ```
 
-3   triple({'@type': 'woql:Variable', 'woql:variable_name': {"@type": 'xsd:string', '@value': 'a'}} ....)
+3   ```javascript
+    triple({'@type': 'woql:Variable', 'woql:variable_name': {"@type": 'xsd:string', '@value': 'a'}} ....)
+    ```
 
-WOQL uses the formal logical approach to variables known as unification - this allows most WOQL functions to serve as both pattern matchers and pattern generators, depending on whether a variable or constant is provided as an argument. If a variable is provided, WOQL will generate all possible valid solutions which fill the variable value. If a constant is provided, WOQL will match only those solutions with exactly that value. With the exception of resource identifiers, WOQL functions accept either variables or constants in virtually all of their arguments.    
+WOQL uses the formal logical approach to variables known as unification - this allows most WOQL functions to serve as both pattern matchers and pattern generators, depending on whether a variable or constant is provided as an argument. If a variable is provided, WOQL will generate all possible valid solutions which fill the variable value. If a constant is provided, WOQL will match only those solutions with exactly that value. With the exception of resource identifiers, WOQL functions accept either variables or constants in virtually all of their arguments.
 
 ## Prefixes in WOQL.js
 

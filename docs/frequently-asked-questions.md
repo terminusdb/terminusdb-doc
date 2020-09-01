@@ -6,11 +6,14 @@ layout: default
 
 (Ask a question enough times and it will appear here)
 
-### <a name="head1"></a>What is TerminusDB?
-
-
-
 [***What is TerminusDB?***](#head1)
+
+
+[***Can I use TerminusDB as a document store?***](#head25)
+
+
+
+### <a name="head1"></a>What is TerminusDB?
 
 TerminusDB is an open-source general purpose graph database that stores data like Git. It is built for data people and allows fierce data integration, versioning out of the box and unparalleled query. No data platform is more productive.
 
@@ -146,6 +149,6 @@ If you want to use TerminusHub, we need an email address as a signature to put i
 
 Here is a blog discussing just that point!
 
-***Can I use TerminusDB as a document store?***
+### <a name="head25"></a>Can I use TerminusDB as a document store?
 
 Yes, but to do so you need to first define the schema which defines a document. TerminusDB is a graph so it needs to know how you mean to store your documents as a graph. The advantage is however that you'll be able to search any property or value of your documents

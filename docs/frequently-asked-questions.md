@@ -6,65 +6,61 @@ layout: default
 
 ## (Ask a question enough times and it will appear here)
 
+![](/docs/assets/uploads/1-1-.png)
 
+***[What is TerminusDB?](#head1)***
 
-[***What is TerminusDB?***](#head1)
+***[What is TerminusHub?](#head2)***
 
-[***What is TerminusHub?***](#head2)
+***[Wait… what? You can just pass complex and queryable databases around the web for free?](#head3)***
 
-[***Wait… what? You can just pass complex and queryable databases around the web for free?***](#head3)
+***[Why is TerminusDB Useful?](#head4)***
 
-[***Why is TerminusDB Useful?***](#head4)
+***[When should I use TerminusDB?](#head5)***
 
-[***When should I use TerminusDB?***](#head5)
+***[What is the underlying TerminusDB architecture?](#head6)***
 
-[***What is the underlying TerminusDB architecture?***](#head6)
+***[TerminusDB is open source and TerminusHub is free to use, what do you sell?](#head7)***
 
-[***TerminusDB is open source and TerminusHub is free to use, what do you sell?***](#head7)
+***[Can I get a commercial license for TerminusDB?](#head8)***
 
-[***Can I get a commercial license for TerminusDB?***](#head8)
+***[How is data stored in TerminusDB?](#head9)***
 
-[***How is data stored in TerminusDB?***](#head9)
+***[As a dev or a data scientist, how do I work with TerminusDB?](#head10)***
 
-[***As a dev or a data scientist, how do I work with TerminusDB?***](#head10)
+***[Is TerminusDB ACID?](#head11)***
 
-[***Is TerminusDB ACID?***](#head11)
+***[How does TerminusDB scale?](#head12)***
 
-[***How does TerminusDB scale?***](#head12)
+***[What’s up with the CowDuck?](#head13)***
 
-[***What’s up with the CowDuck?***](#head13)
+***[How is TerminusDB different from relational databases like Oracle?](#head14)***
 
-[***How is TerminusDB different from relational databases like Oracle?***](#head14)
+***[What is the history of the project?](#head15)***
 
-[***What is the history of the project?***](#head15)
+***[Why did you write your own database?](#head16)***
 
-[***Why did you write your own database?***](#head16)
+***[Why do you use WOQL - web object query language?](head#17)***
 
-[***Why do you use WOQL - web object query language?***](head#17)
+***[And why not SPARQL or Cypher?](#head18)***
 
-[***And why not SPARQL or Cypher?***](#head18)
+***[Why JSON-LD?](#head19)***
 
-[***Why JSON-LD?***](#head19)
+***[Why prolog and Rust?](#head20)***
 
-[***Why prolog and Rust?***](#head20)
+***[What's the performance like? Do you have any benchmarks?](#head21)***
 
-[***What's the performance like? Do you have any benchmarks?***](#head21)
+***[Can TerminusDB be used for big datasets?](#head22)***
 
-[***Can TerminusDB be used for big datasets?***](#head22)
+***[Do I have to register anywhere to use TerminusDB?](#head23)***
 
-[***Do I have to register anywhere to use TerminusDB?***](#head23)
+***[Why not just use another well-known graph DB or data versioning tool?](#head24)***
 
-[***Why not just use another well-known graph DB or data versioning tool?***](#head24)
-
-[***Can I use TerminusDB as a document store?***](#head25)
-
-
-
+***[Can I use TerminusDB as a document store?](#head25)***
 
 ### <a name="head1"></a>What is TerminusDB?
 
 TerminusDB is an open-source general purpose graph database that stores data like Git. It is built for data people and allows fierce data integration, versioning out of the box and unparalleled query. No data platform is more productive.
-
 
 ### <a name="head2"></a>What is TerminusHub?
 
@@ -76,11 +72,9 @@ Data Catalogs can be easily built on top of curated datasets giving verified inf
 
 Collaboration is easy with clone/fork allowing data to be moved to your cloud or servers. Merge and branch operations let you mix and match data sources significantly simplifying integration tasks
 
-
 ### <a name="head3"></a>Wait… what? You can just pass complex and queryable databases around the web for free?
 
 Yes, you can. Distributed revision control for structured data is here.
-
 
 ### <a name="head4"></a>Why is TerminusDB Useful?
 
@@ -92,7 +86,6 @@ TerminusDB is built around three core design principles that collectively enable
 
 TerminusDB is the only database which supplies all of these operations
 
-
 ### <a name="head5"></a>When should I use TerminusDB?
 
 TerminusDB and TerminusHub can be used across a range of OLTP and analytical apps.
@@ -101,13 +94,11 @@ TerminusDB Server provides TerminusDB with a RESTful API for interacting with kn
 
 We think TerminusDB is perfect for OLTP use cases with transactions in the tens of thousands per day, such as headless-CMS, data curation, inventory management etc. 
 
-
 ### <a name="head6"></a>What is the underlying TerminusDB architecture?
 
 We use an advanced git-like model, storing append only changes to graphs represented in succinct data structures using terminusdb-store.
 
 You can read a description of the architecture in our [Succinct Data Structures and Delta Encoding for Modern Databases](https://github.com/terminusdb/terminusdb-server/blob/dev/docs/whitepaper/terminusdb.pdf) whitepaper.
-
 
 ### <a name="head7"></a>TerminusDB is open source and TerminusHub is free to use, what do you sell?
 
@@ -117,16 +108,13 @@ More information on pricing and subscriptions here.
 
 If you are working with an open-source or public interest project, we want you to be free forever, so send us a message.
 
-
 ### <a name="head8"></a>Can I get a commercial license for TerminusDB?
 
 We have support for TerminusDB and enterprise licenses for TerminusHub. Get in touch.
 
-
 ### <a name="head9"></a>How is data stored in TerminusDB?
 
 TerminusDB Store is an RDF triple store implemented in Rust.
-
 
 ### <a name="head10"></a>As a dev or a data scientist, how do I work with TerminusDB?
 
@@ -134,11 +122,9 @@ To accelerate your productivity, TerminusDB has developed SDKs for Python and Ja
 
 You can also interact with TerminusDB and Hub graphically using our console, the GUI for TerminusDB. You can explore and manipulate your data, visually create queries, create and manage branches and much more.
 
-
 ### <a name="head11"></a>Is TerminusDB ACID?
 
 Yes.
-
 
 ### <a name="head12"></a>How does TerminusDB scale?
 
@@ -146,11 +132,9 @@ TerminusDB primarily scales vertically. It uses succinct data structures advanta
 
 Graph partitioning is used to scale beyond a single machine.
 
-
 ### <a name="head13"></a>What’s up with the CowDuck?
 
 When our core storage engineer first presented the shiny new storage engine, he used an example of a cow that liked a duck, but the duck didn’t like the cow. From that, and a subsequent internal debate, CowDuck was born! Still some evidence of the original cow and duck on the TerminusDB Store GitHub page.
-
 
 ### <a name="head14"></a>How is TerminusDB different from relational databases like Oracle?
 
@@ -158,18 +142,15 @@ Relational databases like Oracle, MySQL, SQL Server, Postgres and others are bui
 
 RDBMSs are simply too primitive and not built with the developer or the data engineer/scientist in mind.
 
-
 ### <a name="head15"></a>What is the history of the project?
 
 We are originally a University spin-out. There is a great blog on [the technical history](https://terminusdb.com/blog/2020/04/14/terminusdb-a-technical-history/) 
-
 
 ### <a name="head16"></a>Why did you write your own database?
 
 We started off by testing and building on other databases, but constantly faced performance issues. By building all the way down to the ground, we could deliver a *native* revision control database.
 
 Some solutions are just a version control layer on a traditional (usually relational) database; however, piecemeal additions without a fundamentally append only, immutable store, this is often going to cause more problems than it solves. We think that a native approach makes the most sense and will ultimately deliver the most value. 
-
 
 ### <a name="head17"></a>Why do you use WOQL - web object query language?
 
@@ -179,7 +160,6 @@ WOQL is a powerful, highly expressive and composable graph query language. In it
 
 WOQL is easy to compose from Javascript or python. Javascript, because we live in a web age, and python, because it is the choice for many data scientists. JSON-LD provides a nice intermediate language in which to write queries in either of these languages. Because of the choice of JSON-LD, we can naturally store our queries in the graph (and even query our queries).
 
-
 ### <a name="head18"></a>And why not SPARQL or Cypher?
 
 We debated using SPARQL initially; however, we found SPARQL to have a number of shortcomings that we wanted to see addressed. We wanted tighter integration with OWL and schema-awareness, so if we were going to need to fundamentally alter the semantics, it didn't seem that important to start with SPARQL. We wanted better composability and SPARQL feels quite ad-hoc.
@@ -188,26 +168,21 @@ We also assessed Cypher and found that it lacked some of the features we needed.
 
 We think that the Python and Javascript SDKs for TerminusDB are the main way that users will interact with the database.
 
-
 ### <a name="head19"></a>Why JSON-LD?
 
 Using JSON-LD as the definition, storage and interchange format for the query language has advantages. Since we can marshal JSON-LD into and out of the graph, it is easy to store queries in the graph. It is also very simple to write query libraries for a range of languages by just building up a JSON-LD object and sending it off.
-
 
 ### <a name="head20"></a>Why prolog and Rust?
 
 Prolog is the language of AI. It is very powerful and geared towards logic and reason. It is perfect for querying, constraint checking, query compilation, query analysis and user interaction. However, it is not good at nitty-gritty bit manipulation – that is where Rust comes in! It is low-level like c/c++, but memory-safe.
 
-
 ### <a name="head21"></a>What's the performance like? Do you have any benchmarks?
 
 We started with a graph simulation in Postgresql and found it to be too slow for our purposes. We settled on or current data-structures after satisfying ourselves that it was much faster for deep multi-hop queries. We are developing benchmarks and doing lots of work on performance. Watch this space – or get involved and put the DB to the test.
 
-
 ### <a name="head22"></a>Can TerminusDB be used for big datasets?
 
 Yes. TerminusDB is optimized to work with big datasets on the scale of tens of millions to billions of graph edges.
-
 
 ### <a name="head23"></a>Do I have to register anywhere to use TerminusDB?
 
@@ -217,11 +192,9 @@ If you want to use TerminusHub, we need an email address as a signature to put i
 
 Sign up here! 
 
-
 ### <a name="head24"></a>Why not just use another well-known graph DB or data versioning tool?
 
 Here is a blog discussing just that point!
-
 
 ### <a name="head25"></a>Can I use TerminusDB as a document store?
 

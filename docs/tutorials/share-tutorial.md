@@ -26,7 +26,7 @@ Once you have logged in you should click `Create`
 
 ## Step 2 - Create a Database
 
-You will arrive on the create database screen. As this is a tutorial explaining how to share databases with TerminusDB and Hub, you should create the database on TerminusHub. You will also need to name the database and give it an ID. You can also indicate if the database will be public or private and if you need to include a schema. The dafault is a public database with a schema. You can elect to include a picture or an icon to associate with the database.
+You will arrive on the create database screen. As this is a tutorial explaining how to share databases with TerminusDB and Hub, you should create the database on TerminusHub. You will also need to name the database and give it an ID. You can also indicate if the database will be public or private and if you need to include a schema. The default is a public database with a schema. You can elect to include a picture or an icon to associate with the database.
 
 ![](/docs/assets/uploads/create-on-hub.jpg)
 
@@ -46,7 +46,7 @@ Once you have run the query, you can check the schema to make sure the `doctype`
 
 ## Step 3 - Sync and Share
 
-Now that we have something in the database, click on the `Synchronize` tab. You can now push you changes to TerminusHub so that collaborators and others can access your changes. 
+Now that we have something in the database, click on the `Synchronize` tab. You can now push your changes to TerminusHub so that collaborators and others can access your changes. 
 
 ![](/docs/assets/uploads/sync.jpg)
 
@@ -54,9 +54,9 @@ Now click on the TerminusDB button in the top right to return to the home page. 
 
 ![](/docs/assets/uploads/home-with-test.jpg)
 
-On the collaboration page, use the `Collaborative Actions` drop down to select `Add Collaborators`. On this page you can assign collaborative persmissions (read, write or manage) and add the user ID or email address of your collaborators (these can be sepearated by a comma if more than one). 
+On the collaboration page, use the `Collaborative Actions` dropdown to select `Add Collaborators`. On this page, you can assign collaborative permissions (read, write or manage) and add the user ID or email address of your collaborators (these can be separated by a comma if more than one). 
 
-In this case I am giving manage permissions to my collaborator 'lf' and sending a message to explain my action. 
+In this case, I am giving manage permissions to my collaborator 'lf' and sending a message to explain my action. 
 
 ![](/docs/assets/uploads/share-1.jpg)
 

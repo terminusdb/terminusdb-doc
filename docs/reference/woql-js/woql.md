@@ -28,7 +28,7 @@ the fluent style would be:
     select(a, b).triple(c, d, e)
     ```
 
-Both styles are legal WOQL and semantically equivalent, however the second 'fluent' style is preferred because it is easier to read and easier to write primarily becaue it greatly reduces the amount of vizual parameter matching that the reader and writer has to perform in order to verify that their query is correct.
+Both styles are legal WOQL and semantically equivalent. However, the second 'fluent' style is preferred because it is easier to read and easier to write primarily becaue it greatly reduces the amount of vizual parameter matching that the reader and writer have to perform in order to verify that their query is correct.
 
 Fluent queries are parsed left to right - functions to the right of a given function are considered as sub-queries of the first, with one important exception - conjunction.
 
@@ -76,7 +76,7 @@ It is easy to misinterpret it when you mean to express:
     )
     ```
 
-As a general rule, if in doubt, use the functional style explicitly with and() as this makes it clear and explicit which functions are sub-clauses of other functions
+As a general rule, if in doubt, use the functional style explicitly with and() as this makes it clear and explicit which functions are sub-clauses of other functions.
 
 ## WOQL.js and JSON-LD
 
@@ -89,7 +89,7 @@ json_ld == wjs.json()
 
 ### Embedding JSON-LD directly in WOQL.js
 
-It is possible to use JSON-LD interchangably within WOQL.js - wherever a WOQL function or argument can be accepted directly in WOQL.js, the JSON-LD equivalent can alo be supplied. So, for example, the following two WOQL statements are identical:
+It is possible to use JSON-LD interchangably within WOQL.js - wherever a WOQL function or argument can be accepted directly in WOQL.js, the JSON-LD equivalent can also be supplied. So, for example, the following two WOQL statements are identical:
 
 ```javascript
 triple(a, b, 1) == triple(a, b, {"@type": "xsd:integer", "@value": 1})
@@ -99,9 +99,9 @@ There should never be a situation in which it is necessary to use JSON-LD direct
 
 ## WOQL Variables
 
-With the exception of resource identifiers which are used to specify the graphs against which operations such as queries are carried out (functions: using, with, into, from), WOQL allows variables to be subtituted for any of the arguments to all WOQL functions. WOQL variables follow the logic of unification - borrowed from the Prolog engine which implements WOQL within TerminusDB.  That is to say that each valid value for a variable, as constrained by the totality of the query, will produce a new row in the results and when there are multiple variables, the rows that are returned will be the cartesian product of all the possible combinations of variables values in the query.
+With the exception of resource identifiers which are used to specify the graphs against which operations such as queries are carried out (functions: using, with, into, from), WOQL allows variables to be substituted for any of the arguments to all WOQL functions. WOQL variables follow the logic of unification - borrowed from the Prolog engine which implements WOQL within TerminusDB.  That is to say that each valid value for a variable, as constrained by the totality of the query, will produce a new row in the results, and when there are multiple variables, the rows that are returned will be the cartesian product of all the possible combinations of variables values in the query.
 
-In WOQL.js, there are 3 distinct wasy of expressing variables within queries, all are semantically equivalent, although the first is generally preferred as it is easier to type and it is easier to distinguish variables from constants at a glance due to the lack of quote marks around the variables
+In WOQL.js, there are 3 distinct ways of expressing variables within queries. All are semantically equivalent, although the first is generally preferred as it is easier to type and it is easier to distinguish variables from constants at a glance due to the lack of quote marks around the variables
 
 1   ```javascript
     let [a, b, c] = vars('a', 'b', 'c')
@@ -134,4 +134,4 @@ The default prefixes are applied in the following way
 ## WOQL Functions
 
 
-The JSON-LD form of WOQL supports a well-defined set of functions (woql:Triple, woql:Regexp...) - in WOQL.js these functions are known as primitives. WOQL.js supports all of these primite functions and adds several extensions on top - functions that compose multiple primitives, functions that compose partial primitives and can be chained together and simple helper functions to make it easier to format the arguments correctly. The table below shows the full range of functions supported by WOQL.js and groups them together into categories to make it easier to find the required function for specific problems.
+The JSON-LD form of WOQL supports a well-defined set of functions (woql:Triple, woql:Regexp...) - in WOQL.js these functions are known as primitives. WOQL.js supports all of these primite functions and adds several extensions on top - functions that compose multiple primitives, functions that compose partial primitives and can be chained together, and simple helper functions to make it easier to format the arguments correctly. The table below shows the full range of functions supported by WOQL.js and groups them together into categories to make it easier to find the required function for specific problems.

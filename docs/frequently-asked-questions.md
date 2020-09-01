@@ -6,11 +6,11 @@ layout: default
 
 (Ask a question enough times and it will appear here)
 
+### <a name="head1"></a>What is TerminusDB?
 
 
 
-
-***What is TerminusDB?***
+[***What is TerminusDB?***](#head1)
 
 TerminusDB is an open-source general purpose graph database that stores data like Git. It is built for data people and allows fierce data integration, versioning out of the box and unparalleled query. No data platform is more productive.
 

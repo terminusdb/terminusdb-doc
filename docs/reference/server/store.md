@@ -54,7 +54,7 @@ A freshly initialized terminusdb-server will already contain some label files. M
 - `http%3a%2f%2fterminusdb.com%2fschema%2frepository.label`: repository metadata schema.
 - `terminusdb%3a%2f%2f%2fsystem%2fschema.label`: system graph schema.
 
-Additionally, there's one so-called inference graph here: `terminusdb%3a%2f%2f%2fsystem%2finference.label`. This label points at a graph describing inference rules for the system graph. Inference rules are currently an undocumented feature of terminusdb, which is nevertheless used in some internal graphs.
+Additionally, there's one so-called inference graph here: `terminusdb%3a%2f%2f%2fsystem%2finference.label`. This label points at a graph describing inference rules for the system graph. Inference rules are currently an undocumented feature of TerminusDB, which is nevertheless used in some internal graphs.
 
 Finally, there's a label for the system graph: `terminusdb%3a%2f%2f%2fsystem%2fdata.label`. The system graph contains information about all users, organizations and databases in the system.
 

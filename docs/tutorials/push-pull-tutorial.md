@@ -70,7 +70,7 @@ We now have a database with a schema and some data. Let's share it with another 
 
 ![](/docs/assets/uploads/post-push-1.jpg)
 
-Once you have pushed to Hub, you should click on the TerminusDB logo to go back to the home screen and click on 'Collaborate'. Use the drop-down menu on the right to select 'Add Collaborators'. You can then select the database you want to share - in this case, 'team' - and give the correct permission. You can give read, write or manage rights to a collaborator. You should then include the ID or email of your collaborator and include and introduction note. (Note, if there is more than one 
+Once you have pushed to Hub, you should click on the TerminusDB logo to go back to the home screen and click on 'Collaborate'. Use the drop-down menu on the right to select 'Add Collaborators'. You can then select the database you want to share - in this case, 'team' - and give the correct permission. You can give read, write or manage rights to a collaborator. You should then include the ID or email of your collaborator and include an introduction note. (Note, if there is more than one, you can separate the ids or emails with a comma). 
 
 ![](/docs/assets/uploads/collaborate.jpg)
 

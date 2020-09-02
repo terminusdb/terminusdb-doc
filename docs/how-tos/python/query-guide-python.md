@@ -94,9 +94,9 @@ states that this is the result of a WOQL query. The second is that it
 was successful (rather than an error).
 
 The third field is where it starts to get interesting. Here we have
-the variables which were bound in the query. These variables are *in
-order*, in a way that can be fixed with the `WQ().select` call or
-simply by the in order use in the query.
+the variables which were bound in the query. These variables are
+*in-order*, in a way that can be fixed with the `WQ().select` call or
+simply by the in-order use in the query.
 
 The next field is the most important. The `bindings` hold the variable
 values for each solution to the query. If you are familiar with SQL
@@ -133,8 +133,7 @@ twice.
 Visually you might think of this as:
 
 ```
-"V:Original_Band" - "scm:associatedBand"->
-          "v:Associated_Band" -scm:associatedBand"-> "v:Two_Hop_Band"
+"V:Original_Band" - "scm:associatedBand"-> "v:Associated_Band" -scm:associatedBand"-> "v:Two_Hop_Band"
 ```
 
 We say that the two `"v:Associated_Band"` variables *unify*. That is,

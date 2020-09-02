@@ -33,7 +33,7 @@ Willie,2017-01-02,No
 
 We can load this into a graph as follows:
 
-```
+```javascript
 and(get(as("Name","v:Name")
         .as("Date", "v:Date")
         .as("Paid", "v:Paid")).file('roster.csv'),
@@ -52,13 +52,3 @@ representation of the record from the roster. We can do this with
 
 The final `add_triple` simply adds the information for this property
 to the database.
-
-## Turtle / RDF
-
-For RDF ingestion TerminusDB can read directly from a TTL file with
-get, as above, if you supply the `type` flag.
-
-
-content of section 2
-
-etc

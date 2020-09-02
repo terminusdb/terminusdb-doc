@@ -199,26 +199,26 @@ query similar to the following:
 
 
 ```python
-WQ().add_triple("doc:gavin_mendel_gleason", "scm:name", "Gavin Mendel-Gleason").execute(client)
+WQ().add_triple("doc:joe_murphy", "scm:name", "Joe Murphy").execute(client)
 ```
 
 This will create a resource on the default prefix base with the
 default schema predicate named `name`, and having the concrete string
-value "Gavin Mendel-Gleason".
+value "Joe Murphy".
 
 But if you don't want it to be there anymore, you can remove it.
 
 ```python
-WQ().delete_triple("doc:gavin_mendel_gleason", "scm:name", "Gavin Mendel-Gleason").execute(client)
+WQ().delete_triple("doc:joe_murphy", "scm:name", "Joe Murphy").execute(client)
 ```
 
-And if you added `"doc:gavin_mendel_gleason"` and couldn't remember
+And if you added `"doc:joe_murphy"` and couldn't remember
 what name he had, you could delete it as follows:
 
 ```python
 WQ().woql_and(
-   WQ().triple("doc:gavin_mendel_gleason", "scm:name", "v:X"),
-   WQ().delete_triple("doc:gavin_mendel_gleason", "scm:name", "v:X")
+   WQ().triple("doc:joe_murphy", "scm:name", "v:X"),
+   WQ().delete_triple("doc:joe_murphy", "scm:name", "v:X")
 ).execute(client)
 ```
 

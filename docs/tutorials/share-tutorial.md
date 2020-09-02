@@ -20,7 +20,7 @@ Go to the TerminusDB home page and click `Connect to Hub` to login to your Termi
 
 ![](/docs/assets/uploads/logged-out-1-2-.jpg)
 
-Once you have logged in you should click `Create` 
+Once you have logged in, click `Create` 
 
 ![](/docs/assets/uploads/logged-in.jpg)
 

@@ -8,7 +8,7 @@ nav_order: 3
 
 {: .no_toc }
 
-Collaboration is at the heart of TerminusDB and TerminusHub. We want to make it as easy as possible fore you to add and manage collaborators. 
+Collaboration is at the heart of TerminusDB and TerminusHub. We want to make it as easy as possible for you to add and manage collaborators. 
 
 - - -
 

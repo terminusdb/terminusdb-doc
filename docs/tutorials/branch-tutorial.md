@@ -26,7 +26,7 @@ Create a new database with the ID `banker` and the name “bank”, in the conso
 
 Once created you should land in the DB Home page.
 
-The first thing we need to do is define a data model. To do this, click on the Query button at the top. And enter the following query, along with a comment “New schema”.
+The first thing we need to do is define a data model. To do this, click on the Query button at the top and enter the following query, along with a comment “New schema”.
 
 ```
 WOQL.doctype("BankAccount").label("Bank Account")
@@ -62,7 +62,7 @@ This adds some data to our database. You can click on the Documents page and you
 
 Now we should try to make some edits to the bank account to see what happens.
 
-First, let’s try and subtract 130 dollars from mikes account.
+First, let’s try and subtract 130 dollars from Mike's account.
 
 ```
 vars = function(sl) {return sl.map( s => "v:" + s)}
@@ -106,7 +106,7 @@ Now we have a balance of 13 as expected and everything works fine.
 
 ### Branching
 
-Now that we have some data and some updates, we can go ahead and try creating a branch. A branch starts a new database from the a particular commit, allowing us to change the database without affecting the original database.
+Now that we have some data and some updates, we can go ahead and try creating a branch. A branch starts a new database from a particular commit, allowing us to change the database without affecting the original database.
 
 This can be used to make isolated changes and test them, before we merge them back into the original.
 
@@ -148,7 +148,7 @@ Jane was a bit more frugal and has saved 887 dollars.
 
 ![](/docs/assets/uploads/main-branch.jpg)
 
-But we’re still missing the information about jim, as its stuck in the branch office. How do we get the information into our main branch?
+But we’re still missing the information about jim, as it's stuck in the branch office. How do we get the information into our main branch?
 
 This is why we have merge. Click the "Branch" button and click on Merge. 
 

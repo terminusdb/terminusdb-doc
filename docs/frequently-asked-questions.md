@@ -64,6 +64,8 @@ layout: default
 
 TerminusDB is an open-source general purpose graph database that stores data like Git. It is built for data people and allows fierce data integration, versioning out of the box and unparalleled query. No data platform is more productive.
 
+[Download center](https://terminusdb.com/hub/download)
+
 - - -
 
 ### <a name="head2"></a>What is TerminusHub?
@@ -75,6 +77,8 @@ You can share and collaborate on curated data sets in a distributed manner using
 Data Catalogs can be easily built on top of curated datasets giving verified information about contents and allowing discovery both inside the organization, and outside using TerminusHub
 
 Collaboration is easy with clone/fork allowing data to be moved to your cloud or servers. Merge and branch operations let you mix and match data sources significantly simplifying integration tasks
+
+[More information and sign up](https://terminusdb.com/hub/)
 
 - - -
 

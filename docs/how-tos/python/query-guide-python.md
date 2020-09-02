@@ -225,18 +225,36 @@ WQ().woql_and(
 You can in fact search for arbitrary bindings, and delete or insert
 based on them.
 
+## Casting
+
+Sometimes a thing is not the type you want it to be. In certain cases
+we can cast data between the various types so we can get the object we
+want.
+
+For instance, if we have a string and want a date, we can put it in
+ISO format and make a cast:
+
+```python
+WQ().typecast("2020-12-24T00:00:00", "xsd:dateTime", "v:Date").execute(client)
+```
+
+If the typecast is impossible, the query will fail with error (of type `vio:ViolationWithDatatypeObject`). You can see with the result with the following:
+
+```python
+WQ().typecast("20-12-24T00:00:00", "xsd:dateTime", "v:Date").execute(client)
+```
+
 ## String Matching
 
-The python SDK for WOQL allows basical string manipulation as
+The python SDK for WOQL allows basical string matching as
 well. You can search for an object which has a property with a given
 string as follows:
 
 ```python
-limit(1)
-  .and(
-    triple("v:X", "scm:name", "v:Y"),
-    re(".*cholera.*", "v:Y", ["v:All"])
-  )
+WQ().limit(1).woql_and(
+    WQ().triple("v:X", "scm:name", "v:Y"),
+    WQ().re(".*cholera.*", "v:Y", ["v:All"])
+  ).execute(client)
 ```
 
 This will let you search for an arbitrary regexp in the last value of
@@ -246,6 +264,28 @@ then investigate further.
 
 You can use arbitrary regular expressions, and the matching groups
 will be bound to the variables in the final list of `re`.
+
+## String manipulation
+
+But we might not have the data in a format that we can cast
+yet. Supposing we are given the date in a different order and
+extracted from slightly messy text. We'll set this situation by
+binding `"v:Date_String"` to `" 12-24-2004 "`.
+
+```python
+WQ().woql_and(
+        WQ().eq("v:Date_String", " 12-24-2004 "),
+        WQ().trim("v:Date_String", "v:Date_String_Trimmed"),
+        WQ().re("(\d\d)-(\d\d)-(\d\d\d\d)", "v:Date_String_Trimmed",
+                ["v:All", "v:Month", "v:Day", "v:Year"]),
+        WQ().concat(["v:Year", "-", "v:Month", "-", "v:Day"], "v:YMD"),
+        WQ().concat(['v:YMD', 'T00:00:00'], "v:ISO"),
+        WQ().typecast("v:ISO", "xsd:dateTime", "v:Date")
+).execute(client)
+```
+
+Now those of us who like to have their days and months in a sensible
+order (like the computer does) can read the date!
 
 ## Mathematics
 
@@ -257,7 +297,21 @@ WQ().eval(WQ().plus(1,2), "v:X").execute(client)
 
 This binds "v:X" to the result of the addition of `1` and `2`. You can
 use variables in place of `1` and `2` and re-use `"v:X"` in later
-queries. The complete definiation of mathematical operators is in the
-python-client reference documentation.
+queries. For instance we could write:
 
+```python
+WQ().woql_and(
+    WQ().eval(WQ().times(3,2), "v:Product"),
+    WQ().eval(WQ().div("v:Product",2), "v:Result")
+).execute(client),
+```
 
+Here of course we get back the number `3` as we'd expect. The complete
+definiation of mathematical operators is in the python-client
+reference documentation.
+
+## Conclusion
+
+With this bag of tricks, you should be able to wrangle more data into
+a form you want for data-curation tasks prior to running analysis,
+machine learning or simply browsing over your information.

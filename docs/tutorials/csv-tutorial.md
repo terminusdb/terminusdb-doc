@@ -177,6 +177,6 @@ After clicking `run query`, you will now see the message in the green box saying
 
 ![update success](/docs/assets/images/tutorials/update-success.png)
 
-Now you can check the data is added by clicking on `Documents` at the top.
+Now you can check that the data has been added by clicking on `Documents` at the top.
 
 ![documents](/docs/assets/images/tutorials/documents.png)

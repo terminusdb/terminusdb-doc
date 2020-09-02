@@ -13,6 +13,8 @@ TerminusDB is an open-source general purpose graph database that stores data lik
 
 TerminusDB allows for the whole suite of revision control features: branch, merge, squash, rollback, blame, and time-travel. 
 
+Download in [our download center](https://terminusdb.com/hub/download)
+
 - - -
 
 ## What is TerminusHub and how does it work?
@@ -24,6 +26,8 @@ You can share and collaborate on curated data sets in a distributed manner using
 Collaboration is easy with clone/fork allowing data to be moved to your cloud or servers
 
 Merge and branch operations let you mix and match data sources significantly simplifying integration tasks.
+
+[More information and set up an account](https://terminusdb.com/hub/)
 
 - - -
 

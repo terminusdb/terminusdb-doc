@@ -22,7 +22,7 @@ Go to the TerminusDB home page and login to TerminusHub by clicking `Connect to 
 
 ![](/docs/assets/uploads/logged-out-1-2-.jpg)
 
-You are now be in the logged in environment and should click `clone:`
+You will now be in the logged in environment and should click `clone:`
 
 ![](/docs/assets/uploads/logged-in-1-2-.jpg)
 
@@ -38,7 +38,7 @@ You can also click on the title of the database `TerminusDB Bike Tutorial` to ge
 
 ## Step 2 - Clone and Review
 
-Now you have clicked the `clone` button, you will be taken to the home screen of the bike sharing database:
+Now that you have clicked the `clone` button, you will be taken to the home screen of the bike sharing database:
 
 ![](/docs/assets/uploads/post-clone-bike-1.jpg)
 

@@ -20,8 +20,8 @@ which is available in the console.
 First you'll need a database which you can query. You can get started
 by opening TerminusDB and going to the clone page.
 
-From there you should select WordNet, and clone it to your local
-machine.
+From there you should select "TerminusDB Bikes Tutorial", and clone it
+to your local machine.
 
 Once you've cloned it, you should be opened up into the WordNet
 database automatically. Click on the Query button.
@@ -44,7 +44,17 @@ limit(1).triple(subject,predicate,object)
 
 This query just gets back any random edge without any constraints. But
 graphs are about connections, so we should make a query that goes more
-than one hop in order to find something interesting.
+than one hop in order to find something interesting. In this case we
+just get back the triple:
+
+
+| `X`                  | `P`        | `Y`           |
+| ---                  | ---        | ---           |
+| `doc:Bicycle_W00017` | `rdf:type` | `scm:Bicycle` |
+
+
+If we want to use the graph aspects, we have to create chains:
+
 
 ```javascript
 let [subject, predicate1, intermediate, predicate2, object] =
@@ -54,7 +64,7 @@ limit(1).triple(subject,predicate1,intermediate)
 ```
 
 This is a two-hop query, so now we are actually exploring the graph a
-bit. ... Something here ...
+bit.
 
 First, let's do a little exploration to see what is in the
 database. As it turns out, predicates are not as common as source or
@@ -70,9 +80,12 @@ distinct(predicate)
 ```
 
 This query selects only the `predicate`s (it masks out the other
-variables) and ensures that we only get distinct `predicate`s.
+variables) and ensures that we only get distinct `predicate`s. You'll
+notice that there are two in particular: `scm:start_station` and
+`scm:end_station`. We'll come back to those in a moment.
 
 ## Viewing the schema
+{: .fs-6 .fw-300 }
 
 If you click on the schema tab, you'll be able to peruse the object
 types and predicates which are available to you in any database which
@@ -87,9 +100,10 @@ information, which is also editable.
 [image here]
 
 But for our purposes we just need to know what properties are
-available.
-
-##
+available. Here we can see that `scm:start_station` and
+`scm:end_station` have a `scm:Journey` as the domain, and
+`scm:Station` as a range. This means that our journey object specifies
+where we started and where we end up.
 
 ## Combining Queries
 {: .fs-6 .fw-300 }
@@ -100,27 +114,176 @@ use the same variable at each node that we want to be the same. We
 then combine these triples with `and`.  We call this repeated variable
 use for matching *unification*.
 
-First let us look at the `ontolex:writtenRep` predicate which gives us
-the written representation of a word.
+Let's look at our `scm:Journey`'s using `and`:
 
 ```javascript
-let [subject, word] = vars('subject','word')
+let [journey,start_station,end_station] = vars('journey','start_station','end_station')
 limit(10)
-      .triple(subject,'ontolex:writtenRep',word)
+      .and(
+        triple(journey,'scm:start_station',start_station)
+        triple(journey,'scm:end_station',end_station)
+      )
 ```
 
+This query gives us back the end points of our journey. However, it
+isn't terribly informative as we are only given identifiers (IRIs)
+which are opaque. We can however, expand the query to ask for the
+names of these stations:
 
 ```javascript
-let [subject, predicate, object]
-    = vars('subject','word', 'definition', 'x', 'lemma',
-           'base_lemma',''
+let [journey, journey_name ] = vars('journey', 'journey_name')
+let [start_station, start_name] = vars('start_station', 'start_name')
+let [end_station, end_name] = vars('end_station', 'end_name')
+limit(10)
+      .and(
+        triple(journey,'scm:start_station',start_station),
+        triple(journey, 'label', journey_name),
+        triple(start_station, 'label', start_name),
+        triple(journey,'scm:end_station',end_station),
+        triple(end_station, 'label', end_name)
       )
-limit(10).select(word,definition).and(
-    triple("v:PWN", "wn:partOfSpeech", "v:Part_Of_Speech"),
-    triple("v:_Blank2", "rdf:value", "v:Definition")
+```
+
+Perfect! Now we see the named location of these bike
+stations. However, we also have a fair bit of extra information so we
+can filter that out again with a `select` statement.
+
+
+```javascript
+let [journey, journey_name ] = vars('journey', 'journey_name')
+let [start_station, start_name] = vars('start_station', 'start_name')
+let [end_station, end_name] = vars('end_station', 'end_name')
+limit(10).select(journey_name,start_name,end_name)
+      .and(
+        triple(journey,'scm:start_station',start_station),
+        triple(journey, 'label', journey_name),
+        triple(start_station, 'label', start_name),
+        triple(journey,'scm:end_station',end_station),
+        triple(end_station, 'label', end_name)
+      )
+```
+Now we have something a little bit more human readable. Perhaps you
+can try looking at the properties and adding additional information.
+
+We can also ask questions where we want either/or type results. For
+this, we can use the WOQL word `or`. We could ask, for instance, for
+every journey which started from a station *or* ended at that station
+as follows:
+
+```javascript
+let [journey, journey_name ] = vars('journey', 'journey_name')
+let [some_station, some_station_name] = vars('some_station', 'some_station_name')
+limit(10).select(journey_name,some_station_name)
+      .and(
+          or(
+            triple(journey,'scm:start_station',some_station),
+            triple(journey,'scm:end_station',some_station)
+          ),
+          triple(journey, 'label', journey_name),
+          triple(some_station, 'label', some_station_name)
+      )
+```
+
+This gives us back journeys which have to do with a station either
+entering or leaving.
+
+## Manipulating text
+{: .fs-6 .fw-300 }
+
+When you're querying you'll often need to manipulate the text in
+entries. WOQL has a number of words for helping you parse and
+reassemble text.
+
+One of the most flexible ways of finding and parsing text is to use
+the `re` WOQL word. Supposing we want to find every journey starting
+from a station on 10th street. We could run the following:
+
+```javascript
+let [journey, journey_name ] = vars('journey', 'journey_name')
+let [start_station, start_name] = vars('start_station', 'start_name')
+let [match] = vars('match')
+limit(1).and(
+    triple(journey, "scm:start_station", start_station),
+    triple(start_station, 'label', start_name),
+    re(".*10th.*", start_name, [match])
+  )
+```
+
+This is great, but perhaps we want to say what the other corner street
+was. We can do this by adding matching groups with `(` and `)`:
+
+```javascript
+let [journey, journey_name ] = vars('journey', 'journey_name')
+let [start_station, start_name] = vars('start_station', 'start_name')
+let [match,other] = vars('match', 'other')
+and(
+    triple(journey, "scm:start_station", start_station),
+    triple(start_station, 'label', start_name),
+    or(
+      re("^(.*) . 10th.*$", start_name, [match, other]),
+      re("^10th . (.*)$", start_name, [match, other])
+    )
+  )
+```
+
+This gives us back every journey which started at any station on 10th
+street.
+
+Once we have these strings, we might want to use them to put together
+new strings. Let's add a message to our report about 10th street.
+
+```javascript
+let [journey, journey_name ] = vars('journey', 'journey_name')
+let [start_station, start_name] = vars('start_station', 'start_name')
+let [match,other] = vars('match', 'other')
+let [message] = vars('message')
+select(message).distinct(message).and(
+    triple(journey, "scm:start_station", start_station),
+    triple(start_station, 'label', start_name),
+    or(
+      re("^(.*) . 10th.*$", start_name, [match, other]),
+      re("^10th . (.*)$", start_name, [match, other])
+    ),
+    concat(["The other street is: ",other], message)
+  )
+```
+
+The use of distinct here gives us a nice summary view, along with your
+message.
+
+## Mathematics
+{: .fs-6 .fw-300 }
+
+You may also want to perform some mathematical operations on data
+going into or out of the database. WOQL has basic mathematical
+expressions: `plus`, `multiply`, `divide`, `exp`, `div` (for integer
+division) and others. To use them you need to put the mathematical
+expression in a form called `WOQL.eval` as follows:
+
+```javascript
+let [ x ] = vars('x')
+WOQL.eval(plus(1,2), x)
+```
+
+This binds `x` to the result of the addition of `1` and `2`. You can
+use variables in place of `1` and `2` and re-use `x` in later
+queries. For instance we could write:
+
+```javascript
+let [product,result] = vars('product', 'result')
+and(
+    WOQL.eval(times(3,2), product),
+    WOQL.eval(div(product,2), result)
 )
 ```
 
+Here of course we get back the number `3` as we'd expect. The complete
+definition of mathematical operators is in the python-client
+reference documentation.
 
-## More about queries
-{: .fs-6 .fw-300 }
+## Conclusion
+
+Now you've a few tricks under your belt, you should be able to explore
+some of the datasets available on TerminusHub or your own data a
+bit. Happy WOQLing!
+

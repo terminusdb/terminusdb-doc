@@ -45,11 +45,11 @@ Windows users do not need to do anything here.
 
 ## Quick Start
 
-Get the script in the [terminusdb-quickstart repo](https://github.com/terminusdb/terminusdb-quickstart), cd to it
+Get the script in the [terminusdb-bootstrap repo](https://github.com/terminusdb/terminusdb-bootstrap), cd to it
 
 ```
-git clone https://github.com/terminusdb/terminusdb-quickstart
-cd terminusdb-quickstart
+git clone https://github.com/terminusdb/terminusdb-bootstrap
+cd terminusdb-bootstrap
 ```
 
 Run the container (the first time)

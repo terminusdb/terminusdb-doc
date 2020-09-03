@@ -17,6 +17,10 @@ nav_order: 2
 ---
 ## Import Script
 
+<<<<<<< HEAD
+
+NPM:
+=======
 NPM:
 
 ```javascript
@@ -29,7 +33,10 @@ Script:
 
 ```javascript
 <script .../>
+>>>>>>> 4b5e076a8d3cfd72f1a32095566722e396ef7001
 
+```js
+    import TerminusClient from '@terminusdb/terminusdb-client'
 ```
 
 ## WOQLClient Class
@@ -38,13 +45,14 @@ The core functionality of the TerminusDB javascript client is defined in the WOQ
 
 Basic Usage:
 
-```javascript
+<div class="anchor-sub-parts">Example</div>
 
-let client = new TerminusClient.Client(SERVER_URL, opts)
-await client.connect(server, opts)
-client.db("test")
-client.checkout("dev")
-let turtle = await client.getTriples("schema", "main")
+```js
+    let client = new TerminusClient.Client(SERVER_URL, opts)
+    await client.connect(server, opts)
+    client.db("test")
+    client.checkout("dev")
+    let turtle = await client.getTriples("schema", "main")
 ```
 
 The client has an internal state which defines what organization / database / repository / branch / ref it is currently attached to

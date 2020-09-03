@@ -27,11 +27,11 @@ Documentation for TerminusDB - an open-source graph database that stores data li
 
 ### Quickstart: install with docker
 
-Get the script in the [terminusdb-quickstart repo](https://github.com/terminusdb/terminusdb-quickstart), cd to it
+Get the script in the [terminusdb-bootstrap repo](https://github.com/terminusdb/terminusdb-bootstrap), cd to it
 
 ```
-git clone https://github.com/terminusdb/terminusdb-quickstart
-cd terminusdb-quickstart
+git clone https://github.com/terminusdb/terminusdb-bootstrap
+cd terminusdb-bootstrap
 ```
 
 Run the container (the first time)
@@ -50,7 +50,7 @@ d9fa4a1acf93: Pulling fs layer
 [ ... ]
 ```
 
-For details, go to [Quickstart](/docs/docs/quickstart/)
+For details, go to [bootstrap](https://github.com/terminusdb/terminusdb-bootstrap)
 
 ---
 
@@ -62,9 +62,6 @@ For details, go to [Quickstart](/docs/docs/quickstart/)
 
 TerminusDB is Distributed by an [GPL-3.0 license](https://github.com/terminusdb/terminusdb-server/blob/master/LICENSE)
 
-### Contributing
-
-Read more about becoming a contributor in [Developer Guide](/docs/developer-guide).
 
 #### Thank you to the contributors!
 

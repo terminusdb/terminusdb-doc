@@ -1,12 +1,12 @@
 ---
-title: Accessing TerminusHub with Quickstart - Certificate Help
+title: Accessing TerminusHub with Bootstrap - Certificate Help
 layout: default
 parent: How Tos
 nav_order: 9
 ---
-## Accessing TerminusHub with Quickstart - Certificate Help
+## Accessing TerminusHub with Bootstrap - Certificate Help
 
-You can access the quickstart through the [TerminusDB Download Center](https://terminusdb.com/hub/download)
+You can access the Bootstrap through the [TerminusDB Download Center](https://terminusdb.com/hub/download)
 
 ## Requirements
 
@@ -16,11 +16,11 @@ Windows users: Git Bash and Docker
 
 ## Installing
 
-Clone terminusdb-quickstart and enter the directory:
+Clone terminusdb-bootstrap and enter the directory:
 
 ```bash
-git clone https://github.com/terminusdb/terminusdb-quickstart.git
-cd terminusdb-quickstart
+git clone https://github.com/terminusdb/terminusdb-bootstrap.git
+cd terminusdb-bootstrap
 git checkout rc
 ```
 
@@ -40,7 +40,7 @@ echo "
 # Docker command
 #TERMINUSDB_DOCKER=sudo docker
 
-# Container 
+# Container
 #TERMINUSDB_CONTAINER=terminusdb-server
 #TERMINUSDB_REPOSITORY=terminusdb/terminusdb-server
 #TERMINUSDB_NETWORK=bridge

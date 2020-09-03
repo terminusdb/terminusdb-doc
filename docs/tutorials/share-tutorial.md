@@ -8,7 +8,7 @@ nav_order: 2
 
 {: .no_toc }
 
-This is a quick tutorial to introduce you to sharing databases with TerminusDB and TerminusHub. This tutorial uses the console and has installed TerminusDB using [quickstart](https://github.com/terminusdb/terminusdb-quickstart). 
+This is a quick tutorial to introduce you to sharing databases with TerminusDB and TerminusHub. This tutorial uses the console and has installed TerminusDB using [bootstrap](https://github.com/terminusdb/terminusdb-bootstrap). 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pCLgW3bhSCw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -16,11 +16,11 @@ This is a quick tutorial to introduce you to sharing databases with TerminusDB a
 
 ## Step 1 - Connect to Hub
 
-Go to the TerminusDB home page and click `Connect to Hub` to login to your TerminusHub account. 
+Go to the TerminusDB home page and click `Connect to Hub` to login to your TerminusHub account.
 
 ![](/docs/assets/uploads/logged-out-1-2-.jpg)
 
-Once you have logged in, click `Create` 
+Once you have logged in, click `Create`
 
 ![](/docs/assets/uploads/logged-in.jpg)
 
@@ -34,7 +34,7 @@ For this example, we have named the database `test` and given the ID `test1`
 
 ![](/docs/assets/uploads/create-2.jpg)
 
-Once you have created the database, you will find the `DB Home` screen. Click on `Query` so we can update the database prior to sharing. 
+Once you have created the database, you will find the `DB Home` screen. Click on `Query` so we can update the database prior to sharing.
 
 ![](/docs/assets/uploads/query-doctype.jpg)
 
@@ -46,7 +46,7 @@ Once you have run the query, you can check the schema to make sure the `doctype`
 
 ## Step 3 - Sync and Share
 
-Now that we have something in the database, click on the `Synchronize` tab. You can now push your changes to TerminusHub so that collaborators and others can access your changes. 
+Now that we have something in the database, click on the `Synchronize` tab. You can now push your changes to TerminusHub so that collaborators and others can access your changes.
 
 ![](/docs/assets/uploads/sync.jpg)
 
@@ -54,9 +54,9 @@ Now click on the TerminusDB button in the top right to return to the home page. 
 
 ![](/docs/assets/uploads/home-with-test.jpg)
 
-On the collaboration page, use the `Collaborative Actions` dropdown to select `Add Collaborators`. On this page, you can assign collaborative permissions (read, write or manage) and add the user ID or email address of your collaborators (these can be separated by a comma if more than one). 
+On the collaboration page, use the `Collaborative Actions` dropdown to select `Add Collaborators`. On this page, you can assign collaborative permissions (read, write or manage) and add the user ID or email address of your collaborators (these can be separated by a comma if more than one).
 
-In this case, I am giving manage permissions to my collaborator 'lf' and sending a message to explain my action. 
+In this case, I am giving manage permissions to my collaborator 'lf' and sending a message to explain my action.
 
 ![](/docs/assets/uploads/share-1.jpg)
 

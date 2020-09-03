@@ -40,6 +40,6 @@ Here are some posts:
 
    ![](/docs/assets/uploads/db-arch.jpg)
 
-   2. *[TerminusDB: Internals](https://www.youtube.com/watch?v=cK7uszynOk0&t=270s)*
+2. *[TerminusDB: Internals](https://www.youtube.com/watch?v=cK7uszynOk0&t=270s)*
 
    ![](/docs/assets/uploads/terminusdb-internals.png)

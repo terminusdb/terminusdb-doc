@@ -1,21 +1,19 @@
 ---
 layout: default
-title: Quickstart
+title: Bootstrap
 parent: Reference
 nav_order: 5
 has_children: true
-permalink: /reference/quickstart
+permalink: /reference/bootstrap
 ---
 
-# Quickstart
+# Bootstrap
 
-Quickstart is a shell script that makes use of Docker to run TerminusDB.
+Bootstrap is a shell script that makes use of Docker to run TerminusDB.
 It is currently the official supported way of running TerminusDB.
 
-See the GitHub repo for more information.
+See [our download center](https://terminusdb.com/hub/download) for more information.
 
-
-[terminusdb-quickstart](https://github.com/terminusdb/terminusdb-quickstart){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ## ENV variables
 

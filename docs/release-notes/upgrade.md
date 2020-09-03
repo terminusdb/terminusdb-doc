@@ -1,7 +1,8 @@
 ---
 title: Upgrade
 layout: default
-nav_order: 8
+parent: Release notes
+nav_order: 1
 ---
 # Upgrade from older versions
 
@@ -29,7 +30,7 @@ creating the 'main' branch by branching off 'master'. Having done so,
 your database once again has a primary branch, and no unexpected
 behavior should occur.
 
-Have a look at [this blog](https://terminusdb.com/blog/2020/09/01/terminusdb-from-master-to-main/) to see the reason we made the change. 
+Have a look at [this blog](https://terminusdb.com/blog/2020/09/01/terminusdb-from-master-to-main/) to see the reason we made the change.
 
 ## Assistance
 

@@ -20,10 +20,10 @@ nav_order: 1
 ## Get an Edge
 
 TerminusDB is a graph database, so we represent all data as edges. An
-edge is either a link from one node to another, or a link from a
+edge is either a link from one node to another or a link from a
 node to some data.
 
-In order to query data we need to first have some data to query. You
+In order to query data, we need to first have some data to query. You
 can get a *fairly big* database by running the following database by
 cloning using the following script (Note: this might take a few
 minutes as DBPedia is quite large!)
@@ -50,7 +50,7 @@ client.clonedb({ "remote_url" : f"{remote_database}",
                  "label" : "DBpedia"},
                new_db)
 ```
-If you've managed to get this downloaded, you can use the same same client for
+If you've managed to get this downloaded, you can use the same client for
 the remaining queries.
 
 In the python SDK, you can get a single edge as follows:
@@ -109,7 +109,7 @@ The bindings are of two different types. Those that end with a *node*
 and those that end with a *literal*. Nodes are represented by URIs,
 such as the final result:
 `'http://dbpedia.org/resource/Out_Hud'`. Values are represented by a
-dictionary that give the *type* as `@type` and the *value* as
+dictionary that gives the *type* as `@type` and the *value* as
 `@value`.
 
 ## Connect the dots
@@ -262,7 +262,7 @@ a string.  In the DBpedia dataset, this gives you back the node:
 `http://dbpedia.org/resource/1817–1824_cholera_pandemic` which you can
 then investigate further.
 
-You can use arbitrary regular expressions, and the matching groups
+You can use arbitrary regular expressions and the matching groups
 will be bound to the variables in the final list of `re`.
 
 ## String manipulation
@@ -307,11 +307,11 @@ WQ().woql_and(
 ```
 
 Here of course we get back the number `3` as we'd expect. The complete
-definiation of mathematical operators is in the python-client
+definition of mathematical operators is in the python-client
 reference documentation.
 
 ## Conclusion
 
 With this bag of tricks, you should be able to wrangle more data into
-a form you want for data-curation tasks prior to running analysis,
-machine learning or simply browsing over your information.
+a form you want for data-curation tasks before running analysis,
+machine-learning or simply browsing over your information.

@@ -63,4 +63,4 @@ Here are some posts:
 1. [Data Modeling: Painting Pictures in the Medium of Pure Abstraction](https://youtu.be/IdsUAiQ6TS8) 
 
    ![](/docs/assets/uploads/model.jpg)
-2. Blog post 2
+2. [Anatomy of a Knowledge Graph](https://www.youtube.com/watch?v=UWEoJVrgJSA)

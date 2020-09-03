@@ -21,6 +21,7 @@ layout: table_wrappers
         <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
       </div>
 
+
       <div class="navigation main-nav js-main-nav">
         {% include nav.html %}
       </div>
@@ -29,7 +30,74 @@ layout: table_wrappers
       </footer>
     </div>
     <div class="main-content-wrap js-main-content" tabindex="0">
+
       <div class="main-content">
+     <header class="header header--dark">
+      <div class="wrapper wrapper--increased">
+      <nav class="menu">
+         <div class="menu__body">
+            <ul class="menu__list">
+               <li class="menu__item">
+                  <a href="https://terminusdb.com/docs/"  target="_self" class="menu__link menu__link--active" aria-label="Documentation">
+                  Documentation
+                  </a>
+               </li>
+               <li class="menu__item">
+                  <a href="https://terminusdb.com/community/" target="_self" class="menu__link " aria-label="Community">
+                  Community
+                  </a>
+               </li>
+               <li class="menu__item">
+                  <a href="https://terminusdb.com/blog/" target="_self" class="menu__link" aria-label="Blog">
+                  Blog
+                  </a>
+               </li>
+               <li class="menu__item">
+                  <a href="https://terminusdb.com/hub/" target="_self" class="menu__link" aria-label="Blog">
+                  Terminus Hub 
+                  </a>
+               </li>
+               <li class="menu__item menu__item--full-devices">
+                  <ul class="menu__social-list">
+                     <li class="menu__social-item">
+                        <a href="https://twitter.com/TerminusDB" class="menu__social-link" target="_blank">
+                        <i class="icon-twitter menu__icon"></i>
+                        </a>
+                     </li>
+                     <li class="menu__social-item">
+                        <a href="https://github.com/terminusdb/terminusdb-server" class="menu__social-link" target="_blank" aria-label="Github link">
+                        <i class="icon-github-logo menu__icon"></i>
+                        </a>
+                     </li>
+                  </ul>
+               </li>
+               <li class="menu__item menu__item--full-devices">
+                  <a href="https://terminusdb.com/hub/download" target="_self" class="menu__button" aria-label="Download center">
+                  Download Center
+                  </a>
+               </li>
+            </ul>
+            <ul class="menu__footer">
+               <li class="menu__secondary-item">
+                  <a href="https://terminusdb.com" role="button">
+                  <img src="https://terminusdb.com/img/logos/logo.svg" class="menu__secondary-logo" alt="Terminus DB logo">
+                  </a>
+               </li>
+               <li class="menu__secondary-item">
+                  <p class="menu__copyright">
+                     ©2020 - TerminusDB | All right reserved
+                  </p>
+               </li>
+            </ul>
+         </div>
+         <button id="burger" class="menu__burger" role="button" aria-label="Navigation burger button">
+         <span></span>
+         <span></span>
+         <span></span>
+         </button>
+      </nav>
+   </div>
+</header>
         <div class="page-header js-page-header">
           {% if site.search_enabled != false %}
           <div class="search">
@@ -99,4 +167,15 @@ layout: table_wrappers
   </div>
 
 </body>
+ <script>
+     var o = document.querySelector(".header"),
+      i = document.querySelector(".menu__body"),
+      a = document.querySelector("#burger");
+      a && a.addEventListener("click", function () {
+        a.classList.toggle("active"), o.classList.toggle("active"), i.classList.toggle("active");
+      });
+      window.addEventListener('resize',function(){ a.classList.remove("active"), o.classList.remove("active"), 
+        i.classList.remove("active"); })
+     
+  </script>
 </html>

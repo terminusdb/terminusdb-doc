@@ -18,5 +18,5 @@ By marrying the scale and querying capabilities of a modern in-memory graph data
 
 Here are some posts:
 
-1. Blog post 1
-2. Blog post 2
+1. [Continuous Everything as Code](https://terminusdb.com/blog/2020/05/29/continuous-everything-as-code/)
+2. [My First Shared TerminusDB with TerminusHub](https://www.youtube.com/watch?v=pCLgW3bhSCw)

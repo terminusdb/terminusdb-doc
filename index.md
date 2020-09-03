@@ -50,7 +50,7 @@ d9fa4a1acf93: Pulling fs layer
 [ ... ]
 ```
 
-For details, go to [Quickstart](/docs/quickstart/)
+For details, go to [Quickstart](/docs/docs/quickstart/)
 
 ---
 

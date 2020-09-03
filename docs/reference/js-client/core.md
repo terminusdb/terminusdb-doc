@@ -2,6 +2,7 @@
 layout: default
 title: Client - Core Functions
 parent: JS Client
+grand_parent: Reference
 nav_order: 2
 ---
 

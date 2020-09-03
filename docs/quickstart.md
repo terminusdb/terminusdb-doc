@@ -51,8 +51,6 @@ link
 
 ## Quickstart How-To
 
-How To Guides are problem-driven and are designed to be a source of quick information in ‘doing mode’ when working with TerminusDB and Hub. These will help you to get started on TerminusDB and Hub.
-
-Link How To install
+Link to[ download center](https://terminusdb.com/hub/download)
 
 Link to other ways of installing

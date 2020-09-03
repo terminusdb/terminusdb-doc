@@ -1,6 +1,7 @@
 ---
 title: FAQs
 layout: default
+nav_order: 8
 ---
 ![](/docs/assets/uploads/smaller-cowduck.png)
 
@@ -106,7 +107,7 @@ TerminusDB and TerminusHub can be used across a range of OLTP and analytical app
 
 TerminusDB Server provides TerminusDB with a RESTful API for interacting with knowledge graphs via the JSON-LD exchange format. This means you can easily compose applications within your own toolchain which utilise the powerful features of graph search and graph storage.
 
-We think TerminusDB is perfect for OLTP use cases with transactions in the tens of thousands per day, such as headless-CMS, data curation, inventory management etc. 
+We think TerminusDB is perfect for OLTP use cases with transactions in the tens of thousands per day, such as headless-CMS, data curation, inventory management etc.
 
 - - -
 
@@ -178,7 +179,7 @@ RDBMSs are simply too primitive and not built with the developer or the data eng
 
 ### <a name="head15"></a>What is the history of the project?
 
-We are originally a University spin-out. There is a great blog on [the technical history](https://terminusdb.com/blog/2020/04/14/terminusdb-a-technical-history/) 
+We are originally a University spin-out. There is a great blog on [the technical history](https://terminusdb.com/blog/2020/04/14/terminusdb-a-technical-history/)
 
 - - -
 
@@ -186,7 +187,7 @@ We are originally a University spin-out. There is a great blog on [the technical
 
 We started off by testing and building on other databases, but constantly faced performance issues. By building all the way down to the ground, we could deliver a *native* revision control database.
 
-Some solutions are just a version control layer on a traditional (usually relational) database; however, piecemeal additions without a fundamentally append only, immutable store, this is often going to cause more problems than it solves. We think that a native approach makes the most sense and will ultimately deliver the most value. 
+Some solutions are just a version control layer on a traditional (usually relational) database; however, piecemeal additions without a fundamentally append only, immutable store, this is often going to cause more problems than it solves. We think that a native approach makes the most sense and will ultimately deliver the most value.
 
 - - -
 
@@ -240,7 +241,7 @@ No, you can use the open-source TerminusDB without registering or doing anything
 
 If you want to use TerminusHub, we need an email address as a signature to put into the commit-graph, so you’ll have to register.
 
-Sign up here! 
+Sign up here!
 
 - - -
 

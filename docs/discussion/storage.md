@@ -39,4 +39,7 @@ Here are some posts:
 1. [TerminusDB: Database Architecture](https://youtu.be/dulKiZuI_NE)
 
    ![](/docs/assets/uploads/db-arch.jpg)
-2. Blog post 2
+
+   2. *[TerminusDB: Internals](https://www.youtube.com/watch?v=cK7uszynOk0&t=270s)*
+
+   ![](/docs/assets/uploads/terminusdb-internals.png)

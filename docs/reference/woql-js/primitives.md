@@ -6,22 +6,6 @@ grand_parent: Reference
 nav_order: 5
 permalink: /reference/woql/primitives
 ---
-<i class=" js-toggle-dark-mode fa fa-toggle-on"/>
-
-<script>
-const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
-
-jtd.addEvent(toggleDarkMode, 'click', function(){
-  if (jtd.getTheme() === 'dark-mode-preview') {
-    jtd.setTheme('just-the-docs');
-    toggleDarkMode.textContent = 'Default';
-  } else {
-    jtd.setTheme('dark-mode-preview');
-    toggleDarkMode.textContent = 'Dark Mode';
-  }
-});
-</script>
-
 
 # WOQL Primitives
 

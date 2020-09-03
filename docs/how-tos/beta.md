@@ -1,11 +1,12 @@
 ---
+title: Accessing TerminusHub with Quickstart - Certificate Help
 layout: default
-title: Private beta
 parent: How Tos
 nav_order: 9
 ---
+## Accessing TerminusHub with Quickstart - Certificate Help
 
-# Participating in the private beta
+You can access the quickstart through the [TerminusDB Download Center](https://terminusdb.com/hub/download)
 
 ## Requirements
 
@@ -18,7 +19,6 @@ Windows users: Git Bash and Docker
 Clone terminusdb-quickstart and enter the directory:
 
 ```bash
-
 git clone https://github.com/terminusdb/terminusdb-quickstart.git
 cd terminusdb-quickstart
 git checkout rc
@@ -77,7 +77,6 @@ TERMINUSDB_HTTPS_ENABLED=true
 ```
 
 Run `./terminusdb-container run`
-
 
 You should be able to access terminusdb on https://127.0.0.1:6363/ . Unfortunately, the browser
 will give you a certificate warning. Do not worry, since the server is running on your own machine, nobody

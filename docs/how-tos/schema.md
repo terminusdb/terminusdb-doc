@@ -2,7 +2,7 @@
 layout: default
 title: Create Schema
 parent: How Tos
-nav_order: 8
+nav_order: 7
 ---
 
 # Create Schema
@@ -24,7 +24,7 @@ query.
 First thing, you should create a database in which to put the
 schema. You can do this through the console.
 
-Our schema is comprised of classes, and properties. WOQL will allow us
+Our schema is comprised of classes and properties. WOQL will allow us
 to construct them with the `WOQL.doctype` keyword.
 
 ```javascript
@@ -76,7 +76,7 @@ You can go ahead and go to the Schema button at the top, and you'll
 see that there is still only one Person class. All we did is suggest
 that the "friends_with" property should be added.
 
-Now we can add a couple of people and have them point to eachother.
+Now we can add a couple of people and have them point to each other.
 
 ```javascript
 WOQL.and(
@@ -140,7 +140,7 @@ have one of each of the other properties.
 
 ## Schema migration
 
-Unfortunately this query results in an error because we have data
+Unfortunately, this query results in an error because we have data
 already in our system which does not conform to our schema changes. We
 need to alter the data to make it conform. We can simply remove the
 offending forename in the same stroke that we add the schema change.
@@ -164,7 +164,7 @@ transaction.
 
 ## Creating hierarchies
 
-So far we have a very flat structure. Let's add a subclass for
+So far, we have a very flat structure. Let's add a subclass for
 `scm:Person` called `scm:Doctor`.
 
 ```javascript
@@ -192,7 +192,7 @@ WOQL.and(
 
 This saved us a lot of time as we factored out the joint qualities of
 a person first. You can make any sort of hierarchy without worrying
-about multiple inhertence restrictions that often occur in other
+about multiple inheritence restrictions that often occur in other
 systems.
 
 Good luck schema-writing!

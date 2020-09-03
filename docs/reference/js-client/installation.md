@@ -6,7 +6,6 @@ grand_parent: Reference
 nav_order: 1
 ---
 # Installation
-
 {: .no_toc }
 
 Here we are going to explain how to 
@@ -16,13 +15,13 @@ Here we are going to explain how to
 {: .no_toc .text-delta }
 
 1. TOC
-   {:toc}
+{:toc}
 
-- - -
+---
 
-## Dependencies 
+## Dependencies
 
-The TerminusDB Javascript Client has no external dependencies. It comes bundled with the axios libarary for communicating over HTTP, but otherwise has no third party dependencies.  
+The TerminusDB Javascript Client has no external dependencies. It comes bundled with the axios libarary for communicating over HTTP, but otherwise has no third party dependencies.
 
 ## Install from bintray
 
@@ -34,16 +33,22 @@ Installation is done using the npm install command:
 
 Using npm:
 
+```bash
 $ npm install --save @terminusdb/terminusdb-client
+```
 
 Minified Script
 
 Using cdn:
 
+```html
 <script src="https://unpkg.com/@terminusdb/terminusdb-client/dist/terminusdb-client.min.js"></script>
+```
 
 Downloading:
 
 Download the terminusdb-client.min.js file from the /dist directory and save it to your location of choice, then:
 
-<script src="http://my.saved.location/terminusdb-client.min.js"></script> 
+```html
+<script src="http://my.saved.location/terminusdb-client.min.js"></script>
+```

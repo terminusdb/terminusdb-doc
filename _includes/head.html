@@ -10,7 +10,7 @@
     {% endif %}
   {% endif %}
 
-  <!-- <link rel="stylesheet" href="https://terminusdb.com/css/main.css"> -->
+  <link rel="stylesheet" href="https://terminusdb.com/css/main.css">
 
   <link rel="shortcut icon" href="{{ 'favicon.png' | absolute_url }}" type="image/x-icon">
 
@@ -32,14 +32,16 @@
       gtag('js', new Date());
 
       gtag('config', "{{ site.ga_tracking }}");
+
     </script>
 
   {% endif %}
-
   {% if site.search_enabled != false %}
     <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.min.js' | absolute_url }}"></script>
   {% endif %}
   <script type="text/javascript" src="{{ '/assets/js/just-the-docs.js' | absolute_url }}"></script>
+
+
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 

@@ -21,7 +21,7 @@ nav_order: 7
 In order to load data from CSV you need to map each column of interest
 to a variable, and then insert triples with the data you are
 interested in. If you have a database *without a schema* then you can
-simply import the data on properties which are named appropriatedly.
+simply import the data on properties which are named appropriately.
 
 If we take the following `roster.csv` CSV for instance:
 
@@ -33,7 +33,7 @@ Willie,2017-01-02,No
 
 We can load this into a graph as follows:
 
-```
+```javascript
 and(get(as("Name","v:Name")
         .as("Date", "v:Date")
         .as("Paid", "v:Paid")).file('roster.csv'),
@@ -52,13 +52,3 @@ representation of the record from the roster. We can do this with
 
 The final `add_triple` simply adds the information for this property
 to the database.
-
-## Turtle / RDF
-
-For RDF ingestion TerminusDB can read directly from a TTL file with
-get, as above, if you supply the `type` flag.
-
-
-content of section 2
-
-etc

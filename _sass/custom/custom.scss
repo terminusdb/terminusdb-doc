@@ -145,5 +145,29 @@ h3{
 	font-size: 22px !important;
 }
 
+.page-header{
+	padding-top:170px !important;
+
+}
+
+@media (min-width: 78.125rem){
+	.page-header {
+		height:240px !important;
+	}
+}
+
+.header{
+	top: -30px;
+	right: 10px;
+}
+
+#burger{
+	margin-left:auto;
+}
+
+.header.active {
+	top: 0px;
+}
+
 //language-js
   

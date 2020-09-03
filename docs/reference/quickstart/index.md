@@ -1,21 +1,19 @@
 ---
 layout: default
-title: Quickstart
+title: Bootstrap
 parent: Reference
 nav_order: 5
 has_children: true
-permalink: /reference/quickstart
+permalink: /reference/bootstrap
 ---
 
-# Quickstart
+# Bootstrap
 
-Quickstart is a shell script that makes use of Docker to run TerminusDB.
+Bootstrap is a shell script that makes use of Docker to run TerminusDB.
 It is currently the official supported way of running TerminusDB.
 
-See the GitHub repo for more information.
+See [our download center](https://terminusdb.com/hub/download) for more information.
 
-
-[terminusdb-quickstart](https://github.com/terminusdb/terminusdb-quickstart){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ## ENV variables
 
@@ -27,19 +25,19 @@ The file `ENV.example` contains an example `ENV` file.
 
 | ENV name                    | Default value                                                               | Purpose                                                       |
 |-----------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------|
-| TERMINUSDB_DOCKER           | sudo docker                                                                 | Default docker command                                        |
-| TERMINUSDB_CONTAINER        | terminusdb-server                                                           | Name of the running container                                 |
-| TERMINUSDB_REPOSITORY       | terminusdb/terminusdb-server                                                | Docker image                                                  |
-| TERMINUSDB_NETWORK          | bridge                                                                      | Docker network mode                                           |
-| TERMINUSDB_TAG              | The latest version tag of terminusdb-server                                 | TerminusDB docker image version                               |
-| TERMINUSDB_STORAGE          | terminusdb_storage_local                                                    | Storage volume name                                           |
-| TERMINUSDB_PORT             | 6363                                                                        | Port to run TerminusDB                                        |
-| TERMINUSDB_LOCAL            |                                                                             | Local folder to mount inside container                        |
-| TERMINUSDB_SERVER           | 127.0.0.1                                                                   | Server on which TerminusDB will run                           |
-| TERMINUSDB_PASS             | root                                                                        | Password for accessing TerminusDB                             |
-| TERMINUSDB_AUTOLOGIN        | false                                                                       | Whether the administration console should automatically login |
-| TERMINUSDB_CONSOLE          | http://127.0.0.1/console                                                    | URL for browser top open console                              |
-| TERMINUSDB_CONSOLE_BASE_URL | https://unpkg.com/@terminusdb/terminusdb-console@SOME_VERSION/console/dist/ | URL to hosted console                                         |
-| TERMINUSDB_HTTPS_ENABLED    | false                                                                       | Enable HTTPS                                                  |
-| TERMINUSDB_SSL_CERT         | A self signed cert                                                          | Path to SSL cert inside terminusdb-server container           |
-| TERMINUSDB_SSL_CERT_KEY     | A self-created private key                                                  | Path to private key for SSL cert inside container             |
+| `TERMINUSDB_DOCKER`           | sudo docker                                                                 | Default docker command                                        |
+| `TERMINUSDB_CONTAINER`        | terminusdb-server                                                           | Name of the running container                                 |
+| `TERMINUSDB_REPOSITORY`      | terminusdb/terminusdb-server                                                | Docker image                                                  |
+| `TERMINUSDB_NETWORK`          | bridge                                                                      | Docker network mode                                           |
+| `TERMINUSDB_TAG`              | The latest version tag of terminusdb-server                                 | TerminusDB docker image version                               |
+| `TERMINUSDB_STORAGE`          | terminusdb_storage_local                                                    | Storage volume name                                           |
+| `TERMINUSDB_PORT`            | 6363                                                                        | Port to run TerminusDB                                        |
+| `TERMINUSDB_LOCAL`            |                                                                             | Local folder to mount inside container                        |
+| `TERMINUSDB_SERVER`           | 127.0.0.1                                                                   | Server on which TerminusDB will run                           |
+| `TERMINUSDB_PASS`             | root                                                                        | Password for accessing TerminusDB                             |
+| `TERMINUSDB_AUTOLOGIN`        | false                                                                       | Whether the administration console should automatically login |
+| `TERMINUSDB_CONSOLE`          | http://127.0.0.1/console                                                    | URL for browser top open console                              |
+| `TERMINUSDB_CONSOLE_BASE_URL` | https://unpkg.com/@terminusdb/terminusdb-console@SOME_VERSION/console/dist/ | URL to hosted console                                         |
+| `TERMINUSDB_HTTPS_ENABLED`    | false                                                                       | Enable HTTPS                                                  |
+| `TERMINUSDB_SSL_CERT`         | A self signed cert                                                          | Path to SSL cert inside terminusdb-server container           |
+| `TERMINUSDB_SSL_CERT_KEY`     | A self-created private key                                                  | Path to private key for SSL cert inside container             |

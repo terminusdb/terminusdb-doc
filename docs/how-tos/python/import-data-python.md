@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Import and Clean Data in Python
-parent: How Tos
+parent: Python How Tos
+grand_parent: How Tos
 nav_order: 12
 ---
 
@@ -21,7 +22,7 @@ nav_order: 12
 In order to load data from CSV you need to map each column of interest
 to a variable, and then insert triples with the data you are
 interested in. If you have a database *without a schema* then you can
-simply import the data on properties which are named appropriatedly.
+simply import the data on properties which are named appropriately.
 
 If we take the following `roster.csv` CSV for instance:
 
@@ -187,7 +188,7 @@ by chunking it.
 
 For example, if we want to load the
 [Person](https://downloads.dbpedia.org/repo/dbpedia/generic/persondata/2020.07.01/persondata_lang=en.ttl.bz2))
-data, we can process it as follows.
+data, we can process it as follows:
 
 First, we download this file and unpack it. Since the dataset is
 large, we will move the ttl into a folder and split it into chunks.

@@ -26,7 +26,7 @@ All Library functions take the same three optional arguments.
 
 The values argument allows values to be passed for any of the internal variables which serve to constrain the query to a subset of the complete set. The Values argument comes in three forms:
 
-* [...Value]  - a list of specific values, where each entry sets the corresonpding entry in the Variables list for the function. Any values that are not to be set can be omitted or set to null or false explicitly in which case no constraints will be applied.
+* [...Value]  - a list of specific values, where each entry sets the corresponding entry in the Variables list for the function. Any values that are not to be set can be omitted or set to null or false explicitly in which case no constraints will be applied.
 	<div class="anchor-sub-parts">Example</div>
 
 	
@@ -65,7 +65,7 @@ The values argument allows values to be passed for any of the internal variables
 
 <span class="param-type-headings">Variables</span>
 
-Each library function defines an internal list of variable names which are used by default to represent the results of the library query - the variables names can be overriden by passing in an alternative list of variable names. As with values, a null or false or an omitted variable means that the default will be used for that position
+Each library function defines an internal list of variable names which are used by default to represent the results of the library query - the variables' names can be overriden by passing in an alternative list of variable names. As with values, a null or false or an omitted variable means that the default will be used for that position
 
 <div class="anchor-sub-parts">Example</div>
 
@@ -81,7 +81,7 @@ lib().classes(false, [cid, cname])
 <span class="param-type-headings">ResourceIdentifier</span>
 
 
-Each library query is associated with a specific graph - by default the graph resource identifier is set to the appropriate graph of the current default database. This can be changed by setting the ResourceIdentifier argument to the desired graph.
+Each library query is associated with a specific graph - by default, the graph resource identifier is set to the appropriate graph of the current default database. This can be changed by setting the ResourceIdentifier argument to the desired graph.
 
 <div class="anchor-sub-parts">Example</div>
 
@@ -759,7 +759,7 @@ lib().documents()
 
 ## Commit Graph Navigation
 
-The WOQL.js library also provides a set of functions for navigation of the commit graph by branch, time and commit id. These functions do not take the same arguments as the standard functions above.  There are two flavours of all graph navigation functions - one that returns all the meta-data for each commit, the other that returns only the commit ids - to allow these functions to be conveniently joined with other queries and filters.  
+The WOQL.js library also provides a set of functions for navigation of the commit graph by branch, time and commit id. These functions do not take the same arguments as the standard functions above. There are two flavours of all graph navigation functions - one that returns all the meta-data for each commit, the other that returns only the commit ids - to allow these functions to be conveniently joined with other queries and filters.  
 
 <!--commit_chain_full -->
 
@@ -767,7 +767,7 @@ The WOQL.js library also provides a set of functions for navigation of the commi
     <span class="anchor-sub-headings">commit chain full</span>
 </div>
 
-Retreives the a commit chain with full details of all commits (combines commits() and commit_chain())  
+Retreives the commit chain with full details of all commits (combines commits() and commit_chain())  
 
 <div class="anchor-sub-parts">Syntax</div>
 

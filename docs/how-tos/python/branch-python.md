@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Create and Merge Branches in Python
-parent: How Tos
+parent: Python How Tos
+grand_parent: How Tos
 nav_order: 7
 ---
 

@@ -16,7 +16,7 @@ Whereas traditional relational databases divide data into tables, columns and ro
 
 This is the basic idea of the graph database - using data structures that are things rather than cells allows users to create models that are much closer to the real world things that they want to model - because people perceive the world as things, not cells.
 
-To explain with a very simple example - if we were building a database to hold a family tree and we want to record the parents and grandparents of an individual. In a relational database, we might record this in a simple table
+To explain with a very simple example - if we were building a database to hold a family tree and we wanted to record the parents and grandparents of an individual. In a relational database, we might record this in a simple table
 
 ![](/docs/assets/uploads/capture.jpg)
 
@@ -52,7 +52,7 @@ This makes our queries much easier to understand - we can follow them naturally 
 
 ## [](https://terminusdb.com/docs/getting-started/intro-graph/#classes--properties)Classes & Properties
 
-Under the hood, Terminus DB uses a very rich data modelling language called OWL - the Web Ontology Language. Although it is a very rich language, the basic ideas are simple.
+Under the hood, TerminusDB uses a very rich data modelling language called OWL - the Web Ontology Language. Although it is a very rich language, the basic ideas are simple.
 
 In our schema, we can define classes - which are definitions of types of complex data structure. Classes can be subclasses of other classes, which means that they inherit all the parent’s definitions (much like inheritance in object-oriented programming). We can also define properties in the schema - each property has a **domain** (the class that is the subject of the property) and a **range** - the type of data that the property points to. The range can either be a simple datatype literal (e.g. an integer or string) or it can be a class.
 
@@ -63,4 +63,4 @@ Here are some posts:
 1. [Data Modeling: Painting Pictures in the Medium of Pure Abstraction](https://youtu.be/IdsUAiQ6TS8) 
 
    ![](/docs/assets/uploads/model.jpg)
-2. Blog post 2
+2. [Anatomy of a Knowledge Graph](https://www.youtube.com/watch?v=UWEoJVrgJSA)

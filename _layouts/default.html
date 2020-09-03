@@ -32,7 +32,7 @@ layout: table_wrappers
     <div class="main-content-wrap js-main-content" tabindex="0">
 
       <div class="main-content">
-    <!--  <header class="header header--dark">
+     <header class="header header--dark">
       <div class="wrapper wrapper--increased">
       <nav class="menu">
          <div class="menu__body">
@@ -80,7 +80,7 @@ layout: table_wrappers
             <ul class="menu__footer">
                <li class="menu__secondary-item">
                   <a href="https://terminusdb.com" role="button">
-                  <img src="/img/logos/logo.svg" class="menu__secondary-logo" alt="Terminus DB logo">
+                  <img src="https://terminusdb.com/img/logos/logo.svg" class="menu__secondary-logo" alt="Terminus DB logo">
                   </a>
                </li>
                <li class="menu__secondary-item">
@@ -97,7 +97,7 @@ layout: table_wrappers
          </button>
       </nav>
    </div>
-</header>-->
+</header>
         <div class="page-header js-page-header">
           {% if site.search_enabled != false %}
           <div class="search">
@@ -167,4 +167,15 @@ layout: table_wrappers
   </div>
 
 </body>
+ <script>
+     var o = document.querySelector(".header"),
+      i = document.querySelector(".menu__body"),
+      a = document.querySelector("#burger");
+      a && a.addEventListener("click", function () {
+        a.classList.toggle("active"), o.classList.toggle("active"), i.classList.toggle("active");
+      });
+      window.addEventListener('resize',function(){ a.classList.remove("active"), o.classList.remove("active"), 
+        i.classList.remove("active"); })
+     
+  </script>
 </html>

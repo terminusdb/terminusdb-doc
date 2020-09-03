@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Client - Core Functions 
+title: Client - Core Functions
 parent: JS Client
 nav_order: 2
 ---
@@ -17,7 +17,7 @@ nav_order: 2
 ---
 ## Import Script
 
-NPM: 
+NPM:
 
 ```javascript
 
@@ -25,7 +25,7 @@ import TerminusClient from '@terminusdb/terminusdb-client'
 
 ```
 
-Script: 
+Script:
 
 ```javascript
 <script .../>
@@ -47,7 +47,7 @@ client.checkout("dev")
 let turtle = await client.getTriples("schema", "main")
 ```
 
-The client has an internal state which defines what organization / database / repository / branch / ref it is currently attached to 
+The client has an internal state which defines what organization / database / repository / branch / ref it is currently attached to
 
 ## TerminusDB Client API
 
@@ -57,15 +57,15 @@ client.connect(server, options)
 ```
 Description: Connect to a TerminusDB server and retrieve information about the current user's capabilities and resources on the server.
 
-Status: stable 
+Status: stable
 
-Arguments: 
+Arguments:
 -    server: (string) URL of the TerminusDB server to connect to
 -    options: (json) options for connect
      -   organization: (string) the id of the organization to connect to (in desktop use, this will always be "admin")
      -   db: (string) the id of the database to connect to
      -   local_auth: (json) a local auth configuration used to authenticate the client to the local server
-     -   key: (string) basic auth password 
+     -   key: (string) basic auth password
      -   user: (string) basic auth username (always admin in desktop mode)
      -   remote_auth: (json) a remote auth configuration - passed to the server to authenticate itself to remote servers during pull / push / clone / fork / fetch
      -   branch: (string) id of branch to connect to (defaults to main)
@@ -88,11 +88,11 @@ Description: Creates a new database in TerminusDB server
 
 Status: stable
 
-Arguments: 
+Arguments:
 -    dbid: (string - mandatory) The id of the new database to be created
 -    doc:  (json - mandatory) a json object containing details of the database to be created:
      -   label (string - mandatory) the display name of the database
-     -   comment (string - mandatory) text describing the database 
+     -   comment (string - mandatory) text describing the database
      -   prefixes (json - optional) json containing:
          -   doc: (string) the IRI to use when doc: prefixes are expanded (defaults to terminusdb:///data)
          -   scm: (string) the IRI to use when scm: prefixes are expanded (defaults to terminusdb:///schema)
@@ -114,7 +114,7 @@ Description: Deletes a database from a TerminusDB server
 
 Status: stable
 
-Arguments: 
+Arguments:
 -    dbid: (string - mandatory) The id of the database to be deleted
 -    orgid: (string - optional) the id of the organization to which the database belongs (in desktop use, this will always be "admin")
 
@@ -129,13 +129,13 @@ Returns Promise: HTTP 200 status on success, HTTP error code on failure
 
 ### Create Graph
 ```javascript
-client.createGraph(type, gid, commit_msg) 
+client.createGraph(type, gid, commit_msg)
 ```
 Description: Creates a new named graph within a TerminusDB database
 
 Status: stable
 
-Arguments: 
+Arguments:
 -    type: (string - mandatory) - type of graph to create, either "instance", "schema" or "inference"
 -    gid:  (string - mandatory) - id of the graph to be created
 -    commit_msg (string - optional) - a message describing the reason for the change that will be written into the commit log
@@ -149,13 +149,13 @@ Example
 
 ### Delete Graph
 ```javascript
-client.deleteGraph(type, gid, commit_msg) 
+client.deleteGraph(type, gid, commit_msg)
 ```
 Description: Deletes a graph from a TerminusDB database
 
 Status: stable
 
-Arguments: 
+Arguments:
 -    type: (string - mandatory) - type of graph to create, either "instance", "schema" or "inference"
 -    gid:  (string - mandatory) - id of the graph to be created
 -    commit_msg (string - optional) - a message describing the reason for the change that will be written into the commit log
@@ -175,7 +175,7 @@ Description: Retrieve the contents of a graph within a TerminusDB as triples, en
 
 Status: stable
 
-Arguments: 
+Arguments:
 -    gtype: (string - mandatory) - type of graph to get triples from, either "instance", "schema" or "inference"
 -    gid:  (string - mandatory) - id of the graph to read from
 
@@ -194,7 +194,7 @@ Description: Replace the contents of the specified graph with the passed triples
 
 Status: stable
 
-Arguments: 
+Arguments:
 -    gtype: (string - mandatory) - type of graph to get triples from, either "instance", "schema" or "inference"
 -    gid:  (string - mandatory) - id of the graph to read from
 -    turtle:  (string - mandatory) - string encoding triples in turtle (ttl) format
@@ -215,15 +215,15 @@ Description: send a Web Object Query Language query to the server
 
 Status: stable
 
-Arguments: 
+Arguments:
 -    woql: (WOQLQuery Object - mandatory) - an instance of the WOQLQuery class
 -    commit_msg (string - optional) - a message describing the reason for the change that will be written into the commit log (only relevant if the query contains an update)
 
 Returns Promise: HTTP 200 status on success, contents being a WOQL Query Response, HTTP error code on failure
--    api:WoqlResponse 
-     -   bindings: (Array) - an array of json values, each representing a single result, with each being indexed by variables 
+-    api:WoqlResponse
+     -   bindings: (Array) - an array of json values, each representing a single result, with each being indexed by variables
      -   api:variable_names: (Array) - an array of strings, which shows the order in which variables were used in the query
-     -   deletes: (int) - the number of triples that were deleted by the query 
+     -   deletes: (int) - the number of triples that were deleted by the query
      -   inserts: (int) - the number of triples that were inserted by the query
      -   transaction_retry_count: (int) - the number of times the transaction was restarted due to contention
 
@@ -239,11 +239,11 @@ Description: Clones a remote DB to the local server
 
 Status: Stable
 
-Arguments: 
+Arguments:
 -    clone_source: (json - mandatory) json describing the source branch to be used as a base
      -   remote_url: (string - mandatory) - The URL of the database to be cloned (the URL is always of the form https://server/organization_id/database_id )
      -   label (string - mandatory) the display name of the new cloned database
-     -   comment (string - mandatory) text describing the new cloned database 
+     -   comment (string - mandatory) text describing the new cloned database
 -    newid: (string - mandatory) id of the new cloned database on the local server
 -    orgid: (string - optional) id of the local organization that the new cloned database will be created in (in desktop mode this is always "admin")
 
@@ -260,7 +260,7 @@ Description: creates a new branch with a TerminusDB database, starting from the 
 
 Status: Stable
 
-Arguments: 
+Arguments:
 -    new_branch_id: (string - mandatory) - the ID of the new branch to be created
 
 Returns Promise: HTTP 200 status on success, HTTP error code on failure
@@ -277,7 +277,7 @@ Description: Merges the passed branch into the current one using the rebase oper
 
 Status: Stable
 
-Arguments: 
+Arguments:
 -    rebase_source: (json - mandatory) json describing the source branch to be used as a base
      -   rebase_from: (string - mandatory) - branch id to be rebased from
      -   message (string - optional) - a message describing the reason for the change that will be written into the commit log
@@ -295,7 +295,7 @@ Description: Pull changes from a branch on a remote database to a branch on a lo
 
 Status: Stable
 
-Arguments: 
+Arguments:
 -    remote_source_descriptor: (json - mandatory) an object describing the source of the pull
      -   remote: (string - mandatory) - the id of the remote repo (normally origin)
      -   remote_branch: (string - mandatory) - the id of the remote branch to pull from
@@ -316,7 +316,7 @@ Description: Push changes from a branch on a local database to a branch on a rem
 
 Status: Stable
 
-Arguments: 
+Arguments:
 -    remote_target_descriptor: (json - mandatory) an object describing the target of the push
      -   remote: (string - mandatory) - the id of the remote repo (normally origin)
      -   remote_branch: (string - mandatory) - the id of the remote branch to push to
@@ -337,14 +337,14 @@ Description: Fetch updates to a remote database to a remote repository with the 
 
 Status: Stable
 
-Arguments: 
+Arguments:
 -    remote_id (string - required) the id of the remote to fetch (normally origin)
 
 Returns Promise: HTTP 200 status on success, HTTP error code on failure
 
 ## Accessing and Changing Client Context
 
-The client's has an internal context which defines which allows the user to invoke the API actions against any valid resource in the database. For example, by specifying a particular commit id as the source of a query operation, all queries will be made against the state of the database as it was immediately after that specific commit was completed.  All of these methods are both getters and setters with 0 or 1 arguments - if no argument is supplied, they get the current value, if an argument is supplied they set the current value for that part of context 
+The client's has an internal context which defines which allows the user to invoke the API actions against any valid resource in the database. For example, by specifying a particular commit id as the source of a query operation, all queries will be made against the state of the database as it was immediately after that specific commit was completed.  All of these methods are both getters and setters with 0 or 1 arguments - if no argument is supplied, they get the current value, if an argument is supplied they set the current value for that part of context
 
 Methods
 
@@ -398,12 +398,12 @@ Description: Gets and Sets the client's internal repository context value (defau
 
 Status: Stable
 
-Arguments: 
+Arguments:
 -    repoid: (string - optional) the repository id to set the context to
 
 Returns
 -    (string) the current repository id within the client context
-  
+
 Example
 ```javascript
     client.repo("origin")
@@ -416,12 +416,12 @@ Description: Gets and Sets the client's internal branch context value (defaults 
 
 Status: Stable
 
-Arguments: 
+Arguments:
 -    branch_id: (string - optional) the branch id to set the context to
 
 Returns
 -    (string) the current branch id within the client context
-  
+
 Example
 ```javascript
     client.checkout("dev")
@@ -487,11 +487,11 @@ Description: Retrieve the URL of the server that we are currently connected to
 
 Status: Stable
 
-Arguments: None 
+Arguments: None
 
 Returns:
 -    (string) the URL of the TerminusDB server endpoint we are connected to
-  
+
 Example:
 ```javascript
     let server_url = client.server()
@@ -505,11 +505,11 @@ Description: Retrieve the URL of the server's API base that we are currently con
 
 Status: Stable
 
-Arguments: None 
+Arguments: None
 
 Returns:
 -    (string) the URL of the TerminusDB server api endpoint we are connected to (typically server() + "api/")
-  
+
 Example:
 ```javascript
     let api_url = client.api()
@@ -522,11 +522,11 @@ Description: Retrieve the id of the user that is logged in with the client
 
 Status: Stable
 
-Arguments: None 
+Arguments: None
 
 Returns:
 -    (string) the id of the current user (always 'admin' for desktop client)
-  
+
 Example:
 ```javascript
     let server_url = client.server()
@@ -535,15 +535,15 @@ Example:
 ```javascript
 client.user_organization()
 ```
-Description: Retrieve the id of the organization that the user currently belongs to 
+Description: Retrieve the id of the organization that the user currently belongs to
 
 Status: Stable
 
-Arguments: None 
+Arguments: None
 
 Returns:
 -    (string) the id of the current user (always 'admin' for desktop client)
-  
+
 Example:
 ```javascript
     let org = client.user_organization()
@@ -552,18 +552,18 @@ Example:
 ```javascript
 client.local_auth(credentials)
 ```
-Description: Gets / sets the credentials for connecting to the local terminusdb-server 
+Description: Gets / sets the credentials for connecting to the local terminusdb-server
 
 Status: Stable
 
-Arguments: 
+Arguments:
 -    credentials: (json - optional) the credentials to use to authenticate to local TerminusDB server
      -   type: (string - mandatory) either "jwt" or "basic"
      -   key: (string - mandatory) either the jwt token or the basic auth password depending on the type field
      -   user: (string - optional) the user id to use for basic authentication - defaults to "admin"
 Returns:
 -    (json) the current local credentials as a json
-  
+
 Example:
 ```javascript
     client.local_auth({type: "basic", user: "admin", key: "root" })
@@ -572,18 +572,18 @@ Example:
 ```javascript
 client.remote_auth(credentials)
 ```
-Description: Gets / sets the credentials for connecting to a remote TerminusDB server for push / pull / clone / fetch operations 
+Description: Gets / sets the credentials for connecting to a remote TerminusDB server for push / pull / clone / fetch operations
 
 Status: Stable
 
-Arguments: 
+Arguments:
 -    credentials: (json - optional) the credentials to use to authenticate to the remote TerminusDB server
      -   type: (string - mandatory) either "jwt" or "basic"
      -   key: (string - mandatory) either the jwt token or the basic auth password depending on the type field
      -   user: (string - optional) the user id to use for basic authentication - defaults to "admin"
 Returns:
 -    (json) the current remote credentials as a json
-  
+
 Example:
 ```javascript
     client.local_auth({type: "jwt", key: "...."})
@@ -596,7 +596,7 @@ Description: retrieves a list of databases (id, organization, label, comment) th
 
 Status: Stable
 
-Arguments: None 
+Arguments: None
 
 Returns:
 -    (Array(json)) a list of databases the user has access to on the server, each having:
@@ -618,9 +618,9 @@ Description: Retrieves metadata (label, comment) about a particular database.
 
 Status: Stable
 
-Arguments: 
--    dbid (string - mandatory) the id of the database 
--    orgid (string - optional) the id of the organization to which the database belongs (defaults to 'admin') 
+Arguments:
+-    dbid (string - mandatory) the id of the database
+-    orgid (string - optional) the id of the organization to which the database belongs (defaults to 'admin')
 
 Returns:
 -    (json) a json with fields representing metadata about the db:
@@ -637,12 +637,12 @@ Example:
 ```javascript
 client.author(author_id)
 ```
-Description: Gets / sets the string that will be written into the commit log for the current user 
+Description: Gets / sets the string that will be written into the commit log for the current user
 
 Status: Stable
 
-Arguments: 
--    author_id (string - optional) the id to write into commit logs as the author string (normally an email address) 
+Arguments:
+-    author_id (string - optional) the id to write into commit logs as the author string (normally an email address)
 
 Returns:
 -    (string) the current author id in use for the current user
@@ -655,19 +655,19 @@ Example:
 ```javascript
 client.set_system_db()
 ```
-Description: sets the internal client context to allow it to talk to the server's internal system database 
+Description: sets the internal client context to allow it to talk to the server's internal system database
 
 Status: Stable
 
-Arguments: None 
-   
+Arguments: None
+
 Returns: None
 
 Example:
 ```javascript
     client.set_system_db()
 ```
-### set 
+### set
 ```javascript
 client.set(opts)
 ```
@@ -679,14 +679,14 @@ Arguments: (json - mandatory) opts - a json object with the following optional f
 -        organization: (string) the id of the organization to connect to (in desktop use, this will always be "admin")
 -        db: (string) the id of the database to connect to
 -        local_auth: (json) a local auth configuration used to authenticate the client to the local server
--        key: (string) basic auth password 
+-        key: (string) basic auth password
 -        user: (string) basic auth username (always admin in desktop mode)
 -        remote_auth: (json) a remote auth configuration - passed to the server to authenticate itself to remote servers during pull / push / clone / fork / fetch
 -        branch: (string) id of branch to connect to (defaults to main)
 -        ref: (string) id of the commit to connect to (defaults to head)
 -        repo:  (string) id of the repository to connect to (defaults to local)
 
-   
+
 Returns: None
 
 Example:
@@ -695,7 +695,7 @@ Example:
 ```
 ## Utility Functions
 
-### copy 
+### copy
 ```javascript
 client.copy()
 ```
@@ -704,28 +704,28 @@ Description: creates a copy of the client with identical internal state and cont
 Status: Stable
 
 Arguments: None
-   
-Returns: 
+
+Returns:
 -    (WOQLClient) new client object with identical state to original but which can be manipulated independently
 
 Example:
 ```javascript
     let tempClient = client.copy()
 ```
-### resource 
+### resource
 ```javascript
 client.resource(type, val)
 ```
 Description: generates a resource string for the required context
 
-Arguments: 
+Arguments:
 -    type (string - mandatory) the type of resource string that is required - one of "db", "meta", "repo", "commits", "branch", "ref"
 -    val (string - optional) - can be used to specify a specific branch / ref - if not supplied the current context will be used
 
 Returns:
 -    (string) - a resource string for the desired context
 
-Example: 
+Example:
 ```javascript
     let branch_resource = client.resource("branch")
 ```

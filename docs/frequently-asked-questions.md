@@ -122,7 +122,7 @@ You can read a description of the architecture in our [Succinct Data Structures 
 
 TerminusDB will be fully featured and open source (GPLv3) forever. TerminusHub has a freemium tier and paid subscriptions for private collaboration. We borrowed the GitHub commercial model.
 
-More information on pricing and subscriptions here.
+More information on pricing and subscriptions [here](https://terminusdb.com/hub/).
 
 If you are working with an open-source or public interest project, we want you to be free forever, so send us a message.
 

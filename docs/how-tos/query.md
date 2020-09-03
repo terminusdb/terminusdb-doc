@@ -295,16 +295,16 @@ When manipulating data from the query screen, you need to specify a reason for y
 
 ### Inserting
 ```javascript
-insert(a,b,c)
+add_triple("doc:a","scm:b","doc:c")
 ```
 
-This will insert the triple `(a,b,c)`.
+This will insert the triple `("doc:a","scm:b","doc:c")`.
 ### Deleting
 ```javascript
-delete(a,b,c)
+delete_triple("doc:a","scm:b","doc:c")
 ```
 
-This will delete the triple `(a,b,c)`.
+This will delete the triple `("doc:a","scm:b","doc:c")`.
 
 ## Conclusion
 

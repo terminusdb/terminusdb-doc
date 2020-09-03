@@ -10,6 +10,7 @@ permalink: /reference/woql/nonprimitives
 
 ### WOQL Literals, Prefixes & IRI Constants
 
+
 <!-- string -->
 <div class="anchor-sub-headings-style">
     <span class="anchor-sub-headings">string</span>
@@ -45,6 +46,8 @@ string(1)
 //returns { "@type": "xsd:string", "@value": "1" }
 ```
 
+---
+
 <hr class="section-separator"/>
 <!----------------------------------------------------------------------------------------->
 
@@ -75,7 +78,6 @@ literal(Val, Type)
 A JSON-LD literal
 
 <div class="anchor-sub-parts">Example</div>
-
 
 
 ```js

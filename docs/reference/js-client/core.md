@@ -17,8 +17,6 @@ nav_order: 2
 ---
 ## Import Script
 
-<<<<<<< HEAD
-
 NPM:
 =======
 NPM:
@@ -33,10 +31,6 @@ Script:
 
 ```javascript
 <script .../>
->>>>>>> 4b5e076a8d3cfd72f1a32095566722e396ef7001
-
-```js
-    import TerminusClient from '@terminusdb/terminusdb-client'
 ```
 
 ## WOQLClient Class

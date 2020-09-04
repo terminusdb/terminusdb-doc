@@ -1,22 +1,20 @@
 ---
-layout: default
 title: Time Travel
+layout: default
 parent: How Tos
 nav_order: 5
 ---
-
 # Time Travel
+
 {: .no_toc }
 
-## Table of contents
-{: .no_toc .text-delta }
+###### TerminusDB
 
-1. TOC
-{:toc}
+TerminusDB is a temporal database and natively supports time travel. It offers temporal data types and stores information relating to the past states of the database. TerminusDB uses a delta encoding approach to facilitate time travel queries. You can read more about this in [this technical white paper](https://github.com/terminusdb/terminusdb-server/blob/dev/docs/whitepaper/terminusdb.pdf).
 
----
+- - -
 
-## Section 1
+## Section 1 - Clone 
 
 content of section 1
 

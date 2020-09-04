@@ -9,7 +9,7 @@ nav_order: 1
 
 {: .no_toc }
 
-Here we are going to explain how to install console into your local machine. Console is dependent on the below modules as well... 
+This document describes how to install console into your local machine. Console is dependent on the below modules as well...
 
 [@terminusdb/terminusdb-client](https://github.com/terminusdb/terminusdb-client)
 
@@ -22,14 +22,12 @@ Most likely, if you are running console locally, it's because you are a develope
 `@terminusdb:registry=https://api.bintray.com/npm/terminusdb/npm-dev`
 
 ## Table of contents
-
 {: .no_toc .text-delta }
 
 1. TOC
-   {:toc}
+{:toc}
 
-- - -
-
+---
 
 
 ## Clone from GitHub

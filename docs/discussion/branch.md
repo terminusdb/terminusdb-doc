@@ -26,5 +26,5 @@ Rebase is a merge style which takes the commits from a source branch and places 
 
 Here are some posts:
 
-1. Blog post 1
-2. Blog post 2
+1. [Branch and Merge Functionality in TerminusDB and Hub](https://www.youtube.com/watch?v=YY1usMBuNSU)
+

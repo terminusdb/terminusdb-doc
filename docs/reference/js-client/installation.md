@@ -8,10 +8,7 @@ nav_order: 1
 # Installation
 {: .no_toc }
 
-Here we are going to explain how to 
-
 ## Table of contents
-
 {: .no_toc .text-delta }
 
 1. TOC

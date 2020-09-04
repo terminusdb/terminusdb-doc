@@ -61,6 +61,7 @@ h6 {
 
 p {
   margin-bottom: 1em;
+  font-size: 20px;
 }
 
 a {
@@ -84,7 +85,7 @@ a:not([class]) {
 
 code {
   font-family: $mono-font-family;
-  font-size: 12px;
+  font-size: 20px;
   line-height: $body-line-height;
 }
 
@@ -95,6 +96,7 @@ pre {
 
 li {
   margin: 0.25em 0;
+  font-size: 20px;
 }
 
 img {

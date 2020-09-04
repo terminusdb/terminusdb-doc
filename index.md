@@ -5,16 +5,16 @@ nav_order: 1
 description: "Documentation for TerminusDB - an open-source graph database that stores data like git."
 permalink: /
 ---
-
-# TerminusDB Documentation
+![Cowduck](/docs/assets/images/cowduck_sitting_logo.png)
+<!-- # TerminusDB Documentation -->
 {: .fs-9 }
 
 Documentation for TerminusDB - an open-source graph database that stores data like git.
 {: .fs-6 .fw-300 }
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/terminusdb/terminusdb-server){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }  [View it on GitHub](https://github.com/terminusdb/terminusdb-server){: .btn .fs-5 .mb-4 .mb-md-0 } [Visit Homepage](https://terminusdb.com){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-![Cowduck](/docs/assets/images/cowduck_sitting_logo.png)
+
 
 ---
 
@@ -25,13 +25,13 @@ Documentation for TerminusDB - an open-source graph database that stores data li
 - Docker
 - Git
 
-### Quick start: install with docker
+### Quickstart: install with docker
 
-Get the script in the [terminusdb-quickstart repo](https://github.com/terminusdb/terminusdb-quickstart), cd to it
+Get the script in the [terminusdb-bootstrap repo](https://github.com/terminusdb/terminusdb-bootstrap), cd to it
 
 ```
-git clone https://github.com/terminusdb/terminusdb-quickstart
-cd terminusdb-quickstart
+git clone https://github.com/terminusdb/terminusdb-bootstrap
+cd terminusdb-bootstrap
 ```
 
 Run the container (the first time)
@@ -50,7 +50,7 @@ d9fa4a1acf93: Pulling fs layer
 [ ... ]
 ```
 
-For details, go to [Quick install with docker](/docs/getting-started/quick-install/)
+For details, go to [bootstrap](https://github.com/terminusdb/terminusdb-bootstrap)
 
 ---
 
@@ -60,11 +60,8 @@ For details, go to [Quick install with docker](/docs/getting-started/quick-insta
 
 ### License
 
-TerminusDB is Distributed by an <a href=\"https://github.com/terminusdb/terminusdb-server/blob/master/LICENSE\">GPL-3.0 license.</a>.
+TerminusDB is Distributed by an [GPL-3.0 license](https://github.com/terminusdb/terminusdb-server/blob/master/LICENSE)
 
-### Contributing
-
-Read more about becoming a contributor in [Developer Guide](/docs/developer-guide).
 
 #### Thank you to the contributors!
 

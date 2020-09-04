@@ -28,11 +28,11 @@
     height: 100%;
     flex-direction: column;
     border-right: $border $border-color;
-    align-items: flex-end;
+    //align-items: flex-end;
   }
 
   @include mq(lg) {
-    width: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
+    //width: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
     min-width: $nav-width;
   }
 }
@@ -50,15 +50,55 @@
   }
 }
 
+/* For the "inset" look only */
+html {
+    overflow: auto;
+}
+body {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    padding: 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(245,245,245,0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(245,245,245,0.4);
+}
+
 .main-content {
   @include mq(md) {
     position: relative;
-    max-width: $content-width;
+    //max-width: $content-width;
+    width: $content-width;
     margin-left: $nav-width-md;
   }
 
   @include mq(lg) {
     margin-left: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
+    //margin-left: calc((100% - 1250px) / 2 );
   }
 }
 
@@ -112,6 +152,7 @@
   }
 }
 
+
 .navigation {
   @include container;
 
@@ -119,7 +160,12 @@
     padding-top: $sp-8;
     padding-bottom: $gutter-spacing-sm;
     overflow-y: auto;
+    overflow-x: hidden;
     flex: 1 1 auto;
+    margin-left: $navigation-margin;
+    min-width: $navigation-list-width;
+    //background-image: $background-image;
+    //background-size: $background-size;
   }
 }
 
@@ -132,7 +178,8 @@
     z-index: 101;
     height: $header-height;
     max-height: $header-height;
-    border-bottom: $border $border-color;
+    margin: $header-margin;
+    //border-bottom: $border $border-color;
   }
 }
 
@@ -168,6 +215,7 @@
   appearance: none;
   display: flex;
   height: 100%;
+
   padding: $gutter-spacing-sm;
   align-items: center;
   color: $link-color;

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
   const cssFile = document.querySelector('[rel="stylesheet"]')
   const originalCssRef = cssFile.getAttribute('href')
   const darkModeCssRef = originalCssRef.replace('just-the-docs.css', 'dark-mode-preview.css')
-  const buttonCopy = ['Return to the light side', 'Preview dark color scheme']
+  const buttonCopy = ['Default', 'Dark mode']
   const updateButtonText = function(toggleDarkMode) {
     toggleDarkMode.textContent === buttonCopy[0] ?
       toggleDarkMode.textContent = buttonCopy[1] :

@@ -4355,5 +4355,26 @@ label.sub-description{
 //	top: 0px;
 //}
 
-//language-js
-  
+@media (min-width: 78.125rem){
+	.navigation {
+	 	margin-left:0px!important
+	}
+}
+@media (min-width: 78.125rem){
+.main-content {
+    	width: 1020px!important;
+	} 
+}
+
+@media (min-width: 94.625rem) {
+    .main-content {
+        margin-left:calc((100% - 1600px) / 2 + 400px) !important;
+    }
+}
+
+
+@media (min-width: 94.125rem){
+	.main-content {
+    	width: 1200px !important;
+	}
+}

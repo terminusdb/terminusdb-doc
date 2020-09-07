@@ -1,68 +1,23 @@
-<p align="right">
-    <a href="https://badge.fury.io/rb/just-the-docs"><img src="https://badge.fury.io/rb/just-the-docs.svg" alt="Gem version"></a> <a href="https://github.com/pmarsceill/just-the-docs/actions"><img src="https://github.com/pmarsceill/just-the-docs/workflows/CI/badge.svg" alt="Build status"></a>
-</p>
-<br><br>
-<p align="center">
-    <h1 align="center">Just the Docs</h1>
-    <p align="center">A modern, highly customizable, and responsive Jekyll theme for documentation with built-in search.<br>Easily hosted on GitHub Pages with few dependencies.</p>
-    <p align="center"><strong><a href="https://pmarsceill.github.io/just-the-docs/">See it in action!</a></strong></p>
-    <br><br><br>
-</p>
+# TerminusDB Docs
 
-![jtd](https://user-images.githubusercontent.com/896475/47384541-89053c80-d6d5-11e8-98dc-dba16e192de9.gif)
+This is the repo for the documentation site of TerminusDB, build with [Jekyll](https://jekyllrb.com/) using the theme [Just the Docs](https://pmarsceill.github.io/just-the-docs/).
 
-## Installation
+## Setting up environment
 
-Add this line to your Jekyll site's Gemfile:
+TerminusDB Docs is built with [Jekyll](https://jekyllrb.com/), a static site generator. View the [quick start guide](https://jekyllrb.com/docs/) for installation and more information. The theme that we are using is [Just the Docs](https://pmarsceill.github.io/just-the-docs/), visit their website for the [navigation structure](https://pmarsceill.github.io/just-the-docs/docs/navigation-structure/) and [Markdown guide](https://pmarsceill.github.io/just-the-docs/docs/index-test/).
 
-```ruby
-gem "just-the-docs"
-```
+## Pull Request Format Guideline
 
-And add this line to your Jekyll site's `_config.yml`:
+**please check the build locally and make sure you are happy with it before sending the PR**
 
-```yaml
-theme: just-the-docs
-```
+Please put the type of the pull request in the title:
 
-And then execute:
+* [Doc] for documentation contents
+* [Bug] for bug fixes for the website
+* [WIP] for work in progress (will not be reviewed)
 
-    $ bundle
+Also, if there is a related issues, please also put the issue numbers in blankets in the title, for example: (#10)
 
-Or install it yourself as:
+It will be great to describe what you have done in the pull request (more detail the better). If there is a issue that can be closed by this PR, you can put `Close #XX` or `Fix #XX` (while XX is the issue number) to close that issue automatically when your PR is merged.
 
-    $ gem install just-the-docs
-
-## Usage
-
-[View the documentation](https://pmarsceill.github.io/just-the-docs/) for usage information.
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/pmarsceill/just-the-docs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-### Submitting code changes:
-
-- Open a [Pull Request](https://github.com/pmarsceill/just-the-docs/pulls)
-- Ensure all CI tests pass
-- Await code review
-- Bump the version number in `just-the-docs.gemspec` and `package.json` according to [semantic versioning](https://semver.org/).
-
-### Design and development principles of this theme:
-
-1. As few dependencies as possible
-2. No build script needed
-3. First class mobile experience
-4. Make the content shine
-
-## Development
-
-To set up your environment to develop this theme, run `bundle install`.
-
-Your theme is set up just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
-
-When the theme is released, only the files in `_layouts`, `_includes`, and `_sass` tracked with Git will be released.
-
-## License
-
-The theme is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+Following the guideline makes the reviewing process of the PR much efficient.

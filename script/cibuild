@@ -1,0 +1,28 @@
+#!/bin/bash
+if [ $TRAVIS_PULL_REQUEST == "true" ]; then
+  echo "this is PR, exiting"
+  exit 0
+fi
+
+# enable error reporting to the console
+set -e
+
+# cleanup "_site"
+rm -rf _site
+mkdir _site
+
+# clone remote repo to "_site"
+git clone https://${GH_TOKEN}@github.com/terminusdb/terminusdb-doc --branch gh-pages _site
+
+bundle exec rake move:init
+
+# build with Jekyll into "_site"
+bundle exec jekyll build
+
+# push
+cd _site
+git config user.email "robin@datachemist.com"
+git config user.name "Robin"
+git add --all
+git commit -a -m "Travis #$TRAVIS_BUILD_NUMBER"
+git push --force origin gh-pages

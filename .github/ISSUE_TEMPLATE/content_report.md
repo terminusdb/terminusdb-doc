@@ -1,8 +1,8 @@
 ---
-name: Bug report
-about: Create a report to help us improve to frontend and website presentation.
+name: Content report
+about: Create a report to help us improve the documentation.
 title: ''
-labels: bug
+labels: documentation
 assignees: ''
 
 ---

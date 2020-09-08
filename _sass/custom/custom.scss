@@ -1081,7 +1081,7 @@ hr.user-card-sections {
 	.header.active {
 		position: fixed;
 		height: 100vh;
-		background: #002855
+		background: #002855;
 	}
 
 	.menu__body.active {
@@ -1773,7 +1773,7 @@ button.upgrade{
 
 .menu__burger {
 	margin-left:auto;
-	top: -55px;
+	top: -35px;
 	position: relative;
 	border: none;
 	vertical-align: middle;
@@ -4355,10 +4355,17 @@ label.sub-description{
 //	top: 0px;
 //}
 
+@media (max-width: 78.125rem){
+	.side-bar{	   
+    	margin-top: 30px;
+	}
+}
+
 @media (min-width: 78.125rem){
 	.navigation {
 	 	margin-left:0px!important
 	}
+
 }
 @media (min-width: 78.125rem){
 .main-content {
@@ -4376,5 +4383,11 @@ label.sub-description{
 @media (min-width: 94.125rem){
 	.main-content {
     	width: 1200px !important;
+	}
+}
+
+@media (min-width: 94.625rem){
+	.navigation, .site-header, .site-footer {
+    	width: 100% !important; 
 	}
 }

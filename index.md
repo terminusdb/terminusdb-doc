@@ -5,7 +5,7 @@ nav_order: 1
 description: "Documentation for TerminusDB - an open-source graph database that stores data like git."
 permalink: /
 ---
-![Cowduck](/docs/assets/images/cowduck_sitting_logo.png)
+<!-- ![Cowduck](/docs/assets/images/cowduck_sitting_logo.png) -->
 <!-- # TerminusDB Documentation -->
 {: .fs-9 }
 

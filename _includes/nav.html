@@ -1,5 +1,8 @@
 <nav role="navigation" aria-label="Main navigation">
   <ul class="navigation-list">
+    <li class="navigation-list-item active">
+        <a href="https://terminusdb.com/documentation" class="navigation-list-link active">Home</a>
+    </li>
     {%- assign pages_list = site.html_pages | sort:"nav_order" -%}
     {%- for node in pages_list -%}
       {%- unless node.nav_exclude -%}
@@ -8,7 +11,9 @@
             {%- if page.parent == node.title or page.grand_parent == node.title -%}
               {%- assign first_level_url = node.url | absolute_url -%}
             {%- endif -%}
-            <a href="{{ node.url | absolute_url }}" class="navigation-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
+            {%- if node.title -%}
+              <a href="{{ node.url | absolute_url }}" class="navigation-list-link{% if page.url == node.url %} active{% endif %}">{{ node.title }}</a>
+            {%- endif -%}
             {%- if node.has_children -%}
               {%- assign children_list = site.html_pages | where: "parent", node.title | sort:"nav_order" -%}
               <ul class="navigation-list-child-list ">
@@ -21,6 +26,8 @@
                     {%- if child.has_children and page.parent == child.title or page.title == child.title -%}
                         {%- assign grand_children_list = site.html_pages | where: "parent", child.title | sort:"nav_order" -%}
                         <ul class="navigation-list-grand-child-list">
+                         
+
                         {%- for grand_child in grand_children_list -%}
                           <li class="navigation-list-item {% if page.url == grand_child.url %} active{% endif %}">
                             <a href="{{ grand_child.url | absolute_url }}" class="navigation-list-link{% if page.url == grand_child.url %} active{% endif %}">{{ grand_child.title }}</a>

@@ -63,7 +63,7 @@ nav_order: 8
 
 ### <a name="head1"></a>What is TerminusDB?
 
-TerminusDB is an open-source general purpose graph database that stores data like Git. It is built for data people and allows fierce data integration, versioning out of the box and unparalleled query. No data platform is more productive.
+TerminusDB is an open-source general-purpose graph database that stores data like Git. It is built for data people and allows fierce data integration, versioning out of the box and unparalleled query. No data platform is more productive.
 
 [Download center](https://terminusdb.com/hub/download)
 
@@ -94,7 +94,7 @@ Yes, you can. Distributed revision control for structured data is here.
 TerminusDB is built around three core design principles that collectively enable you to build faster, and with higher quality:
 
 1. Fierce git-like collaborative data integration. Merge and branch operations let you mix and match data sources
-2. Revision Control enables collaboration work on different versions of the same asset at the same time in a controlled way without risk of data loss.
+2. Revision Control enables collaboration to work on different versions of the same asset at the same time in a controlled way without risk of data loss.
 3. TerminusDB is a powerful graph database and analytic engine. It is built around relationships that today power core data and software products. In today’s world, relationships among data are the data and they do not fit in rows and columns.
 
 TerminusDB is the only database which supplies all of these operations
@@ -105,7 +105,7 @@ TerminusDB is the only database which supplies all of these operations
 
 TerminusDB and TerminusHub can be used across a range of OLTP and analytical apps.
 
-TerminusDB Server provides TerminusDB with a RESTful API for interacting with knowledge graphs via the JSON-LD exchange format. This means you can easily compose applications within your own toolchain which utilise the powerful features of graph search and graph storage.
+TerminusDB Server provides TerminusDB with a RESTful API for interacting with knowledge graphs via the JSON-LD exchange format. This means you can easily compose applications within your own toolchain that utilize the powerful features of graph search and graph storage.
 
 We think TerminusDB is perfect for OLTP use cases with transactions in the tens of thousands per day, such as headless-CMS, data curation, inventory management etc.
 
@@ -113,7 +113,7 @@ We think TerminusDB is perfect for OLTP use cases with transactions in the tens 
 
 ### <a name="head6"></a>What is the underlying TerminusDB architecture?
 
-We use an advanced git-like model, storing append only changes to graphs represented in succinct data structures using terminusdb-store.
+We use an advanced git-like model, storing append-only changes to graphs represented in succinct data structures using terminusdb-store.
 
 You can read a description of the architecture in our [Succinct Data Structures and Delta Encoding for Modern Databases](https://github.com/terminusdb/terminusdb-server/blob/dev/docs/whitepaper/terminusdb.pdf) whitepaper.
 
@@ -157,7 +157,7 @@ Yes.
 
 ### <a name="head12"></a>How does TerminusDB scale?
 
-TerminusDB primarily scales vertically. It uses succinct data structures advantage of ever increasing main memory available in modern machines, to get very large graphs in-memory.
+TerminusDB primarily scales vertically. It uses succinct data structures advantage of ever-increasing main memory available in modern machines, to get very large graphs in-memory.
 
 Graph partitioning is used to scale beyond a single machine.
 
@@ -171,7 +171,7 @@ When our core storage engineer first presented the shiny new storage engine, he 
 
 ### <a name="head14"></a>How is TerminusDB different from relational databases like Oracle?
 
-Relational databases like Oracle, MySQL, SQL Server, Postgres and others are built on architectures originally designed over 40 years ago. The requirements for applications were very different back in the 1970s. Codd's innovations were indeed a benefit, as they brought schemas to a wild west. The problem is that they are unnecessarily restrictive and poor at data modeling. In data modeling, inheritance, multiple inheritance, and object identity are big advantages with complex data science and ML/AI projects or application.
+Relational databases like Oracle, MySQL, SQL Server, Postgres and others are built on architectures originally designed over 40 years ago. The requirements for applications were very different back in the 1970s. Codd's innovations were indeed a benefit, as they brought schemas to a wild west. The problem is that they are unnecessarily restrictive and poor at data modeling. In data modeling, inheritance, multiple inheritances, and object identity are big advantages with complex data science and ML/AI projects or application.
 
 RDBMSs are simply too primitive and not built with the developer or the data engineer/scientist in mind.
 
@@ -185,9 +185,9 @@ We are originally a University spin-out. There is a great blog on [the technical
 
 ### <a name="head16"></a>Why did you write your own database?
 
-We started off by testing and building on other databases, but constantly faced performance issues. By building all the way down to the ground, we could deliver a *native* revision control database.
+We started off by testing and building on other databases but constantly faced performance issues. By building all the way down to the ground, we could deliver a *native* revision control database.
 
-Some solutions are just a version control layer on a traditional (usually relational) database; however, piecemeal additions without a fundamentally append only, immutable store, this is often going to cause more problems than it solves. We think that a native approach makes the most sense and will ultimately deliver the most value.
+Some solutions are just a version control layer on a traditional (usually relational) database; however, piecemeal additions without a fundamentally append-only, immutable store, this is often going to cause more problems than it solves. We think that a native approach makes the most sense and will ultimately deliver the most value.
 
 - - -
 
@@ -195,7 +195,7 @@ Some solutions are just a version control layer on a traditional (usually relati
 
 The user interacts with TerminusDB through our JavaScript and Python SDKs. We hope to extend the number of SDKs over time.
 
-WOQL is a powerful, highly expressive and composable graph query language. In its fluent form WOQL is human-readable and easy to understand. WOQL allows recursive queries and manipulation of paths through the graph.
+WOQL is a powerful, highly expressive and composable graph query language. In its fluent form, WOQL is human-readable and easy to understand. WOQL allows recursive queries and manipulation of paths through the graph.
 
 WOQL is easy to compose from Javascript or python. Javascript, because we live in a web age, and python, because it is the choice for many data scientists. JSON-LD provides a nice intermediate language in which to write queries in either of these languages. Because of the choice of JSON-LD, we can naturally store our queries in the graph (and even query our queries).
 

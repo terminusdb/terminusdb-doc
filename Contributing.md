@@ -1,6 +1,6 @@
-# TerminusDB Docs
+# Contributing to TerminusDB Docs
 
-This is the repo for the documentation site of TerminusDB, build with [Jekyll](https://jekyllrb.com/) using the theme [Just the Docs](https://pmarsceill.github.io/just-the-docs/).
+Thanks for interested to contribute to TerminusDB Docs, to get started, fork this repo and follow the [instruction setting up environment](#setting-up-dev-environment). If you don't have idea where to start, you can look for [`good first issue`](https://github.com/terminusdb/terminusdb-doc/contribute) or `help wanted` label at issues. All pull request should follow the [Pull Request Format Guideline](#pull-request-format-guideline).
 
 ## Setting up environment
 

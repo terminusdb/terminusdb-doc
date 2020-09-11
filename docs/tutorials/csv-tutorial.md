@@ -5,19 +5,17 @@ parent: Tutorials
 nav_order: 6
 ---
 # Importing and Cleaning Data from CSVs
-
 {: .no_toc }
 
 In this tutorial, we will learn how to load data from a CSV file then clean it up with some data wrangling, like changing the type of the data, combining strings and generating ids for objects.
 
 ## Jump to
-
 {: .no_toc .text-delta }
 
 1. TOC
-   {:toc}
+{:toc}
 
-- - -
+---
 
 ## Step 1 - reading the CSV columns
 

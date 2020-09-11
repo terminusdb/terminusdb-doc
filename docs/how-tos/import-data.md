@@ -178,8 +178,7 @@ and(
         re(" [^ ]*$", "v:Full Name", ["v:Last Name", "v:All"]),
         re("$[^ ]*$", "v:Full Name", ["v:First Name", "v:All"])
 )
-
-....
+```
 
 ### Inserting Data From CSVs
 

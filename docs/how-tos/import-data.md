@@ -146,10 +146,10 @@ Willie,Nelson
 ```
 If we want to combine the two CSV column into a single variable to represent the full name of the individuals, we can do so as follows:
 
-```
+```javascript
 and(
         get(
-           as("First Name","v:First")
+            as("First Name","v:First")
            .as("Last Name", "v:Last")
         ).file('/app/local_files/roster.csv'),
         concat("v:First v:Last", "v:Full")
@@ -159,6 +159,25 @@ and(
 In the above example the variable "v:Full" will have the full name, assembled from the first name and last name with a space in between. 
 
 ### Extracting Data From Columns with regular expressions
+
+Sometimes, the data in the CSV needs to be significantly transformed from the input format. For example, we might want to extract patterns from multiple columns, or extract a substring from a particular column. In such cases regular expressions provide a great degree of flexibility in extracting the precise information that we want. For example, if we have a CSV with the following structure:
+
+```csv
+Full Name,Date of Birth
+George Smith, 08/10/1970
+Willie Nelson, 09/05/1963
+```
+
+In this example, if we wish to extract the first name and last name to independent variables, a regular expression does the trick:
+
+```javascript
+and(
+        get(
+            as("Full Name","v:Full")
+        ).file('/app/local_files/roster.csv'),
+        re(" [^ ]*$", "v:Full Name", ["v:Last Name", "v:All"]),
+        re("$[^ ]*$", "v:Full Name", ["v:First Name", "v:All"])
+)
 
 ....
 

@@ -23,105 +23,43 @@
 
   @include mq(md) {
     flex-wrap: nowrap;
-    /*position: absolute;
-    width: $nav-width-md;*/
-
-    width: 400px;
+    position: absolute;
+    width: $nav-width-md;
     height: 100%;
     flex-direction: column;
     border-right: $border $border-color;
-    //align-items: flex-end;
+    align-items: flex-end;
   }
 
   @include mq(lg) {
-    //width: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
-    //min-width: $nav-width;
+    width: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
+    min-width: $nav-width;
   }
 }
 
 .main-content-wrap {
- // @include mq(md) {
-    /*position: absolute;
+  @include mq(md) {
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;*/
-    flex: 1;
+    width: 100%;
     height: 100%;
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
-    overflow-y: auto;
-  //}
+    overflow-y: scroll;
+  }
 }
-
-/* For the "inset" look only */
-html {
-    overflow: auto;
-    height: 100%;
-
-}
-
-body {
-    /*height: 100%;*/
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 20px;
-    right: 0px;
-
-    /*padding: 30px;
-    overflow-y: scroll;*/
-
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
-/* Let's get this party started */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: rgba(245,245,245,0.8);
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-}
-::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(245,245,245,0.4);
-}
-
-//50rem = 800px
 
 .main-content {
- // @include mq(md) {
-    position: relative;
-    max-width:1400px;
-    width:100%;
-    padding: 0px 15px;
-   
-    //max-width: $content-width;
-    //width: $content-width;
-    //margin-left: $nav-width-md;
-   
-  //}
-
   @include mq(md) {
-    padding: 0px; 
+    position: relative;
+    max-width: $content-width;
+    margin-left: $nav-width-md;
   }
 
-  //@include mq(lg) {
-    padding: 0px; 
-    //margin-left: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
-    //margin-left: calc((100% - 1250px) / 2 );
-  //}
+  @include mq(lg) {
+    margin-left: calc((100% - #{$nav-width + $content-width}) / 2 + #{$nav-width});
+  }
 }
 
 .js-main-content:focus {
@@ -169,28 +107,19 @@ body {
 
   width: 100%;
 
-  /*@include mq(lg) {
+  @include mq(lg) {
     width: $nav-width;
-  }*/
+  }
 }
-
 
 .navigation {
   @include container;
 
   @include mq(md) {
-    //padding-top: $sp-8;
+    padding-top: $sp-8;
     padding-bottom: $gutter-spacing-sm;
     overflow-y: auto;
-    overflow-x: hidden;
     flex: 1 1 auto;
-    padding-left: $navigation-margin;
-    //margin-left: $navigation-margin;
-    
-    //min-width: $navigation-list-width;
-
-    //background-image: $background-image;
-    //background-size: $background-size;
   }
 }
 
@@ -203,8 +132,7 @@ body {
     z-index: 101;
     height: $header-height;
     max-height: $header-height;
-    margin: $header-margin;
-    //border-bottom: $border $border-color;
+    border-bottom: $border $border-color;
   }
 }
 
@@ -227,7 +155,6 @@ body {
 
 @if variable-exists(logo) {
   .site-logo {
-    max-width: $max-logo-width;
     width: 100%;
     height: 100%;
     background-image: url($logo);
@@ -241,7 +168,6 @@ body {
   appearance: none;
   display: flex;
   height: 100%;
-
   padding: $gutter-spacing-sm;
   align-items: center;
   color: $link-color;

@@ -307,18 +307,6 @@ select:-moz-focusring {
 }
 
 
-@media only screen and (min-width: 768px) {
-	body {
-		font-size: 14px
-	}
-}
-
-@media only screen and (min-width: 1024px) {
-	body {
-		font-size: 15px
-	}
-}
-
 div.custom-mt {
 	margin-top: 45px;
 }
@@ -974,7 +962,7 @@ hr.user-card-sections {
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-	max-width: 1180px;
+	/*max-width: 1180px;*/
 	padding: 0 15px
 }
 
@@ -1000,13 +988,13 @@ hr.user-card-sections {
 	position: relative
 }
 
-.wrapper--increased {
+/*.wrapper--increased {
 	max-width: 1200px
-}
+}*/
 
 .header {
 	display: block;
-	position: absolute;
+	/*position: absolute;*/
 	top: 0;
 	left: 0;
 	right: 0;
@@ -1014,7 +1002,15 @@ hr.user-card-sections {
 	-webkit-transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
 	-o-transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
 	transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
-	z-index: 3
+	z-index: 1000
+
+	
+}
+
+@media only screen and (min-width: 78.125rem) {
+		.header{
+			position: relative;
+	}
 }
 
 .header:after {
@@ -1079,12 +1075,13 @@ hr.user-card-sections {
 	}
 
 	.header.active {
-		position: fixed;
+		/*position: fixed*/;
 		height: 100vh;
 		background: #002855;
 	}
 
 	.menu__body.active {
+		display: flex;
 		padding-top: 30px;
 		bottom: auto;
 		top: 100%;
@@ -1532,11 +1529,11 @@ button.upgrade{
 	padding: 26px 0
 }
 
-@media only screen and (min-width: 768px) {
+/*@media only screen and (min-width: 768px) {
 	.menu {
 		padding: 50px 0 0
 	}
-}
+}*/
 
 .menu__brand {
 	display: -webkit-box;
@@ -1580,7 +1577,7 @@ button.upgrade{
 }
 
 .menu__body {
-	position: absolute;
+	/*position: absolute;*/
 	bottom: 100%;
 	left: -10px;
 	width: -webkit-calc(100% + 20px);
@@ -1589,7 +1586,7 @@ button.upgrade{
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
-	display: flex;
+	display: none;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
@@ -1607,6 +1604,7 @@ button.upgrade{
 //@media only screen and (min-width: 1024px) {
 @media only screen and (min-width: 78.125rem){
 	.menu__body {
+		display: flex;
 		position: static;
 		-webkit-box-orient: horizontal;
 		-webkit-box-direction: normal;
@@ -1686,7 +1684,7 @@ button.upgrade{
 }
 
 .menu__item {
-	margin-bottom: 50px
+	margin-bottom: 30px
 }
 @media only screen and (min-width: 78.125rem){
 //@media only screen and (min-width: 1024px) {
@@ -1773,7 +1771,7 @@ button.upgrade{
 
 .menu__burger {
 	margin-left:auto;
-	top: -35px;
+	top: -20px;
 	position: relative;
 	border: none;
 	vertical-align: middle;
@@ -4328,72 +4326,20 @@ label.sub-description{
 
 
 //just the doc css
-.page-header{
-	padding-top:170px !important;
 
-}
+/*1514px 94.125rem*/
+/*1250px 78.125rem*/
+/* 800px 50rem*/
+/*500px   31.25*/
 
-
-@media (min-width: 78.125rem){
-	.page-header {
-		height:240px !important;
-	}
-}
-
-//#burger{
-//	margin-left:auto;
-//	top: -55px;
-//}
+//rgba(242, 242, 242, 1);
+pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+} 
 
 
-//.header{
-//	top: -30px;
-//	right: 10px;
-//}
 
-//.header.active {
-//	top: 0px;
-//}
-
-@media (max-width: 78.125rem){
-	.side-bar{	   
-    	margin-top: 30px;
-	}
-}
-
-@media (min-width: 78.125rem){
-	.navigation {
-	 	margin-left:0px!important
-	}
-
-}
-@media (min-width: 78.125rem){
-.main-content {
-    	width: 1020px!important;
-	} 
-}
-
-@media (min-width: 94.625rem) {
-    .main-content {
-        margin-left:calc((100% - 1600px) / 2 + 400px) !important;
-    }
-}
-
-
-@media (min-width: 94.125rem){
-	.main-content {
-    	width: 1200px !important;
-	}
-}
-
-@media (min-width: 94.625rem){
-	.navigation, .site-header, .site-footer {
-    	width: 100% !important; 
-	}
-}
-
-@media (max-width: 689px){
-    .menu__burger{
-       top: -15px;
-   }
-}

@@ -1,15 +1,12 @@
+
 //
 // Typography
 //
 
 //$body-font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, roboto, noto, "segoe ui", arial, sans-serif !default;
-
-//$body-font-family: "Lexend Deca",Arial,sans-serif;
-$body-font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
+$body-font-family: "Lexend Deca",Arial,sans-serif;
 //$mono-font-family: "SFMono-Regular", Menlo, Consolas, Monospace !default;
-$mono-font-family:medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
-
-//$mono-font-family: "Lexend Deca",Arial,sans-serif !default;
+$mono-font-family: "Lexend Deca",Arial,sans-serif !default;
 $root-font-size: 16px !default;         // Base font-size for rems
 $body-line-height: 1.4 !default;
 $content-line-height: 1.5 !default;
@@ -36,7 +33,6 @@ $grey-lt-000: #fafafa;
 $grey-lt-100: #eeeeee;
 $grey-lt-200: #ededed;
 $grey-lt-300: #e8e8e8;
-
 
 $purple-000: #7253ed !default;
 $purple-100: #5e41d0 !default;
@@ -79,9 +75,7 @@ $body-background-color: $white !default;
 $sidebar-color: $blue-300 !default;
 $search-background-color: $white !default;
 $table-background-color: $white !default;
-$code-background-color: $grey-lt-100 !default;
-
-//$code-background-color: $grey-lt-000 !default;
+$code-background-color: $grey-lt-000 !default;
 
 $body-text-color: $grey-dk-100 !default;
 $sidebar-text-color: $green-000;
@@ -92,6 +86,7 @@ $nav-grand-child-link-color: $blue-100 !default;
 $link-color: $green-300 !default;
 $btn-primary-color: $green-100 !default;
 $base-button-color: #f7f7f7 !default;
+
 $link-font-size: 20px !default;
 
 $stable: #155724;
@@ -159,23 +154,21 @@ $nav-width-md: 248px;
 //custom-change
 //$nav-width-md: 400px !default;
 
-//$content-width: 800px !default;
+$content-width: 800px !default;
 
 //custom change
-$content-width:1250px !default;
+//$content-width: 1250px !default;
 
 $header-height: 70px !default;
-$header-margin: 30px 0px 60px 0px !default;
+$header-margin: 30px 0px 30px 0px !default;
 $search-results-width: 500px !default;
 $background-image: url("https://terminusdb.com/img/cards/card-shape-1.svg");
 $background-size: cover;
 $navigation-margin: 40px;
 $navigation-list-width: 350px;
-$navigation-list-item: 10px;
+$navigation-list-item: 20px;
 $normal-font-size: 20px !default;
 $small-font-size: 18px !important;
-
-$max-logo-width: 240px;
 
 //
 // Media queries in pixels

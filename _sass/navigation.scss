@@ -130,7 +130,8 @@
 
 .breadcrumb-nav-list-item {
   display: table-cell;
-  @include fs-2;
+  //@include fs-2;
+  @include fs-3;
 
   &::before {
     display: none;

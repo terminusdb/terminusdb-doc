@@ -17,7 +17,7 @@
 }
 
 @mixin fs-3 {
-  font-size: 12px !important;
+  font-size: 15px !important;
 
   @include mq(sm) {
     font-size: 18px !important;
@@ -28,7 +28,7 @@
   font-size: 18px !important;
 
   @include mq(sm) {
-    font-size: 16px !important;
+    font-size: 20px !important;
   }
 }
 

@@ -18,7 +18,7 @@ layout: table_wrappers
     <div class="side-bar">
       <div class="site-header">
         <!--{{ site.url }}{{ site.baseurl }} -->
-        <a href="https://terminusdb.com/documentation" class="site-title lh-tight">{% include title.html %}</a>
+        <a href="https://terminusdb.com" class="site-title lh-tight">{% include title.html %}</a>
         <button class="menu-button fs-3 js-main-nav-trigger" data-text-toggle="Hide" type="button">Menu</button>
       </div>
 
@@ -33,23 +33,26 @@ layout: table_wrappers
     <div class="main-content-wrap js-main-content" tabindex="0">
 
       <div class="main-content">
-      <div class="page-header js-page-header">
-          {% if site.search_enabled != false %}
-          <div class="search">
-            <div class="search-input-wrap">
-              <input type="text" class="js-search-input search-input" tabindex="0" placeholder="Search {{ site.title }}" aria-label="Search {{ site.title }}" autocomplete="off">
-              <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
-            </div>
-            <div class="js-search-results search-results-wrap"></div>
-          </div>
-          {% endif %}
-          {% if site.aux_links != nil %}
+        <div class="page-header js-page-header">
+            {% if site.search_enabled != false %}
+                <div class="search">
+                  <div class="search-input-wrap">
+                    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search {{ site.title }}" aria-label="Search {{ site.title }}" autocomplete="off">
+                    <label for="search-input" class="search-label">
+                        <svg width="14" height="14" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" class="search-icon"><title>Search</title><g fill-rule="nonzero"><path d="M17.332 20.735c-5.537 0-10-4.6-10-10.247 0-5.646 4.463-10.247 10-10.247 5.536 0 10 4.601 10 10.247s-4.464 10.247-10 10.247zm0-4c3.3 0 6-2.783 6-6.247 0-3.463-2.7-6.247-6-6.247s-6 2.784-6 6.247c0 3.464 2.7 6.247 6 6.247z"/><path d="M11.672 13.791L.192 25.271 3.02 28.1 14.5 16.62z"/></g></svg>
+                    </label>
+                  </div>
+                  <div id="search-results" class="search-results"></div>
+                </div>
+              {% endif %} 
+
+          <!--{% if site.aux_links != nil %}
             <ul class="list-style-none text-small aux-nav">
               {% for link in site.aux_links %}
                 <li class="d-inline-block my-0{% unless forloop.last %} mr-2{% endunless %}"><a href="{{ link.last }}">{{ link.first }}</a></li>
               {% endfor %}
             </ul>
-          {% endif %}
+          {% endif %}-->
         </div>
      <header class="header header--dark">
       <div class="wrapper wrapper--increased">
@@ -57,7 +60,7 @@ layout: table_wrappers
          <div class="menu__body">
             <ul class="menu__list">
                <li class="menu__item">
-                  <a href="https://terminusdb.com/docs/"  target="_self" class="menu__link menu__link--active" aria-label="Documentation">
+                  <a href="https://terminusdb.com/documentation/"  target="_self" class="menu__link menu__link--active" aria-label="Documentation">
                   Documentation
                   </a>
                </li>
@@ -73,7 +76,7 @@ layout: table_wrappers
                </li>
                <li class="menu__item">
                   <a href="https://terminusdb.com/hub/" target="_self" class="menu__link" aria-label="Blog">
-                  Terminus Hub 
+                  Terminus Hub
                   </a>
                </li>
                <li class="menu__item menu__item--full-devices">
@@ -120,6 +123,8 @@ layout: table_wrappers
       </nav>
    </div>
 </header>
+      
+
         <div class="page">
           {% unless page.url == "/" %}
             {% if page.parent %}
@@ -178,8 +183,8 @@ layout: table_wrappers
       a && a.addEventListener("click", function () {
         a.classList.toggle("active"), o.classList.toggle("active"), i.classList.toggle("active");
       });
-      window.addEventListener('resize',function(){ a.classList.remove("active"), o.classList.remove("active"), 
+      window.addEventListener('resize',function(){ a.classList.remove("active"), o.classList.remove("active"),
         i.classList.remove("active"); })
-     
+
   </script>
 </html>

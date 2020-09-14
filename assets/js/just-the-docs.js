@@ -4,6 +4,8 @@
 
 // Event handling
 
+console.log('jtd', jtd)
+
 jtd.addEvent = function(el, type, handler) {
   if (el.attachEvent) el.attachEvent('on'+type, handler); else el.addEventListener(type, handler);
 }
@@ -40,7 +42,7 @@ function initNav() {
     navTrigger.setAttribute('data-text-toggle', text);
     textToggle = text;
   })
-}
+
 /*
 function initNav() {
     const mainNav = document.querySelector('.js-main-nav');
@@ -71,7 +73,7 @@ function initNav() {
       siteNav.classList.remove('nav-open');
       mainHeader.classList.remove('nav-open');
     }
-  });
+}); */
 
   {%- if site.search_enabled != false and site.search.button %}
   const searchInput = document.getElementById('search-input');
@@ -86,7 +88,7 @@ function initNav() {
   {%- endif %}
 }
 
-{%- if site.search_enabled != false %}*/
+{%- if site.search_enabled != false %}
 // Site search
 
 function initSearch() {
@@ -96,6 +98,7 @@ function initSearch() {
   request.onload = function(){
     if (request.status >= 200 && request.status < 400) {
       var docs = JSON.parse(request.responseText);
+      console.log('docs',docs)
 
       lunr.tokenizer.separator = {{ site.search.tokenizer_separator | default: site.search_tokenizer_separator | default: "/[\s\-/]+/" }}
 
@@ -137,6 +140,7 @@ function searchLoaded(index, docs) {
   var index = index;
   var docs = docs;
   var searchInput = document.getElementById('search-input');
+  console.log('searchInput', searchInput)
   var searchResults = document.getElementById('search-results');
   var mainHeader = document.getElementById('main-header');
   var currentInput;
@@ -246,7 +250,7 @@ function searchLoaded(index, docs) {
 
       var resultDocTitle = document.createElement('div');
       resultDocTitle.classList.add('search-result-doc-title');
-      resultDocTitle.innerHTML = doc.doc;
+      resultDocTitle.innerHTML = doc.title;
       resultDoc.appendChild(resultDocTitle);
       var resultDocOrSection = resultDocTitle;
 

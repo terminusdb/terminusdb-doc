@@ -74,6 +74,13 @@ defaults to false.
 ```
 DELETE http://localhost:6363/<organization>/<dbid>
 ```
+Post argument is a JSON document of the following form
+
+```jsx
+{ < "force" : Boolean >
+}
+```
+
 Delete the database with organisation <organization> and database ID, `dbid`.
 
 ## Get Triples
@@ -88,7 +95,7 @@ specified in the URL path as a JSON string. It takes a get parameter
 `format` which must always be "turtle". In the future we hope to
 support other formats.
 
-## Update Triples
+## Replace Triples
 
 ```
 POST http://localhost:6363/triples/<organization>/<dbid>/local/branch/<branchid>/<type>/<name>
@@ -104,6 +111,21 @@ This call creates the update required to make the graph referred to in
 the URL have exactly the triples specified in the `turtle` field of
 the JSON document. It must be supplied with a commit message (though
 it can be an empty string).
+
+## Update Triples
+
+```
+PUT http://localhost:6363/triples/<organization>/<dbid>/local/branch/<branchid>/<type>/<name>
+```
+Post argument is a JSON document of the following form
+
+```jsx
+{ "turtle" : TTL_String,
+  "commit_info" : { "author" : Author, "message" : Message } }
+```
+
+This call will simply add the passed triples from the `"turtle"` file
+to the graph specified.
 
 ## Query
 
@@ -121,10 +143,15 @@ Post argument is a JSON document of the following form
 
 ```jsx
 { <"commit_info" : { "author" : Author, "message" : Message } >,
+  <"all_witnesses" : false >
   "query" : Query }
 ```
 
 The commit message is a requirement if an update is being made, whereas `query` should be a JSON-LD object as specified by the ontology `woql.owl.ttl`.
+
+If `"all_witnesses"` is false, then the end-point will return
+immediately when an schema violation is encountered with the first
+witness of failure.
 
 This API call performs a WOQL query and returns an `api:WoqlResponse`
 result object, which has the form:
@@ -177,7 +204,7 @@ commit history.
 POST http://localhost:6363/rebase/<organization>/<dbid>[/<repo>/branch/<branchid>]
 ```
 
-The JSON payload is:
+The JSON API document is:
 
 ```jsx
 {
@@ -197,8 +224,19 @@ of diverging commits.
 ```
 POST http://localhost:6363/push/<organization>/<dbid>[/<repo>/branch/<branchid>/]
 ```
+The JSON API document is
 
-Pushes deltas from this database to the remote repository.
+```jsx
+{ "remote" : Remote_Name,
+  "remote_branch" : Remote_Branch,
+  <"push_prefixes" : Boolean> }
+```
+
+This endpoint pushes deltas from the branch specified in the path to
+the remote repository with the specified remote from the JSON object.
+
+If `"push_prefixes"` is true, then it will also push the prefixes
+associated with the database to the remote.
 
 ## Pull
 
@@ -256,3 +294,180 @@ This takes a post parameter:
 {"commit_info" : { "author" : Author, "message" : Message }}
 ```
 This API deletes the graph specified by the absolute graph descriptor in the URI.
+
+
+## Reset
+
+```
+POST http://localhost:6363/reset/<organization>/<dbid>/
+POST http://localhost:6363/reset/<organization>/<dbid>/local/branch/<branchid>
+```
+
+This takes a post parameter:
+
+```jsx
+{ "commit_descriptor" : Ref }
+```
+
+This API endpoint allows you to set a branch to an arbitrary
+commit. If the branch is left unspecified, it defaults to `"local/main"`.
+
+## Squash
+
+```
+POST http://localhost:6363/squash/<organization>/<dbid>/
+POST http://localhost:6363/squash/<organization>/<dbid>/local/branch/<branchid>
+```
+
+This takes a post parameter:
+
+```jsx
+{ "commit_info" : Commit_String }
+```
+
+This API endpoint allows you to squashes a branch to a single
+commit. If the branch is left unspecified, it defaults to
+`"local/main"`.
+
+It returns a json object of the form
+
+```jsx
+{ "@type":"api:SquashResponse",
+  "api:commit": New_Commit_Path,
+  "api:old_commit" : Old_Commit_Path,
+  "api:status":"api:success"}
+```
+
+This commit path can be used with reset, to add the commit to a
+branch.
+
+
+## Optimize
+
+```
+POST http://localhost:6363/optimize/_system
+POST http://localhost:6363/optimize/<organization>/<dbid>
+```
+
+This API endpoint will attempt to optimize the database.
+
+## Add User to Organization
+
+```
+POST http://localhost:6363/organization
+```
+The JSON API post parameter is:
+
+```jsx
+{ "organization_name" : Organization_Name,
+  "user_name" : User_Name }
+```
+
+This endpoint will add the user `User_Name` to the organization
+`Organization_Name`.
+
+## Delete Organization
+
+```
+POST http://localhost:6363/organization
+```
+The JSON API post parameter is:
+
+```jsx
+{ "organization_name" : Organization_Name }
+```
+
+This endpoint will delete the organization `Organization_Name`.
+
+
+## Update Organization Name
+
+```
+POST http://localhost:6363/organization/<organization_name>
+```
+The JSON API post parameter is:
+
+```jsx
+{ "organization_name" : New_Name }
+```
+
+This endpoint will update the name of the organization in the path to `New_Name`.
+
+
+## Add User
+
+```
+POST http://localhost:6363/user
+```
+
+The JSON API post parameter is:
+
+```jsx
+{ "agent_name" : Agent_Name }
+```
+
+This endpoint adds the user `Agent_Name` and an organization of the
+same name to which the user will automatically be added.
+
+## Delete User
+
+```
+DELETE http://localhost:6363/user/<user_name>
+```
+
+This deletes the user named `user_name`.
+
+## Update User
+
+```
+POST http://localhost:6363/user/<user_name>
+```
+
+The JSON API post parameter is:
+
+```jsx
+{ <"user_identifier" : User_ID>,
+  <"agent_name" : Agent_Name>,
+  <"comment" : Comment>,
+  <"password" : Passord>
+}
+```
+
+This endpoint allows a user to be updated with any of the supplied
+information in the JSON document.
+
+## Get Roles
+
+```
+POST http://localhost:6363/role
+```
+The JSON API post parameter is:
+
+```jsx
+{ <"agent_name" : Agent_Name >,
+  <"database_name" : Database_Name >,
+  <"organisation_name" : Organization_Name >
+}
+```
+
+This returns all roles in the system which match the passed
+parameters.
+
+## Update Roles
+
+```
+POST http://localhost:6363/update_role
+```
+
+The JSON API post parameter is:
+
+```jsx
+{ "agent_names" : Agents,
+  "organization_name" : Organization,
+  "actions" : Actions,
+  <"database_name" : Database_Name >
+}
+```
+
+This endpoint will update the roles in the database with the
+associated list of actions for the named agents.

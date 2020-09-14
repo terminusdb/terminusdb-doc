@@ -60,8 +60,10 @@ h6 {
 }
 
 p {
+  @include fs-4;
   margin-bottom: 1em;
-  font-size: 20px;
+
+  /*font-size: 20px;*/
 }
 
 a {

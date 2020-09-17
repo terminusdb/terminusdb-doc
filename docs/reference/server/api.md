@@ -29,7 +29,7 @@ The TerminusDB Server HTTP API. JSON documents have optional elements notated wi
 ## Connect
 
 ```
-GET http://localhost:6363/
+GET http://localhost:6363/api/
 ```
 
 The Connect API endpoint returns the `system:User` object associated
@@ -41,7 +41,7 @@ user.
 ## Create Database
 
 ```
-POST http://localhost:6363/db/<organization>/<dbid>
+POST http://localhost:6363/api/db/<organization>/<dbid>
 ```
 
 Post argument is a JSON document of the following form
@@ -72,7 +72,7 @@ defaults to false.
 ## Delete Database
 
 ```
-DELETE http://localhost:6363/<organization>/<dbid>
+DELETE http://localhost:6363/api/<organization>/<dbid>
 ```
 Post argument is a JSON document of the following form
 
@@ -86,8 +86,8 @@ Delete the database with organisation <organization> and database ID, `dbid`.
 ## Get Triples
 
 ```
-GET http://localhost:6363/triples/<organization>/<dbid>/<repo>/branch/<branchid>/<type>/<name><?format=turtle>
-GET http://localhost:6363/triples/<organization>/<dbid>/<repo>/commit/<refid>/<type>/<name><?format=turtle>
+GET http://localhost:6363/api/triples/<organization>/<dbid>/<repo>/branch/<branchid>/<type>/<name><?format=turtle>
+GET http://localhost:6363/api/triples/<organization>/<dbid>/<repo>/commit/<refid>/<type>/<name><?format=turtle>
 ```
 
 This call returns a "Turtle" format file representation of the graph
@@ -98,7 +98,7 @@ support other formats.
 ## Replace Triples
 
 ```
-POST http://localhost:6363/triples/<organization>/<dbid>/local/branch/<branchid>/<type>/<name>
+POST http://localhost:6363/api/triples/<organization>/<dbid>/local/branch/<branchid>/<type>/<name>
 ```
 Post argument is a JSON document of the following form
 
@@ -115,7 +115,7 @@ it can be an empty string).
 ## Update Triples
 
 ```
-PUT http://localhost:6363/triples/<organization>/<dbid>/local/branch/<branchid>/<type>/<name>
+PUT http://localhost:6363/api/triples/<organization>/<dbid>/local/branch/<branchid>/<type>/<name>
 ```
 Post argument is a JSON document of the following form
 
@@ -130,13 +130,13 @@ to the graph specified.
 ## Query
 
 ```
-POST http://localhost:6363/woql
-POST http://localhost:6363/woql/<organization>/<dbid>
-POST http://localhost:6363/woql/<organization>/<dbid>/_meta
-POST http://localhost:6363/woql/<organization>/<dbid>/<repo>
-POST http://localhost:6363/woql/<organization>/<dbid>/<repo>/_commits
-POST http://localhost:6363/woql/<organization>/<dbid>/<repo>/branch/<branchid>
-POST http://localhost:6363/woql/<organization>/<dbid>/<repo>/commit/<refid>
+POST http://localhost:6363/api/woql
+POST http://localhost:6363/api/woql/<organization>/<dbid>
+POST http://localhost:6363/api/woql/<organization>/<dbid>/_meta
+POST http://localhost:6363/api/woql/<organization>/<dbid>/<repo>
+POST http://localhost:6363/api/woql/<organization>/<dbid>/<repo>/_commits
+POST http://localhost:6363/api/woql/<organization>/<dbid>/<repo>/branch/<branchid>
+POST http://localhost:6363/api/woql/<organization>/<dbid>/<repo>/commit/<refid>
 ```
 
 Post argument is a JSON document of the following form
@@ -170,7 +170,7 @@ result object, which has the form:
 ## Clone
 
 ```
-POST http://localhost:6363/clone/<organization>/[<new_dbid>]
+POST http://localhost:6363/api/clone/<organization>/[<new_dbid>]
 ```
 
 The JSON payload is:
@@ -192,7 +192,7 @@ The other options are exactly as with create db.
 ## Fetch
 
 ```
-POST http://localhost:6363/fetch/<organization>/<dbid>
+POST http://localhost:6363/api/fetch/<organization>/<dbid>
 ```
 
 Fetches new layers from the remotes for this database along with the
@@ -201,7 +201,7 @@ commit history.
 ## Rebase
 
 ```
-POST http://localhost:6363/rebase/<organization>/<dbid>[/<repo>/branch/<branchid>]
+POST http://localhost:6363/api/rebase/<organization>/<dbid>[/<repo>/branch/<branchid>]
 ```
 
 The JSON API document is:
@@ -222,7 +222,7 @@ of diverging commits.
 ## Push
 
 ```
-POST http://localhost:6363/push/<organization>/<dbid>[/<repo>/branch/<branchid>/]
+POST http://localhost:6363/api/push/<organization>/<dbid>[/<repo>/branch/<branchid>/]
 ```
 The JSON API document is
 
@@ -241,7 +241,7 @@ associated with the database to the remote.
 ## Pull
 
 ```
-POST http://localhost:6363/push/<organization>/<dbid>[/<repo>/branch/<branchid>/]
+POST http://localhost:6363/api/push/<organization>/<dbid>[/<repo>/branch/<branchid>/]
 ```
 JSON API document is:
 
@@ -256,7 +256,7 @@ Fetch layers from `remote`, then attempt a rebase from the remote branch `remote
 ## Branch
 
 ```
-POST http://localhost:6363/branch/<organization>/<dbid>/<repo>/<new_branchid>
+POST http://localhost:6363/api/branch/<organization>/<dbid>/<repo>/<new_branchid>
 ```
 
 JSON API document is:
@@ -271,7 +271,7 @@ Creates a new branch as specified by the URI, starting from the branch given by 
 ## Create Graph
 
 ```
-POST http://localhost:6363/graph/<organization>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
+POST http://localhost:6363/api/graph/<organization>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
 ```
 
 This takes a post parameter:
@@ -285,7 +285,7 @@ This API call creates a new graph as specified by the absolute graph descriptor 
 ## Delete Graph
 
 ```
-DELETE http://localhost:6363/graph/<organization>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
+DELETE http://localhost:6363/api/graph/<organization>/<dbid>/<repo>/branch/<branchid>/<instance|schema|inference>/<graphid>
 ```
 
 This takes a post parameter:
@@ -299,8 +299,8 @@ This API deletes the graph specified by the absolute graph descriptor in the URI
 ## Reset
 
 ```
-POST http://localhost:6363/reset/<organization>/<dbid>/
-POST http://localhost:6363/reset/<organization>/<dbid>/local/branch/<branchid>
+POST http://localhost:6363/api/reset/<organization>/<dbid>/
+POST http://localhost:6363/api/reset/<organization>/<dbid>/local/branch/<branchid>
 ```
 
 This takes a post parameter:
@@ -315,8 +315,8 @@ commit. If the branch is left unspecified, it defaults to `"local/main"`.
 ## Squash
 
 ```
-POST http://localhost:6363/squash/<organization>/<dbid>/
-POST http://localhost:6363/squash/<organization>/<dbid>/local/branch/<branchid>
+POST http://localhost:6363/api/squash/<organization>/<dbid>/
+POST http://localhost:6363/api/squash/<organization>/<dbid>/local/branch/<branchid>
 ```
 
 This takes a post parameter:
@@ -345,8 +345,8 @@ branch.
 ## Optimize
 
 ```
-POST http://localhost:6363/optimize/_system
-POST http://localhost:6363/optimize/<organization>/<dbid>
+POST http://localhost:6363/api/optimize/_system
+POST http://localhost:6363/api/optimize/<organization>/<dbid>
 ```
 
 This API endpoint will attempt to optimize the database.
@@ -354,7 +354,7 @@ This API endpoint will attempt to optimize the database.
 ## Add User to Organization
 
 ```
-POST http://localhost:6363/organization
+POST http://localhost:6363/api/organization
 ```
 The JSON API post parameter is:
 
@@ -369,7 +369,7 @@ This endpoint will add the user `User_Name` to the organization
 ## Delete Organization
 
 ```
-POST http://localhost:6363/organization
+POST http://localhost:6363/api/organization
 ```
 The JSON API post parameter is:
 
@@ -383,7 +383,7 @@ This endpoint will delete the organization `Organization_Name`.
 ## Update Organization Name
 
 ```
-POST http://localhost:6363/organization/<organization_name>
+POST http://localhost:6363/api/organization/<organization_name>
 ```
 The JSON API post parameter is:
 
@@ -397,7 +397,7 @@ This endpoint will update the name of the organization in the path to `New_Name`
 ## Add User
 
 ```
-POST http://localhost:6363/user
+POST http://localhost:6363/api/user
 ```
 
 The JSON API post parameter is:
@@ -412,7 +412,7 @@ same name to which the user will automatically be added.
 ## Delete User
 
 ```
-DELETE http://localhost:6363/user/<user_name>
+DELETE http://localhost:6363/api/user/<user_name>
 ```
 
 This deletes the user named `user_name`.
@@ -420,7 +420,7 @@ This deletes the user named `user_name`.
 ## Update User
 
 ```
-POST http://localhost:6363/user/<user_name>
+POST http://localhost:6363/api/user/<user_name>
 ```
 
 The JSON API post parameter is:
@@ -439,7 +439,7 @@ information in the JSON document.
 ## Get Roles
 
 ```
-POST http://localhost:6363/role
+POST http://localhost:6363/api/role
 ```
 The JSON API post parameter is:
 
@@ -456,7 +456,7 @@ parameters.
 ## Update Roles
 
 ```
-POST http://localhost:6363/update_role
+POST http://localhost:6363/api/update_role
 ```
 
 The JSON API post parameter is:

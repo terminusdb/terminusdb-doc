@@ -1,5 +1,6 @@
 ---
 title: Reference
+description: This section is designed to help you understand TerminusDB and TerminusHub so you can work out what to do while you are working
 layout: default
 has_children: true
 nav_order: 4

@@ -1,5 +1,6 @@
 ---
-title: Discussion
+title: Graph database management discussion
+description: Discussion and documentation for TerminusDB graph database
 layout: default
 nav_order: 6
 has_children: true

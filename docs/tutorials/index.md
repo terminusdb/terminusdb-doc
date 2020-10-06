@@ -1,5 +1,6 @@
 ---
-title: Tutorials
+title: Graph Database Tutorials - TerminusDB Documentation
+description: Tutorials and documentation for TerminusDB graph database
 layout: default
 nav_order: 3
 has_children: true

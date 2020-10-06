@@ -1,5 +1,6 @@
 ---
 title: FAQs
+description: Frequently Asked Questions about terminusDB
 layout: default
 nav_order: 8
 ---

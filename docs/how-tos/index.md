@@ -1,5 +1,6 @@
 ---
-title: How Tos
+title: How To's for Graph Database
+description: How To’s and documentation for using TerminusDB
 layout: default
 nav_order: 4
 has_children: true

@@ -1,6 +1,6 @@
 ---
 title: Quickstart Academy
-"description: Documentation and information for getting started with graph database for TerminusDB"
+description: Documentation and information for getting started with graph database for TerminusDB
 layout: default
 nav_order: 2
 ---

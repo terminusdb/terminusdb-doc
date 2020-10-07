@@ -97,13 +97,13 @@
     "relUrl": "/how-tos/import-data/"
   }
   ,"17": {
-    "title": "Graph Database Tutorials - TerminusDB Documentation",
+    "title": "Tutorials",
     "content": "Tutorials . Tutorials, as you can probably guess, are about learning how to use TerminusDB and Hub. They are to be consumed when in learning mode and usually at the beginning of your TerminusDB and Hub journey. There will also be more complex tutorials, but they are not the norm. . The idea is to provide you with a guide that you can repeat exactly. It should give the early user confidence to take further steps. Tutorials should have the minimum necessary descriptions and focus on teaching a small number of important things per tutorial. . We are always trying to improve so let us know if this section could be better. We want your tutorial, so make it and we will publish. .",
     "url": "/docs/tutorials",
     "relUrl": "/tutorials"
   }
   ,"18": {
-    "title": "Graph database management discussion",
+    "title": "Discussion",
     "content": "Discussion . This section is designed to help you understand TerminusDB and TerminusHub. It is normally consumed while in ‘learning’ mode. . What matters here is context, explanation, examples built into broader text, suggestions of alternative approaches, connections to different topics. This is not the place for instructions or technical descriptions. . We are always trying to improve, so let us know if the content can be better or if you have a contribution. .",
     "url": "/docs/discussion",
     "relUrl": "/discussion"
@@ -151,7 +151,7 @@
     "relUrl": "/how-tos/python"
   }
   ,"26": {
-    "title": "How To's for Graph Database",
+    "title": "How Tos",
     "content": "How To Guide . How To Guides are problem driven and are designed to be a source of quick information in ‘doing mode’ when working with TerminusDB and Hub. . The idea is to provide a series of steps with a focus on the goal (getting something done!). They should address a particular problem and have no unnecessary explanation. Practical usability and not completeness is key. How Tos will not give you everything, they are like a recipe that you can alter according to your need or taste. . We are always trying to improve our docs. If you have any suggestions, let us know. And feel free to contribute. .",
     "url": "/docs/how-tos",
     "relUrl": "/how-tos"

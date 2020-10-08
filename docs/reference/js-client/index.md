@@ -10,7 +10,7 @@ nav_order: 3
 {: .no_toc }
 
 The client library and all of its functions are documented at: 
-[JavaScript Client](https://terminusdb.github.io/terminusdb-client/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }  Please visit the client documentation site for reference material on all of the functions, their parameters, etc. This documentation provides fuller reference material on the important components and how they work.   
+[JavaScript Client](https://terminusdb.github.io/terminusdb-client-js/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }  Please visit the client documentation site for reference material on all of the functions, their parameters, etc. This documentation provides fuller reference material on the important components and how they work.   
 
 
 ## Table of contents

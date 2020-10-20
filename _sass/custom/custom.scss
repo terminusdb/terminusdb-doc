@@ -140,7 +140,7 @@
 }
 
 //##
-h3{	
+h3{
 	color: #00C08B !important;
 	font-size: 22px !important;
 }
@@ -557,9 +557,6 @@ ul {
 	-webkit-transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
 	-o-transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
 	transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
-	z-index: 1000
-
-	
 }
 
 @media only screen and (min-width: 78.125rem) {
@@ -1386,7 +1383,7 @@ button.upgrade{
 
 .menu__burger.active {
 	height: 22px;
-	top: 0px; 
+	top: 0px;
 }
 
 .menu__burger.active span {
@@ -3897,11 +3894,8 @@ pre {
  white-space: -pre-wrap;      /* Opera 4-6 */
  white-space: -o-pre-wrap;    /* Opera 7 */
  word-wrap: break-word;       /* Internet Explorer 5.5+ */
-} 
+}
 
 .menu__link--active {
     color: #00c08b !important;
 }
-
-
-

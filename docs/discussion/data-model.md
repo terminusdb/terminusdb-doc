@@ -18,11 +18,11 @@ This is the basic idea of the graph database - using data structures that are th
 
 To explain with a very simple example - if we were building a database to hold a family tree and we wanted to record the parents and grandparents of an individual. In a relational database, we might record this in a simple table
 
-![](/docs/assets/uploads/capture.jpg)
+![TerminusDB Graph Basics ](/docs/assets/uploads/capture.jpg)
 
 In a graph database, this would look like the following
 
-![](/docs/assets/uploads/family-tree.png)
+![TerminusDB Graph Basics ](/docs/assets/uploads/family-tree.png)
 
 The big advantage is that it is much easier to interpret the model and understand how it maps to real world entities compared to the relational example. This increased ease also extends to querying the database.
 
@@ -62,5 +62,5 @@ Here are some posts:
 
 1. [Data Modeling: Painting Pictures in the Medium of Pure Abstraction](https://youtu.be/IdsUAiQ6TS8) 
 
-   ![](/docs/assets/uploads/model.jpg)
+   ![Data Modeling ](/docs/assets/uploads/model.jpg)
 2. [Anatomy of a Knowledge Graph](https://www.youtube.com/watch?v=UWEoJVrgJSA)

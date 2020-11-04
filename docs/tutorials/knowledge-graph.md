@@ -12,7 +12,7 @@ TerminusDB is designed to enable collaboration and revision control on data asse
 
 In order to get a feel for how these collaboration features work, we can start with a classic database management problem. The bank account balance.
 
-![](/docs/assets/uploads/clone.jpg)
+![Bank Account Balance on TerminusDB ](/docs/assets/uploads/clone.jpg)
 
 - - -
 

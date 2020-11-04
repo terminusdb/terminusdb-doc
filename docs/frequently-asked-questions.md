@@ -3,7 +3,7 @@ title: FAQs
 layout: default
 nav_order: 8
 ---
-![](/docs/assets/uploads/smaller-cowduck.png)
+![TerminusDB FAQs](/docs/assets/uploads/smaller-cowduck.png)
 
 # **Frequently Asked Questions**
 

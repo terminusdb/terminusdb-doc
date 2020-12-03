@@ -345,6 +345,101 @@ Arguments:
 
 Returns Promise: HTTP 200 status on success, HTTP error code on failure
 
+
+### Insert CSV
+```javascript
+client.insertCSV(csv_path, commit_msg, gtype, gid)
+```
+Description: Inserts a csv from a specified path
+
+Status: stable
+
+Arguments:
+-    csv_path:  (string - mandatory) - is an array of csv file names with file path
+-    commit_msg (string - optional) - a message describing the reason for the change that will be written into the commit log
+-    gtype: (string - mandatory) - type of graph to get triples from, either "instance", "schema" or "inference"
+-    gid:  (string - mandatory) - id of the graph to read from
+
+
+Returns Promise: HTTP 200 status on success, HTTP error code on failure
+
+Example
+```javascript
+    const filePath = ["C:/Users/User Name/Documents/example.csv"]
+    client.insertCSV(filePath, "inserting a CSV file", "instance", "main")
+```
+
+
+### Update CSV
+```javascript
+client.updateCSV(csv_path, commit_msg, gtype, gid)
+```
+Description: Updates a csv from a specified path
+
+Status: stable
+
+Arguments:
+-    csv_path:  (string - mandatory) - is an array of csv file names with file path and file Names to be updated
+-    commit_msg (string - optional) - a message describing the reason for the change that will be written into the commit log
+-    gtype: (string - mandatory) - type of graph to get triples from, either "instance", "schema" or "inference"
+-    gid:  (string - mandatory) - id of the graph to read from
+
+Returns Promise: HTTP 200 status on success, HTTP error code on failure
+
+Example
+Here fileToBeUpdated is the CSV in TerminusDB which we are going to update.
+updateWith includes the file path of the CSV whose contents is going to be updated to fileToBeUpdated.
+Note that during an Update CSV only the diffs are considered and are updated which makes update of big files more efficient.
+
+```javascript
+    const filePath = [{fileToBeUpdated: "File.csv", updateWith: "C:/Users/User Name/Documents/example.csv"}]
+    client.updateCSV(filePath, "updating a CSV file", "instance", "main")
+```
+
+
+### Get CSV
+```javascript
+client.getCSV(csv_name, download, gtype, gid)
+```
+Description: Gets contents of CSV file in string format
+
+Status: stable
+
+Arguments:
+-    csv_name:  (string - mandatory) - name of CSV
+-    download: (boolean - optional) - If true will download the results of getCSV.
+-    gtype: (string - mandatory) - type of graph to get triples from, either "instance", "schema" or "inference"
+-    gid:  (string - mandatory) - id of the graph to read from
+
+
+Returns Promise: HTTP 200 status on success, HTTP error code on failure
+
+Example
+```javascript
+    const name = ["example.csv"]
+    client.getCSV(name, true, "instance", "main")
+```
+
+### Delete CSV
+```javascript
+client.deleteCSV(csv_name, commit_msg, gtype, gid)
+```
+Description: Deletes CSV from your database
+
+Status: stable
+
+Arguments:
+-    csv_name:  (string - mandatory) - name of CSV
+-    commit_msg:  (string - mandatory) - Textual message describing the reason for the delete
+
+Returns Promise: HTTP 200 status on success, HTTP error code on failure
+
+Example
+```javascript
+    const name = ["example.csv"]
+    client.deleteCSV(name, "deleting CSV", "instance", "main")
+```
+
 ## Accessing and Changing Client Context
 
 The client's has an internal context which defines which allows the user to invoke the API actions against any valid resource in the database. For example, by specifying a particular commit id as the source of a query operation, all queries will be made against the state of the database as it was immediately after that specific commit was completed.  All of these methods are both getters and setters with 0 or 1 arguments - if no argument is supplied, they get the current value, if an argument is supplied they set the current value for that part of context
@@ -465,6 +560,10 @@ Example
 | push           | db from organization         | Database for operation   | local                       | push from branch          | NA                         |
 | pull           | db from organization         | Database for operation   | local                       | pull to branch            | NA                         |
 | fetch          | db from organization         | Database for operation   | NA                          | NA                        | NA                         |
+| insertCSV      | db from organization         | Database for operation   | Repository for operation    | branch to  insert CSV	     | commit root for insert       |
+| updateCSV      | db from organization         | Database for operation   | Repository for operation    | branch to  update CSV              | commit root for update           |
+| getCSV         | db from organization         | Database for operation   | Repository for operation    | branch to get 	         |NA           |
+| deleteCSV      | db from organization         | Database for operation   | Repository for operation    | branch to delete CSV	             | commit root for delete           |
 
 * note ref and checkout are mutually exclusive - if the ref is set it will be used and the branch will be ignored
 
@@ -731,4 +830,22 @@ Returns:
 Example:
 ```javascript
     let branch_resource = client.resource("branch")
+```
+
+### Info
+```javascript
+client.info()
+```
+
+Description: Gets TerminusDB Server Information
+
+Status: stable
+
+Arguments: Null
+
+Returns Promise: HTTP 200 status on success, HTTP error code on failure
+
+Example
+```javascript
+    client.info()
 ```

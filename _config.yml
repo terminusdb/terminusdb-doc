@@ -79,6 +79,7 @@ ga_tracking:
 
 plugins:
   - jekyll-seo-tag
+  - jekyll-redirect-from
 
 compress_html:
   clippings: all

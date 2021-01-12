@@ -13,4 +13,6 @@ The idea is to provide you with a guide that you can repeat exactly. It should g
 
 We are always trying to improve so let us know if this section could be better. We want your tutorial, so make it and we will publish. 
 
+We have a [tutorial repo on GitHub](https://github.com/terminusdb/terminusdb-tutorials) - check it out for more examples
+
 {: .fs-6 .fw-300 }

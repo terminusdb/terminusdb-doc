@@ -19,9 +19,9 @@ You can pull changes which were made on hub by selecting `pull`.
 First, enter a database. 
 Go to the synchronize tab on your database.
 
-Press the `pull `button and you can pull the data from the remote database
+Press the `pull`button and you can pull the data from the remote database
 
-![](/docs/assets/uploads/pull-slide.jpg)
+![Pull data from the remote database ](/docs/assets/uploads/pull-slide.jpg)
 
 ## Push
 
@@ -29,6 +29,6 @@ Push is similar. Once you have made your changes, push the changes to the remote
 
 Press the `Push` button on the synchronize page. 
 
-![](/docs/assets/uploads/post-push-1.jpg)
+![Push changes to the remote database ](/docs/assets/uploads/post-push-1.jpg)
 
 You will see a success notification once you have pushed to the remote.

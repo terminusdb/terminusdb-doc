@@ -20,19 +20,19 @@ This tutorial will show you how to clone a database in TerminusDB and Hub consol
 
 Go to the TerminusDB home page and login to TerminusHub by clicking `Connect to Hub`:
 
-![](/docs/assets/uploads/logged-out-1-2-.jpg)
+![Login to TerminusHub ](/docs/assets/uploads/logged-out-1-2-.jpg)
 
 You will now be in the logged in environment and should click `clone:`
 
-![](/docs/assets/uploads/logged-in-1-2-.jpg)
+![Clone Screen](/docs/assets/uploads/logged-in-1-2-.jpg)
 
 On the clone screen, click the cloud beside the bike sharing database to clone the DB
 
-![](/docs/assets/uploads/clone-screen-1-2-.jpg)
+![Clone Screen](/docs/assets/uploads/clone-screen-1-2-.jpg)
 
 You can also click on the title of the database `TerminusDB Bike Tutorial` to get to the clone screen. In this screen you also have the option to 'fork' the database which creates your own copy of the database. You may want your own copy if you want to make changes to the database.
 
-![](/docs/assets/uploads/clone-or-fork-1.jpg)
+![Fork Screen](/docs/assets/uploads/clone-or-fork-1.jpg)
 
 - - -
 
@@ -40,11 +40,11 @@ You can also click on the title of the database `TerminusDB Bike Tutorial` to ge
 
 Now that you have clicked the `clone` button, you will be taken to the home screen of the bike sharing database:
 
-![](/docs/assets/uploads/post-clone-bike-1.jpg)
+![Home Screen of Bike Sharing Database](/docs/assets/uploads/post-clone-bike-1.jpg)
 
 You can now explore the database by reviewing the commit history or looking at the database's schema and documents. 
 
-![](/docs/assets/uploads/schema.jpg)
+![Database Schema and Documents ](/docs/assets/uploads/schema.jpg)
 
 - - -
 
@@ -52,7 +52,7 @@ You can now explore the database by reviewing the commit history or looking at t
 
 Now click on the `query` button to run a quick query against the database. 
 
-![](/docs/assets/uploads/query-1.jpg)
+![Querying on TerminusDB ](/docs/assets/uploads/query-1.jpg)
 
 This query is taken from the [bike data tutorial ](https://medium.com/terminusdb/my-first-terminusdb-2-0-graph-ef7f05038910): 
 
@@ -69,9 +69,9 @@ WOQL.select("v:Start", "v:Start_Label", "v:End", "v:End_Label").and(
 
 You can now click on `result viewer` to see the result of the query and click on the drop down menu on the right hand side to switch to a graph view.
 
-![](/docs/assets/uploads/query-2.jpg)
+![Result Viewer ](/docs/assets/uploads/query-2.jpg)
 
-![](/docs/assets/uploads/query-3.jpg)
+![Graph View ](/docs/assets/uploads/query-3.jpg)
 
 And that is how easy it is to clone a complex database and immediately run a query against the database. 
 

@@ -22,17 +22,15 @@ This How To uses the TerminusDB console.
 
 From the 'DB Home' screen on your database, click on the 'Branch' tab. Once there, click the 'Branch' button under 'Create a new Branch'.
 
-![](/docs/assets/uploads/create-branches.jpg)
+![Create new branch ](/docs/assets/uploads/create-branches.jpg)
 
 On the next screen insert the name of the new branch into the 'New Branch ID' box and click 'Create New Branch'. In this case, we have called the new branch 'branch_office'.
 
-![](/docs/assets/uploads/create-branches-2.jpg)
+![Branch office ](/docs/assets/uploads/create-branches-2.jpg)
 
 You will now be able to see that a new branch appears in the top right drop down menu.
 
-![](/docs/assets/uploads/branch-office.jpg)
-
-
+![Branch ](/docs/assets/uploads/branch-office.jpg)
 
 - - -
 
@@ -40,7 +38,7 @@ You will now be able to see that a new branch appears in the top right drop down
 
 Click on the 'Branch' tab and click the 'Merge' button under 'Merge Branches'. You will now be on the merge screen. You should select the branch you want to merge in the top right drop down and the correct branch to merge into in the 'Merge Into Branch' drop down. Once you are happy that these are correct, you can click 'Merge into x Branch' button (in the below example, it is 'Merge into Main Branch' as we are merging the 'branch_office' into 'main').
 
-![](/docs/assets/uploads/merge-screen.jpg)
+![Merging Branch Office ](/docs/assets/uploads/merge-screen.jpg)
 
 You can now check to confirm that the data from the branches has been merged. 
 

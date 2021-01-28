@@ -72,7 +72,7 @@ defaults to false.
 ## Delete Database
 
 ```
-DELETE http://localhost:6363/api/<organization>/<dbid>
+DELETE http://localhost:6363/api/db/<organization>/<dbid>
 ```
 Post argument is a JSON document of the following form
 

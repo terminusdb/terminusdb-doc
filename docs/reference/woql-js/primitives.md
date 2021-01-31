@@ -24,14 +24,14 @@ WOQL primitives are WOQL.js functions which directly map onto words in the under
 
 Generates a triple pattern matching rule to match any triples that meet the constraints
 
-### Syntax
+<div class="anchor-sub-parts">Syntax</div>
 
 ```js
 
 triple(Subject, Predicate, Object)
 ```
 
-### Arguments  
+<div class="anchor-sub-parts">Arguments</div>   
 
 | Arguments                                         | Types                                                                | Requirement                |
 |---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
@@ -40,7 +40,7 @@ triple(Subject, Predicate, Object)
 | <span class="param-type">Object </span>           | (string*) - The IRI of a node or a variable, or a literal            | Mandatory                  |
 
 
-## Returns 
+<div class="anchor-sub-parts">Returns</div>
 
  A WOQLQuery object containing the triple pattern matching rule
 
@@ -600,8 +600,7 @@ start(Start, Subq)
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">Start  </span>      | (integer*) - A variable that refers to an interger or an integer literal (e.g. number, string) | Mandatory       |
-| <span class="param-type">Subq  </span>       | (WOQLQuery*) - An array of variables and / or strings from which the id will be generated <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query
-  | Mandatory       |
+| <span class="param-type">Subq  </span>       | (WOQLQuery*) - An array of variables and / or strings from which the id will be generated <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query | Mandatory       |
 
 
 
@@ -1284,8 +1283,7 @@ re(Pattern, Test, Matches) ~ regexp(Pattern, Test, Matches) (Alias)
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">Pattern  </span>     | (string*) - string or variable using normal PCRE regular expression syntax with the exception that special characters have to be escaped twice (to enable transport in JSONLD) | Mandatory       |
 | <span class="param-type">Test  </span> |(string*) - string or variable containing the string to be tested for patterns with the regex | Mandatory       |
-| <span class="param-type">Matches  </span>    |(string / [string]) - variable representing the list of matches or a list of strings or variables
-| Mandatory       |
+| <span class="param-type">Matches  </span>    |(string / [string]) - variable representing the list of matches or a list of strings or variables | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the Regular Expression pattern matching expression
@@ -1327,8 +1325,7 @@ like(StringA, StringB, Distance)
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">StringA  </span>     | (string*) - string literal or variable representing a string to be compared | Mandatory       |
 | <span class="param-type">StringA  </span> |(string*) - string literal or variable representing the other string to be compared | Mandatory       |
-| <span class="param-type">Distance  </span>    |(string / [float]*) - variable representing the distance between the variables
-| Mandatory       |
+| <span class="param-type">Distance  </span>    |(string / [float]*) - variable representing the distance between the variables | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the Like pattern matching expression
@@ -2120,8 +2117,8 @@ put(AsVArs, Subq, FileResource)
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">AsVArs  </span>    |([string]*) an array of AsVar variable mappings (see as for format below)  | Mandatory       |
-| <span class="param-type">Subq  </span>    | (WOQLQuery*) - The query which will be executed to produce the results  <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query   | Mandatory       |
-| <span class="param-type">FileResource  </span>    | (string*) an file resource local to the server    | Mandatory       |
+| <span class="param-type">Subq  </span>    | (WOQLQuery*) - The query which will be executed to produce the results     | Mandatory       |
+| <span class="param-type">FileResource  </span>    | (string*) an file resource local to the server <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query   | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the put expression

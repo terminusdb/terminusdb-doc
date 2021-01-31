@@ -24,14 +24,14 @@ WOQL primitives are WOQL.js functions which directly map onto words in the under
 
 Generates a triple pattern matching rule to match any triples that meet the constraints
 
-<div class="anchor-sub-parts">Syntax</div>
+### Syntax
 
 ```js
 
 triple(Subject, Predicate, Object)
 ```
 
-<div class="anchor-sub-parts">Arguments</div>   
+### Arguments
 
 | Arguments                                         | Types                                                                | Requirement                |
 |---------------------------------------------------|----------------------------------------------------------------------|----------------------------|

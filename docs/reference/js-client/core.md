@@ -44,7 +44,7 @@ Basic Usage:
 
 ```js
     let client = new TerminusClient.Client(SERVER_URL, opts)
-    await client.connect(server, opts)
+    await client.connect(opts)
     client.db("test")
     client.checkout("dev")
     let turtle = await client.getTriples("schema", "main")
@@ -56,14 +56,13 @@ The client has an internal state which defines what organization / database / re
 
 ### Connect
 ```javascript
-client.connect(server, options)
+client.connect(options)
 ```
 Description: Connect to a TerminusDB server and retrieve information about the current user's capabilities and resources on the server.
 
 Status: stable
 
 Arguments:
--    server: (string) URL of the TerminusDB server to connect to
 -    options: (json) options for connect
      -   organization: (string) the id of the organization to connect to (in desktop use, this will always be "admin")
      -   db: (string) the id of the database to connect to
@@ -80,7 +79,7 @@ Return Type:
 
 Example:
 ```javascript
-    client.connect("https://127.0.0.1:6363/", {key="root"})
+    client.connect({key="root"})
 ```
 
 ### Create Database

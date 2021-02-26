@@ -18,5 +18,5 @@ as a book on [Engineering Agile Big-Data Systems](https://www.riverpublishers.co
 
 TerminusDB utilises some novel approaches to Database architecture
 which encorporate succinct data-structures. You can find more about
-our representation of graphs in [Succinct Data Structures and Delta Encoding for Modern Databases](https://github.com/terminusdb/terminusdb-server/blob/master/docs/whitepaper/terminusdb.pdf).
+our representation of graphs in [Succinct Data Structures and Delta Encoding for Modern Databases](https://github.com/terminusdb/terminusdb-server/blob/master/docs/terminushub/whitepaper/terminusdb.pdf).
 

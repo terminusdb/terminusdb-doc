@@ -72,7 +72,7 @@ defaults to false.
 ## Delete Database
 
 ```
-DELETE http://localhost:6363/api/<organization>/<dbid>
+DELETE http://localhost:6363/api/db/<organization>/<dbid>
 ```
 Post argument is a JSON document of the following form
 
@@ -403,11 +403,16 @@ POST http://localhost:6363/api/user
 The JSON API post parameter is:
 
 ```jsx
-{ "agent_name" : Agent_Name }
+{ "user_identifier" : User_ID,
+  "agent_name" : Agent_Name,
+  "comment" : Comment,
+  <"password" : Password>
+}
 ```
 
-This endpoint adds the user `Agent_Name` and an organization of the
-same name to which the user will automatically be added.
+This endpoint adds the user `User_ID` and an organization of the
+same name to which the user will automatically be added, along with
+an optional password.
 
 ## Delete User
 

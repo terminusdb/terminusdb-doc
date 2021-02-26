@@ -3,7 +3,7 @@ title: FAQs
 layout: default
 nav_order: 8
 ---
-![TerminusDB FAQs](/docs/assets/uploads/smaller-cowduck.png)
+![TerminusDB FAQs](/docs/terminushub/assets/uploads/smaller-cowduck.png)
 
 # **Frequently Asked Questions**
 
@@ -115,13 +115,13 @@ We think TerminusDB is perfect for OLTP use cases with transactions in the tens 
 
 We use an advanced git-like model, storing append-only changes to graphs represented in succinct data structures using terminusdb-store.
 
-You can read a description of the architecture in our [Succinct Data Structures and Delta Encoding for Modern Databases](https://github.com/terminusdb/terminusdb-server/blob/dev/docs/whitepaper/terminusdb.pdf) whitepaper.
+You can read a description of the architecture in our [Succinct Data Structures and Delta Encoding for Modern Databases](https://github.com/terminusdb/terminusdb-server/blob/dev/docs/terminushub/whitepaper/terminusdb.pdf) whitepaper.
 
 - - -
 
 ### <a name="head7"></a>TerminusDB is open source and TerminusHub is free to use, what do you sell?
 
-TerminusDB will be fully featured and open source (GPLv3) forever. TerminusHub has a freemium tier and paid subscriptions for private collaboration. We borrowed the GitHub commercial model.
+TerminusDB will be fully featured and open source (Apache 2.0) forever. TerminusHub has a freemium tier and paid subscriptions for private collaboration. We borrowed the GitHub commercial model.
 
 More information on pricing and subscriptions [here](https://terminusdb.com/hub/).
 

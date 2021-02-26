@@ -2,4 +2,4 @@
 layout: default
 ---
 
-![Cowduck](/docs/assets/images/cowduck_sitting_logo.png) 
+![Cowduck](/docs/terminushub/assets/images/cowduck_sitting_logo.png) 

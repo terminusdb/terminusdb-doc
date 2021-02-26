@@ -21,7 +21,7 @@ nav_order: 5
 
 In a TerminusDB installation, data is stored under the storage/db directory. This section contains a reference of the files that are found there, and what purpose they serve.
 
-For a better idea of how this actually works, please check out the [whitepaper](https://github.com/terminusdb/terminusdb-server/raw/master/docs/whitepaper/terminusdb.pdf). For the documentation of the underlying rust storage library, check out the [terminusdb-store library documentation](https://docs.rs/crate/terminus-store/).
+For a better idea of how this actually works, please check out the [whitepaper](https://github.com/terminusdb/terminusdb-server/raw/master/docs/terminushub/whitepaper/terminusdb.pdf). For the documentation of the underlying rust storage library, check out the [terminusdb-store library documentation](https://docs.rs/crate/terminus-store/).
 
 ## Layers
 TerminusDB is an append-only database. This means that when you delete some triples, these triples aren't actually deleted from disk. Instead, all changes are stored as a layer.

@@ -22,7 +22,7 @@ This tutorial will show you how to use the branch and merge functions in Terminu
 
 Create a new database with the ID `banker` and the name “bank”, in the console. Select 'Create on TerminusHub'. 
 
-![Schema and Data on TerminusHub ](/docs/assets/uploads/bank-create.jpg)
+![Schema and Data on TerminusHub ](/docs/terminushub/assets/uploads/bank-create.jpg)
 
 Once created you should land in the DB Home page.
 
@@ -40,7 +40,7 @@ WOQL.doctype("BankAccount").label("Bank Account")
 
 This query creates a new document type “BankAccount” along with two properties, one named “owner” which is a string, and one named balance. Both have a cardinality of 1.
 
-![Querying on Console ](/docs/assets/uploads/new-schema.jpg)
+![Querying on Console ](/docs/terminushub/assets/uploads/new-schema.jpg)
 
 If you click on the “Bank Balance Example” button on the top of the screen, it will bring you back to the revision overview and you should be able to see what changes you have made.
 
@@ -77,7 +77,7 @@ WOQL.and(
 
 This query fails with the following JSON-LD witness object:
 
-![Querying on Console ](/docs/assets/uploads/query-fail.jpg)
+![Querying on Console ](/docs/terminushub/assets/uploads/query-fail.jpg)
 
 This tells us that our bank balance is invalid as it is negative! TerminusDB doesn’t allow the transaction to go through.
 
@@ -96,7 +96,7 @@ WOQL.and(
 
 Press "Query" and see the result:
 
-![Querying on Console ](/docs/assets/uploads/result.jpg)
+![Querying on Console ](/docs/terminushub/assets/uploads/result.jpg)
 
 Now we have a balance of 13 as expected and everything works fine.
 
@@ -114,7 +114,7 @@ Ok, so go click on the “Branch” button.
 
 Under the field “New Branch ID" enter in “branch_office” and we’ll pretend we have a branch office adding accounts.
 
-![Branch and Merge on TerminusHub ](/docs/assets/uploads/create-branches-2.jpg)
+![Branch and Merge on TerminusHub ](/docs/terminushub/assets/uploads/create-branches-2.jpg)
 
 Now go to the query page. If you look up at the top right of the interface, you’ll see we are still on “branch: main”. Pull the selector down to “branch: branch_office”.
 
@@ -130,7 +130,7 @@ WOQL.and(
 
 This creates Jim, with all 8 dollars to his name. If we now go to the Documents tab we can see that Jim and Mike’s bank account are both listed now.
 
-![Branch and Merge on TerminusHub ](/docs/assets/uploads/branch-office.jpg)
+![Branch and Merge on TerminusHub ](/docs/terminushub/assets/uploads/branch-office.jpg)
 
 ### Rebase
 
@@ -146,20 +146,20 @@ WOQL.and(
 
 Jane was a bit more frugal and has saved 887 dollars.
 
-![Rebase on TerminusHub ](/docs/assets/uploads/main-branch.jpg)
+![Rebase on TerminusHub ](/docs/terminushub/assets/uploads/main-branch.jpg)
 
 But we’re still missing the information about jim, as it's stuck in the branch office. How do we get the information into our main branch?
 
 This is why we have merge. Click the "Branch" button and click on Merge. 
 
-![Branch and Merge on TerminusHub ](/docs/assets/uploads/create-branches.jpg)
+![Branch and Merge on TerminusHub ](/docs/terminushub/assets/uploads/create-branches.jpg)
 
 Select the “branch_office” branch in the upper right hand corner. Now select the “merge into” branch as “main”. 
 
-![Branch and Merge on TerminusHub ](/docs/assets/uploads/merge-screen.jpg)
+![Branch and Merge on TerminusHub ](/docs/terminushub/assets/uploads/merge-screen.jpg)
 
 Now we should go back to the main branch (again in the upper right hand corner), and select the documents view. You’ll see that we have merged the two databases together!
 
-![Merge on TerminusHub ](/docs/assets/uploads/post-merge.jpg)
+![Merge on TerminusHub ](/docs/terminushub/assets/uploads/post-merge.jpg)
 
 That's how easy it is to manage complex data with TerminusDB and TerminusHub.

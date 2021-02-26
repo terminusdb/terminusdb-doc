@@ -16,11 +16,11 @@ Collaboration is at the heart of TerminusDB and TerminusHub. We want to make it 
 
 In the TerminusDB console, you can add collaborators in the 'Collaborate' tab. You can choose the database to share, the associated permissions and the collaborator's ID or email address. If you want to add multiple collaborators, please seperate with a comma.
 
-![Add and Manage Collaborators ](/docs/assets/uploads/share-1.jpg)
+![Add and Manage Collaborators ](/docs/terminushub/assets/uploads/share-1.jpg)
 
 To manage collaborators and permissions, just click on the collaborate tab and you will see a list with associated permissions.
 
-![Manage Collaborators and Permissions ](/docs/assets/uploads/share-list.jpg)
+![Manage Collaborators and Permissions ](/docs/terminushub/assets/uploads/share-list.jpg)
 
 ## Section 2 - Manage Private Collaborators
 

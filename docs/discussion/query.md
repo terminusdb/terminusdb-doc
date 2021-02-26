@@ -40,17 +40,17 @@ WOQL.add_triple('joe', 'date_born', '1/2/34')
     .add_triple('joe', 'parent', 'mary')
 ```
 
-## [](https://terminusdb.com/docs/user-guide/query/simple-query/#rule-2-unify-all-the-things) Rule 2 Unify All The Things
+## [](https://terminusdb.com/docs/terminushub/user-guide/query/simple-query/#rule-2-unify-all-the-things) Rule 2 Unify All The Things
 
 The second fundamental concept behind WOQL is unification. This is an old computer science concept that has been polished and refined for 60 years and is defined in obscure mathematical jargon, but it is remarkably simple and intuitive to understand by example.
 
-### [](https://terminusdb.com/docs/user-guide/query/simple-query/#woql-variables) WOQL Variables
+### [](https://terminusdb.com/docs/terminushub/user-guide/query/simple-query/#woql-variables) WOQL Variables
 
 In WOQL we have the concept of variables, which are normally represented by a string that starts with `v:` - we use them to store the results of queries. For example, we might define variables like `v:First Name` , `v:Family Name`, `v:Date of Birth` for a query to find somebody’s basic identifying information.
 
 If we use a variable in a triple query, TerminusDB will show us every possible value that exists in the database that could possibly fill that variable in that position in the query.
 
-#### [](https://terminusdb.com/docs/user-guide/query/simple-query/#single-variable-triple-pattern-examples) Single Variable Triple Pattern Examples
+#### [](https://terminusdb.com/docs/terminushub/user-guide/query/simple-query/#single-variable-triple-pattern-examples) Single Variable Triple Pattern Examples
 
 Putting a variable in the first slot of the triple will find the IDs of all the Objects that have a specific property set to the specified value
 
@@ -71,7 +71,7 @@ Putting a variable in the third slot will find the value(s) of the specified pro
 WOQL.triple('joe', 'parent', "v:Joes Parents")
 ```
 
-#### [](https://terminusdb.com/docs/user-guide/query/simple-query/#two-variable-triple-pattern-examples) Two-Variable Triple Pattern Examples
+#### [](https://terminusdb.com/docs/terminushub/user-guide/query/simple-query/#two-variable-triple-pattern-examples) Two-Variable Triple Pattern Examples
 
 Putting a variable in the first two slots of the triple will find all object IDs and properties in the database that have the specified value
 
@@ -100,7 +100,7 @@ The third and final pattern is easiest still - putting variables in all 3 of the
 WOQL.star()
 ```
 
-### [](https://terminusdb.com/docs/user-guide/query/simple-query/#logical-operators) Logical Operators
+### [](https://terminusdb.com/docs/terminushub/user-guide/query/simple-query/#logical-operators) Logical Operators
 
 Single triple pattern matching like the above is certainly neat, but there’s a limited number of things that can be expressed as a single pattern of triples, even with all our variables turned on. However, WOQL also provides logical operators, AND, OR which allow you to combine as many basic patterns as you like into incredibly expressive queries in very simple forms.
 
@@ -110,7 +110,7 @@ The other basic logical operators: OR - `WOQL.or()` and NOT - `WOQL.not()` are a
 
 Below are some simple examples of using these logical operators in practice. It is amazing how many things you can readily express simply by combining these patterns in different ways. Extreme simplicity and absolute regularity in the little things allow extreme elegance of description in the big things.
 
-## [](https://terminusdb.com/docs/user-guide/query/simple-query/#thats-not-all-folks) That’s not all folks
+## [](https://terminusdb.com/docs/terminushub/user-guide/query/simple-query/#thats-not-all-folks) That’s not all folks
 
 One other huge advantage of a simple and regular underlying architecture is that it becomes much easier to build extra functionality on top. In addition to the basic ideas presented here, WOQL also has a broad set of built-in operators and libraries which cover arithmetic, mathematical, date and time, taxonomy specific patterns, aggregation, ordering, grouping, geographical and a wide range of other functions out of the box. This allows you to move a lot of your logic into the Database Layer and out of your application code - the database should be the only thing that cares about the structure of the storage layer, the rest of us care about getting the data we want out!
 

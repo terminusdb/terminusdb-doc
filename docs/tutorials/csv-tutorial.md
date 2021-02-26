@@ -25,7 +25,7 @@ This can be done by making woql queries. In this tutorial, we will be making que
 
 To make a query in the console, go to the query tab by clicking on `query` at the top.
 
-![console query page](/docs/assets/images/tutorials/console-query-page.png)
+![console query page](/docs/terminushub/assets/images/tutorials/console-query-page.png)
 
 Now it's time for the query. Our first step is to load in each column as a woql variable. This can be done with the following script:
 
@@ -49,7 +49,7 @@ This is loading a remote CSV from the link. For loading a local file, please see
 
 If you click `run query` now, you will see the CSV is imported and the result is shown in a tabular format.
 
-![read csv](/docs/assets/images/tutorials/read-csv.png)
+![read csv](/docs/terminushub/assets/images/tutorials/read-csv.png)
 
 You can switch back to the Query tab by clicking on `Query` next to `Result Viewer` on top of the results.
 
@@ -109,7 +109,7 @@ For explanations about the `idgen`, `typecast` and `concat` methods that are use
 
 If you click `run query` now, you will see that we have got new variables that have been created with the data wrangling. However, the data is not loaded in the graph yet.
 
-![data wrangling](/docs/assets/images/tutorials/data-wrangling.png)
+![data wrangling](/docs/terminushub/assets/images/tutorials/data-wrangling.png)
 
 ## Step 3 - insert data
 
@@ -169,12 +169,12 @@ For details about how `insert` works, please refer to the woql reference.
 
 As this time we are updating the graph, we can put in a commit message (e.g. Insert data form CSV) in the box above the query which says "Enter reason for update here" before we hit `run query`. If there's no commit message given, a default message will be used as a commit message.
 
-![commit message](/docs/assets/images/tutorials/commit-message.png)
+![commit message](/docs/terminushub/assets/images/tutorials/commit-message.png)
 
 After clicking `run query`, you will now see the message in the green box saying "Successfully updated database".
 
-![update success](/docs/assets/images/tutorials/update-success.png)
+![update success](/docs/terminushub/assets/images/tutorials/update-success.png)
 
 Now you can check that the data has been added by clicking on `Documents` at the top.
 
-![documents](/docs/assets/images/tutorials/documents.png)
+![documents](/docs/terminushub/assets/images/tutorials/documents.png)

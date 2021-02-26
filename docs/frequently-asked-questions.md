@@ -3,7 +3,7 @@ title: FAQs
 layout: default
 nav_order: 8
 ---
-![TerminusDB FAQs](/docs/assets/uploads/smaller-cowduck.png)
+![TerminusDB FAQs](/docs/terminushub/assets/uploads/smaller-cowduck.png)
 
 # **Frequently Asked Questions**
 
@@ -115,7 +115,7 @@ We think TerminusDB is perfect for OLTP use cases with transactions in the tens 
 
 We use an advanced git-like model, storing append-only changes to graphs represented in succinct data structures using terminusdb-store.
 
-You can read a description of the architecture in our [Succinct Data Structures and Delta Encoding for Modern Databases](https://github.com/terminusdb/terminusdb-server/blob/dev/docs/whitepaper/terminusdb.pdf) whitepaper.
+You can read a description of the architecture in our [Succinct Data Structures and Delta Encoding for Modern Databases](https://github.com/terminusdb/terminusdb-server/blob/dev/docs/terminushub/whitepaper/terminusdb.pdf) whitepaper.
 
 - - -
 

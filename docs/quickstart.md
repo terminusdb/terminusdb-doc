@@ -53,4 +53,4 @@ link
 
 Link to[ download center](https://terminusdb.com/hub/download)
 
-Link to [other ways of installing](https://terminusdb.com/docs/how-tos/other-install/)
+Link to [other ways of installing](https://terminusdb.com/docs/terminushub/how-tos/other-install/)

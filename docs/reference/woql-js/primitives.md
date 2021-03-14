@@ -2543,7 +2543,7 @@ update_object({
 
 <div class="anchor-sub-headings-style">
     <span class="anchor-sub-headings">delete object</span>
-    <span class="anchor-status anchor-status-experimental"> Status: Stable </span>
+    <span class="anchor-status anchor-status-stable"> Status: Stable </span>
 </div>
 
 <i class="fa fa-flask status-experimental"/>

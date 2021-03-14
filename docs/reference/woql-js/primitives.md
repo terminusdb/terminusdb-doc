@@ -31,7 +31,7 @@ Generates a triple pattern matching rule to match any triples that meet the cons
 triple(Subject, Predicate, Object)
 ```
 
-### Arguments  
+### Arguments
 
 | Arguments                                         | Types                                                                | Requirement                |
 |---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
@@ -40,7 +40,7 @@ triple(Subject, Predicate, Object)
 | <span class="param-type">Object </span>           | (string*) - The IRI of a node or a variable, or a literal            | Mandatory                  |
 
 
-## Returns 
+<div class="anchor-sub-parts">Returns</div>
 
  A WOQLQuery object containing the triple pattern matching rule
 
@@ -165,7 +165,7 @@ select(...Vars, Subq)
 | Arguments                                         | Types                                                                | Requirement                |
 |---------------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">...Vars  </span>         | (string*) - A list of one or more variables to select                | Mandatory                  |
-| <span class="param-type">Subq </span>             | (string*) - (WOQLQuery) - A query from which the variables will be filtered out <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query | Mandatory       |
+| <span class="param-type">Subq </span>             | (WOQLQuery) - A query from which the variables will be filtered out <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery object containing the filtered variables and subquery
@@ -600,8 +600,7 @@ start(Start, Subq)
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">Start  </span>      | (integer*) - A variable that refers to an interger or an integer literal (e.g. number, string) | Mandatory       |
-| <span class="param-type">Subq  </span>       | (WOQLQuery*) - An array of variables and / or strings from which the id will be generated <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query
-  | Mandatory       |
+| <span class="param-type">Subq  </span>       | (WOQLQuery*) - An array of variables and / or strings from which the id will be generated <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query | Mandatory       |
 
 
 
@@ -642,7 +641,7 @@ limit(Limit, Subq)
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">Limit  </span>      | (integer/string*) - A variable that refers to an non-negative integer or a non-negative integer | Mandatory       |
-| <span class="param-type">Subq  </span>       | A subquery whose results will be limited  <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query | Mandatory       |
+| <span class="param-type">Subq  </span>       | (WOQLQuery*) - A subquery whose results will be limited  <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery whose results will be returned starting from the specified offset
@@ -767,8 +766,8 @@ group_by(GroupVars, PatternVars, GroupedVar, Subq)
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">GroupVars  </span>  | ([string] or string*) - Either a single variable or an array of variables | Mandatory       |
-| <span class="param-type">PatternVars  </span>       | ([string] or string*) Either a single variable or an array of variables | Mandatory       |
-| <span class="param-type">GroupedVar  </span>       | (string*) A variable | Mandatory       |
+| <span class="param-type">PatternVars  </span>       | ([string] or string*) - Either a single variable or an array of variables | Mandatory       |
+| <span class="param-type">GroupedVar  </span>       | (string*) - A variable | Mandatory       |
 | <span class="param-type">Subq  </span>       | (WOQLQuery*) - The query whose results will be grouped <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query | Mandatory       |
 
 
@@ -814,8 +813,8 @@ cast(Input, Type, CastVar) ~ typecast(InputVar, Type, CastVar) (Alias)
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">Input  </span>  | ([string] or literal*) - Either a single variable or a literal of any basic type | Mandatory       |
-| <span class="param-type">Type  </span>       | Type ([string] or string*) Either a variable or a basic datatype (xsd / xdd) | Mandatory       |
-| <span class="param-type">CastVar  </span>       | CastVar (string*) A variable | Mandatory       |
+| <span class="param-type">Type  </span>       | ([string] or string*) - Either a variable or a basic datatype (xsd / xdd) | Mandatory       |
+| <span class="param-type">CastVar  </span>       | (string*) - A variable | Mandatory       |
 
 
 <div class="anchor-sub-parts">Returns</div>
@@ -862,7 +861,7 @@ member(Element, List)
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">Element  </span>    | (string or literal*) - Either a variable, IRI or any simple datatype | Mandatory       |
-| <span class="param-type">List  </span>       | List ([string, literal] or string*) Either a variable representing a list or a list of variables or literals | Mandatory       |
+| <span class="param-type">List  </span>       | ([string, literal] or string*) - Either a variable representing a list or a list of variables or literals | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the List inclusion pattern matching expression
@@ -902,8 +901,8 @@ length(List, Len)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">List  </span>       |([string, literal] or string*) Either a variable representing a list or a list of variables or literals | Mandatory       |
-| <span class="param-type">Len  </span>       |(string or integer) A variable in which the length of the list is stored or the length of the list as a non-negative integer | Mandatory       |
+| <span class="param-type">List  </span>       |([string, literal] or string*) - Either a variable representing a list or a list of variables or literals | Mandatory       |
+| <span class="param-type">Len  </span>       |(string or integer) - A variable in which the length of the list is stored or the length of the list as a non-negative integer | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the Length pattern matching expression
@@ -1031,9 +1030,9 @@ substr(String, Before, Length, After, SubString) ~ substring(String, Before, Len
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">String  </span>     |(string*) - String or variable representing the full string           | Mandatory       |
-| <span class="param-type">Before  </span>     |(string or integer*) Integer or variable representing the number of characters from the start to start the substring from| Mandatory       |
-| <span class="param-type">Length  </span>     |(string or integer*) Integer or variable representing the number of characters in the substring| Mandatory       |
-| <span class="param-type">After  </span>      |(string or integer*) Integer or variable representing the number of characters from the end to end the substring from| Mandatory       |
+| <span class="param-type">Before  </span>     |(string or integer*) - Integer or variable representing the number of characters from the start to start the substring from| Mandatory       |
+| <span class="param-type">Length  </span>     |(string or integer*) - Integer or variable representing the number of characters in the substring| Mandatory       |
+| <span class="param-type">After  </span>      |(string or integer*) - Integer or variable representing the number of characters from the end to end the substring from| Mandatory       |
 | <span class="param-type">SubString  </span>  |(string*) - The substring matched according to the values specified in the other arguments| Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
@@ -1076,7 +1075,7 @@ upper(String, Capitalized)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">String  </span>     |((string*) - string or variable representing the uncapitalized string         | Mandatory       |
+| <span class="param-type">String  </span>     | (string*) - string or variable representing the uncapitalized string         | Mandatory       |
 | <span class="param-type">Capitalized  </span>     |(string*) - string or variable representing the capitalized string| Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
@@ -1284,8 +1283,7 @@ re(Pattern, Test, Matches) ~ regexp(Pattern, Test, Matches) (Alias)
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">Pattern  </span>     | (string*) - string or variable using normal PCRE regular expression syntax with the exception that special characters have to be escaped twice (to enable transport in JSONLD) | Mandatory       |
 | <span class="param-type">Test  </span> |(string*) - string or variable containing the string to be tested for patterns with the regex | Mandatory       |
-| <span class="param-type">Matches  </span>    |(string / [string]) - variable representing the list of matches or a list of strings or variables
-| Mandatory       |
+| <span class="param-type">Matches  </span>    |(string / [string]) - variable representing the list of matches or a list of strings or variables | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the Regular Expression pattern matching expression
@@ -1327,8 +1325,7 @@ like(StringA, StringB, Distance)
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">StringA  </span>     | (string*) - string literal or variable representing a string to be compared | Mandatory       |
 | <span class="param-type">StringA  </span> |(string*) - string literal or variable representing the other string to be compared | Mandatory       |
-| <span class="param-type">Distance  </span>    |(string / [float]*) - variable representing the distance between the variables
-| Mandatory       |
+| <span class="param-type">Distance  </span>    |(string / [float]*) - variable representing the distance between the variables | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the Like pattern matching expression
@@ -1621,7 +1618,7 @@ sum(List, Total)
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">List  </span> | (WOQLQuery*) - ([string or numeric*]) - a list variable, or a list of variables or numeric literals          | Mandatory       |
-| <span class="param-type">Total  </span>   |a variable or numeric containing the sum of the values in List        | Mandatory       |
+| <span class="param-type">Total  </span>   | (string or numeric*) - a variable or numeric containing the sum of the values in List        | Mandatory       |
 
 
 <div class="anchor-sub-parts">Returns</div>
@@ -2073,8 +2070,8 @@ get(AsVArs, QueryResource)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">AsVArs  </span>    |([string]*) an array of AsVar variable mappings (see as for format below)    | Mandatory       |
-| <span class="param-type">QueryResource  </span>    | (string*) an external resource (remote, file, post) to query    | Mandatory       |
+| <span class="param-type">AsVArs  </span>    |([string]*) - An array of AsVar variable mappings (see as for format below)    | Mandatory       |
+| <span class="param-type">QueryResource  </span>    | (string*) - An external resource (remote, file, post) to query    | Mandatory       |
 
 
 <div class="anchor-sub-parts">Returns</div>
@@ -2119,9 +2116,9 @@ put(AsVArs, Subq, FileResource)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">AsVArs  </span>    |([string]*) an array of AsVar variable mappings (see as for format below)  | Mandatory       |
-| <span class="param-type">Subq  </span>    | (WOQLQuery*) - The query which will be executed to produce the results  <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query   | Mandatory       |
-| <span class="param-type">FileResource  </span>    | (string*) an file resource local to the server    | Mandatory       |
+| <span class="param-type">AsVArs  </span>    |([string]*) - An array of AsVar variable mappings (see as for format below)  | Mandatory       |
+| <span class="param-type">Subq  </span>    | (WOQLQuery*) - The query which will be executed to produce the results     | Mandatory       |
+| <span class="param-type">FileResource  </span>    | (string*) - An file resource local to the server <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query   | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the put expression
@@ -2165,9 +2162,9 @@ as(SourceLocator, VarName, Type)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">SourceLocator  </span>    |(string) - an optional string containing the CSV column header, or a variable containing the string (if it is omitted when extracting data from a CSV, the CSV will be indexed by column number)  | Mandatory       |
-| <span class="param-type">VarName  </span>    |  (string*) - the name of the variable into which the data from the external resource will be copied| Mandatory       |
-| <span class="param-type">Type  </span>    | (string) - an optional type to which the data will be automatically mapped on import   | Optional       |
+| <span class="param-type">SourceLocator  </span>    |(string) - An optional string containing the CSV column header, or a variable containing the string (if it is omitted when extracting data from a CSV, the CSV will be indexed by column number)  | Mandatory       |
+| <span class="param-type">VarName  </span>    |  (string*) - The name of the variable into which the data from the external resource will be copied| Mandatory       |
+| <span class="param-type">Type  </span>    | (string) - An optional type to which the data will be automatically mapped on import   | Optional       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the variable mapping expression
@@ -2210,8 +2207,8 @@ remote(URL, Opts)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">URL  </span>    |(string*) The URL at which the remote resource can be accessed  | Mandatory       |
-| <span class="param-type">Opts  </span>    |(object) A option json which can have the following keys: <br/> <span class="param-object"> type: csv/turtle </span> | Optional       |
+| <span class="param-type">URL  </span>    |(string*) - The URL at which the remote resource can be accessed  | Mandatory       |
+| <span class="param-type">Opts  </span>    |(object) - A option json which can have the following keys: <br/> <span class="param-object"> type: csv/turtle </span> | Optional       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the remote resource identifier
@@ -2251,8 +2248,8 @@ file(Path, Opts)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">Path  </span>    |(string*) The Path on the server at which the file resource can be accessed | Mandatory       |
-| <span class="param-type">Opts  </span>    |(object) A option json which can have the following keys: <br/> <span class="param-object"> type: csv/turtle </span> | Optional       |
+| <span class="param-type">Path  </span>    |(string*) - The Path on the server at which the file resource can be accessed | Mandatory       |
+| <span class="param-type">Opts  </span>    |(object) - A option json which can have the following keys: <br/> <span class="param-object"> type: csv/turtle </span> | Optional       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the file resource identifier
@@ -2293,8 +2290,8 @@ post(Path, opts)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">Path  </span>    |(string*) The Path on the server at which the file resource can be accessed | Mandatory       |
-| <span class="param-type">Opts  </span>    |(object) A option json which can have the following keys: <br/> <span class="param-object"> type: csv/turtle </span> | Optional       |
+| <span class="param-type">Path  </span>    |(string*) - The Path on the server at which the file resource can be accessed | Mandatory       |
+| <span class="param-type">Opts  </span>    |(object) - A option json which can have the following keys: <br/> <span class="param-object"> type: csv/turtle </span> | Optional       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the Post resource identifier
@@ -2335,7 +2332,7 @@ using(GraphResource, Subq)
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">GraphResource  </span>    |(string*) - A valid graph resource identifier string | Mandatory       |
-| <span class="param-type">Subq  </span>    |The query which will be executed against the resource identified above <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query| Mandatory       |
+| <span class="param-type">Subq  </span>    |(WOQLQuery*) - The query which will be executed against the resource identified above <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query| Mandatory       |
 
 
 <div class="anchor-sub-parts">Returns</div>
@@ -2379,7 +2376,7 @@ into(GraphResource, Subq)
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
 | <span class="param-type">GraphResource  </span>    |(string*) - A valid graph resource identifier string | Mandatory       |
-| <span class="param-type">Subq  </span>    |The query which will be written into the graph <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query| Mandatory       |
+| <span class="param-type">Subq  </span>    |(WOQLQuery*) - The query which will be written into the graph <br/> <span class="status-comment"> Note: </span> Subq is an argument or a chained query| Mandatory       |
 
 
 <div class="anchor-sub-parts">Returns</div>
@@ -2515,7 +2512,7 @@ update_object(JSONLD)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">JSONLD  </span>     |(string*) the document's JSON-LD form which will be written to the DB | Mandatory       |
+| <span class="param-type">JSONLD  </span>     |(string*) - The document's JSON-LD form which will be written to the DB | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the update object expression
@@ -2561,7 +2558,7 @@ delete_object(JSON_or_IRI)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">JSON_or_IRI  </span> |(string*) either a full JSON-LD document, an IRI literal or a variable containing either | Mandatory       |
+| <span class="param-type">JSON_or_IRI  </span> |(string*) - Either a full JSON-LD document, an IRI literal or a variable containing either | Mandatory       |
 
 
 <div class="anchor-sub-parts">Returns</div>
@@ -2600,8 +2597,8 @@ read_object(DocumentIRI, JSONLD)
 
 | Arguments                                    | Types                                                                | Requirement                |
 |----------------------------------------------|----------------------------------------------------------------------|----------------------------|
-| <span class="param-type">DocumentIRI  </span> |(string*) either an IRI literal or a variable containing an IRI      | Mandatory       |
-| <span class="param-type">JSONLD  </span> |(string*) a variable into which the document's JSON-LD form will be saved      | Mandatory       |
+| <span class="param-type">DocumentIRI  </span> |(string*) - Either an IRI literal or a variable containing an IRI      | Mandatory       |
+| <span class="param-type">JSONLD  </span> |(string*) - A variable into which the document's JSON-LD form will be saved      | Mandatory       |
 
 <div class="anchor-sub-parts">Returns</div>
 A WOQLQuery which contains the document retrieval expression
